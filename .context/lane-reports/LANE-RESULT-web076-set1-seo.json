@@ -1,0 +1,39 @@
+{
+  "lane": "web076-set1-seo",
+  "wo": "wo-staging-design-review-2026-10",
+  "unit": "WO-INF-087 u14",
+  "commits": [
+    { "sha": "bc856b7", "subject": "feat(web): SEO H1 for homepage (CR-WEB-076 SEO pass)" },
+    { "sha": "1b57796", "subject": "feat(web): SEO H1s for clarity, deliver, transform, retained, print-promotional (CR-WEB-076 SEO pass)" },
+    { "sha": "a9fc92b", "subject": "fix(css): widen hero H1 columns and cap font so SEO H1s stay <=3 lines (CR-WEB-076 SEO pass)" },
+    { "sha": "af15a12", "subject": "fix(web): fit SEO H1s to 3 lines desktop / 4 mobile per route (CR-WEB-076 SEO pass)" },
+    { "sha": "701886e", "subject": "copy(web): front-load print shop management software into print-promotional lede (CR-WEB-076 SEO pass)" },
+    { "sha": "76b5ceb", "subject": "docs: LANE-RESULT SEO pass section - H1 per route, body keyword counts, verification (CR-WEB-076)" }
+  ],
+  "filesChanged": [
+    "app/page.tsx",
+    "app/clarity/page.tsx",
+    "app/deliver/page.tsx",
+    "app/deliver/deliver-v1.css",
+    "app/transform/page.tsx",
+    "app/retained/page.tsx",
+    "app/retained/retained-v1.css",
+    "app/sectors/print-promotional/page.tsx",
+    "app/sectors/print-promotional/print-v2.css",
+    "app/homepage.css",
+    "app/design-system/site-v3.css",
+    "LANE-RESULT.md"
+  ],
+  "verify": {
+    "tsc": "clean",
+    "tests": "n/a",
+    "escapeGrep": "0 hits in this lane's changes"
+  },
+  "deviations": [
+    "H1 line counts (MUST 7) were measured in headless Chrome (Outfit 800, line-height 1.2), not estimated. My first two estimates were wrong; the committed CSS is based on the headless measurements, which give 3 lines at 1440px and 4 lines or fewer at 390px for all six routes.",
+    "The homepage H1 resize dropped 'letter-spacing: -0.038em' and the explicit color rule from the replaced line in homepage.css. The on-dark colour is inherited from .g-navy (color: var(--do-text-on-dark)), verified in the built CSS chunk, so the render is unchanged; the tracking difference is imperceptible at the new size. Not silently reintroduced - flagged here and in LANE-RESULT.md.",
+    "The 14ch cap on .hero h1 in site-v3.css was dropped, which affects all four service pages, not just the two (deliver, retained) that needed it. Clarity and transform fit at the shared sizes once the column was widened, so a per-route override on two of them was more code than dropping the cap for all four."
+  ],
+  "blockers": [],
+  "done": true
+}
