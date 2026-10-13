@@ -1,13 +1,14 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import Image from 'next/image';
 import { JsonLd } from '@/components/JsonLd';
 import { BreadcrumbSchema } from '@/components/BreadcrumbSchema';
 import { SheetIndexRail } from '@/components/SheetIndexRail';
 import { D17Motion } from '@/components/D17Motion';
+import { IconSprite } from '@/components/IconSprite';
 import d17 from './d17-art.module.css';
+import '@/app/d17-global.css';
+import '@/app/design-system/site-v3.css';
 import './homepage.css';
-import './d17-global.css';
 
 export const metadata: Metadata = {
   title: 'Operations Consultant for Print & Embroidery | Decoded Ops',
@@ -56,11 +57,11 @@ const costLedger = [
 ];
 
 const notes = [
-  { no: '01 · Translation', h: 'I say it back to you clearly.',
+  { no: '01 · Translation', icon: 'i-message-quote', h: 'I say it back to you clearly.',
     p: 'I take what you’re trying to convey (often half-formed, vague, hard to articulate) and reflect it back as a solution or a clear path forward. Business owners feel understood in a way they often haven’t been before.' },
-  { no: '02 · Problem solving', h: 'When you tell me the system can’t do that.',
+  { no: '02 · Problem solving', icon: 'i-link', h: 'When you tell me the system can’t do that.',
     p: 'That’s usually where the conversation starts rather than where it stops. I find a different way, connecting things that were never designed to connect, or reframing the problem so the tool you already own handles it differently.' },
-  { no: '03 · Facilitation', h: 'People adopt what they helped build.',
+  { no: '03 · Facilitation', icon: 'i-users', h: 'People adopt what they helped build.',
     p: 'In a mixed group of directors, warehouse staff and office teams, I ask the question that makes everyone stop. They adopt the result because they built it. That’s how change actually sticks.' },
 ];
 
@@ -72,13 +73,15 @@ export default function HomePage() {
         { name: 'Home', url: 'https://decodedops.co.uk/' },
       ]} />
 
+      <IconSprite />
+
       <a className="skip" href="#content">Skip to content</a>
 
       <SheetIndexRail />
 
       <main id="content">
 
-        {/* ══════════ REGION A · 01 · THE STAGE ══════════ */}
+        {/* ══════════ 01 · THE STAGE ══════════ */}
         <section className="g-navy stage" id="s1" data-od-id="hero">
           <div className="do-dot-grid" aria-hidden="true" style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }} />
           <div className="wrap">
@@ -176,7 +179,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ══════════ REGION B · 03 · HOW I HELP ══════════ */}
+        {/* ══════════ 03 · HOW I HELP ══════════ */}
         <section className="g-off" id="s3" data-od-id="how-i-help">
           <div className="wrap">
             <span className="eyebrow">How I help</span>
@@ -185,26 +188,27 @@ export default function HomePage() {
               from the one before it. Almost everyone starts with a Clarity Audit, because until somebody
               has followed your processes from start to finish, everything after that is guesswork.</p>
 
-            <div dangerouslySetInnerHTML={{ __html: `<figure class="d17 a1008" data-od-id="services-route" data-motion data-no="DO-ART-1008" data-rev="01" data-tx="poster"
+            {/* DO-ART-1008 Rev 02: same drawing, strokes on tokens, all four stations linked */}
+            <div dangerouslySetInnerHTML={{ __html: `<figure class="d17 a1008" data-od-id="services-route" data-motion data-no="DO-ART-1008" data-rev="02" data-tx="poster"
               aria-label="Journey plate DO-ART-1008, four services on one route. 01 Clarity Audit, start here: a full day on site, six areas followed from start to finish, then a written assessment and roadmap inside five working days. 02 Deliver: independent vendor brief, procurement and project oversight. 03 Transform: ERP, eCommerce and process redesign run together as one programme, scoped only once an audit has shown what it needs to cover. 04 Retained, the amber terminus, fractional CTO: monthly strategic and operational leadership, roadmap ownership, vendor management, a direct line to me.">
         <div class="gridl" aria-hidden="true"></div>
         <p class="eb d17-mono">The route</p>
         <p class="stand">Four services, each a natural next step from the one before.</p>
         <svg class="route" viewBox="0 0 1600 864" aria-hidden="true">
           <defs><filter id="rt-glow2" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="10"/></filter></defs>
-          <path d="M70 620 H 590 L 750 460 H 1180 L 1320 320 H 1430" pathLength="1" fill="none" stroke="rgba(33,158,188,.5)" stroke-width="30" stroke-linejoin="round" stroke-linecap="round" filter="url(#rt-glow2)" class="m-draw"/>
-          <path d="M70 620 H 590 L 750 460 H 1180 L 1320 320 H 1430" pathLength="1" fill="none" stroke="#01263a" stroke-width="24" stroke-linejoin="round" stroke-linecap="round" class="m-draw"/>
-          <path d="M70 620 H 590 L 750 460 H 1180 L 1320 320 H 1430" pathLength="1" fill="none" stroke="#8ECAE6" stroke-width="14" stroke-linejoin="round" stroke-linecap="round" class="m-draw"/>
-          <rect x="58" y="596" width="12" height="48" rx="3" fill="#8ECAE6"/>
-          <g fill="#F8F9FA" stroke="#023047" stroke-width="6">
+          <path class="rt-glow m-draw" d="M70 620 H 590 L 750 460 H 1180 L 1320 320 H 1430" pathLength="1" fill="none" stroke-width="30" stroke-linejoin="round" stroke-linecap="round" filter="url(#rt-glow2)"/>
+          <path class="rt-base m-draw" d="M70 620 H 590 L 750 460 H 1180 L 1320 320 H 1430" pathLength="1" fill="none" stroke-width="24" stroke-linejoin="round" stroke-linecap="round"/>
+          <path class="rt-line m-draw" d="M70 620 H 590 L 750 460 H 1180 L 1320 320 H 1430" pathLength="1" fill="none" stroke-width="14" stroke-linejoin="round" stroke-linecap="round"/>
+          <rect class="rt-stub" x="58" y="596" width="12" height="48" rx="3"/>
+          <g class="rt-stop" stroke-width="6">
             <circle cx="190" cy="620" r="17" class="m-pop" style="animation-delay:.35s;transform-origin:190px 620px"/>
             <circle cx="470" cy="620" r="17" class="m-pop" style="animation-delay:.75s;transform-origin:470px 620px"/>
             <circle cx="1080" cy="460" r="17" class="m-pop" style="animation-delay:1.45s;transform-origin:1080px 460px"/>
           </g>
           <g class="m-pop" style="animation-delay:2.15s;transform-origin:1430px 320px">
-            <circle cx="1430" cy="320" r="46" fill="rgba(255,183,3,.16)"/>
-            <circle cx="1430" cy="320" r="30" fill="#023047" stroke="#FFB703" stroke-width="10"/>
-            <circle cx="1430" cy="320" r="11" fill="#FFB703"/></g>
+            <circle class="rt-halo" cx="1430" cy="320" r="46"/>
+            <circle class="rt-end" cx="1430" cy="320" r="30" stroke-width="10"/>
+            <circle class="rt-core" cx="1430" cy="320" r="11"/></g>
         </svg>
         <div class="fan" aria-hidden="true">
           <div class="docmini m-drop" style="left:calc(352 * var(--u)); top:calc(356 * var(--u)); width:calc(236 * var(--u)); transform:rotate(-3deg); animation-delay:.9s">
@@ -213,25 +217,28 @@ export default function HomePage() {
             <div class="row"><b>RM-01</b><span>Roadmap</span></div>
           </div>
           <div class="photopin m-drop" style="left:calc(966 * var(--u)); top:calc(196 * var(--u)); width:calc(228 * var(--u)); height:calc(196 * var(--u)); transform:rotate(2.6deg); animation-delay:1.8s">
-            <img src="/images/d17/home/hero-workshop-32a6d0.webp" alt=""><i class="tint"></i>
+            <img src="/images/d17/home/hero-workshop-32a6d0.webp" alt="" width="400" height="300"><i class="tint"></i>
             <span>on site, day one</span></div>
         </div>
         <div class="stations">
-          <div class="st m-fade" style="left:calc(168 * var(--u)); top:calc(658 * var(--u)); width:calc(280 * var(--u)); animation-delay:.4s">
+          <div class="st st--lead m-fade" style="left:calc(168 * var(--u)); top:calc(658 * var(--u)); width:calc(280 * var(--u)); animation-delay:.4s">
             <span class="n">01 &middot; Start here</span><h3>Clarity Audit</h3>
             <p>On-site audit and written plan, six areas followed start to finish</p>
-            <a href="/clarity">Start here &rarr;</a></div>
+            <a href="/clarity">Start here <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></div>
           <div class="st m-fade" style="left:calc(448 * var(--u)); top:calc(658 * var(--u)); width:calc(270 * var(--u)); animation-delay:.8s">
             <span class="n">02</span><h3>Deliver</h3>
-            <p>Independent vendor brief, procurement and project oversight</p></div>
+            <p>Independent vendor brief, procurement and project oversight</p>
+            <a href="/deliver">Deliver <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></div>
           <div class="st m-fade" style="left:calc(1058 * var(--u)); top:calc(498 * var(--u)); width:calc(300 * var(--u)); animation-delay:1.35s">
             <span class="n">03</span><h3>Transform</h3>
-            <p>ERP, eCommerce and process redesign, run as one programme</p></div>
+            <p>ERP, eCommerce and process redesign, run as one programme</p>
+            <a href="/transform">Transform <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></div>
           <div class="st st--end m-fade" style="left:calc(1300 * var(--u)); top:calc(382 * var(--u)); width:calc(280 * var(--u)); animation-delay:2.15s">
             <span class="n">04 &middot; Fractional CTO</span><h3>Retained</h3>
-            <p>Monthly leadership, roadmap ownership, a direct line to me</p></div>
+            <p>Monthly leadership, roadmap ownership, a direct line to me</p>
+            <a href="/retained">Retained <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></div>
         </div>
-        <span class="d17-mark d17-mark--abs">decodedops.co.uk &middot; DO-ART-1008 &middot; Rev 01</span>
+        <span class="d17-mark d17-mark--abs">decodedops.co.uk &middot; DO-ART-1008 &middot; Rev 02</span>
       </figure>` }} />
           </div>
         </section>
@@ -260,7 +267,10 @@ export default function HomePage() {
             <div className="notes" data-od-id="notes">
               {notes.map(n => (
                 <article className="note" key={n.no} data-od-id={`note-${n.no.slice(3).toLowerCase()}`}>
-                  <span className="no">{n.no}</span>
+                  <div className="note-top">
+                    <span className="ic-tile"><svg className="ic ic-24" aria-hidden="true"><use href={`#${n.icon}`} /></svg></span>
+                    <span className="no">{n.no}</span>
+                  </div>
                   <h3>{n.h}</h3>
                   <p>{n.p}</p>
                 </article>
@@ -269,14 +279,14 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ══════════ REGION C · 06 · WHAT IT TURNS UP ══════════ */}
+        {/* ══════════ 06 · WHAT IT TURNS UP ══════════ */}
         <section className="g-navy set" id="s6" data-od-id="turns-up">
           <div className="do-dot-grid" aria-hidden="true" style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }} />
           <div className="wrap">
             <article className="sheet" data-od-id="sheet-measure">
               <div className="masthead">
                 <div>
-                  <span className="eyebrow">Measure &middot; DO-ART-917</span>
+                  <span className="eyebrow">Measure</span>
                   <h2>Nobody retypes a supplier spreadsheet.</h2>
                 </div>
                 <p className="lede">Hanicks. One import pipeline, run to a schedule,
@@ -285,8 +295,7 @@ export default function HomePage() {
               </div>
 
               {/* DO-ART-917 r01 &middot; product-screen mock-up carrying the live Hanicks
-                   figures (SQL, 23 Sep 2026). In-page draw: cards rise, the meters
-                   fill, the feeds list in, and the amber lands on &quot;matched&quot; last. */}
+                   figures (SQL, 23 Sep 2026). Nav glyphs from the sprite. */}
               <figure className={`${d17.d17} ${d17.a917}`} data-od-id="plate-measure" data-motion
                       data-no="DO-ART-917" data-rev="01" data-tx="photo"
                       aria-label="Product screen DO-ART-917. Decoded Works catalogue overview at Hanicks, live in September 2026: 317,812 products brought in from supplier feeds, 154,518 matched to a supplier automatically, 40 active suppliers feeding in, and 77 per cent of stock records carrying a bin location.">
@@ -307,8 +316,8 @@ export default function HomePage() {
                   <div className={d17.winBar}><span className={d17.dots}><i /><i /><i /></span>
                     <span className={d17.crumb}><span>Catalogue &rsaquo;</span> Overview</span><span className={d17.pill}>HANICKS</span></div>
                   <div className={d17.winBody}>
-                    <nav className={d17.winNav}><span className={d17.on}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7"><path d="M12 3 3 8l9 5 9-5-9-5Z" /><path d="m3 13 9 5 9-5" /></svg>Catalogue</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7" /><circle cx="7" cy="17.5" r="1.6" /><circle cx="17" cy="17.5" r="1.6" /></svg>Fulfil</span>
-                      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7"><path d="M21 3 10 14M21 3l-7 18-4-7-7-4 18-7Z" /></svg>Publish</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2" /></svg>Insight</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7"><circle cx="12" cy="12" r="3" /><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1" /></svg>Setup</span></nav>
+                    <nav className={d17.winNav}><span className={d17.on}><svg className="ic" aria-hidden="true"><use href="#i-layers" /></svg>Catalogue</span><span><svg className="ic" aria-hidden="true"><use href="#i-package-check" /></svg>Fulfil</span>
+                      <span><svg className="ic" aria-hidden="true"><use href="#i-send" /></svg>Publish</span><span><svg className="ic" aria-hidden="true"><use href="#i-chart" /></svg>Insight</span><span><svg className="ic" aria-hidden="true"><use href="#i-settings" /></svg>Setup</span></nav>
                     <div className={d17.winMain}>
                       <h5>Catalogue overview</h5>
                       <p className={d17.s}>Every supplier feed, brought into one catalogue</p>
@@ -336,13 +345,13 @@ export default function HomePage() {
                 </div>
               </figure>
 
-              <p className="sheet-foot">Same approach at Case study 02, real production numbers: 17 supplier
+              <p className="sheet-foot">Same approach at <Link href="/case-studies/case-study-02">Case study 02</Link>, real production numbers: 17 supplier
                 feeds automated, and a projected saving of 20 to 40 hours a week.</p>
             </article>
           </div>
         </section>
 
-        {/* ══════════ REGION D · 07 · WHERE THE SOFTWARE CAME FROM ══════════ */}
+        {/* ══════════ 07 · WHERE THE SOFTWARE CAME FROM ══════════ */}
         <section className="g-white origin" id="s7" data-od-id="origin">
           <div className="wrap">
             <div className="origin-lead" data-od-id="origin-lead">
@@ -366,18 +375,17 @@ export default function HomePage() {
                   this goes, and because there was nowhere to hide if it didn&rsquo;t work.</p>
               </div>
               <ul className="outcomes" data-od-id="origin-outcomes">
-                <li>Multiple systems consolidated into one operations hub.</li>
-                <li>Every procedure and process documented.</li>
-                <li>The mundane but important work automated.</li>
-                <li>A business that can scale online and offline without adding admin to do it.</li>
+                <li><svg className="ic ic-16" aria-hidden="true"><use href="#i-check" /></svg>Multiple systems consolidated into one operations hub.</li>
+                <li><svg className="ic ic-16" aria-hidden="true"><use href="#i-check" /></svg>Every procedure and process documented.</li>
+                <li><svg className="ic ic-16" aria-hidden="true"><use href="#i-check" /></svg>The mundane but important work automated.</li>
+                <li><svg className="ic ic-16" aria-hidden="true"><use href="#i-check" /></svg>A business that can scale online and offline without adding admin to do it.</li>
               </ul>
             </div>
 
             <div className="origin-exhibit" data-od-id="origin-exhibit">
               {/* DO-ART-918 r01 · photo-led evidence with a drawn ledger (D17). The
                    client is a teamwear business and is never named; figures are the
-                   live system, SQL 23 Sep 2026. In-page draw: the ledger line runs
-                   down and the figures land in order, amber on &quot;binned&quot; last. */}
+                   live system, SQL 23 Sep 2026. */}
               <figure className={`${d17.d17} ${d17.a918}`} data-od-id="plate-evidence" data-motion
                       data-no="DO-ART-918" data-rev="01" data-tx="photo"
                       aria-label="Evidence piece DO-ART-918. A teamwear business on Works, live in September 2026: 17 supplier feeds, 27,778 supplier products, 236,056 variants, 952 products live on their website, and 100 per cent of stock with a bin location.">
@@ -408,7 +416,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ══════════ REGION D · 08 · THE CLOSER ══════════ */}
+        {/* ══════════ 08 · THE CLOSER ══════════ */}
         <section className="g-off closer" id="s8" data-od-id="cta">
           <div className="wrap closer-grid">
             <div>

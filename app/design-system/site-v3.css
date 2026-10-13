@@ -384,3 +384,71 @@ a.area:focus-visible:not(.d17 *){ outline:3px solid var(--do-cerulean); outline-
 /* icon card with a screen on top */
 .area:not(.d17 *) .shot{ margin:-26px -26px 10px; border:0; border-bottom:1px solid var(--do-border-subtle); border-radius:var(--do-radius-2xl) var(--do-radius-2xl) 0 0; box-shadow:none }
 .area:not(.d17 *) .shot img{ aspect-ratio:16 / 10 }
+
+/* ── Hero piece variants ────────────────────────────────────────────────── */
+/* the 1004 recipe: two document mock-ups over a site-visit photograph.
+   `.a939` is the class the Clarity (939), Deliver (940) and Transform (941)
+   hero pieces share in the approved mockups. */
+.a939 .d17-ph{ left:28% }
+.a939 .d17-ph img{ object-position:50% 55%; --d17-grade:saturate(.7) contrast(1.06) brightness(.82) }
+.a939 .stage{ min-height:calc(500 * var(--u)) }
+.a939 .doc-f{ left:calc(8 * var(--u)); top:calc(20 * var(--u)); width:calc(390 * var(--u)); transform:rotate(-2.4deg) }
+.a939 .doc-m{ left:calc(396 * var(--u)); top:calc(206 * var(--u)); width:calc(292 * var(--u)); transform:rotate(3.2deg); z-index:2 }
+.a939 .t5{ left:calc(40 * var(--u)); bottom:calc(10 * var(--u)) }
+@media (max-width:760px){
+  .a939 .stage .d17-doc:nth-child(odd){ transform:rotate(-1deg) } .a939 .stage .d17-doc:nth-child(even){ transform:rotate(1deg) }
+  .a939 .t5{ position:relative; left:auto; bottom:auto; align-self:flex-start; order:4 }
+}
+/* the 1001 recipe: the monthly pack (Retained 942) */
+.a942{ --u:calc(100cqw / 1152); display:flex; flex-direction:column; margin:44px 0 0 }
+.a942 .d17-ph img{ object-position:50% 40%; --d17-grade:saturate(.6) contrast(1.06) brightness(.8) }
+.a942::before{ content:''; position:absolute; inset:0; z-index:-1; background:linear-gradient(180deg, color-mix(in srgb, var(--do-prussian-blue) 35%, transparent) 0%, transparent 30%, color-mix(in srgb, var(--do-prussian-blue) 90%, transparent) 70%, var(--do-prussian-blue) 100%) }
+.a942 .stage{ position:relative; aspect-ratio:1152 / 540 }
+.a942 .doc-c{ left:calc(96 * var(--u)); top:calc(74 * var(--u)); width:calc(300 * var(--u)); transform:rotate(-5deg) }
+.a942 .doc-d{ left:calc(392 * var(--u)); top:calc(48 * var(--u)); width:calc(380 * var(--u)); transform:rotate(-.8deg); z-index:2 }
+.a942 .doc-r{ left:calc(760 * var(--u)); top:calc(96 * var(--u)); width:calc(316 * var(--u)); transform:rotate(4deg) }
+.a942 .foot{ display:grid; grid-template-columns:1.1fr 1fr; gap:calc(40 * var(--u)); align-items:end; padding:0 calc(52 * var(--u)) calc(44 * var(--u)) }
+.a942 .foot .k{ font-size:max(10px, calc(13 * var(--u))); color:var(--do-off-white) }
+.a942 .foot .k span{ color:var(--do-sky-blue) }
+.a942 .foot .bar{ width:calc(64 * var(--u)); height:5px; border-radius:3px; background:var(--do-amber); margin:calc(16 * var(--u)) 0 }
+.a942 .foot h3{ margin:0; font-family:var(--do-font-heading); font-weight:800; color:var(--do-white); font-size:max(24px, calc(40 * var(--u))); line-height:1.05; letter-spacing:-.03em }
+.a942 .foot p{ margin:0 0 calc(18 * var(--u)); font-size:max(14px, calc(17 * var(--u))); line-height:1.45; color:color-mix(in srgb, var(--do-off-white) 80%, transparent) }
+.a942 .t1{ left:calc(150 * var(--u)); top:calc(430 * var(--u)) }
+.a942 .t2{ right:calc(110 * var(--u)); top:calc(400 * var(--u)) }
+@media(max-width:760px){
+  .a942 .stage{ aspect-ratio:auto; display:flex; flex-direction:column; gap:14px; padding:18px 14px 0 }
+  .a942 .stage .d17-doc{ position:relative; left:auto !important; top:auto !important; width:100% !important; transform:none !important; --u:.78px }
+  .a942 .t1, .a942 .t2{ position:relative; left:auto; right:auto; top:auto; align-self:flex-start }
+  .a942 .foot{ grid-template-columns:1fr; padding:18px 14px 20px }
+}
+
+/* ── Service-page extras · document sub-parts, figure rows, split list, tier scale, pull quote (Deliver / Transform / Retained) ── */
+.pk{ list-style:none; margin:calc(12 * var(--u)) 0 0; padding:0; counter-reset:p }
+.pk li{ counter-increment:p; display:grid; grid-template-columns:calc(26 * var(--u)) 1fr; gap:calc(6 * var(--u)); padding:calc(7 * var(--u)) 0; border-top:1px solid color-mix(in srgb, var(--do-prussian-blue) 12%, transparent); font-size:max(7px, calc(12.5 * var(--u))); font-weight:600; line-height:1.25 }
+.pk li::before{ content:"0" counter(p); font-family:var(--do-font-mono); font-size:max(6px, calc(10 * var(--u))); color:var(--do-text-secondary); padding-top:1px }
+.dl{ margin-top:calc(12 * var(--u)) }
+.dl .r{ display:grid; grid-template-columns:1fr auto auto; gap:calc(10 * var(--u)); align-items:center; padding:calc(8 * var(--u)) 0; border-top:1px solid color-mix(in srgb, var(--do-prussian-blue) 12%, transparent); font-size:max(7px, calc(12.5 * var(--u))); font-weight:600; line-height:1.25 }
+.dl .r.h{ font-family:var(--do-font-mono); font-weight:600; font-size:max(6px, calc(9 * var(--u))); letter-spacing:.14em; text-transform:uppercase; color:color-mix(in srgb, var(--do-prussian-blue) 55%, transparent); border-top:0; padding-bottom:calc(4 * var(--u)) }
+.dl .who{ font-family:var(--do-font-mono); font-weight:500; font-size:max(6px, calc(10 * var(--u))); color:color-mix(in srgb, var(--do-prussian-blue) 62%, transparent) }
+.rm{ display:grid; grid-template-columns:repeat(3, 1fr); gap:calc(8 * var(--u)); margin-top:calc(12 * var(--u)) }
+.rm .c b{ display:block; font-family:var(--do-font-mono); font-size:max(6px, calc(9.5 * var(--u))); letter-spacing:.14em; text-transform:uppercase; color:var(--do-text-secondary); padding-bottom:calc(5 * var(--u)); border-bottom:2px solid color-mix(in srgb, var(--do-cerulean) 40%, transparent) }
+.rm .c span{ display:block; margin-top:calc(7 * var(--u)); padding:calc(6 * var(--u)) calc(7 * var(--u)); border-radius:calc(4 * var(--u)); background:color-mix(in srgb, var(--do-sky-blue) 22%, transparent); font-size:max(6.5px, calc(10.5 * var(--u))); font-weight:600; line-height:1.2 }
+.rm .c span.a{ background:color-mix(in srgb, var(--do-amber) 40%, transparent) }
+.feed-row:not(.d17 *){ display:flex; justify-content:space-between; gap:12px; align-items:baseline; font-size:var(--do-text-sm); color:color-mix(in srgb, var(--do-off-white) 80%, transparent) }
+.feed-row:not(.d17 *) b{ font-family:var(--do-font-heading); font-size:var(--do-text-base); color:var(--do-white) }
+.feed-pct:not(.d17 *){ font-family:var(--do-font-heading); font-weight:var(--do-weight-extrabold); font-size:var(--do-text-2xl); color:var(--do-amber); font-variant-numeric:tabular-nums }
+.feed-track:not(.d17 *){ margin-top:10px; height:10px; border-radius:9px; background:color-mix(in srgb, var(--do-sky-blue) 18%, transparent); overflow:hidden }
+.feed-fill:not(.d17 *){ height:100%; border-radius:9px; background:var(--do-sky-blue) }
+.feed-foot:not(.d17 *){ margin:18px 0 0; font-size:var(--do-text-xs); color:var(--do-text-muted-on-dark) }
+.split:not(.d17 *){ display:grid; grid-template-columns:minmax(0,5fr) minmax(0,7fr); gap:52px; align-items:start; margin-top:44px }
+@media(max-width:900px){ .split:not(.d17 *){ grid-template-columns:1fr; gap:28px } }
+.split:not(.d17 *) h3{ font-size:var(--do-text-2xl); letter-spacing:-.02em; max-width:15ch; margin:0 0 14px }
+.split:not(.d17 *) .t-body{ color:var(--do-text-secondary); margin:0; max-width:46ch }
+.g-navy:not(.d17 *) .split h3{ color:var(--do-text-on-dark) }
+.scale:not(.d17 *){ margin-top:16px; height:8px; border-radius:9px; background:color-mix(in srgb, var(--do-sky-blue) 24%, transparent); overflow:hidden }
+.scale:not(.d17 *) i{ display:block; height:100%; border-radius:9px; background:var(--do-cerulean); width:var(--w) }
+.area--out:not(.d17 *) .scale i{ background:var(--do-amber) }
+.area:not(.d17 *) .meta{ font-family:var(--do-font-mono); font-size:var(--do-text-xs); letter-spacing:var(--do-tracking-wide); text-transform:uppercase; color:var(--do-text-muted); margin:-4px 0 0 }
+.pull:not(.d17 *){ margin:44px 0 0; padding:28px 0 0; border-top:1px solid var(--do-border-dark); max-width:62ch }
+.pull:not(.d17 *) blockquote{ margin:0; font-family:var(--do-font-heading); font-weight:var(--do-weight-semibold); font-size:clamp(1.2rem,2vw,1.6rem); line-height:1.35; letter-spacing:-.01em; color:var(--do-text-on-dark) }
+.pull:not(.d17 *) cite{ display:block; margin-top:14px; font-style:normal; font-family:var(--do-font-mono); font-size:var(--do-text-xs); letter-spacing:var(--do-tracking-wider); text-transform:uppercase; color:var(--do-text-muted-on-dark) }
