@@ -1,10 +1,11 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { Artwork } from '@/components/Artwork';
-import { PhotoPiece } from '@/components/PhotoPiece';
 import { JsonLd } from '@/components/JsonLd';
-import s from '@/app/deco-page.module.css';
+import { D17Motion } from '@/components/D17Motion';
+import { IconSprite } from '@/components/IconSprite';
 import { OG_IMAGE, OG_IMAGE_PATH } from '@/lib/seo';
+import '@/app/d17-global.css';
+import '@/app/design-system/site-v3.css';
 
 export const metadata: Metadata = {
   title: 'Process Audit for Print & Embroidery | Decoded Ops',
@@ -51,223 +52,212 @@ const clarityFaqSchema = {
   ],
 };
 
+const claritySteps = [
+  { id: 'step-call', icon: 'i-phone', meta: 'Step 1', h: 'Discovery call',
+    p: 'Free, an hour, no obligation. Enough to work out whether a full day on site would tell you anything you don’t already know.' },
+  { id: 'step-day', icon: 'i-map-pin', meta: 'Step 2', h: 'On-site day',
+    p: 'One day, six areas: IT infrastructure, software and systems, eCommerce, processes and operations, growth, and AI readiness. Processes followed, not described.' },
+  { id: 'step-report', icon: 'i-file-check', meta: 'Step 3', h: 'Written report',
+    p: 'Within five working days. What’s costing you, what to do about it, what it’ll cost to fix, and in what order.' },
+  { id: 'step-debrief', icon: 'i-message-quote', meta: 'Step 4', h: 'Debrief', out: true,
+    p: 'I walk you through it, so you can push back while I’m still in the room. Then it’s yours: to act on with me, or without me.' },
+];
+
+const clarityAreas = [
+  { id: 'area-it', icon: 'i-server', num: '01', h: 'IT infrastructure',
+    p: 'Networks, backups, security, and the systems nobody’s looked at since the day they were installed.' },
+  { id: 'area-software', icon: 'i-layout-grid', num: '02', h: 'Software & systems',
+    p: 'What you’re running, what it costs, and what it’s actually being used for versus what it was bought to do.' },
+  { id: 'area-ecommerce', icon: 'i-shopping-cart', num: '03', h: 'eCommerce',
+    p: 'Where the website, the warehouse, and the platform agree, and where they quietly don’t.' },
+  { id: 'area-operations', icon: 'i-git-branch', num: '04', h: 'Processes & operations',
+    p: 'Every manual handoff and workaround, watched as it actually happens, not as it’s described in a meeting.' },
+  { id: 'area-growth', icon: 'i-trending-up', num: '05', h: 'Growth',
+    p: 'Where the business is outgrowing the systems holding it up, and what breaks first if nothing changes.' },
+  { id: 'area-ai', icon: 'i-sparkles', num: '06', h: 'AI readiness',
+    p: 'Whether the data and processes underneath are solid enough for automation to be worth doing yet. Most aren’t.' },
+];
+
 export default function ClarityPage() {
   return (
-    <main id="content">
+    <>
       <JsonLd data={clarityFaqSchema} />
-      {/* 1 · HERO CENTRE */}
-      <section className={`g-off ${s.heroCenter}`} data-od-id="hero">
-        <div className="wrap">
-          <span className="eyebrow">Clarity Audit</span>
-          <h1>One day on site. One written plan.</h1>
-          <p className="lede">A free 60-minute call, then a one-day process audit inside your business. I follow six
-            areas from start to finish, rather than just discussing them. Priced to your scope, confirmed before you commit, and covered by the
-            3&times; guarantee below: if the report doesn&apos;t find at least three times the fee, it&apos;s
-            refunded in full. A written report within five working days, walked through with you in person.</p>
-          <div className={s.heroCta}>
-            <Link className="btn btn--primary" href="/contact">Book a free 60-min call</Link>
+      <IconSprite />
+      <main id="content">
+
+        {/* ══════════ 01 · HERO ══════════ */}
+        <section className="g-off hero" data-od-id="hero">
+          <div className="wrap">
+            <div className="hero-head">
+              <div>
+                <span className="eyebrow">Clarity Audit</span>
+                <h1 data-od-id="hero-h1">One day on site. One written plan.</h1>
+              </div>
+              <div>
+                <p className="t-lede">A free 60-minute call, then a one-day process audit inside your business. I follow six
+                  areas from start to finish, rather than just discussing them. Priced to your scope, confirmed before you commit, and covered by the
+                  3&times; guarantee below: if the report doesn&rsquo;t find at least three times the fee, it&rsquo;s
+                  refunded in full. A written report within five working days, walked through with you in person.</p>
+                <div className="btn-row"><Link className="btn btn--primary" href="/contact" data-od-id="hero-cta">Book a free 60-min call</Link></div>
+              </div>
+            </div>
+
+            {/* DO-ART-939 r01 · Clarity hero · the written report + roadmap over a
+                 site-visit photograph (derived from DO-ART-1004). */}
+            <div dangerouslySetInnerHTML={{ __html: `<figure class="d17 sw sw-doc a939" data-od-id="hero-visual" data-motion data-no="DO-ART-939" data-rev="01" data-tx="photo"
+      aria-label="Artwork DO-ART-939. Two documents over a graded photograph of an embroidery floor. The findings report, where the cost is hiding: orders keyed in twice, stock counted in two places, a weekly report built by hand, artwork chased by email, supplier prices updated by hand, each costed. The roadmap: three to five changes in order, now, next and later. A 3× Clarity Guarantee stamp and a tag: written report within five working days.">
+      <div class="d17-ph"><img src="/images/site/evidence/hero-embroidery-floor-84216c.webp" width="1600" height="900" alt=""></div>
+      <div class="d17-scan" aria-hidden="true"></div>
+      <figcaption class="sw-cap">
+        <div class="k d17-mono">Clarity Audit <span>&middot; what you get</span></div>
+        <div class="bar" aria-hidden="true"></div>
+        <h3>Where the cost is hiding, and what to change first.</h3>
+        <p>One day on site. A written report within five working days: specific, costed, with
+          independent vendor recommendations.</p>
+        <span class="d17-mark">decodedops.co.uk &middot; DO-ART-939 &middot; Rev 01</span>
+      </figcaption>
+      <div class="stage" aria-hidden="true">
+        <div class="d17-doc doc-f m-drop" style="animation-delay:.1s"><span class="tab">REPORT</span>
+          <span class="ref">Clarity Audit &middot; findings</span>
+          <h4>Where the cost is hiding</h4>
+          <p class="sub">one day on site &middot; six areas followed</p>
+          <div class="fx">
+            <div class="r top"><span>Orders keyed in twice</span><i class="m-fill" style="--w:100%;animation-delay:.9s"></i><em>Costed</em></div>
+            <div class="r"><span>Stock counted in two places</span><i class="m-fill" style="--w:78%;animation-delay:1s"></i><em>Costed</em></div>
+            <div class="r"><span>Weekly report built by hand</span><i class="m-fill" style="--w:60%;animation-delay:1.1s"></i><em>Costed</em></div>
+            <div class="r"><span>Artwork chased by email</span><i class="m-fill" style="--w:44%;animation-delay:1.2s"></i><em>Costed</em></div>
+            <div class="r"><span>Supplier prices updated by hand</span><i class="m-fill" style="--w:32%;animation-delay:1.3s"></i><em>Costed</em></div>
           </div>
-        </div>
-      </section>
+          <div class="doc-foot">Example findings &middot; every manual handoff documented, costed line by line</div></div>
+        <div class="d17-doc doc-m m-drop" style="animation-delay:.45s"><span class="tab">ROADMAP</span>
+          <span class="ref">The changes, in order</span>
+          <h4>Three to five changes</h4>
+          <ol class="chg">
+            <li>One stock figure<span class="st-chip st-chip--a">Now</span></li>
+            <li>Orders entered once<span class="st-chip st-chip--a">Now</span></li>
+            <li>Reports that build themselves<span class="st-chip">Next</span></li>
+            <li>Platform choice, independent<span class="st-chip st-chip--o">Later</span></li>
+          </ol>
+          <div class="doc-foot">Vendor recommendations: independent, no commission</div></div>
+        <div class="guar m-pop" style="animation-delay:1.7s"><div><b>3&times;</b><span>Clarity Guarantee<br>or a full refund</span></div></div>
+        <div class="sx-tag t5 m-pop" style="animation-delay:1.9s"><small>Written report</small>Within five working days</div>
+      </div>
+    </figure>` }} />
+          </div>
+        </section>
 
-      {/* 2 · THE FOUR STEPS · DO-ART-306 */}
-      <section className="g-tint" data-od-id="clarity-flow">
-        <div className="wrap">
-          <span className="eyebrow">The Clarity Audit &middot; DO-ART-306</span>
-          <h2>One call, one day on site, one written plan.</h2>
-          <p className="lede" style={{ marginTop: 16 }}>Four steps, and you know what each one produces
-            before you commit to any of them.</p>
+        {/* ══════════ 02 · THE ROUTE ══════════ */}
+        <section className="g-navy route-sec" data-od-id="clarity-flow">
+          <div className="do-dot-grid" aria-hidden="true" style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }} />
+          <div className="wrap">
+            <div className="route-head">
+              <div>
+                <span className="eyebrow">The Clarity Audit</span>
+                <h2 data-od-id="flow-h2">One call, one day on site, one written plan.</h2>
+              </div>
+              <p className="lede">Four steps, and you know what each one produces before you commit to any of them.</p>
+            </div>
+            <ol className="route" data-od-id="clarity-flow-steps">
+              {claritySteps.map(step => (
+                <li key={step.id} className={`stop${step.out ? ' stop--out' : ''}`} data-od-id={step.id}>
+                  <span className="node"><svg className="ic ic-24" aria-hidden="true"><use href={`#${step.icon}`} /></svg></span>
+                  <span className="t-meta">{step.meta}</span><h3>{step.h}</h3>
+                  <p className="t-card">{step.p}</p>
+                </li>
+              ))}
+            </ol>
+            <p className="route-cap"><svg className="ic ic-16" aria-hidden="true"><use href="#i-check" /></svg>Followed, observed, and quantified. Not guessed at.</p>
+          </div>
+        </section>
 
-          <div className="plate-scroll" style={{ marginTop: 34 }}>
-            <div className={`plate-frame ${s.plateFrame}`} data-od-id="clarity-flow-diagram">
-              <Artwork mode="flow" tone="dark" p="cd" title="One call. One day. One clear plan."
-                     sub="Four fixed steps. You know what each one produces."
-                     no="DO-ART-306" rev="02" cls="DECODED OPS · ISSUED">
-
-                <path id="cd-spine" pathLength={1} className="sk-draw sk-s2 p-scyan" d="M180 460 H1420"
-                      fill="none" strokeWidth="2.5" markerEnd="url(#cd-ah)" />
-
-                <g className="sk-fade sk-s3" filter="url(#cd-shadow)">
-                  <rect x="100" y="250" width="310" height="140" rx="12" fill="url(#cd-node)"
-                        className="p-node" strokeWidth="1.4"/>
-                  <text x="255" y="308" textAnchor="middle" className="p-ink" fontFamily="Outfit,sans-serif"
-                        fontWeight="700" fontSize="24">Discovery call</text>
-                  <text x="255" y="342" textAnchor="middle" className="p-mono" fontSize="17"
-                        opacity=".85">free · 60 minutes</text>
-                  <circle cx="255" cy="460" r="13" className="p-cyan"/>
-                  <text x="255" y="520" textAnchor="middle" className="p-mono" fontSize="17"
-                        letterSpacing="1.5" opacity=".7">STEP 1</text>
-                </g>
-
-                <g className="sk-fade sk-s4" filter="url(#cd-shadow)">
-                  <rect x="440" y="250" width="310" height="140" rx="12" fill="url(#cd-node)"
-                        className="p-node" strokeWidth="1.4"/>
-                  <text x="595" y="308" textAnchor="middle" className="p-ink" fontFamily="Outfit,sans-serif"
-                        fontWeight="700" fontSize="24">On-site day</text>
-                  <text x="595" y="342" textAnchor="middle" className="p-mono" fontSize="17"
-                        opacity=".85">six areas, followed start to finish</text>
-                  <circle cx="595" cy="460" r="13" className="p-cyan"/>
-                  <text x="595" y="520" textAnchor="middle" className="p-mono" fontSize="17"
-                        letterSpacing="1.5" opacity=".7">STEP 2</text>
-                </g>
-
-                <g className="sk-fade sk-s5" filter="url(#cd-shadow)">
-                  <rect x="780" y="250" width="310" height="140" rx="12" fill="url(#cd-node)"
-                        className="p-node" strokeWidth="1.4"/>
-                  <text x="935" y="308" textAnchor="middle" className="p-ink" fontFamily="Outfit,sans-serif"
-                        fontWeight="700" fontSize="24">Written report</text>
-                  <text x="935" y="342" textAnchor="middle" className="p-mono" fontSize="17"
-                        opacity=".85">within 5 working days</text>
-                  <circle cx="935" cy="460" r="13" className="p-cyan"/>
-                  <text x="935" y="520" textAnchor="middle" className="p-mono" fontSize="17"
-                        letterSpacing="1.5" opacity=".7">STEP 3</text>
-                </g>
-
-                <g className="sk-fade sk-s6" filter="url(#cd-shadow)">
-                  <rect x="1120" y="242" width="320" height="156" rx="14" fill="url(#cd-amber-n)"
-                        className="p-node-a" strokeWidth="1.8"/>
-                  <text x="1280" y="306" textAnchor="middle" className="p-ink" fontFamily="Outfit,sans-serif"
-                        fontWeight="800" fontSize="27">Debrief</text>
-                  <text x="1280" y="342" textAnchor="middle" className="p-accent-ink" fontSize="17"
-                        fontWeight="600">walked through, not emailed over</text>
-                  <circle cx="1280" cy="460" r="17" className="p-amber"/>
-                  <text x="1280" y="520" textAnchor="middle" className="p-mono" fontSize="17"
-                        letterSpacing="1.5" opacity=".85">STEP 4</text>
-                </g>
-
-                <text x="760" y="700" textAnchor="middle" className="p-mono sk-fade sk-s6" fontSize="22"
-                      fontStyle="italic" opacity=".8">Followed, observed, and quantified. Not guessed
-                  at.</text>
-
-                <g className="sk-dots">
-                  <circle r="6" className="p-cyan">
-                    <animateMotion dur="4.6s" repeatCount="indefinite"><mpath href="#cd-spine"/></animateMotion>
-                  </circle>
-                </g>
-              </Artwork>
+        {/* ══════════ 02a · ON THE DAY: three site-visit photographs ══════════ */}
+        <section className="g-white" data-od-id="on-the-day">
+          <div className="wrap">
+            <div className="ev-head">
+              <div>
+                <span className="eyebrow">On the day</span>
+                <h2 data-od-id="on-the-day-h2">The places the audit actually goes.</h2>
+              </div>
+              <p className="lede">Three of my own photographs from client visits this year. The floor, the bench and the racking are where the handoffs show up, not the meeting room.</p>
+            </div>
+            <div className="ev-grid" data-od-id="on-the-day-photos">
+              <figure className="d17 ev" data-od-id="photo-job-sheets" data-no="DO-ART-979k" data-rev="01" data-tx="photo">
+                <div className="d17-ph"><img src="/images/site/evidence/plate-job-sheets-63dd9c.webp" width={1600} height={900} alt="Paper job sheets laid out on a workbench at a client site." /></div>
+                <div className="d17-scan" aria-hidden="true" />
+                <p className="k d17-mono">The bench &middot; June 2026</p>
+                <p className="line">Job sheets, still on paper</p>
+                <span className="d17-mark">decodedops.co.uk &middot; DO-ART-979k &middot; Rev 01</span>
+              </figure>
+              <figure className="d17 ev" data-od-id="photo-packing" data-no="DO-ART-979n" data-rev="01" data-tx="photo">
+                <div className="d17-ph"><img src="/images/site/evidence/band-packing-station-7c4f80.webp" width={1600} height={900} alt="A packing station with cartons, tape and a label printer at a client site." /></div>
+                <div className="d17-scan" aria-hidden="true" />
+                <p className="k d17-mono">Despatch &middot; June 2026</p>
+                <p className="line">The packing station</p>
+                <span className="d17-mark">decodedops.co.uk &middot; DO-ART-979n &middot; Rev 01</span>
+              </figure>
+              <figure className="d17 ev" data-od-id="photo-racking" data-no="DO-ART-979m" data-rev="01" data-tx="photo">
+                <div className="d17-ph"><img src="/images/site/evidence/plate-racking-bays-626a9b.webp" width={1600} height={900} alt="Warehouse racking bays holding boxed stock at a client site." /></div>
+                <div className="d17-scan" aria-hidden="true" />
+                <p className="k d17-mono">Stock &middot; April 2026</p>
+                <p className="line">Racking bays, counted by hand</p>
+                <span className="d17-mark">decodedops.co.uk &middot; DO-ART-979m &middot; Rev 01</span>
+              </figure>
             </div>
           </div>
+        </section>
 
-          <div className={s.steps} data-od-id="clarity-flow-cards">
-            <article className={s.step}>
-              <p className={s.stepN}>STEP 1</p>
-              <h3>Discovery call</h3>
-              <p>Free, an hour, no obligation. Enough to work out whether a full day on site would
-                tell you anything you don&apos;t already know.</p>
-            </article>
-            <article className={s.step}>
-              <p className={s.stepN}>STEP 2</p>
-              <h3>On-site day</h3>
-              <p>One day, six areas: IT infrastructure, software and systems, eCommerce, processes and
-                operations, growth, and AI readiness. Processes followed, not described.</p>
-            </article>
-            <article className={s.step}>
-              <p className={s.stepN}>STEP 3</p>
-              <h3>Written report</h3>
-              <p>Within five working days. What&apos;s costing you, what to do about it, what it&apos;ll cost to
-                fix, and in what order.</p>
-            </article>
-            <article className={`${s.step} ${s.stepLast}`}>
-              <p className={s.stepN}>STEP 4</p>
-              <h3>Debrief</h3>
-              <p>I walk you through it, so you can push back while I&apos;m still in the room.
-                Then it&apos;s yours: to act on with me, or without me.</p>
-            </article>
+        {/* ══════════ 03 · SIX AREAS ══════════ */}
+        <section className="g-tint" data-od-id="areas">
+          <div className="wrap">
+            <div className="sec-head">
+              <span className="eyebrow">What gets covered</span>
+              <h2 data-od-id="areas-h2">Six areas, followed from start to finish.</h2>
+              <p className="lede">Not a checklist ticked off from a desk. In a process audit I follow the actual process, in the actual place it happens.</p>
+            </div>
+            <div className="areas" data-od-id="area-cards">
+              {clarityAreas.map(area => (
+                <article className="area" key={area.id} data-od-id={area.id}>
+                  <div className="area-top"><span className="ic-tile"><svg className="ic ic-24" aria-hidden="true"><use href={`#${area.icon}`} /></svg></span><span className="num">{area.num}</span></div>
+                  <h3>{area.h}</h3><p className="t-card">{area.p}</p>
+                </article>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* 2a · EVIDENCE PHOTO · DO-ART-908 */}
-      <section className="g-white ev-band" data-od-id="evidence">
-        <div className="wrap">
-          <PhotoPiece
-            src="/images/money/hero-workshop-2026-09.webp"
-            width={1600}
-            height={2397}
-            alt="Two multi-head embroidery machines on a workshop floor, threaded and mid-run, with a grey garment hooped under the needles and thread cones racked behind."
-            no="DO-ART-908"
-            rev="01"
-            eyebrow="Evidence · Clarity Audit"
-            caption="The floor the audit walks"
-            focus="50% 42%"
-          />
-        </div>
-      </section>
-
-      {/* 3 · SIX AREAS */}
-      <section className="g-white" data-od-id="areas">
-        <div className="wrap">
-          <span className="eyebrow">What gets covered</span>
-          <h2>Six areas, followed from start to finish.</h2>
-          <p className="lede" style={{ marginTop: 16 }}>Not a checklist ticked off from a desk. In a process audit I follow the
-            actual process, in the actual place it happens.</p>
-
-          <div className="grid grid--3">
-            <article className="card" data-od-id="area-it">
-              <span className="kicker">01 · Infrastructure</span>
-              <h3>IT infrastructure</h3>
-              <p>Networks, backups, security, and the systems nobody&apos;s looked at since the day they
-                were installed.</p>
-            </article>
-            <article className="card" data-od-id="area-software">
-              <span className="kicker">02 · Software</span>
-              <h3>Software &amp; systems</h3>
-              <p>What you&apos;re running, what it costs, and what it&apos;s actually being used for versus what
-                it was bought to do.</p>
-            </article>
-            <article className="card" data-od-id="area-ecommerce">
-              <span className="kicker">03 · eCommerce</span>
-              <h3>eCommerce</h3>
-              <p>Where the website, the warehouse, and the platform agree, and where they quietly
-                don&apos;t.</p>
-            </article>
-            <article className="card" data-od-id="area-operations">
-              <span className="kicker">04 · Operations</span>
-              <h3>Processes &amp; operations</h3>
-              <p>Every manual handoff and workaround, watched as it actually happens, not as it&apos;s
-                described in a meeting.</p>
-            </article>
-            <article className="card" data-od-id="area-growth">
-              <span className="kicker">05 · Growth</span>
-              <h3>Growth</h3>
-              <p>Where the business is outgrowing the systems holding it up, and what breaks first if
-                nothing changes.</p>
-            </article>
-            <article className="card" data-od-id="area-ai">
-              <span className="kicker">06 · AI readiness</span>
-              <h3>AI readiness</h3>
-              <p>Whether the data and processes underneath are solid enough for automation to be worth
-                doing yet. Most aren&apos;t.</p>
-            </article>
+        {/* ══════════ 04 · THE GUARANTEE ══════════ */}
+        <section className="g-white" data-od-id="guarantee">
+          <div className="wrap">
+            <div className="seal" data-od-id="guarantee-seal">
+              <p className="seal-x">3&times;</p>
+              <div>
+                <span className="seal-tag">Decoded Ops &middot; Clarity Audit &middot; the guarantee</span>
+                <h2 data-od-id="guarantee-h2">Three times the fee, or you don&rsquo;t pay it.</h2>
+                <p>If the report doesn&rsquo;t identify at least three times the fee in recoverable cost or lost revenue, it&rsquo;s refunded in full. No conditions. No questions.</p>
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* 4 · THE 3× GUARANTEE */}
-      <section className="g-navy" data-od-id="guarantee">
-        <div className={`wrap ${s.guaranteeBand}`}>
-          <p className={`${s.guaranteeNum} ${s.num}`}>3×</p>
-          <div>
-            <span className="eyebrow">The guarantee</span>
-            <h2>Three times the fee, or you don&apos;t pay it.</h2>
-            <p>If the report doesn&apos;t identify at least three times the fee in recoverable cost or lost
-              revenue, it&apos;s refunded in full. No conditions. No questions.</p>
+        {/* ══════════ 05 · THE CLOSER ══════════ */}
+        <section className="g-off closer" data-od-id="cta">
+          <div className="wrap closer-grid">
+            <div>
+              <span className="eyebrow">Start here</span>
+              <h2 data-od-id="cta-h2">Ready to find out what&rsquo;s really going on?</h2>
+            </div>
+            <div>
+              <p className="lede">The discovery call is free, takes 60 minutes, and comes with no obligation. Just an honest conversation about your operation.</p>
+              <div className="btn-row">
+                <Link className="btn btn--primary" href="/contact" data-od-id="cta-primary">Book a free discovery call</Link>
+                <Link className="go" href="/deliver">See how Deliver follows on <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* 5 · CTA STRIP */}
-      <section className={`g-white ${s.ctaStrip}`} data-od-id="cta-strip">
-        <div className="wrap" style={{ maxWidth: 760 }}>
-          <h2>Ready to find out what&apos;s really going on?</h2>
-          <p className="lede">The discovery call is free, takes 60 minutes, and comes with no obligation.
-            Just an honest conversation about your operation.</p>
-          <div className={s.heroCta}>
-            <Link className="btn btn--primary" href="/contact">Book a free discovery call</Link>
-            <Link className={`btn ${s.btnGhost} ${s.btnArrow}`} href="/deliver">See how Deliver follows on</Link>
-          </div>
-        </div>
-      </section>
-    </main>
+      </main>
+      <D17Motion />
+    </>
   );
 }

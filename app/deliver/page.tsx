@@ -1,9 +1,10 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { Artwork } from '@/components/Artwork';
-import { PhotoPiece } from '@/components/PhotoPiece';
-import s from '@/app/deco-page.module.css';
+import { D17Motion } from '@/components/D17Motion';
+import { IconSprite } from '@/components/IconSprite';
 import { OG_IMAGE, OG_IMAGE_PATH } from '@/lib/seo';
+import '@/app/d17-global.css';
+import '@/app/design-system/site-v3.css';
 
 export const metadata: Metadata = {
   title: 'Business Process Improvement, ERP Delivery | Decoded Ops',
@@ -24,216 +25,189 @@ export const metadata: Metadata = {
   },
 };
 
+const deliverSteps = [
+  { id: 'step-map', icon: 'i-map-pin', meta: 'Step 1', h: 'Map',
+    p: 'The process as it actually runs, watched from start to finish. Not as the org chart describes it and not as anyone remembers it.' },
+  { id: 'step-document', icon: 'i-file-check', meta: 'Step 2', h: 'Document',
+    p: 'Written as an SOP someone who doesn’t already know the job can follow. That’s the test. Not whether the person who wrote it recognises it.' },
+  { id: 'step-check', icon: 'i-clipboard-check', meta: 'Step 3', h: 'Check',
+    p: 'An SOP nobody follows is a document, not a system. This is the step most businesses skip, and the reason their documentation goes stale.' },
+  { id: 'step-log', icon: 'i-trending-up', meta: 'Step 4', h: 'Log', out: true,
+    p: 'What changed, what it was worth, and what’s next. The log is yours, and it’s what makes the loop run again without me.' },
+];
+
+const deliverOutputs = [
+  { id: 'output-register', icon: 'i-layers', num: '01', meta: 'From Map', h: 'The Process Register',
+    p: 'Every process that matters, named and described as it actually runs. Not as the org chart says it should. Everything else gets documented against it.' },
+  { id: 'output-sops', icon: 'i-file-check', num: '02', meta: 'From Document', h: 'Written SOPs',
+    p: 'So the process doesn’t live in one person’s head. Written so someone who doesn’t already know the job can follow it. When they’re on holiday, the business doesn’t stop.' },
+  { id: 'output-log', icon: 'i-trending-up', num: '03', meta: 'From Check & Log', h: 'An Improvement Log',
+    p: 'What’s been improved and what’s next, owned by you and still running after I’ve gone. The thing that makes the system keep working without me.' },
+];
+
 export default function DeliverPage() {
   return (
-    <main id="content">
-      {/* 1 · HERO CENTRE */}
-      <section className={`g-off ${s.heroCenter}`} data-od-id="hero">
-        <div className="wrap">
-          <span className="eyebrow">Deliver</span>
-          <h1>I get it built. And you keep the system that runs it.</h1>
-          <p className="lede">Deliver is the business process improvement and implementation phase after a Clarity Audit. I sit on your side
-            of the table for the whole build, from brief through to handover, and I leave behind a
-            documented Process &amp; Quality System, so the business can run what&apos;s built long after
-            I&apos;ve gone.</p>
-          <div className={s.heroCta}>
-            <Link className="btn btn--primary" href="/contact">Book a Clarity Audit</Link>
-          </div>
-        </div>
-      </section>
+    <>
+      <IconSprite />
+      <main id="content">
 
-      {/* 1a · EVIDENCE PHOTO · DO-ART-909 */}
-      <section className="g-white ev-band" data-od-id="evidence">
-        <div className="wrap">
-          <PhotoPiece
-            src="/images/money/prod-polo-2026-09.webp"
-            width={900}
-            height={1125}
-            alt="A finished cream and stone colour-block zip-neck polo shirt, folded and pressed, laid on a grey studio surface."
-            no="DO-ART-909"
-            rev="01"
-            eyebrow="Evidence · Deliver"
-            caption="Finished, checked, out the door"
-            focus="50% 55%"
-            maxWidth={900}
-          />
-        </div>
-      </section>
-
-      {/* 2 · THE THREE OUTPUTS */}
-      <section className="g-white" data-od-id="outputs">
-        <div className="wrap">
-          <span className="eyebrow">What you&apos;re left with</span>
-          <h2>Three things you keep, not a memory of the work.</h2>
-          <p className="lede" style={{ marginTop: 16 }}>Every Deliver engagement builds these alongside the
-            project. What you keep afterwards is a documented process, not something that works and
-            nobody can explain.</p>
-
-          <div className="grid grid--3">
-            <div className={s.feature} data-od-id="output-register">
-              <div className={s.featureMark} aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"
-                     strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M5 4h14v16H5z"/><path d="M8.5 9h7M8.5 13h7M8.5 17h4"/>
-                </svg>
+        {/* ══════════ 01 · HERO ══════════ */}
+        <section className="g-off hero" data-od-id="hero">
+          <div className="wrap">
+            <div className="hero-head">
+              <div>
+                <span className="eyebrow">Deliver</span>
+                <h1 data-od-id="hero-h1">I get it built. And you keep the system that runs it.</h1>
               </div>
-              <p className={s.featureMeta}>From Map</p>
-              <h3>The Process Register</h3>
-              <p>Every process that matters, named and described as it actually runs. Not as the org
-                chart says it should. Everything else gets documented against it.</p>
-            </div>
-            <div className={s.feature} data-od-id="output-sops">
-              <div className={s.featureMark} aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"
-                     strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/><path d="M9.5 13h5M9.5 17h5"/>
-                </svg>
+              <div>
+                <p className="t-lede">Deliver is the business process improvement and implementation phase after a Clarity Audit. I sit on your side
+                  of the table for the whole build, from brief through to handover, and I leave behind a
+                  documented Process &amp; Quality System, so the business can run what&rsquo;s built long after
+                  I&rsquo;ve gone.</p>
+                <div className="btn-row"><Link className="btn btn--primary" href="/contact" data-od-id="hero-cta">Book a Clarity Audit</Link></div>
               </div>
-              <p className={s.featureMeta}>From Document</p>
-              <h3>Written SOPs</h3>
-              <p>So the process doesn&apos;t live in one person&apos;s head. Written so someone who doesn&apos;t
-                already know the job can follow it. When they&apos;re on holiday, the business doesn&apos;t
-                stop.</p>
             </div>
-            <div className={s.feature} data-od-id="output-log">
-              <div className={s.featureMark} aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"
-                     strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M4 18 9.5 12l3.5 3.5L20 8"/><path d="M15.5 8H20v4.5"/>
-                </svg>
+
+            {/* DO-ART-940 r01 · Deliver hero · the three things you keep, over DO-ART-979g */}
+            <div dangerouslySetInnerHTML={{ __html: `<figure class="d17 sw sw-doc a939" data-od-id="hero-visual" data-motion data-no="DO-ART-940" data-rev="01" data-tx="photo"
+      aria-label="Artwork DO-ART-940. Two documents over a graded photograph of an office desk covered in paperwork at a client site. The Process Register, listing example processes: quote to order, artwork approval, supplier ordering, pick and despatch, invoicing. The Improvement Log: order entry once, done; stock in one place, in progress; weekly report automated, next. A tag reads: handover, yours to run.">
+      <div class="d17-ph"><img src="/images/site/evidence/hero-office-paperwork-75fcd2.webp" width="1600" height="900" alt=""></div>
+      <div class="d17-scan" aria-hidden="true"></div>
+      <figcaption class="sw-cap">
+        <div class="k d17-mono">Deliver <span>&middot; what you keep</span></div>
+        <div class="bar" aria-hidden="true"></div>
+        <h3>A documented Process &amp; Quality System.</h3>
+        <p>So the business can run what&rsquo;s built long after I&rsquo;ve gone.</p>
+        <span class="d17-mark">decodedops.co.uk &middot; DO-ART-940 &middot; Rev 01</span>
+      </figcaption>
+      <div class="stage" aria-hidden="true">
+        <div class="d17-doc doc-f m-drop" style="animation-delay:.1s"><span class="tab">REGISTER</span>
+          <span class="ref">Process Register</span>
+          <h4>Every process that matters</h4>
+          <p class="sub">named and described as it actually runs</p>
+          <ol class="pk">
+            <li>Quote to order</li>
+            <li>Artwork approval</li>
+            <li>Supplier ordering</li>
+            <li>Pick and despatch</li>
+            <li>Invoicing</li>
+          </ol>
+          <div class="doc-foot">Example register &middot; everything else is documented against it</div></div>
+        <div class="d17-doc doc-m m-drop" style="animation-delay:.45s"><span class="tab">LOG</span>
+          <span class="ref">Improvement Log</span>
+          <h4>What improved, what&rsquo;s next</h4>
+          <div class="dl">
+            <div class="r h"><span>Change</span><span>Owner</span><span>Status</span></div>
+            <div class="r"><span>Order entry, once</span><span class="who">Office</span><span class="st-chip">Done</span></div>
+            <div class="r"><span>Stock in one place</span><span class="who">Warehouse</span><span class="st-chip st-chip--a">In progress</span></div>
+            <div class="r"><span>Weekly report automated</span><span class="who">MD</span><span class="st-chip st-chip--o">Next</span></div>
+          </div>
+          <div class="doc-foot">Example log &middot; owned by you, still running after I&rsquo;ve gone</div></div>
+        <div class="sx-tag sx-tag--a t5 m-pop" style="animation-delay:1.9s"><small>Handover</small>Yours to run</div>
+      </div>
+    </figure>` }} />
+          </div>
+        </section>
+
+        {/* ══════════ 02 · THE LOOP AS A ROUTE ══════════ */}
+        <section className="g-navy route-sec" data-od-id="deliver-loop">
+          <div className="do-dot-grid" aria-hidden="true" style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }} />
+          <div className="wrap">
+            <div className="route-head">
+              <div>
+                <span className="eyebrow">How Deliver runs</span>
+                <h2 data-od-id="loop-h2">Map, document, check, log. Then round again.</h2>
               </div>
-              <p className={s.featureMeta}>From Check &amp; Log</p>
-              <h3>An Improvement Log</h3>
-              <p>What&apos;s been improved and what&apos;s next, owned by you and still running after I&apos;ve
-                gone. The thing that makes the system keep working without me.</p>
+              <p className="lede">Not a one-off audit. Business process improvement as a loop that keeps running after
+                the engagement ends, because the last step feeds the first one.</p>
+            </div>
+            <ol className="route" data-od-id="deliver-loop-steps">
+              {deliverSteps.map(step => (
+                <li key={step.id} className={`stop${step.out ? ' stop--out' : ''}`} data-od-id={step.id}>
+                  <span className="node"><svg className="ic ic-24" aria-hidden="true"><use href={`#${step.icon}`} /></svg></span>
+                  <span className="t-meta">{step.meta}</span><h3>{step.h}</h3>
+                  <p className="t-card">{step.p}</p>
+                </li>
+              ))}
+            </ol>
+            <p className="route-cap"><svg className="ic ic-16" aria-hidden="true"><use href="#i-check" /></svg>Then round again, for every process that matters.</p>
+          </div>
+        </section>
+
+        {/* ══════════ 02a · ON THE DAY ══════════ */}
+        <section className="g-white" data-od-id="on-the-day">
+          <div className="wrap">
+            <div className="ev-head">
+              <div>
+                <span className="eyebrow">On the day</span>
+                <h2 data-od-id="on-the-day-h2">Where the processes actually run.</h2>
+              </div>
+              <p className="lede">Three of my own photographs from client visits this year. A process is whatever happens at the bench and the door, not what the org chart says.</p>
+            </div>
+            <div className="ev-grid" data-od-id="on-the-day-photos">
+              <figure className="d17 ev" data-od-id="photo-dtf" data-no="DO-ART-979b" data-rev="01" data-tx="photo">
+                <div className="d17-ph"><img src="/images/site/evidence/plate-dtf-conveyor-a1f1d1.webp" width={1600} height={900} alt="A direct-to-film print conveyor running on a client's production floor." /></div>
+                <div className="d17-scan" aria-hidden="true" />
+                <p className="k d17-mono">The print line &middot; 2026</p>
+                <p className="line">A run, as it actually runs</p>
+                <span className="d17-mark">decodedops.co.uk &middot; DO-ART-979b &middot; Rev 01</span>
+              </figure>
+              <figure className="d17 ev" data-od-id="photo-cartons" data-no="DO-ART-979q" data-rev="01" data-tx="photo">
+                <div className="d17-ph"><img src="/images/site/evidence/plate-cartons-packed-2fb0ae.webp" width={1600} height={900} alt="Packed cartons stacked and labelled, waiting for collection at a client site." /></div>
+                <div className="d17-scan" aria-hidden="true" />
+                <p className="k d17-mono">Despatch &middot; June 2026</p>
+                <p className="line">Packed, checked, out the door</p>
+                <span className="d17-mark">decodedops.co.uk &middot; DO-ART-979q &middot; Rev 01</span>
+              </figure>
+              <figure className="d17 ev" data-od-id="photo-shelf" data-no="DO-ART-979j" data-rev="01" data-tx="photo">
+                <div className="d17-ph"><img src="/images/site/evidence/card-garment-shelf-724253.webp" width={900} height={600} alt="Folded garments on a stock shelf at a client site." /></div>
+                <div className="d17-scan" aria-hidden="true" />
+                <p className="k d17-mono">Stock &middot; June 2026</p>
+                <p className="line">The shelf the SOP describes</p>
+                <span className="d17-mark">decodedops.co.uk &middot; DO-ART-979j &middot; Rev 01</span>
+              </figure>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* 3 · THE PQS LOOP · DO-ART-305 */}
-      <section className="g-tint" data-od-id="deliver-loop">
-        <div className="wrap">
-          <span className="eyebrow">How Deliver runs &middot; DO-ART-305</span>
-          <h2>Map, document, check, log. Then round again.</h2>
-          <p className="lede" style={{ marginTop: 16 }}>Not a one-off audit. Business process improvement as a loop that keeps running after
-            the engagement ends, because the last step feeds the first one.</p>
-
-          <div className="plate-scroll" style={{ marginTop: 34 }}>
-            <div className={`plate-frame ${s.plateFrame}`} data-od-id="deliver-loop-diagram">
-              <Artwork mode="flow" tone="dark" p="pq" title="A loop, not a document"
-                     sub="Four steps. The fourth feeds the first."
-                     no="DO-ART-305" rev="02" cls="DECODED OPS · ISSUED">
-
-                <path id="pq-spine" pathLength={1} className="sk-draw sk-s2 p-scyan" d="M180 460 H1420"
-                      fill="none" strokeWidth="2.5" markerEnd="url(#pq-ah)" />
-
-                <g className="sk-fade sk-s3" filter="url(#pq-shadow)">
-                  <rect x="100" y="250" width="310" height="140" rx="12" fill="url(#pq-node)"
-                        className="p-node" strokeWidth="1.4"/>
-                  <text x="255" y="308" textAnchor="middle" className="p-ink" fontFamily="Outfit,sans-serif"
-                        fontWeight="700" fontSize="26">Map</text>
-                  <text x="255" y="342" textAnchor="middle" className="p-mono" fontSize="17"
-                        opacity=".85">how it actually runs</text>
-                  <circle cx="255" cy="460" r="13" className="p-cyan"/>
-                  <text x="255" y="520" textAnchor="middle" className="p-mono" fontSize="17"
-                        letterSpacing="1.5" opacity=".7">STEP 1</text>
-                </g>
-
-                <g className="sk-fade sk-s4" filter="url(#pq-shadow)">
-                  <rect x="440" y="250" width="310" height="140" rx="12" fill="url(#pq-node)"
-                        className="p-node" strokeWidth="1.4"/>
-                  <text x="595" y="308" textAnchor="middle" className="p-ink" fontFamily="Outfit,sans-serif"
-                        fontWeight="700" fontSize="26">Document</text>
-                  <text x="595" y="342" textAnchor="middle" className="p-mono" fontSize="17"
-                        opacity=".85">as an SOP anyone can follow</text>
-                  <circle cx="595" cy="460" r="13" className="p-cyan"/>
-                  <text x="595" y="520" textAnchor="middle" className="p-mono" fontSize="17"
-                        letterSpacing="1.5" opacity=".7">STEP 2</text>
-                </g>
-
-                <g className="sk-fade sk-s5" filter="url(#pq-shadow)">
-                  <rect x="780" y="250" width="310" height="140" rx="12" fill="url(#pq-node)"
-                        className="p-node" strokeWidth="1.4"/>
-                  <text x="935" y="308" textAnchor="middle" className="p-ink" fontFamily="Outfit,sans-serif"
-                        fontWeight="700" fontSize="26">Check</text>
-                  <text x="935" y="342" textAnchor="middle" className="p-mono" fontSize="17"
-                        opacity=".85">that it is actually followed</text>
-                  <circle cx="935" cy="460" r="13" className="p-cyan"/>
-                  <text x="935" y="520" textAnchor="middle" className="p-mono" fontSize="17"
-                        letterSpacing="1.5" opacity=".7">STEP 3</text>
-                </g>
-
-                <g className="sk-fade sk-s6" filter="url(#pq-shadow)">
-                  <rect x="1120" y="242" width="320" height="156" rx="14" fill="url(#pq-amber-n)"
-                        className="p-node-a" strokeWidth="1.8"/>
-                  <text x="1280" y="306" textAnchor="middle" className="p-ink" fontFamily="Outfit,sans-serif"
-                        fontWeight="800" fontSize="27">Log</text>
-                  <text x="1280" y="342" textAnchor="middle" className="p-accent-ink" fontSize="17"
-                        fontWeight="600">what improved · what&apos;s next</text>
-                  <circle cx="1280" cy="460" r="17" className="p-amber"/>
-                  <text x="1280" y="520" textAnchor="middle" className="p-mono" fontSize="17"
-                        letterSpacing="1.5" opacity=".85">STEP 4</text>
-                </g>
-
-                <path id="pq-loop" pathLength={1} className="sk-draw sk-s6 p-scyan" fill="none"
-                      strokeWidth="2.2" strokeDasharray="7 8" markerEnd="url(#pq-ah)"
-                      d="M1280 540 C 1280 630, 255 630, 255 542"/>
-                <text x="760" y="700" textAnchor="middle" className="p-mono sk-fade sk-s6" fontSize="22"
-                      fontStyle="italic" opacity=".8">Then round again, for every process that
-                  matters.</text>
-
-                <g className="sk-dots">
-                  <circle r="6" className="p-cyan">
-                    <animateMotion dur="4.6s" repeatCount="indefinite"><mpath href="#pq-spine"/></animateMotion>
-                  </circle>
-                </g>
-              </Artwork>
+        {/* ══════════ 03 · THE THREE OUTPUTS ══════════ */}
+        <section className="g-tint" data-od-id="outputs">
+          <div className="wrap">
+            <div className="sec-head">
+              <span className="eyebrow">What you&rsquo;re left with</span>
+              <h2 data-od-id="outputs-h2">Three things you keep, not a memory of the work.</h2>
+              <p className="lede">Every Deliver engagement builds these alongside the project. What you keep afterwards is a documented process, not something that works and nobody can explain.</p>
+            </div>
+            <div className="areas" data-od-id="output-cards">
+              {deliverOutputs.map(out => (
+                <article className="area" key={out.id} data-od-id={out.id}>
+                  <div className="area-top"><span className="ic-tile"><svg className="ic ic-24" aria-hidden="true"><use href={`#${out.icon}`} /></svg></span><span className="num">{out.num}</span></div>
+                  <p className="meta">{out.meta}</p><h3>{out.h}</h3><p className="t-card">{out.p}</p>
+                </article>
+              ))}
             </div>
           </div>
+        </section>
 
-          <div className={s.steps} data-od-id="deliver-loop-cards">
-            <article className={s.step}>
-              <p className={s.stepN}>STEP 1</p>
-              <h3>Map</h3>
-              <p>The process as it actually runs, watched from start to finish. Not as the org chart describes
-                it and not as anyone remembers it.</p>
-            </article>
-            <article className={s.step}>
-              <p className={s.stepN}>STEP 2</p>
-              <h3>Document</h3>
-              <p>Written as an SOP someone who doesn&apos;t already know the job can follow. That&apos;s the
-                test. Not whether the person who wrote it recognises it.</p>
-            </article>
-            <article className={s.step}>
-              <p className={s.stepN}>STEP 3</p>
-              <h3>Check</h3>
-              <p>An SOP nobody follows is a document, not a system. This is the step most businesses
-                skip, and the reason their documentation goes stale.</p>
-            </article>
-            <article className={`${s.step} ${s.stepLast}`}>
-              <p className={s.stepN}>STEP 4</p>
-              <h3>Log</h3>
-              <p>What changed, what it was worth, and what&apos;s next. The log is yours, and it&apos;s what
-                makes the loop run again without me.</p>
-            </article>
+        {/* ══════════ 04 · THE CLOSER ══════════ */}
+        <section className="g-off closer" data-od-id="cta">
+          <div className="wrap closer-grid">
+            <div>
+              <span className="eyebrow">Start here</span>
+              <h2 data-od-id="cta-h2">Book a Clarity Audit.</h2>
+            </div>
+            <div>
+              <p className="lede">Every Deliver engagement starts here: a full day on site and a written plan, before anything gets built.</p>
+              <div className="btn-row">
+                <Link className="btn btn--primary" href="/contact" data-od-id="cta-primary">Book a free discovery call</Link>
+                <Link className="go" href="/process-quality-system">See the Process &amp; Quality System <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* 4 · CTA STRIP */}
-      <section className={`g-navy ${s.ctaStrip}`} data-od-id="cta-strip">
-        <div className="wrap" style={{ maxWidth: 760 }}>
-          <h2>Book a Clarity Audit.</h2>
-          <p className="lede">Every Deliver engagement starts here: a full day on site and a written plan,
-            before anything gets built.</p>
-          <div className={s.heroCta}>
-            <Link className="btn btn--primary" href="/contact">Book a free discovery call</Link>
-            <Link className={`btn ${s.navyGhost} ${s.btnArrow}`} href="/process-quality-system">See the Process &amp;
-              Quality System</Link>
-          </div>
-        </div>
-      </section>
-    </main>
+      </main>
+      <D17Motion />
+    </>
   );
 }
