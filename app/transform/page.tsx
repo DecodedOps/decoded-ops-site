@@ -81,7 +81,7 @@ export default function TransformPage() {
             <div className="hero-head">
               <div>
                 <span className="eyebrow">Transform</span>
-                <h1 data-od-id="hero-h1">The plan, executed.</h1>
+                <h1 data-od-id="hero-h1">Digital transformation consultancy for print: the plan, executed.</h1>
               </div>
               <div>
                 <p className="t-lede">Transform is my digital transformation consultancy, and it is what happens after a Clarity Audit finds something that needs

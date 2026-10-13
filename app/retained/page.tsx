@@ -95,7 +95,7 @@ export default function RetainedPage() {
             <div className="hero-head">
               <div>
                 <span className="eyebrow">Fractional CTO</span>
-                <h1 data-od-id="hero-h1">Fractional CTO. Not a project. A standing decision-maker.</h1>
+                <h1 data-od-id="hero-h1">Fractional CTO for print and embroidery. Not a project. A standing decision-maker.</h1>
               </div>
               <div>
                 <p className="t-lede">Ongoing technology and operations leadership, as a fractional CTO or <Link href="/fractional-coo">fractional COO</Link>, without the cost of a full-time hire.
