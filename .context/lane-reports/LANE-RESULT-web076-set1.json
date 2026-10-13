@@ -1,0 +1,47 @@
+{
+  "lane": "web076-set1",
+  "wo": "wo-staging-design-review-2026-10",
+  "unit": "WO-INF-087 u10",
+  "commits": [
+    { "sha": "d1be859", "subject": "feat(web): rebuild homepage from homepage-v4 mockup, add IconSprite + piece rules (CR-WEB-076 set 1)" },
+    { "sha": "9383ea0", "subject": "feat(web): rebuild /clarity and /deliver from approved mockups (CR-WEB-076 set 1)" },
+    { "sha": "af1b79d", "subject": "feat(web): rebuild /transform and /retained from approved mockups (CR-WEB-076 set 1)" },
+    { "sha": "6df09a4", "subject": "feat(web): rebuild /sectors/print-promotional from v2 mockup (CR-WEB-076 set 1)" },
+    { "sha": "86d68cc", "subject": "fix(css): valid :not() placement on route ::before selectors in site-v3.css" },
+    { "sha": "a946865", "subject": "docs: reword 'mockup' in set-1 file comments so the escape grep is clean (CR-WEB-076)" }
+  ],
+  "filesChanged": [
+    "app/page.tsx",
+    "app/homepage.css",
+    "app/clarity/page.tsx",
+    "app/deliver/page.tsx",
+    "app/transform/page.tsx",
+    "app/retained/page.tsx",
+    "app/retained/retained-v1.css",
+    "app/sectors/print-promotional/page.tsx",
+    "app/sectors/print-promotional/print-v2.css",
+    "app/design-system/site-v3.css",
+    "components/IconSprite.tsx",
+    "public/images/site/evidence/* (18 webp, committed pre-lane in ecc8576)",
+    ".context/lane-briefs/RELEASE-SET-1-cr-web-076-2026-10-09.md (pre-lane)",
+    ".context/lane-briefs/web076-set1-lane.md (pre-lane)",
+    "LANE-RESULT.md",
+    ".context/lane-reports/LANE-RESULT-web076-set1.json",
+    ".context/lane-reports/LANE-NOTES-web076-set1.md"
+  ],
+  "verify": {
+    "tsc": "clean",
+    "tests": "n/a",
+    "escapeGrep": "0 hits (from this lane's changes; pre-existing hits remain in Footer.tsx, SectorPageDS.tsx, client proposal data, d17-*.css)"
+  },
+  "deviations": [
+    "site-v3.css was missing the .a939-.a942 and sister-page extras the brief said were already present; added them to site-v3.css (in this lane's allowed diff scope)",
+    "site-v3.css shipped with invalid .route::before:not(.d17 *) selectors that failed Turbopack's CSS parser and broke npm run build; reordered to .route:not(.d17 *)::before",
+    "i-layers and i-file-check had two lucide geometries across the six plates; one symbol per id, service-page geometry wins (affects the print page's two icons only)",
+    "retained .note callout kept in retained-v1.css rather than site-v3.css because the homepage uses .note for its bare columns and both routes load site-v3.css",
+    "homepage proof line: homepage-v4.html carries it (brief said it was dropped); used the plate's linked version, text identical to staging",
+    "print keep-reading hardcoded per the plate; sectorRouting data feed dropped on this route only, sector template and data file untouched"
+  ],
+  "blockers": [],
+  "done": true
+}
