@@ -4,9 +4,13 @@ import { JsonLd } from '@/components/JsonLd';
 import { BreadcrumbSchema } from '@/components/BreadcrumbSchema';
 import { VideoEmbed } from '@/components/VideoEmbed';
 import { VideoSchema } from '@/components/VideoSchema';
+import { IconSprite } from '@/components/IconSprite';
+import { ProblemIconSprite, Icon } from '@/components/ProblemIconSprite';
+import { problemRouting } from '@/data/problem-routing';
 import { problemVideos } from '@/data/problem-videos';
 import '@/app/d17-global.css';
 import '@/app/d17-problems.css';
+import '@/app/problems/problems-v2.css';
 import { D17Motion } from '@/components/D17Motion';
 
 export const metadata: Metadata = {
@@ -121,6 +125,9 @@ const inlineArt1013 = `<figure class="d17 sw sw-doc a1013" data-od-id="plate-pro
 </figure>`;
 
 export default function SpreadsheetAddictionPage() {
+ const routing = problemRouting['spreadsheet-addiction'];
+ const reading = [...routing.relatedReading, ...routing.relatedResources];
+ const video = problemVideos['spreadsheet-addiction'];
  return (
   <>
    <JsonLd data={spreadsheetAddictionSchema} />
@@ -129,27 +136,34 @@ export default function SpreadsheetAddictionPage() {
     { name: 'Problems', url: 'https://decodedops.co.uk/problems' },
     { name: 'Spreadsheet addiction', url: 'https://decodedops.co.uk/problems/spreadsheet-addiction' },
    ]} />
-   {problemVideos['spreadsheet-addiction'] && (
+   <IconSprite />
+   <ProblemIconSprite />
+   {video && (
     <VideoSchema
-     name={problemVideos['spreadsheet-addiction'].title}
-     description={problemVideos['spreadsheet-addiction'].closeLine}
-     youtubeId={problemVideos['spreadsheet-addiction'].youtubeId}
-     uploadDate={problemVideos['spreadsheet-addiction'].uploadDate}
-     durationSec={problemVideos['spreadsheet-addiction'].durationSec}
+     name={video.title}
+     description={video.closeLine}
+     youtubeId={video.youtubeId}
+     uploadDate={video.uploadDate}
+     durationSec={video.durationSec}
     />
    )}
 
-   {/* ── 1 · HERO ──────────────────────────────────────────────────────── */}
-   <section className="g-off">
-    <div className="wrap hero-split">
+   {/* 01 HERO */}
+   <section className="g-off p-hero">
+    <div className="wrap p-hero-grid">
      <div>
       <span className="eyebrow">The problem</span>
-      <h1>The spreadsheet that runs your business is one corrupted file away from disaster.</h1>
-      <p className="lede">It started as a tidy little order log. Now it&apos;s got five tabs, three people
+      <h1>
+       <span className="h1-kw">Manual processes in spreadsheets:</span>{' '}
+       The spreadsheet that runs your business is one corrupted file away from disaster.
+      </h1>
+      <p className="t-lede">It started as a tidy little order log. Now it&apos;s got five tabs, three people
        editing it, macros that only work on one person&apos;s machine, and a version history nobody
-       fully trusts. Every decorated-goods business has one, and every one of them is one
-       accidental keystroke away from taking a day&apos;s orders with it. Manual processes like this rarely get looked at until something breaks.</p>
-      <div className="hero-cta">
+       fully trusts.</p>
+      <p className="t-body">Every decorated-goods business has one, and every one of them is one
+       accidental keystroke away from taking a day&apos;s orders with it. Manual processes like this rarely get
+       looked at until something breaks.</p>
+      <div className="btn-row">
        <Link className="btn btn--primary" href="/contact">Book a Clarity Audit</Link>
       </div>
      </div>
@@ -157,119 +171,190 @@ export default function SpreadsheetAddictionPage() {
     </div>
    </section>
 
-   {/* ── 2 · SYMPTOMS ──────────────────────────────────────────────────── */}
-   <section className="g-tint">
-    <div className="wrap">
-     <span className="eyebrow">The signs</span>
-     <h2>Seven signs your spreadsheet has become the single point of failure.</h2>
-     <p className="lede" style={{ marginTop: 16 }}>If you recognise three or more of these, the spreadsheet
-      isn&apos;t a tool any more. It&apos;s a risk the business is carrying every day.</p>
-
-     <ul className="symptoms">
-      <li>You wouldn&apos;t know where to start if the file got corrupted or deleted</li>
-      <li>Supplier price lists in the spreadsheet are three versions out of date</li>
-      <li>Only one person knows how the macros work, and they&apos;re on holiday this week</li>
-      <li>The order log has no audit trail, you can&apos;t see who changed what or when</li>
-      <li>Someone accidentally saved over a full day&apos;s data and nobody noticed for a week</li>
-      <li>You&apos;ve got a separate spreadsheet for every supplier because one file can&apos;t hold them all</li>
-      <li>The business can&apos;t be sold because the buyer would need to understand the spreadsheet first</li>
-     </ul>
+   {/* 02 SYMPTOMS */}
+   <section className="g-navy sym-sec">
+    <div className="wrap sym-grid">
+     <div className="sym-head">
+      <span className="eyebrow">The signs</span>
+      <h2>Seven signs your spreadsheet has become the single point of failure.</h2>
+      <p className="sec-lede">If you recognise three or more of these, the spreadsheet
+       isn&apos;t a tool any more. It&apos;s a risk the business is carrying every day.</p>
+     </div>
+     <div>
+      <ol className="sym">
+       <li><span className="n">01</span><p>You wouldn&apos;t know where to start if the file got corrupted or deleted</p></li>
+       <li><span className="n">02</span><p>Supplier price lists in the spreadsheet are three versions out of date</p></li>
+       <li><span className="n">03</span><p>Only one person knows how the macros work, and they&apos;re on holiday this week</p></li>
+       <li><span className="n">04</span><p>The order log has no audit trail, you can&apos;t see who changed what or when</p></li>
+       <li><span className="n">05</span><p>Someone accidentally saved over a full day&apos;s data and nobody noticed for a week</p></li>
+       <li><span className="n">06</span><p>You&apos;ve got a separate spreadsheet for every supplier because one file can&apos;t hold them all</p></li>
+       <li><span className="n">07</span><p>The business can&apos;t be sold because the buyer would need to understand the spreadsheet first</p></li>
+      </ol>
+     </div>
     </div>
    </section>
 
-   {problemVideos['spreadsheet-addiction'] && (
+   {video && (
     <section className="g-off" data-od-id="video-embed">
      <div className="wrap">
       <VideoEmbed
-       youtubeId={problemVideos['spreadsheet-addiction'].youtubeId}
-       title={problemVideos['spreadsheet-addiction'].title}
-       closeLine={problemVideos['spreadsheet-addiction'].closeLine}
-       app={problemVideos['spreadsheet-addiction'].app}
-       durationSec={problemVideos['spreadsheet-addiction'].durationSec}
-       playlistUrl={problemVideos['spreadsheet-addiction'].playlistUrl}
+       youtubeId={video.youtubeId}
+       title={video.title}
+       closeLine={video.closeLine}
+       app={video.app}
+       durationSec={video.durationSec}
+       playlistUrl={video.playlistUrl}
       />
      </div>
     </section>
    )}
 
-   {/* ── 3 · THE REAL FAILURE MODES ─────────────────────────────────────── */}
+   {/* 03 PHOTO BAND */}
    <section className="g-white">
     <div className="wrap">
-     <span className="eyebrow">Real failure modes</span>
-     <h2>These aren&apos;t theoretical. They&apos;ve all happened in this sector.</h2>
-     <p className="lede" style={{ marginTop: 16 }}>A spreadsheet failure in decorated goods doesn&apos;t look
-      like an IT problem. It looks like a production line that doesn&apos;t know what it&apos;s making this
-      morning.</p>
+     <div className="ev-head">
+      <div>
+       <span className="eyebrow">What the file has to keep up with</span>
+       <h2>The orders, stock and deliveries behind the order log.</h2>
+      </div>
+      <p className="lede">Three of my own photographs from client visits this year. Every print run, pallet and bay here is a line somebody has to get into the file.</p>
+     </div>
+     <div className="ev-grid">
+      <figure className="d17 ev">
+       <div className="d17-ph"><img src="/images/site/evidence/plate-dtf-conveyor-a1f1d1.webp" width={1600} height={900} alt="A direct-to-film print conveyor running on a client's production floor." loading="lazy" /></div>
+       <div className="d17-scan" aria-hidden="true" />
+       <p className="k d17-mono">The print line &middot; 2026</p>
+       <p className="line">A print conveyor, mid-run</p>
+      </figure>
+      <figure className="d17 ev">
+       <div className="d17-ph"><img src="/images/site/evidence/plate-pallets-12eebd.webp" width={1600} height={900} alt="Pallets of inbound stock on a client's goods-in floor." loading="lazy" /></div>
+       <div className="d17-scan" aria-hidden="true" />
+       <p className="k d17-mono">Goods in &middot; June 2026</p>
+       <p className="line">Pallets of inbound stock</p>
+      </figure>
+      <figure className="d17 ev">
+       <div className="d17-ph"><img src="/images/site/evidence/plate-racking-bays-626a9b.webp" width={1600} height={900} alt="Warehouse racking bays holding boxed stock at a client site." loading="lazy" /></div>
+       <div className="d17-scan" aria-hidden="true" />
+       <p className="k d17-mono">Stock &middot; April 2026</p>
+       <p className="line">Racking bays, counted by hand</p>
+      </figure>
+     </div>
+    </div>
+   </section>
 
-     <div className="grid grid--2" style={{ marginTop: 34 }}>
-      <article className="card cause">
-       <span className="n">01</span>
+   {/* 04 FAILURE MODES: icon cards, two up */}
+   <section className="g-tint">
+    <div className="wrap">
+     <div className="sec-head">
+      <span className="eyebrow">Real failure modes</span>
+      <h2>These aren&apos;t theoretical. They&apos;ve all happened in this sector.</h2>
+      <p className="sec-lede">A spreadsheet failure in decorated goods doesn&apos;t look like an IT problem. It looks like a production line that doesn&apos;t know what it&apos;s making this morning.</p>
+     </div>
+     <div className="areas areas--2">
+      <article className="area">
+       <div className="area-top"><span className="ic-tile"><Icon id="i-tags" size={24} /></span><span className="num">01</span></div>
        <h3>The price list that went out of date</h3>
-       <p>A supplier raised prices in December. The spreadsheet still had the old rates. By the
-        time anyone noticed, dozens of orders had been quoted at the wrong price, and the difference
-        came out of margin, not the customer&apos;s invoice.</p>
+       <p className="t-card">A supplier raised prices in December. The spreadsheet still had the old rates. By the time anyone noticed, dozens of orders had been quoted at the wrong price, and the difference came out of margin, not the customer&apos;s invoice.</p>
       </article>
-      <article className="card cause">
-       <span className="n">02</span>
+      <article className="area">
+       <div className="area-top"><span className="ic-tile"><Icon id="i-history" size={24} /></span><span className="num">02</span></div>
        <h3>The order log with no audit trail</h3>
-       <p>A key customer disputed an order quantity. The spreadsheet showed one number; they had
-        an email confirming another. With no audit trail, there was no way to prove which was
-        right, so the business ate the difference to keep the relationship.</p>
+       <p className="t-card">A key customer disputed an order quantity. The spreadsheet showed one number; they had an email confirming another. With no audit trail, there was no way to prove which was right, so the business ate the difference to keep the relationship.</p>
       </article>
-      <article className="card cause">
-       <span className="n">03</span>
+      <article className="area">
+       <div className="area-top"><span className="ic-tile"><Icon id="i-laptop" size={24} /></span><span className="num">03</span></div>
        <h3>The macro that only worked on one machine</h3>
-       <p>One person built the order-processing macro over several years. When they left, nobody
-        else knew how it worked, and the replacement system took six months to build, during
-        which every order was processed by hand.</p>
+       <p className="t-card">One person built the order-processing macro over several years. When they left, nobody else knew how it worked, and the replacement system took six months to build, during which every order was processed by hand.</p>
       </article>
-      <article className="card cause">
-       <span className="n">04</span>
+      <article className="area">
+       <div className="area-top"><span className="ic-tile"><Icon id="i-file-warning" size={24} /></span><span className="num">04</span></div>
        <h3>The corrupted file with no backup</h3>
-       <p>A spreadsheet with two years of order history became corrupted during a save. The most
-        recent backup was months old. Months of order data had to be reconstructed
-        from emails, delivery notes, and memory.</p>
+       <p className="t-card">A spreadsheet with two years of order history became corrupted during a save. The most recent backup was months old. Months of order data had to be reconstructed from emails, delivery notes, and memory.</p>
       </article>
      </div>
     </div>
    </section>
 
-   {/* ── INLINE ARTWORK · DO-ART-1013 ─────────────────────────────────── */}
-   <section className="g-navy">
+   {/* 05 PLATE */}
+   <section className="g-navy plate-sec">
     <div className="wrap">
+     <div className="plate-head">
+      <div>
+       <span className="eyebrow">The replacement</span>
+       <h2>From one file to a documented system.</h2>
+      </div>
+      <p className="lede">The order log stops being a file and becomes a named process with a documented workflow, with supplier prices fed in instead of typed.</p>
+     </div>
      <div dangerouslySetInnerHTML={{ __html: inlineArt1013 }} />
     </div>
    </section>
 
-   {/* ── 4 · HOW I HELP ─────────────────────────────────────────────────── */}
-   <section className="g-navy">
-    <div className="wrap">
-     <span className="eyebrow eyebrow--amber">How I help</span>
-     <h2>Documented process, not a single file nobody else can read.</h2>
-
-     <div className="answer">
-      <p>The Process &amp; Quality System replaces the dependency on one spreadsheet, and the manual processes around it, with
-       documented processes that live outside anyone&apos;s laptop. <b>The order log becomes a named
-       process with a documented workflow, not a file that only opens on one version of
-       a spreadsheet.</b></p>
-      <p>Where the spreadsheet was actually doing something useful (tracking orders, managing
-       supplier prices, routing artwork approvals), a Clarity Audit finds the right tool to
-       replace it, whether that&apos;s a small system, a Works layer, or a properly-structured
-       process document that doesn&apos;t rely on one person&apos;s macros.</p>
+   {/* 06 HOW I HELP */}
+   <section className="g-white">
+    <div className="wrap how-grid">
+     <div>
+      <span className="eyebrow">How I help</span>
+      <h2>Documented process, not a single file nobody else can read.</h2>
+     </div>
+     <div className="how-r">
+      <p className="t-lede">The Process &amp; Quality System replaces the dependency on one spreadsheet, and the manual processes around it, with documented processes that live outside anyone&apos;s laptop. <span className="answer-b">The order log becomes a named process with a documented workflow, not a file that only opens on one version of a spreadsheet.</span></p>
+      <p className="t-body">Where the spreadsheet was actually doing something useful (tracking orders, managing supplier prices, routing artwork approvals), a Clarity Audit finds the right tool to replace it, whether that&apos;s a small system, a Works layer, or a properly-structured process document that doesn&apos;t rely on one person&apos;s macros.</p>
      </div>
     </div>
    </section>
 
-   {/* ── 5 · CTA STRIP ──────────────────────────────────────────────────── */}
-   <section className="g-white cta-strip">
-    <div className="wrap" style={{ maxWidth: 760 }}>
-     <h2>Find out what&apos;s actually living in your spreadsheets.</h2>
-     <p className="lede">A Clarity Audit maps every process that currently depends on a spreadsheet,
-      and the written plan tells you which ones to move first, before the file that runs the
-      business stops opening.</p>
-     <div className="hero-cta">
-      <Link className="btn btn--primary" href="/contact">Book a Clarity Audit</Link>
-      <Link className="btn btn-ghost btn-arrow" href="/deliver">See how Deliver works</Link>
+   {/* 07 CLOSER */}
+   <section className="g-off cta-close">
+    <div className="wrap closer-grid">
+     <div><h2>Find out what&apos;s actually living in your spreadsheets.</h2></div>
+     <div>
+      <p className="lede">A Clarity Audit maps every process that currently depends on a spreadsheet, and the written plan tells you which ones to move first, before the file that runs the business stops opening.</p>
+      <div className="btn-row">
+       <Link className="btn btn--primary" href="/contact">Book a Clarity Audit</Link>
+       <Link className="go" href="/deliver">See how Deliver works <Icon id="i-arrow-right" /></Link>
+      </div>
+     </div>
+    </div>
+   </section>
+
+   {/* 08 KEEP READING */}
+   <section className="g-tint next">
+    <div className="wrap">
+     <span className="eyebrow">Keep reading</span>
+     <div className="next-grid">
+      <div className="next-card next-card--service">
+       <span className="t-meta">Get this fixed</span>
+       <h3>{routing.targetService.label}</h3>
+       <p className="t-card">{routing.targetService.anchor}</p>
+       <Link className="go" href={routing.targetService.href}>See how it works <Icon id="i-arrow-right" /></Link>
+      </div>
+      <div className="next-card">
+       <span className="t-meta">Related problems</span>
+       <h3>You might also have</h3>
+       <ul className="t-card">
+        {routing.relatedProblems.map(r => (
+         <li key={r.href}><Link href={r.href}><Icon id="i-arrow-right" /><span>{r.label}</span></Link></li>
+        ))}
+       </ul>
+      </div>
+      <div className="next-card">
+       <span className="t-meta">Further reading</span>
+       <h3>From the blog and the toolkit</h3>
+       <ul className="t-card">
+        {reading.map(r => (
+         <li key={r.href}><Link href={r.href}><Icon id="i-arrow-right" /><span>{r.label}</span></Link></li>
+        ))}
+       </ul>
+      </div>
+      <div className="next-card">
+       <span className="t-meta">Sectors where this shows up</span>
+       <h3>Common in</h3>
+       <ul className="t-card">
+        {routing.relatedSectors.map(s => (
+         <li key={s.href}><Link href={s.href}><Icon id="i-arrow-right" /><span>{s.label}</span></Link></li>
+        ))}
+       </ul>
+      </div>
      </div>
     </div>
    </section>

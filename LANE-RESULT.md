@@ -206,3 +206,62 @@ geometry (the designed lines are the plate's own text at the plate's own size an
 no browser render was taken in this lane (no-servers constraint), so the <=4-line claim for
 print-promotional rests on the previous lane's headless-Chrome measurement of the same CSS,
 which this lane did not change.
+
+---
+
+# Set 2 — CR-WEB-077A (WO-INF-087 set 2, problems part A)
+
+**Branch:** `task/web07x-set2-problems-2026-10-13` (cut from `origin/staging` f6e3c59). Not pushed, not merged.
+**Scope:** `/problems/systems-dont-talk`, `/problems/manual-workarounds`, `/problems/spreadsheet-addiction`. `ProblemPageDS.tsx` and the other six shared-template problem pages are untouched.
+
+## Files
+
+- `components/ProblemPageV2.tsx` (new): mockup layout for the two shared-v6 pages. Same routing data (`problemRouting`) as DS; BreadcrumbSchema kept with the staging name.
+- `components/ProblemIconSprite.tsx` (new): the ten Lucide symbols the plates need that `IconSprite.tsx` lacks (i-map, i-unplug, i-eye-off, i-layout-template, i-timer, i-badge-check, i-tags, i-history, i-laptop, i-file-warning). `Icon` helper.
+- `app/problems/problems-v2.css` (new): mockup `<style>` rules for the problem family (type/icon contracts, symptoms ledger, photo band, icon causes, plate, proof feed, how-I-help offer, keep-reading), plus `.h1-kw` and the mobile steps. Footer rules left out.
+- `app/problems/systems-dont-talk/page.tsx`, `app/problems/manual-workarounds/page.tsx`: render replaced; metadata, JSON-LD and DO-ART artwork strings kept byte-identical.
+- `app/problems/spreadsheet-addiction/page.tsx`: own page rebuild in the v5 layout; metadata, JSON-LD and the 975/1013 artwork strings kept.
+
+## Metadata and JSON-LD
+
+`metadata` export, `*Schema` consts and the `BreadcrumbSchema` items compared against `origin/staging` by string match on all three routes: identical. No mockup `<title>` or meta used.
+
+## Per route
+
+| Route | Final H1 (one `<h1>`) | Primary keyword body count, staging → new | Lines restored | Skipped / notes |
+|---|---|---|---|---|
+| `/problems/systems-dont-talk` | Systems that don't talk to each other: You have five systems. None of them know what the others are doing. | 0 → 2 (eyebrow + H1 lead-in; page-file method, see below). Staging body had no `<h1>` keyword. | "Each island knows only what it is told. Every gap gets bridged by hand. Every bridge is a place data goes wrong." under the plate | Video: `problemVideos['systems-dont-talk']` is commented out in data, so no embed and no VideoSchema (as on staging). Proof feed from the v6 plate kept. |
+| `/problems/manual-workarounds` | Manual workarounds: Your team has built a second system. It lives in spreadsheets. | 5 → 10 (9 if the breadcrumb name is excluded). Added: H1 lead-in, symptom 06, cause 3, cause 4. | "The workarounds are the real operating model. The official system just watches." under the cause cards | Video: no data entry (as staging). |
+| `/problems/spreadsheet-addiction` | Manual processes in spreadsheets: The spreadsheet that runs your business is one corrupted file away from disaster. | 2 → 3 (H1 lead-in added) | none (staging had no restore line for this page in the audit) | Mockup line says "one corrupted file away"; the SEO spec tail says "one corrupted save from disaster". Mockup line shipped; swap is one line if Craig prefers the spec wording. Video: no data entry. |
+
+Counting method (same for staging and new): `grep -i` over the page file with `metadata` and `*Schema` blocks removed (artwork strings included, `ProblemPageV2` text excluded). The audit's "8" for manual-workarounds used a wider method; new count is ≥8 on both.
+
+## Copy decisions
+
+- H1s follow the set-1 precedent: lead-in span (`.h1-kw`) + the mockup headline, not the spec table's literal lowercase tail. Text reads as the spec keyword phrase followed by the designed line.
+- Systems eyebrow changed from "Systems don't talk to each other" to "Systems that don't talk to each other" (audit's suggested slot).
+- Manual workarounds, staging copy edited to carry the keyword (authorised by the lead): symptom 06 ("Your manual workarounds, custom spreadsheets or databases are now critical…"), cause 3 ("The cost of manual workarounds never appears on an invoice…"), cause 4 ("…these manual workarounds stop looking like workarounds…").
+- All v6 / v5 new copy (band headings, ledes, captions, symptoms h2/lede/caption, proof note, offer card) shipped as written.
+- Offer card: mockup version (duplicate "The first call is free." sentence dropped). Booking link is `BOOKING_URL` from `lib/constants.ts`.
+- Keep-reading cards, service/related/reading/sector links all come from `data/problem-routing.ts` (labels and hrefs match the mockup cards for all three pages; reading and resources merged into one card as the mockup does).
+
+## Deviations from the brief
+
+1. `site-v3.css` is **not imported** by these pages. Its `.area`, `.ticks`, `.next`, `.ev`, `.sw`, `.offer`, `.go` rules collide with the mockup's rules and would change the approved layout. `.h1-kw` is defined locally in `problems-v2.css` with set 1's values.
+2. Photo captions do not show a `DO-ART` number (the mockup's `d17-mark` lines were dropped on the three photo figures, per the brief's no-DO-ART-numbers-visible rule).
+3. Mobile 390px and desktop renders were not taken (no servers or browser per the brief). Mobile safeguards: `.areas.areas--2` 700px rule after the modifier; `.next-grid` 1100/600px steps added.
+
+## Needs shared change
+
+- Fold the ten `ProblemIconSprite` symbols into `components/IconSprite.tsx` later (kept separate here to avoid editing the shared sprite).
+- `.h1-kw` is defined in both `site-v3.css` (set 1) and `problems-v2.css` (this set); consolidate later.
+- Staging artwork strings (DO-ART-975, -970, -976, -1009, -1012, -1013) still render their own visible `DO-ART-…` marks and raw hex fallbacks (`#8ECAE6`, `#FFB703`) inside the art HTML. Left as issued; the brief's visible-DO-ART rule and the raw-hex rule need a shared artwork fix.
+- `problems-v2.css` is loaded globally once a problem page is visited. Its class names (`.area`, `.next`, `.ticks`, `.offer`) could collide with other routes; scope under a wrapper in a later set.
+
+## Verification (no browser, no build, per brief)
+
+- `npx tsc --noEmit`: exit 0.
+- `npx eslint` on the five touched TSX files: 0 errors (img warnings only, same as staging).
+- `metadata` / schema / breadcrumb string-match against `origin/staging`: identical on all three.
+- One `<h1>` per route (`ProblemPageV2` renders one for the two shared pages; spreadsheet page renders its own).
+- `git diff --stat origin/staging`: only the three page files, `problems-v2.css`, `ProblemIconSprite.tsx`, `ProblemPageV2.tsx`, and this file. No images added. `ProblemPageDS.tsx` unchanged.

@@ -1,11 +1,10 @@
 import type { Metadata } from 'next';
-import { ProblemPageDS } from '@/components/ProblemPageDS';
-import { ManualWorkaroundsSchematic } from '@/components/schematics/problems/ManualWorkaroundsSchematic';
 import { JsonLd } from '@/components/JsonLd';
+import { ProblemPageV2 } from '@/components/ProblemPageV2';
 import { problemRouting } from '@/data/problem-routing';
-import { problemVideos } from '@/data/problem-videos';
 import '@/app/d17-global.css';
 import '@/app/d17-problems.css';
+import '@/app/problems/problems-v2.css';
 import { D17Motion } from '@/components/D17Motion';
 
 export const metadata: Metadata = {
@@ -153,38 +152,50 @@ export default function ManualWorkaroundsPage() {
  return (
   <>
    <JsonLd data={manualWorkaroundsSchema} />
-   <ProblemPageDS
-   problem="Manual workarounds and shadow systems"
-   headline="Your team has built a second system. ||It lives in spreadsheets.||"
-   intro="Almost every business in this sector has a second system of manual workarounds running quietly alongside the official one. Spreadsheets, manual logs, sticky notes, workarounds. They keep the business moving, but they hide the real cost. This isn't about replacing people. It's about removing the double-typing, duplicate data, and shadow spreadsheets that slow every team down."
-   heroGraphic={<ManualWorkaroundsSchematic />}
-   symptoms={[
-    "Spreadsheets are acting as the real database for your core data",
-    "The same data is being typed into the same system more than once",
-    "There's a 'master spreadsheet' someone updates by hand every day",
-    "When that person's on holiday, nobody knows how the spreadsheet works",
-    "Checking one system against another takes hours every week",
-    "You've built custom spreadsheets or databases that are now critical to running the place",
-    "Every month-end needs a manual data pull and a lot of fiddling",
-   ]}
-   causes={[
-    { title: 'The system was set up to a template, not your workflow', body: "Most software is set up following the vendor's standard process. When that doesn't match how your business actually works, your team builds workarounds. Those manual workarounds become the real way things get done." },
-    { title: 'The gaps between systems were never closed', body: "When two systems can't talk to each other, the bridge is a person with a spreadsheet. That person becomes essential, and the business doesn't realise until they're away." },
-    { title: 'Nobody has measured the hidden labour cost', body: "The cost of workarounds never appears on an invoice. It's buried in staff time labelled 'order processing' or 'admin'. Until it's measured, there's no case for fixing it. If nobody has written down how things should work, the workaround is the process." },
-    { title: 'The workaround becomes the official way', body: "After a while, the workaround stops looking like a workaround. It's just how things are done. New starters are trained on it as if it were official, and nobody wants to admit the original software didn't deliver." },
-   ]}
-   howIHelp="I audit how work actually gets done, not how it's supposed to. I find every workaround, every spreadsheet, every manual bridge between systems, and I work out what they're costing you in time, mistakes, and risk. Then I give you a prioritised plan to remove them: quick wins that pay for themselves, connection fixes that close the gaps, and an honest view of whether your current system can ever work for your business. The result is a practical, prioritised list of changes that takes the manual work off your team."
-  
-   slug="manual-workarounds"
-   targetService={problemRouting['manual-workarounds'].targetService}
-   relatedProblems={problemRouting['manual-workarounds'].relatedProblems}
-   relatedReading={problemRouting['manual-workarounds'].relatedReading}
-   relatedSectors={problemRouting['manual-workarounds'].relatedSectors}
-   relatedResources={problemRouting['manual-workarounds'].relatedResources}
-   video={problemVideos['manual-workarounds']}
-   heroArt={heroArt970}
-   inlineArt={inlineArt1009}
-  />
+   <ProblemPageV2
+    slug="manual-workarounds"
+    problem="Manual workarounds and shadow systems"
+    crumb="Manual workarounds and shadow systems"
+    h1Lead="Manual workarounds:"
+    headline="Your team has built a second system. ||It lives in spreadsheets.||"
+    heroLede="Almost every business in this sector has a second system of manual workarounds running quietly alongside the official one. Spreadsheets, manual logs, sticky notes, workarounds."
+    heroBody="They keep the business moving, but they hide the real cost. This isn't about replacing people. It's about removing the double-typing, duplicate data, and shadow spreadsheets that slow every team down."
+    heroArt={heroArt970}
+    symptomsHeading="Seven signs the second system is running the business."
+    symptomsLede="Every one of these started as someone being helpful. Three or more and the workarounds are no longer a stop-gap. They are the process."
+    symptomsCaption="Count the ones that apply. Each one is a job the official system was bought to do."
+    symptoms={[
+     "Spreadsheets are acting as the real database for your core data",
+     "The same data is being typed into the same system more than once",
+     "There's a 'master spreadsheet' someone updates by hand every day",
+     "When that person's on holiday, nobody knows how the spreadsheet works",
+     "Checking one system against another takes hours every week",
+     "Your manual workarounds, custom spreadsheets or databases are now critical to running the place",
+     "Every month-end needs a manual data pull and a lot of fiddling",
+    ]}
+    photoBand={{
+     eyebrow: 'Behind the official system',
+     heading: 'The places the second system gets fed.',
+     lede: 'Three of my own photographs from client visits this year. The stockroom, the despatch floor and the goods-in aisle are where work gets counted, written down and written down again.',
+     photos: [
+      { src: '/images/site/evidence/hero-stockroom-mixed-fa24e6.webp', alt: 'A mixed stockroom with shelved garments and boxed goods at a client site.', kicker: 'The stockroom · 2026', line: 'A mixed stockroom' },
+      { src: '/images/site/evidence/plate-cartons-packed-2fb0ae.webp', alt: 'Packed cartons stacked and labelled, waiting for collection at a client site.', kicker: 'Despatch · 2026', line: 'Packed cartons, waiting for collection' },
+      { src: '/images/site/evidence/plate-crates-aisle-e843b7.webp', alt: 'An aisle of stacked crates at a client site.', kicker: 'The floor · 2026', line: 'An aisle of stacked crates' },
+     ],
+    }}
+    causes={[
+     { icon: 'i-layout-template', title: 'The system was set up to a template, not your workflow', body: "Most software is set up following the vendor's standard process. When that doesn't match how your business actually works, your team builds workarounds. Those manual workarounds become the real way things get done." },
+     { icon: 'i-unplug', title: 'The gaps between systems were never closed', body: "When two systems can't talk to each other, the bridge is a person with a spreadsheet. That person becomes essential, and the business doesn't realise until they're away." },
+     { icon: 'i-timer', title: 'Nobody has measured the hidden labour cost', body: "The cost of manual workarounds never appears on an invoice. It's buried in staff time labelled 'order processing' or 'admin'. Until it's measured, there's no case for fixing it. If nobody has written down how things should work, the workaround is the process." },
+     { icon: 'i-badge-check', title: 'The workaround becomes the official way', body: "After a while, these manual workarounds stop looking like workarounds. It's just how things are done. New starters are trained on it as if it were official, and nobody wants to admit the original software didn't deliver." },
+    ]}
+    causesNote="The workarounds are the real operating model. The official system just watches."
+    plate={{ art: inlineArt1009 }}
+    howLede="I audit how work actually gets done, not how it's supposed to. I find every workaround, every spreadsheet, every manual bridge between systems, and I work out what they're costing you in time, mistakes, and risk."
+    howBody="Then I give you a prioritised plan to remove them: quick wins that pay for themselves, connection fixes that close the gaps, and an honest view of whether your current system can ever work for your business. The result is a practical, prioritised list of changes that takes the manual work off your team."
+    howTone="white"
+    routing={problemRouting['manual-workarounds']}
+   />
    <D17Motion />
   </>
  );
