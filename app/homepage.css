@@ -43,7 +43,9 @@ section.stage .wrap{ position:relative; z-index:1 }
 .stage-grid{ display:grid; grid-template-columns:minmax(0,1.06fr) minmax(0,.94fr);
   gap:60px; align-items:center; padding-top:84px; padding-bottom:74px }
 @media(max-width:1040px){ .stage-grid{ grid-template-columns:1fr; gap:38px; padding-top:58px; padding-bottom:54px } }
-section.stage h1{ font-size:clamp(2.5rem,5.6vw,4.6rem); letter-spacing:-.038em; color:var(--do-text-on-dark); max-width:13ch }
+/* SEO H1 (CR-WEB-076): the longer keyword-led line needs a smaller cap and a wider measure
+   to stay within three lines on desktop and four on mobile. Measured in headless Chrome. */
+section.stage h1{ font-size:clamp(1.85rem,4vw,3.4rem); max-width:20ch }
 .stage-copy p{ font-size:var(--do-text-lg); line-height:1.55; color:color-mix(in srgb, var(--do-off-white) 78%, transparent); max-width:53ch }
 .stage-copy p + p{ font-size:var(--do-text-base); line-height:1.6 }
 .stage-copy .btn-row{ margin-bottom:0 }

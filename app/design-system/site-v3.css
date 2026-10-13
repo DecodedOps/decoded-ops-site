@@ -33,7 +33,7 @@ h1,h2,h3{ text-wrap:balance }
 
 /* ── Hero · split head ─────────────────────────────────────────────────── */
 .hero{ padding:72px 0 88px }
-.hero-head{ display:grid; grid-template-columns:minmax(0,7fr) minmax(0,5fr); gap:48px; align-items:end }
+.hero-head{ display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:48px; align-items:end }
 .hero h1{ max-width:14ch }
 .hero .t-lede{ margin:0; color:color-mix(in srgb, var(--do-prussian-blue) 74%, transparent) }
 .hero .btn-row{ margin:26px 0 0 }
