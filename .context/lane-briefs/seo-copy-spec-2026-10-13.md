@@ -41,3 +41,6 @@ Keep the exact phrase **"operations consultant"** in the H1 and lede. "Operation
 
 ## Verification
 Claude runs `audit4.py`-style check after each build: H1 contains primary keyword, body count >= staging, one h1, metadata byte-identical to staging.
+
+## H1 pattern (added 13 Oct after rendering set 1)
+Long keyword H1s wrapped to 4-5 lines at 1440px. Pattern from now on: ONE `<h1>` whose text is exactly the spec line, built as a **keyword lead-in span** (display:block, ~0.42em of the H1 size, same colour family, normal tracking, ends with its colon/full stop) followed by the **designed headline from the mockup at its mockup size**. Screen readers and crawlers read one sentence; the eye sees a small kicker over the big line. Target: the big line wraps the same number of lines as in the mockup; total H1 height <= 5 lines-equivalent of the mockup.
