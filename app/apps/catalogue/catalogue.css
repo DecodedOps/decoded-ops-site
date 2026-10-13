@@ -1,0 +1,21 @@
+/* /apps/catalogue · layout only. Patterns live in site-v3.css. */
+.mk:not(.d17 *){ display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px }
+.mk b:not(.d17 *){ display: block; font-family: var(--do-font-heading); font-size: var(--do-text-3xl); font-weight: var(--do-weight-extrabold); line-height: 1; color: var(--do-off-white); font-variant-numeric: tabular-nums }
+.mk span:not(.d17 *){ display: block; margin-top: 6px; font-size: var(--do-text-sm); color: var(--do-text-muted-on-dark) }
+.mk-cap:not(.d17 *){ margin: 14px 0 0; font-size: var(--do-text-sm); color: color-mix(in srgb, var(--do-off-white) 80%, transparent) }
+@media (max-width: 480px) { .mk b:not(.d17 *){ font-size: var(--do-text-2xl) } }
+
+@media (max-width: 1000px) {
+  .route--3:not(.d17 *){ grid-template-columns: 1fr }
+  .route--3:not(.d17 *)::before{ right: auto }
+  .route--3 .stop:not(.d17 *) .node{ grid-row: 1 / span 3; align-self: start }
+  .route--3 .stop:not(.d17 *) > :not(.node){ grid-column: 2 }
+}
+
+.faq:not(.d17 *){ display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 56px; margin-top: 32px }
+.faq-item:not(.d17 *){ padding: 22px 0; border-top: 1px solid var(--do-border-subtle) }
+.faq-item h3:not(.d17 *){ margin: 0 0 8px; font-size: var(--do-text-lg); line-height: 1.3; color: var(--do-text-primary) }
+.faq-item .t-card:not(.d17 *){ font-size: var(--do-text-base); max-width: 58ch }
+@media (max-width: 900px) { .faq:not(.d17 *){ grid-template-columns: 1fr } }
+
+.stop-text a:not(.d17 *){ color: var(--do-text-primary); text-decoration: underline; text-underline-offset: 3px }
