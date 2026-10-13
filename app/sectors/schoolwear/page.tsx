@@ -1,12 +1,7 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
-import { D17Motion } from '@/components/D17Motion';
-import { Plate } from '@/components/Plate';
 import { JsonLd } from '@/components/JsonLd';
 import { BreadcrumbSchema } from '@/components/BreadcrumbSchema';
-import { sectorRouting } from '@/data/sector-routing';
-import '@/app/d17-global.css';
+import { SectorPageV2, type SectorV2Data } from '@/components/SectorPageV2';
 
 export const metadata: Metadata = {
   title: 'Uniform Ordering System for Schoolwear | Decoded Ops',
@@ -59,34 +54,13 @@ const sectorSchema = {
   ],
 };
 
-export default function SchoolwearPage() {
-  const route = sectorRouting['schoolwear'];
-  return (
-    <>
-      <JsonLd data={sectorSchema} />
-      <BreadcrumbSchema items={[
-        { name: 'Home', url: 'https://decodedops.co.uk' },
-        { name: 'Sectors', url: 'https://decodedops.co.uk/sectors' },
-        { name: 'Schoolwear', url: 'https://decodedops.co.uk/sectors/schoolwear' },
-      ]} />
-      {/* HERO SPLIT */}
-      <section className="g-off" style={{ padding: 'clamp(40px, 4.5vw, 60px) 0' }}>
-        <div className="wrap" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'clamp(24px, 3vw, 48px)', alignItems: 'center' }}>
-          <div>
-            <span className="eyebrow">Sector · schoolwear</span>
-            <h1>Schoolwear, and the back-to-school peak that decides your year.</h1>
-            <div style={{ marginTop: '20px' }}>
-              <p style={{ fontSize: 'var(--do-text-lg)', lineHeight: 1.6, marginBottom: '12px' }}>Blazers, PE kit, and growing pupils, all needing to be right before the first week of September.</p>
-              <p style={{ fontSize: 'var(--do-text-lg)', lineHeight: 1.6 }}>The businesses that get this right have their supplier data and sizing sorted well before the rush starts, whatever uniform ordering system sits on top.</p>
-            </div>
-            <div className="btn-row" style={{ marginTop: '24px' }}>
-              <Link className="btn btn--primary" href="/contact">Book a free call <ArrowRight size={16} aria-hidden="true" /></Link>
-              <Link className="btn btn--outline" href="/clarity">See how the audit works <ArrowRight size={16} aria-hidden="true" /></Link>
-            </div>
-          </div>
-          {/* D17 hero artwork */}
-          <div dangerouslySetInnerHTML={{ __html: `
-      <figure class="d17 sx a931" data-od-id="hero-evidence" data-motion data-no="DO-ART-931" data-rev="01" data-tx="schematic"
+const data: SectorV2Data = {
+  h1Lead: "A uniform ordering system for",
+  h1: "schoolwear, built for the back-to-school peak that decides your year.",
+  eyebrow: "Sector · schoolwear",
+  lede: "Blazers, PE kit, and growing pupils, all needing to be right before the first week of September.",
+  body: "The businesses that get this right have their supplier data and sizing sorted well before the rush starts, whatever uniform ordering system sits on top.",
+  heroHtml: `<figure class="d17 sx a931" data-od-id="hero-evidence" data-motion data-no="DO-ART-931" data-rev="01" data-tx="schematic"
               aria-label="Drawn plate DO-ART-931. Schoolwear orders across the year, from April to October: flat through spring, a steep surge in the August window, and a fall after the first week of September. An amber line in early summer marks where supplier data and sizing need to be ready. An inset shows the size spread shifting from last September to this one. Sorted before the rush, not during it.">
         <div class="q-grid" aria-hidden="true"></div>
         <div class="sx-top d17-mono" aria-hidden="true"><span>Schoolwear</span><span>Orders, April to October</span></div>
@@ -127,17 +101,19 @@ export default function SchoolwearPage() {
           <p class="sx-say">Sorted before the rush, <em>not during it.</em></p>
           <span class="d17-mark">decodedops.co.uk · DO-ART-931 · Rev 01</span>
         </div>
-      </figure>` }} />
-        </div>
-      </section>
-
-      {/* D17 INLINE ARTWORK · DO-ART-932 */}
-      <section className="g-navy">
-        <div className="wrap">
-          <div dangerouslySetInnerHTML={{ __html: `
-      <figure class="d17 sw sw-doc a932" data-od-id="plate-architecture" data-motion data-no="DO-ART-932" data-rev="01" data-tx="photo"
+      </figure>`,
+  challengesLede: "Three problems, all of them worse in August. In schoolwear, the same operational problems appear in different shapes across different businesses. These are the ones that cost the most.",
+  challenges: [
+    { icon: "i-database", title: "Supplier feeds before the peak", body: "Schoolwear ranges don't change often, but when a supplier does update sizing or stock, you need to know before the August rush, not during it. Stale supplier data at peak season creates orders you can't fulfil." },
+    { icon: "i-trending-up", title: "Sizing that scales with growing pupils", body: "A school's sizing spread is wider and shifts every year. Stock management that understands that means fewer stockouts of the sizes everyone actually needs in the first week of term." },
+    { icon: "i-badge-check", title: "Badge and embroidery management", body: "Every school badge is a thread file before it's a garment. Managing badge specifications, embroidery requirements, and version control at scale, across dozens of school accounts, is a dedicated workflow that spreadsheets were never built for." },
+    { icon: "i-unplug", title: "The parent portal gap", body: "Orders coming through a parent portal or uniform ordering system that doesn't connect to production mean manual re-entry of every order. For the largest schools, that's hundreds of orders requiring individual handling." },
+  ],
+  plate: {
+    heading: "The badge, its stitch file and the school’s approval, in one record.",
+    html: `<figure class="d17 sw sw-doc a932" data-od-id="plate-architecture" data-motion data-no="DO-ART-932" data-rev="01" data-tx="photo"
               aria-label="Artwork DO-ART-932. A graded photograph of an embroidery head stitching a garment, with a school badge specification (revision 03, approved by the school) and a parent order laid over it. The order is routed to the school, picks up badge revision 03, takes the size from live stock and is delivered to the school. Every school badge is a thread file before it's a garment.">
-        <div class="d17-ph"><img src="/images/d17/sectors/hero-workshop-037adf.webp" alt="" width="1100" height="963"></div>
+        <div class="d17-ph"><img src="/images/site/d17/sectors/hero-workshop-037adf.webp" alt="" width="1100" height="963"></div>
         <div class="d17-scan" aria-hidden="true"></div>
         <figcaption class="sw-cap">
           <div class="k d17-mono">Badge management <span>· per school</span></div>
@@ -177,148 +153,90 @@ export default function SchoolwearPage() {
             </ol>
           </div>
         </div>
-      </figure>` }} />
-        </div>
-      </section>
+      </figure>`,
+  },
+  band: {
+    heading: "The floors this is written from.",
+    lede: "Three of my own photographs from client visits this year. The embroidery heads, the racking and goods-in are where August is won or lost, months before it arrives.",
+    photosHtml: [
+      `<figure class="d17 ev" data-od-id="photo-heads" data-no="DO-ART-979i" data-rev="01" data-tx="photo">
+        <div class="d17-ph"><img src="/images/site/evidence/card-embroidery-heads-50b561.webp" width="1600" height="900" alt="Embroidery machine heads mid-run at a client site." loading="lazy"></div>
+        <div class="d17-scan" aria-hidden="true"></div>
+        <p class="k d17-mono">The floor &middot; 2026</p>
+        <p class="line">Machine heads, mid-run</p>
+        <span class="d17-mark">decodedops.co.uk &middot; DO-ART-979i &middot; Rev 01</span>
+      </figure>`,
+      `<figure class="d17 ev" data-od-id="photo-racking" data-no="DO-ART-979m" data-rev="01" data-tx="photo">
+        <div class="d17-ph"><img src="/images/site/evidence/plate-racking-bays-626a9b.webp" width="1600" height="900" alt="Warehouse racking bays holding boxed stock at a client site." loading="lazy"></div>
+        <div class="d17-scan" aria-hidden="true"></div>
+        <p class="k d17-mono">Stock &middot; April 2026</p>
+        <p class="line">Racking bays, counted by hand</p>
+        <span class="d17-mark">decodedops.co.uk &middot; DO-ART-979m &middot; Rev 01</span>
+      </figure>`,
+      `<figure class="d17 ev" data-od-id="photo-pallets" data-no="DO-ART-979l" data-rev="01" data-tx="photo">
+        <div class="d17-ph"><img src="/images/site/evidence/plate-pallets-12eebd.webp" width="1600" height="900" alt="Pallets of inbound stock on a client's goods-in floor." loading="lazy"></div>
+        <div class="d17-scan" aria-hidden="true"></div>
+        <p class="k d17-mono">Goods in &middot; June 2026</p>
+        <p class="line">Inbound, before it is counted</p>
+        <span class="d17-mark">decodedops.co.uk &middot; DO-ART-979l &middot; Rev 01</span>
+      </figure>`,
+    ],
+  },
+  steps: [
+    { icon: "i-map", text: "Map your whole schoolwear workflow, from supplier catalogue to parent delivery" },
+    { icon: "i-database", text: "Find where supplier data lag creates orders you cannot fulfil before peak season" },
+    { icon: "i-trending-up", text: "Audit sizing spread and its impact on stock availability" },
+    { icon: "i-badge-check", text: "Review badge specifications and how they connect to production" },
+    { icon: "i-shopping-cart", text: "See how parent orders flow from portal to production floor" },
+    { icon: "i-pound", text: "Put a number on every finding in time, stockout cost, and admin overhead" },
+  ],
+  caseStudy: {
+    heading: "Proven at a teamwear business",
+    lede: "Decoded Works runs alongside the existing platform, or as the full system where nothing off the shelf fits, handling both teamwear and schoolwear lines.",
+    note: "Live system, September 2026. The 20 to 40 hours a week of admin time is a projection from discovery and is being measured.",
+    layout: "proof",
+    href: "/case-studies/case-study-02",
+    linkLabel: "Read the case study",
+    panelHtml: `<div class="feed" data-od-id="case-study-figures" role="img" aria-label="17 supplier feeds automated, so kit and uniform ranges stay current on their own. 27,778 supplier products brought in. 236,056 variants, sizes and colours, in the system. 1,846 decorated products built from those blanks. 952 products live on the website. 100% of stock records with a bin location.">
+      <span class="t-meta feed-k">Live system, September 2026</span>
+      <p class="feed-big"><b>17</b> supplier feeds automated, so kit and uniform ranges stay current on their own</p>
+      <div class="feed-rule"></div>
+      <ul class="ticks"><li><svg class="ic ic-20" aria-hidden="true"><use href="#i-check"/></svg><span><b>27,778</b> supplier products brought in</span></li><li><svg class="ic ic-20" aria-hidden="true"><use href="#i-check"/></svg><span><b>236,056</b> variants, sizes and colours, in the system</span></li><li><svg class="ic ic-20" aria-hidden="true"><use href="#i-check"/></svg><span><b>1,846</b> decorated products built from those blanks</span></li><li><svg class="ic ic-20" aria-hidden="true"><use href="#i-check"/></svg><span><b>952</b> products live on the website</span></li><li><svg class="ic ic-20" aria-hidden="true"><use href="#i-check"/></svg><span><b>100%</b> of stock records with a bin location</span></li></ul>
+    </div>`,
+  },
+  keepReading: {
+    service: {
+      title: "Operations audit for schoolwear",
+      body: "Supplier data before the back-to-school peak, badge data that scales, and production scheduling that hits September every time.",
+      href: "/clarity",
+      linkLabel: "See how it works",
+    },
+    problems: [
+      { label: "Busy season breaks your operation", href: "/problems/seasonal-peaks" },
+      { label: "No real visibility of stock levels", href: "/problems/inventory-blind" },
+      { label: "Numbers that never agree", href: "/problems/data-scattered" },
+    ],
+    resources: [
+      { label: "SOP template for decoration businesses", href: "/resources/sop-template" },
+      { label: "Ops health score", href: "/tools/ops-health-score" },
+    ],
+    sectors: [
+      { label: "Workwear", href: "/sectors/workwear" },
+      { label: "Teamwear & clubwear", href: "/sectors/teamwear-clubwear" },
+    ],
+  },
+};
 
-      {/* FEATURES */}
-      <section className="g-white">
-        <div className="wrap">
-          <span className="eyebrow">Where it usually breaks</span>
-          <h2>Three problems, all of them worse in August.</h2>
-          <div className="hair" />
-          <div className="grid grid--2" style={{ marginTop: '32px' }}>
-            {[
-              {
-                title: 'Supplier feeds, current before the peak hits',
-                body: "Schoolwear ranges don't change often, but when a supplier does update sizing or stock, you need to know before the August rush, not during it. Decoded Works keeps that current automatically.",
-              },
-              {
-                title: 'Sizing that scales with growing pupils',
-                body: "A school's sizing spread is wider and shifts every year. Stock and bin management that understands that means fewer \u201csold out in the size everyone actually needs\u201d moments in week one.",
-              },
-              {
-                title: 'Proven at a teamwear business',
-                body: "Decoded Works runs alongside the existing platform, or as the full system where nothing off the shelf fits, handling both teamwear and schoolwear lines: 17 supplier feeds automated, a projected 20 to 40 hours a week.",
-              },
-            ].map((f, i) => (
-              <div key={i} className="card" style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
-                <span style={{ minWidth: '28px', height: '28px', borderRadius: 'var(--do-radius-full)', background: 'color-mix(in srgb, var(--do-cerulean) 20%, transparent)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 'var(--do-text-xs)', fontWeight: 'var(--do-weight-bold)', color: 'var(--do-sky-blue)' }}>{String(i + 1).padStart(2, '0')}</span>
-                <div>
-                  <h3 style={{ fontSize: 'var(--do-text-lg)', margin: '0 0 8px' }}>{f.title}</h3>
-                  <p>{f.body}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* COMMON CHALLENGES */}
-      <section className="g-white">
-        <div className="wrap">
-          <span className="eyebrow">Common challenges</span>
-          <h2>Where the problems tend to live</h2>
-          <div className="hair" />
-          <p className="lede">In schoolwear, the same operational problems appear in different shapes across different businesses. These are the ones that cost the most.</p>
-          <div className="grid grid--2">
-            {[
-              { title: 'Supplier feeds before the peak', body: "Schoolwear ranges don't change often, but when a supplier does update sizing or stock, you need to know before the August rush, not during it. Stale supplier data at peak season creates orders you can't fulfil." },
-              { title: 'Sizing that scales with growing pupils', body: "A school's sizing spread is wider and shifts every year. Stock management that understands that means fewer stockouts of the sizes everyone actually needs in the first week of term." },
-              { title: 'Badge and embroidery management', body: "Every school badge is a thread file before it's a garment. Managing badge specifications, embroidery requirements, and version control at scale, across dozens of school accounts, is a dedicated workflow that spreadsheets were never built for." },
-              { title: 'The parent portal gap', body: "Orders coming through a parent portal or uniform ordering system that doesn't connect to production mean manual re-entry of every order. For the largest schools, that's hundreds of orders requiring individual handling." },
-            ].map((c, i) => (
-              <article key={i} className="card">
-                <span className="kicker">{String(i + 1).padStart(2, '0')} &middot; {c.title}</span>
-                <p>{c.body}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* HOW I HELP */}
-      <section className="g-navy">
-        <div className="wrap">
-          <span className="eyebrow">How I help</span>
-          <h2>What the work actually looks like</h2>
-          <div className="hair" />
-          <p className="lede">A structured audit followed by specific, costed recommendations. No vague frameworks, no generic advice.</p>
-          <div className="grid grid--2" style={{ marginTop: '32px' }}>
-            {[
-              'Map your whole schoolwear workflow, from supplier catalogue to parent delivery',
-              'Find where supplier data lag creates orders you cannot fulfil before peak season',
-              'Audit sizing spread and its impact on stock availability',
-              'Review badge specifications and how they connect to production',
-              'See how parent orders flow from portal to production floor',
-              'Put a number on every finding in time, stockout cost, and admin overhead',
-            ].map((item, i) => (
-              <div key={i} className="card" style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
-                <span style={{ minWidth: '28px', height: '28px', borderRadius: 'var(--do-radius-full)', background: 'color-mix(in srgb, var(--do-cerulean) 20%, transparent)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 'var(--do-text-xs)', fontWeight: 'var(--do-weight-bold)', color: 'var(--do-sky-blue)' }}>{String(i + 1).padStart(2, '0')}</span>
-                <p>{item}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* RELATED PROBLEMS + RESOURCES */}
-      <section style={{ padding: 'clamp(40px, 4.5vw, 60px) 0' }} className="g-tint">
-        <div className="wrap">
-          <div className="grid grid--3">
-            {route.relatedProblems.length > 0 && (
-              <article className="card">
-                <span className="kicker">Common problems</span>
-                <h3>The problems I see most often</h3>
-                <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                  {route.relatedProblems.map((p) => (
-                    <li key={p.href} style={{ marginBottom: '10px' }}>
-                      <Link href={p.href} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', fontSize: 'var(--do-text-sm)' }}>
-                        <ArrowRight size={14} style={{ marginTop: '2px', flexShrink: 0, color: 'var(--do-text-cerulean)' }} aria-hidden="true" />
-                        <span>{p.label}</span>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </article>
-            )}
-            {route.relatedResources.length > 0 && (
-              <article className="card">
-                <span className="kicker">Useful next steps</span>
-                <h3>Resources</h3>
-                <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                  {route.relatedResources.map((r) => (
-                    <li key={r.href} style={{ marginBottom: '10px' }}>
-                      <Link href={r.href} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', fontSize: 'var(--do-text-sm)' }}>
-                        <ArrowRight size={14} style={{ marginTop: '2px', flexShrink: 0, color: 'var(--do-text-cerulean)' }} aria-hidden="true" />
-                        <span>{r.label}</span>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </article>
-            )}
-            {route.relatedSectors.length > 0 && (
-              <article className="card">
-                <span className="kicker">Related sectors</span>
-                <h3>Adjacent trades</h3>
-                <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                  {route.relatedSectors.map((s) => (
-                    <li key={s.href} style={{ marginBottom: '10px' }}>
-                      <Link href={s.href} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', fontSize: 'var(--do-text-sm)' }}>
-                        <ArrowRight size={14} style={{ marginTop: '2px', flexShrink: 0, color: 'var(--do-text-cerulean)' }} aria-hidden="true" />
-                        <span>{s.label}</span>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </article>
-            )}
-          </div>
-        </div>
-      </section>
-
-      <D17Motion />
+export default function SchoolwearPage() {
+  return (
+    <>
+      <JsonLd data={sectorSchema} />
+      <BreadcrumbSchema items={[
+              { name: 'Home', url: 'https://decodedops.co.uk' },
+              { name: 'Sectors', url: 'https://decodedops.co.uk/sectors' },
+              { name: 'Schoolwear', url: 'https://decodedops.co.uk/sectors/schoolwear' },
+            ]} />
+      <SectorPageV2 data={data} />
     </>
   );
 }

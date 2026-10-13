@@ -1,12 +1,7 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
 import { JsonLd } from '@/components/JsonLd';
-import { D17Motion } from '@/components/D17Motion';
-import '@/app/d17-global.css';
 import { BreadcrumbSchema } from '@/components/BreadcrumbSchema';
-import { sectorRouting } from '@/data/sector-routing';
-import styles from '@/components/SectorPageDS.module.css';
+import { SectorPageV2, type SectorV2Data } from '@/components/SectorPageV2';
 
 export const metadata: Metadata = {
   title: 'Print Shop Software for Awards & Engraving | Decoded Ops',
@@ -59,60 +54,14 @@ const sectorSchema = {
   ],
 };
 
-const tagline = 'Personalisation at scale is hard. ||Most awards businesses still do it by hand.||';
-const parts = tagline.split('||');
-
-const challenges = [
-  { title: 'Variable data management', body: "Every award is different. Names, titles, dates, messages, each one needing to move from the customer to the engraving or print without a single error. Most businesses in this sector don't have the systems for that." },
-  { title: 'Event deadline pressure', body: "Awards are nearly always for a specific event, so there's no room for lateness. Production has to schedule backwards from the date, and most systems don't." },
-  { title: 'Product range complexity', body: "Glass, crystal, metal, wood, acrylic. Each needs its own engraving method, its own minimum order, and its own supplier lead time. Keeping all of that straight is a constant challenge." },
-  { title: 'Proof and approval at volume', body: "When one order has 50 personalised items and each needs a client-approved proof, the approval process can easily take longer than making them." },
-];
-
-const whatIdo = [
-  'Audit how variable data comes in and gets checked',
-  'Review production scheduling against event deadlines',
-  'Map the proof and approval workflow and find the bottlenecks',
-  'Assess your supplier and product data for the range you carry',
-  'Find software built for variable-data personalisation',
-  'Put a cost on the manual processes and proof rework',
-];
-
-const route = sectorRouting['awards-engraving'];
-
-export default function AwardsEngravingPage() {
-  return (
-    <>
-      <JsonLd data={sectorSchema} />
-      <BreadcrumbSchema items={[
-        { name: 'Home', url: 'https://decodedops.co.uk' },
-        { name: 'Sectors', url: 'https://decodedops.co.uk/#sectors' },
-        { name: 'Awards & Engraving', url: 'https://decodedops.co.uk/sectors/awards-engraving' },
-      ]} />
-      {/* HERO SPLIT */}
-      <section className={`g-off ${styles.heroSection}`}>
-        <div className={`wrap ${styles.heroSplit}`}>
-          <div>
-            <span className="eyebrow">Sector · awards & engraving</span>
-            <h1>
-              {parts.map((p, i) =>
-                i % 2 === 0
-                  ? <span key={i}>{p}</span>
-                  : <span key={i} style={{ color: 'var(--do-text-cerulean)' }}>{p}</span>
-              )}
-            </h1>
-            <div className={styles.heroBody}>
-              <p>Every award carries different names, titles, and dates, and every order is for a specific event with a hard deadline. That makes awards and engraving one of the most demanding corners of the decorated products sector. Most print shop software treats a personalised award like any other order line, and that is where the rework starts.</p>
-            </div>
-            <div className="btn-row">
-              <Link className="btn btn--primary" href="/contact">Book a free call <ArrowRight size={16} aria-hidden="true" /></Link>
-              <Link className="btn btn--outline" href="/clarity">See how the audit works <ArrowRight size={16} aria-hidden="true" /></Link>
-            </div>
-          </div>
-          <div dangerouslySetInnerHTML={{ __html: `
-<figure class="d17 sx a921" data-od-id="hero-evidence" data-motion data-no="DO-ART-921" data-rev="01" data-tx="photo"
+const data: SectorV2Data = {
+  h1Lead: "Print shop software for awards and engraving:",
+  h1: "personalisation at scale is hard, and most businesses still do it by hand.",
+  eyebrow: "Sector · awards & engraving",
+  lede: "Every award carries different names, titles, and dates, and every order is for a specific event with a hard deadline. That makes awards and engraving one of the most demanding corners of the decorated products sector. Most print shop software treats a personalised award like any other order line, and that is where the rework starts.",
+  heroHtml: `<figure class="d17 sx a921" data-od-id="hero-evidence" data-motion data-no="DO-ART-921" data-rev="01" data-tx="photo"
         aria-label="Artwork DO-ART-921. A graded photograph of glass, crystal and metal awards, with an awards job ticket and a client-approved engraving proof laid over it. Fifty pieces, fifty approved proofs.">
-  <div class="d17-ph"><img src="/images/d17/sectors/cat-awards-70dc2f.webp" alt="" width="900" height="1200"></div>
+  <div class="d17-ph"><img src="/images/site/d17/sectors/cat-awards-70dc2f.webp" alt="" width="900" height="1200"></div>
   <div class="d17-scan" aria-hidden="true"></div>
   <div class="sx-top d17-mono" aria-hidden="true"><span>Awards &amp; engraving</span><span>One event date</span></div>
   <div class="stage" aria-hidden="true">
@@ -144,15 +93,18 @@ export default function AwardsEngravingPage() {
     <p class="sx-say">Fifty pieces, <em>fifty approved proofs.</em></p>
     <span class="d17-mark">decodedops.co.uk · DO-ART-921 · Rev 01</span>
   </div>
-</figure>` }} />
-        </div>
-      </section>
-
-      {/* D17 INLINE ARTWORK · DO-ART-922 */}
-      <section className="g-navy">
-        <div className="wrap">
-          <div dangerouslySetInnerHTML={{ __html: `
-<figure class="d17 sw a922" data-od-id="plate-architecture" data-motion data-no="DO-ART-922" data-rev="01" data-tx="schematic"
+</figure>`,
+  challengesLede: "In this sector, the same operational problems appear in different shapes across different businesses. These are the ones that cost the most, and the ones general print shop software handles worst.",
+  challenges: [
+    { icon: "i-database", title: "Variable data management", body: "Every award is different. Names, titles, dates, messages, each one needing to move from the customer to the engraving or print without a single error. Most businesses in this sector don't have the systems for that." },
+    { icon: "i-calendar-clock", title: "Event deadline pressure", body: "Awards are nearly always for a specific event, so there's no room for lateness. Production has to schedule backwards from the date, and most systems don't." },
+    { icon: "i-layers", title: "Product range complexity", body: "Glass, crystal, metal, wood, acrylic. Each needs its own engraving method, its own minimum order, and its own supplier lead time. Keeping all of that straight is a constant challenge." },
+    { icon: "i-clipboard-check", title: "Proof and approval at volume", body: "When one order has 50 personalised items and each needs a client-approved proof, the approval process can easily take longer than making them." },
+  ],
+  plate: {
+    heading: "Fifty pieces, fifty approved proofs.",
+    lede: "Variable data in, a proof per piece, all fifty approved, and only then is the order released to engraving, ahead of a date that doesn’t move.",
+    html: `<figure class="d17 sw a922" data-od-id="plate-architecture" data-motion data-no="DO-ART-922" data-rev="01" data-tx="schematic"
         aria-label="Drawn plate DO-ART-922. One awards order of fifty personalised pieces, each with its own proof. All fifty proofs come back approved, and only then is the order released to engraving, ahead of a fixed event date. Stages: variable data in, a proof per piece, all fifty approved, engraved before the event.">
   <div class="q-grid" aria-hidden="true"></div>
   <figcaption class="sw-cap">
@@ -173,111 +125,76 @@ export default function AwardsEngravingPage() {
       <li class="end"><b>04 · Engrave</b>Released to production, ahead of the event</li>
     </ol></div>
   </div>
-</figure>` }} />
-        </div>
-      </section>
+</figure>`,
+  },
+  band: {
+    heading: "The places this is written from.",
+    lede: "Three of my own photographs from client visits this year. Not an engraving bench, but the same places: the paperwork on the desk, stock on the shelf and goods in the aisle, where fifty names get checked once or fifty times.",
+    photosHtml: [
+      `<figure class="d17 ev" data-od-id="photo-paperwork" data-no="DO-ART-979g" data-rev="01" data-tx="photo">
+        <div class="d17-ph"><img src="/images/site/evidence/hero-office-paperwork-75fcd2.webp" width="1600" height="900" alt="Paperwork spread across an office desk at a client site." loading="lazy"></div>
+        <div class="d17-scan" aria-hidden="true"></div>
+        <p class="k d17-mono">The office &middot; 2026</p>
+        <p class="line">The paperwork on the desk</p>
+        <span class="d17-mark">decodedops.co.uk &middot; DO-ART-979g &middot; Rev 01</span>
+      </figure>`,
+      `<figure class="d17 ev" data-od-id="photo-shelf" data-no="DO-ART-979j" data-rev="01" data-tx="photo">
+        <div class="d17-ph"><img src="/images/site/evidence/card-garment-shelf-724253.webp" width="1600" height="900" alt="Folded garments on a stock shelf at a client site." loading="lazy"></div>
+        <div class="d17-scan" aria-hidden="true"></div>
+        <p class="k d17-mono">Stock &middot; June 2026</p>
+        <p class="line">Folded garments on the shelf</p>
+        <span class="d17-mark">decodedops.co.uk &middot; DO-ART-979j &middot; Rev 01</span>
+      </figure>`,
+      `<figure class="d17 ev" data-od-id="photo-crates" data-no="DO-ART-979a" data-rev="01" data-tx="photo">
+        <div class="d17-ph"><img src="/images/site/evidence/plate-crates-aisle-e843b7.webp" width="1600" height="900" alt="An aisle of stacked crates at a client site." loading="lazy"></div>
+        <div class="d17-scan" aria-hidden="true"></div>
+        <p class="k d17-mono">Goods in &middot; 2026</p>
+        <p class="line">Crates in the aisle, not yet booked in</p>
+        <span class="d17-mark">decodedops.co.uk &middot; DO-ART-979a &middot; Rev 01</span>
+      </figure>`,
+    ],
+  },
+  steps: [
+    { icon: "i-database", text: "Audit how variable data comes in and gets checked" },
+    { icon: "i-calendar-clock", text: "Review production scheduling against event deadlines" },
+    { icon: "i-clipboard-check", text: "Map the proof and approval workflow and find the bottlenecks" },
+    { icon: "i-layers", text: "Assess your supplier and product data for the range you carry" },
+    { icon: "i-search", text: "Find software built for variable-data personalisation" },
+    { icon: "i-pound", text: "Put a cost on the manual processes and proof rework" },
+  ],
+  keepReading: {
+    service: {
+      title: "Operations audit for awards & engraving",
+      body: "A structured one-day audit of order intake, artwork, production, and despatch, built for the specific reality of mixed-method, short-run, personalised production.",
+      href: "/clarity",
+      linkLabel: "See how it works",
+    },
+    problems: [
+      { label: "Manual order processing and artwork checks", href: "/problems/manual-workarounds" },
+      { label: "Job software that doesn’t fit personalised work", href: "/problems/wrong-erp-software" },
+      { label: "If the server died tomorrow…", href: "/problems/disaster-recovery" },
+    ],
+    resources: [
+      { label: "Artwork approval playbook", href: "/resources/artwork-approval-playbook" },
+      { label: "Ops health score", href: "/tools/ops-health-score" },
+    ],
+    sectors: [
+      { label: "Signs & graphics", href: "/sectors/signs-graphics" },
+      { label: "Labels & packaging", href: "/sectors/labels-packaging" },
+    ],
+  },
+};
 
-      {/* CHALLENGES */}
-      <section className="g-white">
-        <div className="wrap">
-          <span className="eyebrow">Common challenges</span>
-          <h2>Where the problems tend to live</h2>
-          <div className="hair" />
-          <p className="lede">In this sector, the same operational problems appear in different shapes across different businesses. These are the ones that cost the most, and the ones general print shop software handles worst.</p>
-          <div className="grid grid--2">
-            {challenges.map((c, i) => (
-              <article key={i} className="card">
-                <span className="kicker">{String(i + 1).padStart(2, '0')} &middot; {c.title}</span>
-                <p>{c.body}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* WHAT I DO */}
-      <section className="g-navy">
-        <div className="wrap">
-          <span className="eyebrow">How I help</span>
-          <h2>What the work actually looks like</h2>
-          <div className="hair" />
-          <p className="lede">A structured audit followed by specific, costed recommendations. No vague frameworks, no generic advice.</p>
-          <div className="grid grid--2" style={{ marginTop: '32px' }}>
-            {whatIdo.map((item, i) => (
-              <div key={i} className="card" style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
-                <span style={{ minWidth: '28px', height: '28px', borderRadius: 'var(--do-radius-full)', background: 'color-mix(in srgb, var(--do-cerulean) 20%, transparent)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 'var(--do-text-xs)', fontWeight: 'var(--do-weight-bold)', color: 'var(--do-sky-blue)' }}>{String(i + 1).padStart(2, '0')}</span>
-                <p>{item}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CROSS-LINKS */}
-      {(route.targetService || (route.relatedProblems && route.relatedProblems.length > 0) || (route.relatedResources && route.relatedResources.length > 0)) && (
-        <section style={{ padding: 'clamp(40px, 4.5vw, 60px) 0' }} className="g-tint">
-          <div className="wrap">
-            <div className="grid grid--3">
-              {route.targetService && (
-                <div className="card" style={{ background: 'var(--do-surface-dark)', color: 'var(--do-text-on-dark)' }}>
-                  <span className="kicker" style={{ color: 'var(--do-amber)' }}>The work in this sector</span>
-                  <h3 style={{ fontSize: 'var(--do-text-xl)', margin: '8px 0' }}>{route.targetService.label}</h3>
-                  <p style={{ marginBottom: '20px' }}>{route.targetService.anchor}</p>
-                  <Link href={route.targetService.href} style={{ color: 'var(--do-amber)', fontWeight: 'var(--do-weight-semibold)', display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
-                    See how it works <ArrowRight size={18} aria-hidden="true" />
-                  </Link>
-                </div>
-              )}
-              {route.relatedProblems && route.relatedProblems.length > 0 && (
-                <div className="card">
-                  <span className="kicker">Most common in awards & engraving</span>
-                  <h3 style={{ fontSize: 'var(--do-text-lg)', margin: '8px 0' }}>The problems I see most often</h3>
-                  <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                    {route.relatedProblems.map((p) => (
-                      <li key={p.href} style={{ marginBottom: '10px' }}>
-                        <Link href={p.href} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', fontSize: 'var(--do-text-sm)' }}>
-                          <ArrowRight size={14} style={{ marginTop: '2px', flexShrink: 0, color: 'var(--do-text-cerulean)' }} aria-hidden="true" />
-                          <span>{p.label}</span>
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-              {route.relatedResources && route.relatedResources.length > 0 && (
-                <div className="card">
-                  <span className="kicker">Useful next steps</span>
-                  <h3 style={{ fontSize: 'var(--do-text-lg)', margin: '8px 0' }}>Resources</h3>
-                  <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                    {route.relatedResources.map((r) => (
-                      <li key={r.href} style={{ marginBottom: '10px' }}>
-                        <Link href={r.href} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', fontSize: 'var(--do-text-sm)' }}>
-                          <ArrowRight size={14} style={{ marginTop: '2px', flexShrink: 0, color: 'var(--do-text-cerulean)' }} aria-hidden="true" />
-                          <span>{r.label}</span>
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* CTA STRIP */}
-      <section className="g-off">
-        <div className={`wrap ${styles.centred}`}>
-          <h2>Book a free discovery call.</h2>
-          <div className="hair" />
-          <p className="lede">The audit starts with a free 60-minute call. No obligation. Just a conversation about what&apos;s happening in your business.</p>
-          <div className="btn-row">
-            <Link className="btn btn--primary" href="/contact">Book a free discovery call <ArrowRight size={16} aria-hidden="true" /></Link>
-            <Link className="btn btn--outline" href="/clarity">See how a Clarity Audit works <ArrowRight size={16} aria-hidden="true" /></Link>
-          </div>
-        </div>
-      </section>
-      <D17Motion />
+export default function AwardsEngravingPage() {
+  return (
+    <>
+      <JsonLd data={sectorSchema} />
+      <BreadcrumbSchema items={[
+              { name: 'Home', url: 'https://decodedops.co.uk' },
+              { name: 'Sectors', url: 'https://decodedops.co.uk/#sectors' },
+              { name: 'Awards & Engraving', url: 'https://decodedops.co.uk/sectors/awards-engraving' },
+            ]} />
+      <SectorPageV2 data={data} />
     </>
   );
 }
