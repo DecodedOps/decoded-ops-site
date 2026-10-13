@@ -1,0 +1,6 @@
+/* PAGE-SPECIFIC LAYOUT ONLY — retained v1 (CR-WEB-076 set 1).
+   Shared patterns live in app/design-system/site-v3.css. The callout
+   `.note` is page-local: the homepage uses `.note` for its bare columns
+   and both routes load site-v3.css, so the callout must not sit there. */
+.note{ margin:28px 0 0; padding:18px 22px; border-left:3px solid var(--do-cerulean); background:var(--do-surface-raised); font-size:var(--do-text-base); line-height:1.6; color:var(--do-text-secondary); max-width:70ch }
+.note b{ color:var(--do-text-primary) }

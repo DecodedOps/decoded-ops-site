@@ -1,10 +1,11 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { Artwork } from '@/components/Artwork';
-import { PhotoPiece } from '@/components/PhotoPiece';
 import { JsonLd } from '@/components/JsonLd';
-import s from '@/app/deco-page.module.css';
+import { D17Motion } from '@/components/D17Motion';
+import { IconSprite } from '@/components/IconSprite';
 import { OG_IMAGE, OG_IMAGE_PATH } from '@/lib/seo';
+import '@/app/d17-global.css';
+import '@/app/design-system/site-v3.css';
 
 export const metadata: Metadata = {
   title: 'Digital Transformation Consultancy for Print | Decoded Ops',
@@ -51,200 +52,202 @@ const transformFaqSchema = {
   ],
 };
 
+const baBefore = [
+  'Supplier data spread across feeds that all disagreed',
+  'Matching and re-keying done by hand, every time a range changed',
+  'A catalogue nobody in the business actually trusted',
+  'Automation talked about, on top of data that wasn’t ready for it',
+];
+
+const dimensions = [
+  { id: 'dimension-plan', icon: 'i-git-branch', num: '01', h: 'Sequence the plan',
+    p: 'The Clarity Audit report becomes a phased programme, what happens first, what depends on what, and what can run in parallel without the business grinding to a halt.' },
+  { id: 'dimension-procure', icon: 'i-users', num: '02', h: 'I don’t sell software',
+    p: 'Every vendor quotes against the same brief, and I stay on your side of the table for the build. There’s no commission in it for me, whichever platform you choose.' },
+  { id: 'dimension-embed', icon: 'i-trending-up', num: '03', h: 'Embed the Process & Quality System',
+    p: 'Not one process documented: the whole programme. So what’s still running after I’ve gone is a system the business owns, not a memory of a project.' },
+];
+
 export default function TransformPage() {
   return (
-    <main id="content">
+    <>
       <JsonLd data={transformFaqSchema} />
-      {/* 1 · HERO CENTRE */}
-      <section className={`g-off ${s.heroCenter}`} data-od-id="hero">
-        <div className="wrap">
-          <span className="eyebrow">Transform</span>
-          <h1>The plan, executed.</h1>
-          <p className="lede">Transform is my digital transformation consultancy, and it is what happens after a Clarity Audit finds something that needs
-            proper change, not a quick fix. I take that plan and run it: ERP, eCommerce and process
-            redesign, run as one programme over weeks rather than a day.</p>
-          <div className={s.heroCta}>
-            <Link className="btn btn--primary" href="/contact">Book a Clarity Audit</Link>
-          </div>
-        </div>
-      </section>
+      <IconSprite />
+      <main id="content">
 
-      {/* 1a · EVIDENCE PHOTO · DO-ART-911 */}
-      <section className="g-tint ev-band" data-od-id="evidence">
-        <div className="wrap">
-          <PhotoPiece
-            src="/images/money/press-transfer-2026-09.webp"
-            width={1600}
-            height={1067}
-            alt="A heat press mid-cycle on a print floor, platen lowered onto a green T-shirt with transfer paper taped across the print area."
-            no="DO-ART-911"
-            rev="01"
-            eyebrow="Evidence · Transform"
-            caption="The press hall, before and after"
-            focus="50% 50%"
-          />
-        </div>
-      </section>
-
-      {/* 2 · BEFORE / AFTER · DO-ART-403 */}
-      <section className="g-tint" data-od-id="transform-ba">
-        <div className="wrap">
-          <span className="eyebrow">Two live examples &middot; DO-ART-403</span>
-          <h2>Same approach, twice, in two different businesses.</h2>
-           <p className="lede" style={{ marginTop: 16 }}>Case study 01: 317,812 products brought in and 154,518 matched to a supplier automatically.
-            Case study 02: 17 supplier feeds automated, a projected saving of 20 to 40
-            hours a week. Same approach both times: fix the process and the data before automating
-            anything.</p>
-
-          <div className="plate-scroll" style={{ marginTop: 34 }}>
-            <div className={`plate-frame ${s.plateFrame}`} data-od-id="transform-ba-diagram">
-               <Artwork mode="compare" tone="dark" p="tb" title="Same business. Different Tuesday."
-                      sub="Case study 01: before and after, paired line for line"
-                     no="DO-ART-403" rev="02" cls="DECODED OPS · ISSUED">
-
-                <g className="sk-fade sk-s2" filter="url(#tb-shadow)">
-                  <rect x="100" y="200" width="650" height="500" rx="14" fill="url(#tb-amber-n)"
-                        className="p-node-a" strokeWidth="1.6"/>
-                  <rect x="100" y="200" width="650" height="56" rx="14" className="p-amber" opacity=".92"/>
-                  <rect x="100" y="242" width="650" height="14" className="p-amber" opacity=".92"/>
-                  <text x="128" y="238" fontFamily="Outfit,sans-serif" fontWeight="800" fontSize="22"
-                        letterSpacing="2" fill="var(--do-prussian-blue)">NOW</text>
-                </g>
-                <g className="sk-fade sk-s3" fontSize="22">
-                  <text x="140" y="322" className="p-ink">317,812 rows, no consistent SKU</text>
-                  <text x="140" y="392" className="p-ink">Matching done by hand</text>
-                  <text x="140" y="462" className="p-ink">Catalogue nobody trusted</text>
-                  <text x="140" y="532" className="p-ink">Website and warehouse disagreed</text>
-                  <g className="p-samber" strokeWidth="2.4" strokeLinecap="round">
-                    <path d="M106 309 L118 321 M118 309 L106 321"/>
-                    <path d="M106 379 L118 391 M118 379 L106 391"/>
-                    <path d="M106 449 L118 461 M118 449 L106 461"/>
-                    <path d="M106 519 L118 531 M118 519 L106 531"/>
-                  </g>
-                </g>
-
-                <path id="tb-p" pathLength={1} className="sk-draw sk-s4 p-scyan" d="M760 450 H840"
-                      fill="none" strokeWidth="3" markerEnd="url(#tb-ah)"/>
-
-                <g className="sk-fade sk-s4" filter="url(#tb-shadow)">
-                  <rect x="850" y="200" width="650" height="500" rx="14" fill="url(#tb-node)"
-                        className="p-node" strokeWidth="1.6"/>
-                  <rect x="850" y="200" width="650" height="56" rx="14" className="p-cyan" opacity=".95"/>
-                  <rect x="850" y="242" width="650" height="14" className="p-cyan" opacity=".95"/>
-                  <text x="878" y="238" fontFamily="Outfit,sans-serif" fontWeight="800" fontSize="22"
-                        letterSpacing="2" fill="var(--do-prussian-blue)">AFTER</text>
-                </g>
-                <g className="sk-fade sk-s5" fontSize="22">
-                  <text x="890" y="322" className="p-ink">154,518 matched automatically</text>
-                  <text x="890" y="392" className="p-ink">40 active suppliers feeding in</text>
-                   <text x="890" y="462" className="p-ink">Decoded Works (the ERP)</text>
-                  <text x="890" y="532" className="p-ink">One catalogue, every channel</text>
-                  <g className="p-scyan" strokeWidth="2.6" strokeLinecap="round"
-                     strokeLinejoin="round" fill="none">
-                    <path d="M856 315 L863 322 L876 308"/>
-                    <path d="M856 385 L863 392 L876 378"/>
-                    <path d="M856 455 L863 462 L876 448"/>
-                    <path d="M856 525 L863 532 L876 518"/>
-                  </g>
-                </g>
-
-                <g className="sk-dots">
-                  <circle r="6" className="p-cyan">
-                    <animateMotion dur="2.2s" repeatCount="indefinite"><mpath href="#tb-p"/></animateMotion>
-                  </circle>
-                </g>
-              </Artwork>
-            </div>
-          </div>
-
-          <div className={s.ba} data-od-id="transform-ba-cards">
-            <div className={`${s.baCol} ${s.baColNow}`} data-od-id="ba-now">
-              <h3>Before: both businesses</h3>
-              <ul>
-                <li>Supplier data spread across feeds that all disagreed</li>
-                <li>Matching and re-keying done by hand, every time a range changed</li>
-                <li>A catalogue nobody in the business actually trusted</li>
-                <li>Automation talked about, on top of data that wasn&apos;t ready for it</li>
-              </ul>
-            </div>
-            <div className={`${s.baCol} ${s.baColAfter}`} data-od-id="ba-after">
-              <h3>After</h3>
-              <ul>
-                <li>Case study 01: <strong>317,812</strong> brought in, <strong>154,518</strong> matched automatically</li>
-                 <li>Case study 01: <strong>40</strong> active suppliers, <strong>3,844</strong> Amazon listings re-optimised</li>
-                <li>Case study 02: <strong>17</strong> supplier feeds fully automated</li>
-                <li>Case study 02: a projected saving of <strong>20–40 hours</strong> a week</li>
-              </ul>
-            </div>
-          </div>
-
-          <p className={s.tableFoot}>Both real deployments. Same approach both times: fix the process
-            and the data before automating anything.</p>
-        </div>
-      </section>
-
-      {/* 3 · THREE DIMENSIONS */}
-      <section className="g-white" data-od-id="dimensions">
-        <div className="wrap">
-          <span className="eyebrow">What a Transform engagement covers</span>
-          <h2>Three dimensions, run together.</h2>
-          <p className="lede" style={{ marginTop: 16 }}>Transform is the Clarity Audit plan, turned into a
-            programme. The same discipline as Deliver, applied to ERP implementation across several systems or departments
-            at once.</p>
-
-          <div className="grid grid--3">
-            <div className={s.feature} data-od-id="dimension-plan">
-              <div className={s.featureMark} aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"
-                     strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M4 5h16M4 12h10M4 19h13"/><circle cx="19" cy="12" r="2"/>
-                </svg>
+        {/* ══════════ 01 · HERO ══════════ */}
+        <section className="g-off hero" data-od-id="hero">
+          <div className="wrap">
+            <div className="hero-head">
+              <div>
+                <span className="eyebrow">Transform</span>
+                <h1 data-od-id="hero-h1">The plan, executed.</h1>
               </div>
-              <h3>Sequence the plan</h3>
-              <p>The Clarity Audit report becomes a phased programme, what happens first, what
-                depends on what, and what can run in parallel without the business grinding to a
-                halt.</p>
-            </div>
-            <div className={s.feature} data-od-id="dimension-procure">
-              <div className={s.featureMark} aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"
-                     strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="9" cy="8" r="3"/><path d="M3 19c0-3 2.7-4.6 6-4.6s6 1.6 6 4.6"/>
-                  <path d="M17 9.5h4M17 13.5h4"/>
-                </svg>
+              <div>
+                <p className="t-lede">Transform is my digital transformation consultancy, and it is what happens after a Clarity Audit finds something that needs
+                  proper change, not a quick fix. I take that plan and run it: ERP, eCommerce and process
+                  redesign, run as one programme over weeks rather than a day.</p>
+                <div className="btn-row"><Link className="btn btn--primary" href="/contact" data-od-id="hero-cta">Book a Clarity Audit</Link></div>
               </div>
-              <h3>I don&apos;t sell software</h3>
-              <p>Every vendor quotes against the same brief, and I stay on your side of the table
-                for the build. There&apos;s no commission in it for me, whichever platform you choose.</p>
             </div>
-            <div className={s.feature} data-od-id="dimension-embed">
-              <div className={s.featureMark} aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"
-                     strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M4 18 9.5 12l3.5 3.5L20 8"/><path d="M15.5 8H20v4.5"/>
-                </svg>
-              </div>
-              <h3>Embed the Process &amp; Quality System</h3>
-              <p>Not one process documented: the whole programme. So what&apos;s still running after
-                I&apos;ve gone is a system the business owns, not a memory of a project.</p>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* 4 · CTA STRIP */}
-      <section className={`g-navy ${s.ctaStrip}`} data-od-id="cta-strip">
-        <div className="wrap" style={{ maxWidth: 760 }}>
-          <h2>Book a Clarity Audit.</h2>
-          <p className="lede">My digital transformation consultancy is scoped per engagement. There&apos;s no published price for a
-            programme this size, and there won&apos;t be. It starts the same way everything does: a full
-            day on site and a written plan.</p>
-          <div className={s.heroCta}>
-            <Link className="btn btn--primary" href="/contact">Book a free discovery call</Link>
-            <Link className={`btn ${s.navyGhost} ${s.btnArrow}`} href="/deliver">See how Deliver runs</Link>
+            {/* DO-ART-941 r01 · Transform hero · the programme and the vendor brief, over DO-ART-979o */}
+            <div dangerouslySetInnerHTML={{ __html: `<figure class="d17 sw sw-doc a939" data-od-id="hero-visual" data-motion data-no="DO-ART-941" data-rev="01" data-tx="photo"
+      aria-label="Artwork DO-ART-941. Two documents over a graded photograph of a screen-print carousel on a client's floor. The programme: now, next and later columns holding ERP, eCommerce and process redesign as one sequence. The vendor brief: the same brief to every vendor, scored on the merits, no commission. A tag reads: weeks, not a day.">
+      <div class="d17-ph"><img src="/images/site/evidence/band-screenprint-carousel-f0dce0.webp" width="1600" height="900" alt=""></div>
+      <div class="d17-scan" aria-hidden="true"></div>
+      <figcaption class="sw-cap">
+        <div class="k d17-mono">Transform <span>&middot; the plan, run</span></div>
+        <div class="bar" aria-hidden="true"></div>
+        <h3>ERP, eCommerce and process redesign, run as one programme.</h3>
+        <p>Over weeks rather than a day. The Clarity Audit plan, turned into a programme.</p>
+        <span class="d17-mark">decodedops.co.uk &middot; DO-ART-941 &middot; Rev 01</span>
+      </figcaption>
+      <div class="stage" aria-hidden="true">
+        <div class="d17-doc doc-f m-drop" style="animation-delay:.1s"><span class="tab">PROGRAMME</span>
+          <span class="ref">Transform &middot; the sequence</span>
+          <h4>What happens first, and what depends on what</h4>
+          <p class="sub">one programme &middot; several systems at once</p>
+          <div class="rm">
+            <div class="c"><b>Now</b><span class="a">Process redesign</span><span>One stock figure</span></div>
+            <div class="c"><b>Next</b><span>ERP</span><span>Orders entered once</span></div>
+            <div class="c"><b>Later</b><span>eCommerce</span><span>One catalogue, every channel</span></div>
           </div>
-        </div>
-      </section>
-    </main>
+          <div class="doc-foot">Example sequence &middot; nothing automated before the data is ready</div></div>
+        <div class="d17-doc doc-m m-drop" style="animation-delay:.45s"><span class="tab">BRIEF</span>
+          <span class="ref">Vendor brief</span>
+          <h4>Every vendor, the same brief</h4>
+          <ol class="pk">
+            <li>Scored on the merits</li>
+            <li>No commission, whichever platform</li>
+            <li>I stay on your side of the table</li>
+          </ol>
+          <div class="doc-foot">Independent &middot; I don&rsquo;t sell software</div></div>
+        <div class="sx-tag sx-tag--a t5 m-pop" style="animation-delay:1.9s"><small>Programme</small>Weeks, not a day</div>
+      </div>
+    </figure>` }} />
+          </div>
+        </section>
+
+        {/* ══════════ 02 · TWO LIVE EXAMPLES ══════════ */}
+        <section className="g-navy route-sec" data-od-id="transform-ba">
+          <div className="do-dot-grid" aria-hidden="true" style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }} />
+          <div className="wrap">
+            <div className="route-head">
+              <div>
+                <span className="eyebrow">Two live examples</span>
+                <h2 data-od-id="ba-h2">Same approach, twice, in two different businesses.</h2>
+              </div>
+              <p className="lede">Case study 01: 317,812 products brought in and 154,518 matched to a supplier automatically.
+                Case study 02: 17 supplier feeds automated, a projected saving of 20 to 40 hours a week. Same approach both times: fix the process and the data before automating anything.</p>
+            </div>
+            <div className="split" data-od-id="transform-ba-split">
+              <div>
+                <h3>Before: both businesses</h3>
+                <ul className="ticks" data-od-id="ba-before">
+                  {baBefore.map(item => (
+                    <li key={item}><svg className="ic ic-16" aria-hidden="true"><use href="#i-check" /></svg>{item}</li>
+                  ))}
+                </ul>
+                <p className="t-body" style={{ marginTop: 18 }}>Both real deployments. Same approach both times: fix the process and the data before automating anything.</p>
+              </div>
+              <div className="feed" data-od-id="ba-figures" style={{ background: 'color-mix(in srgb, var(--do-sky-blue) 6%, var(--do-prussian-blue))', border: '1px solid var(--do-border-dark)' }}>
+                <span className="t-meta feed-k">After &middot; Case study 01 &middot; live system, September 2026</span>
+                <p className="feed-big"><b>317,812</b>products brought in from supplier feeds</p>
+                <div className="feed-row"><b>Matched to a supplier automatically</b><span className="feed-pct">49%</span></div>
+                <div className="feed-track"><div className="feed-fill" style={{ width: '48.6%' }} /></div>
+                <div className="feed-row" style={{ marginTop: 8 }}><span>154,518 of 317,812</span><span>3,844 Amazon listings re-optimised</span></div>
+                <div className="feed-rule" />
+                <div className="feed-row"><b>Active suppliers feeding in</b><span>40 of 89 on file</span></div>
+                <div className="dots" aria-hidden="true">
+                  {Array.from({ length: 89 }, (_, i) => (
+                    <i key={i} className={i < 40 ? 'on' : undefined} />
+                  ))}
+                </div>
+                <div className="feed-rule" />
+                <div className="feed-row"><b>Case study 02</b><span>17 supplier feeds fully automated</span></div>
+                <div className="feed-row" style={{ marginTop: 6 }}><span>Projected saving</span><span>20 to 40 hours a week</span></div>
+                <p className="feed-foot">Figures from the live systems (SQL, 23 Sep 2026). 49% is 154,518 ÷ 317,812.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ══════════ 02a · ON THE DAY ══════════ */}
+        <section className="g-white" data-od-id="on-the-day">
+          <div className="wrap">
+            <div className="ev-head">
+              <div>
+                <span className="eyebrow">On the day</span>
+                <h2 data-od-id="on-the-day-h2">Where the programme lands.</h2>
+              </div>
+              <p className="lede">Three of my own photographs from client visits this year. The stockroom, the racking and goods-in are where a new system either works or quietly doesn&rsquo;t.</p>
+            </div>
+            <div className="ev-grid" data-od-id="on-the-day-photos">
+              <figure className="d17 ev" data-od-id="photo-stockroom" data-no="DO-ART-979c" data-rev="01" data-tx="photo">
+                <div className="d17-ph"><img src="/images/site/evidence/hero-stockroom-mixed-fa24e6.webp" width={1600} height={900} alt="A mixed stockroom with shelved garments and boxed goods at a client site." /></div>
+                <div className="d17-scan" aria-hidden="true" />
+                <p className="k d17-mono">The stockroom &middot; 2026</p>
+                <p className="line">One stock figure, or several</p>
+                <span className="d17-mark">decodedops.co.uk &middot; DO-ART-979c &middot; Rev 01</span>
+              </figure>
+              <figure className="d17 ev" data-od-id="photo-racking" data-no="DO-ART-979f" data-rev="01" data-tx="photo">
+                <div className="d17-ph"><img src="/images/site/evidence/hero-racking-aisle-7d129e.webp" width={1600} height={900} alt="A long racking aisle of boxed stock at a client site." /></div>
+                <div className="d17-scan" aria-hidden="true" />
+                <p className="k d17-mono">The warehouse &middot; 2026</p>
+                <p className="line">Where the website and the warehouse disagree</p>
+                <span className="d17-mark">decodedops.co.uk &middot; DO-ART-979f &middot; Rev 01</span>
+              </figure>
+              <figure className="d17 ev" data-od-id="photo-pallets" data-no="DO-ART-979l" data-rev="01" data-tx="photo">
+                <div className="d17-ph"><img src="/images/site/evidence/plate-pallets-12eebd.webp" width={1600} height={900} alt="Pallets of inbound stock on a client's goods-in floor." /></div>
+                <div className="d17-scan" aria-hidden="true" />
+                <p className="k d17-mono">Goods in &middot; June 2026</p>
+                <p className="line">Inbound, before it is counted</p>
+                <span className="d17-mark">decodedops.co.uk &middot; DO-ART-979l &middot; Rev 01</span>
+              </figure>
+            </div>
+          </div>
+        </section>
+
+        {/* ══════════ 03 · THREE DIMENSIONS ══════════ */}
+        <section className="g-tint" data-od-id="dimensions">
+          <div className="wrap">
+            <div className="sec-head">
+              <span className="eyebrow">What a Transform engagement covers</span>
+              <h2 data-od-id="dimensions-h2">Three dimensions, run together.</h2>
+              <p className="lede">Transform is the Clarity Audit plan, turned into a programme. The same discipline as Deliver, applied to ERP implementation across several systems or departments at once.</p>
+            </div>
+            <div className="areas" data-od-id="dimension-cards">
+              {dimensions.map(dim => (
+                <article className="area" key={dim.id} data-od-id={dim.id}>
+                  <div className="area-top"><span className="ic-tile"><svg className="ic ic-24" aria-hidden="true"><use href={`#${dim.icon}`} /></svg></span><span className="num">{dim.num}</span></div>
+                  <h3>{dim.h}</h3><p className="t-card">{dim.p}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ══════════ 04 · THE CLOSER ══════════ */}
+        <section className="g-off closer" data-od-id="cta">
+          <div className="wrap closer-grid">
+            <div>
+              <span className="eyebrow">Start here</span>
+              <h2 data-od-id="cta-h2">Book a Clarity Audit.</h2>
+            </div>
+            <div>
+              <p className="lede">My digital transformation consultancy is scoped per engagement. There&rsquo;s no published price for a
+                programme this size, and there won&rsquo;t be. It starts the same way everything does: a full day on site and a written plan.</p>
+              <div className="btn-row">
+                <Link className="btn btn--primary" href="/contact" data-od-id="cta-primary">Book a free discovery call</Link>
+                <Link className="go" href="/deliver">See how Deliver runs <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </main>
+      <D17Motion />
+    </>
   );
 }
