@@ -1,9 +1,12 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { Artwork } from '@/components/Artwork';
-import { PhotoPiece } from '@/components/PhotoPiece';
 import { JsonLd } from '@/components/JsonLd';
+import { D17Motion } from '@/components/D17Motion';
+import { IconSprite } from '@/components/IconSprite';
 import { OG_IMAGE, OG_IMAGE_PATH } from '@/lib/seo';
+import '@/app/d17-global.css';
+import '@/app/design-system/site-v3.css';
+import './how-i-build-v2.css';
 
 export const metadata: Metadata = {
   title: 'ERP Implementation Consultant, Buy or Build | Decoded Ops',
@@ -50,247 +53,185 @@ const howIBuildFaqSchema = {
   ],
 };
 
+// Two extra lucide symbols this page needs that the shared IconSprite does not carry.
+function PageIcons() {
+  return (
+    <svg width="0" height="0" style={{ position: 'absolute' }} aria-hidden="true" focusable="false">
+      <symbol id="i-puzzle" viewBox="0 0 24 24"><path d="M15.39 4.39a1 1 0 0 0 1.68-.474 2.5 2.5 0 1 1 3.014 3.015 1 1 0 0 0-.474 1.68l1.683 1.682a2.414 2.414 0 0 1 0 3.414L19.61 15.39a1 1 0 0 1-1.68-.474 2.5 2.5 0 1 0-3.014 3.015 1 1 0 0 1 .474 1.68l-1.683 1.682a2.414 2.414 0 0 1-3.414 0L8.61 19.61a1 1 0 0 0-1.68.474 2.5 2.5 0 1 1-3.014-3.015 1 1 0 0 0 .474-1.68l-1.683-1.682a2.414 2.414 0 0 1 0-3.414L4.39 8.61a1 1 0 0 1 1.68.474 2.5 2.5 0 1 0 3.014-3.015 1 1 0 0 1-.474-1.68l1.683-1.682a2.414 2.414 0 0 1 3.414 0z" /></symbol>
+      <symbol id="i-hammer" viewBox="0 0 24 24"><path d="m15 12-9.373 9.373a1 1 0 0 1-3.001-3L12 9" /><path d="m18 15 4-4" /><path d="m21.5 11.5-1.914-1.914A2 2 0 0 1 19 8.172v-.344a2 2 0 0 0-.586-1.414l-1.657-1.657A6 6 0 0 0 12.516 3H9l1.243 1.243A6 6 0 0 1 12 8.485V10l2 2h1.172a2 2 0 0 1 1.414.586L18.5 14.5" /></symbol>
+    </svg>
+  );
+}
+
+const heroPieceHtml = `<figure class="d17 sw sw-doc sw-doc--flip a1016" data-od-id="hero-visual" data-motion data-tx="photo" aria-label="Two documents over a graded photograph of a racking aisle. The options table: buy off the shelf, buy plus a custom layer (the normal answer), full custom, and the maker’s own software scored the same way, every option priced. The decision record: what each option would cost, why the others did not make the cut, and the decision left with you.">
+      <div class="d17-ph"><img src="/images/site/evidence/hero-racking-aisle-7d129e.webp" width="1600" height="900" alt="" style="object-position:50% 55%"></div>
+      <div class="d17-scan" aria-hidden="true"></div>
+      <figcaption class="sw-cap">
+        <div class="k d17-mono">How I build <span>&middot; the paperwork</span></div>
+        <div class="bar" aria-hidden="true"></div>
+        <h3>Every option on the table, including mine.</h3>
+        <p>Named, priced and scored against your brief, in writing. The decision stays yours.</p>
+        <span class="d17-mark">decodedops.co.uk</span>
+      </figcaption>
+      <div class="stage" aria-hidden="true">
+        <div class="d17-doc doc-f m-drop" style="animation-delay:.1s"><span class="tab">OPTIONS</span>
+          <span class="ref">Vendor brief &middot; options</span><h4>Every option, priced and scored</h4><p class="sub">against your brief &middot; in writing</p>
+          <ol class="chg"><li>Buy, off the shelf<span class="st-chip">Priced</span></li><li>Buy plus a custom layer<span class="st-chip st-chip--a">The normal answer</span></li><li>Full custom<span class="st-chip">Priced</span></li><li>My own software<span class="st-chip">Scored the same way</span></li></ol>
+          <div class="doc-foot">Example layout &middot; the options in one table, none left out</div></div>
+        <div class="d17-doc doc-m m-drop" style="animation-delay:.45s"><span class="tab">DECISION</span>
+          <span class="ref">Your decision</span><h4>The recommendation, and the reasons</h4>
+          <ol class="chg"><li>What each option would cost<span class="st-chip">Written</span></li><li>Why the others didn’t make the cut<span class="st-chip">Written</span></li><li>You decide<span class="st-chip">Yours</span></li></ol>
+          <div class="doc-foot">No vendor pays for a recommendation</div></div>
+        <div class="sx-tag t5 m-pop" style="animation-delay:1.9s"><small>Including mine</small>Scored the same way</div>
+      </div>
+    </figure>`;
+
 export default function HowIBuildPage() {
   return (
     <>
       <JsonLd data={howIBuildFaqSchema} />
-      {/* 1 · HERO CENTRE */}
-      <section className="g-off">
-        <div className="wrap hero-center">
-          <p className="eyebrow">How I build</p>
-          <h1>The facts, the options, and the decision stays yours.</h1>
-          <p className="lede">As an ERP implementation consultant, I don&rsquo;t tell you what to buy. I show you what&rsquo;s on the market, what it costs,
-            and where it falls short, so whatever you decide, you decide on the merits, not on my
-            say-so.</p>
-          <div className="btn-row" style={{ marginTop: 32 }}>
-            <Link className="btn btn--primary" href="/contact">Book a free discovery call</Link>
-          </div>
-        </div>
-      </section>
+      <IconSprite />
+      <PageIcons />
+      <main id="content">
 
-      {/* 1a · EVIDENCE PHOTO · DO-ART-913 */}
-      <section className="g-tint ev-band" data-od-id="evidence">
-        <div className="wrap">
-          <PhotoPiece
-            src="/images/money/prod-hivis-2026-09.webp"
-            width={900}
-            height={1348}
-            alt="A worker in a grey T-shirt wearing an orange hi-vis vest with two reflective bands, photographed against a plain studio backdrop."
-            no="DO-ART-913"
-            rev="01"
-            eyebrow="Evidence · How I build"
-            caption="Built to the detail"
-            focus="50% 60%"
-            maxWidth={900}
-          />
-        </div>
-      </section>
-
-      {/* 2 · THE LADDER · DO-ART-302 */}
-      <section className="g-tint">
-        <div className="wrap">
-          <p className="eyebrow">The ladder &middot; DO-ART-302</p>
-          <h2>Three rungs, always in the same order.</h2>
-          <p className="lede" style={{ marginTop: 16 }}>Every engagement climbs the same ladder, and it starts
-            at the bottom every time. The bottom rung isn&rsquo;t always right. You should have to
-            reject it out loud before anyone spends money on the one above.</p>
-
-          <div className="plate-scroll">
-            <div className="plate-frame">
-               <Artwork mode="flow" tone="dark" p="ld" title="The ladder. Buy first, build only what is missing"
-                     sub="Three rungs in fixed order · every option priced"
-                     no="DO-ART-302" rev="02" cls="DECODED OPS · ISSUED">
-
-                <path id="ld-spine" pathLength={1} className="sk-draw sk-s2 p-scyan"
-                      d="M140 520 H1470" fill="none" strokeWidth="2.5" markerEnd="url(#ld-ah)"/>
-
-                <g className="sk-fade sk-s3" filter="url(#ld-shadow)">
-                  <rect x="120" y="270" width="320" height="130" rx="10" fill="url(#ld-node)"
-                        className="p-node" strokeWidth="1.4"/>
-                  <text x="280" y="325" textAnchor="middle" className="p-ink"
-                        fontFamily="Outfit,sans-serif" fontWeight="600" fontSize="28">Buy</text>
-                  <text x="280" y="362" textAnchor="middle" className="p-mono" fontSize="18"
-                        opacity=".85">off the shelf, as it is</text>
-                  <line x1="280" y1="400" x2="280" y2="504" className="p-scyan" strokeWidth="1"
-                        strokeOpacity=".3" strokeDasharray="4 5"/>
-                  <circle cx="280" cy="520" r="13" className="p-cyan"/>
-                  <text x="280" y="578" textAnchor="middle" className="p-mono" fontSize="18"
-                        letterSpacing="1.6" opacity=".7">RUNG 1 &middot; IF IT FITS</text>
-                </g>
-
-                <g className="sk-fade sk-s4" filter="url(#ld-shadow)">
-                  <rect x="620" y="240" width="380" height="190" rx="12" fill="url(#ld-amber-n)"
-                        className="p-node-a" strokeWidth="1.8"/>
-                  {/* Two lines, vertically centred in the 240..430 node. Was three
-                      lines until the "both live clients" claim came out. */}
-                  <text x="810" y="324" textAnchor="middle" className="p-ink"
-                        fontFamily="Outfit,sans-serif" fontWeight="700" fontSize="30">Buy plus</text>
-                  <text x="810" y="362" textAnchor="middle" className="p-ink"
-                        fontFamily="Outfit,sans-serif" fontWeight="700" fontSize="30">a custom layer</text>
-                  <line x1="810" y1="430" x2="810" y2="500" className="p-samber" strokeWidth="1.2"
-                        strokeOpacity=".45" strokeDasharray="4 5"/>
-                  <circle cx="810" cy="520" r="18" className="p-amber"/>
-                  <text x="810" y="578" textAnchor="middle" className="p-mono" fontSize="18"
-                        letterSpacing="1.6" opacity=".85">RUNG 2 &middot; THE NORMAL ANSWER</text>
-                </g>
-
-                <g className="sk-fade sk-s5" filter="url(#ld-shadow)" opacity=".82">
-                  <rect x="1180" y="285" width="280" height="110" rx="9" fill="url(#ld-node)"
-                        className="p-node" strokeWidth="1.2"/>
-                  <text x="1320" y="330" textAnchor="middle" className="p-ink"
-                        fontFamily="Outfit,sans-serif" fontWeight="600" fontSize="24">Full
-                    custom</text>
-                  <text x="1320" y="362" textAnchor="middle" className="p-mono" fontSize="17"
-                        opacity=".8">only if nothing fits</text>
-                  <line x1="1320" y1="395" x2="1320" y2="508" className="p-scyan" strokeWidth="1"
-                        strokeOpacity=".3" strokeDasharray="4 5"/>
-                  <circle cx="1320" cy="520" r="10" className="p-cyan"/>
-                  <text x="1320" y="578" textAnchor="middle" className="p-mono" fontSize="18"
-                        letterSpacing="1.6" opacity=".6">RUNG 3 &middot; LAST RESORT</text>
-                </g>
-
-                <g className="sk-fade sk-s6">
-                  <line x1="60" y1="632" x2="1540" y2="632" className="p-scyan" strokeWidth=".6"
-                        strokeOpacity=".22"/>
-                  <text x="800" y="700" textAnchor="middle" className="p-ink"
-                        fontFamily="Outfit,sans-serif" fontWeight="600" fontSize="26"
-                        opacity=".9">Every option priced, including the ones I did not recommend.</text>
-                </g>
-
-                <g className="sk-dots">
-                  <circle r="6" className="p-cyan">
-                    <animateMotion dur="5s" repeatCount="indefinite">
-                      <mpath href="#ld-spine"/>
-                    </animateMotion>
-                  </circle>
-                </g>
-              </Artwork>
+        {/* ══════════ 01 · HERO ══════════ */}
+        <section className="g-off hero" data-od-id="hero">
+          <div className="wrap">
+            <div className="hero-head">
+              <div>
+                <span className="eyebrow">How I build</span>
+                <h1 data-od-id="hero-h1"><span className="h1-kw">ERP implementation consultant:</span> The facts, the options, and the decision stays yours.</h1>
+              </div>
+              <div>
+                <p className="t-lede">As an ERP implementation consultant, I don&rsquo;t tell you what to buy. I show you what&rsquo;s on the market, what it costs, and where it falls short, so whatever you decide, you decide on the merits, not on my say-so.</p>
+                <div className="btn-row"><Link className="btn btn--primary" href="/contact" data-od-id="hero-cta">Book a free discovery call</Link></div>
+              </div>
             </div>
+            <div dangerouslySetInnerHTML={{ __html: heroPieceHtml }} />
           </div>
+        </section>
 
-          <div className="rungs">
-            <article className="rung">
-              <p className="kicker">Rung 1</p>
-              <h3>Buy</h3>
-              <p>If something on the market already fits, it goes on the table, named and priced. There are several good platforms in this sector, and the right one depends on your business. I don&rsquo;t resell any of them, and no vendor pays me for a recommendation.</p>
-              <p>Being upfront: I build software too, so I&rsquo;m not a bystander in this decision. That is exactly why the scoring is written down. You can check the recommendation against your own brief, mine included.</p>
-            </article>
-
-            <article className="rung rung--default">
-              <p className="kicker">Rung 2 <span className="flag">The normal answer</span></p>
-              <h3>Buy plus a custom layer</h3>
-              <p>On an ERP implementation the platform is usually right but leaves gaps: supplier feeds, artwork, reporting across
-                more than one business. I&rsquo;ll show you what the gap costs to leave alone versus what it
-                costs to close with a custom layer, and let you weigh it up.</p>
-            </article>
-
-            <article className="rung rung--last">
-              <p className="kicker">Rung 3 &middot; Last resort</p>
-              <h3>Full custom</h3>
-              <p>If nothing off the shelf fits, that option goes on the table too, priced and put next
-                to everything else considered, and why it didn&rsquo;t make the cut.</p>
-              <p>You own the decision. I just make sure you&rsquo;re making it with the facts in front of you.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      {/* 2a · PLATFORM PLUS LAYER · DO-ART-112 */}
-      <section className="g-white">
-        <div className="wrap">
-          <p className="eyebrow">Architecture &middot; DO-ART-112</p>
-          <h2>Platform plus layer, not platform replaced.</h2>
-          <p className="lede" style={{ marginTop: 16 }}>The gap the layer closes, named specifically.</p>
-
-          <div className="plate-scroll" style={{ marginTop: 34 }}>
-            <div className="plate-frame">
-              <Artwork mode="schematic" p="hb" title="Platform plus layer, not platform replaced"
-                     sub="The gap the layer closes, named specifically"
-                     no="DO-ART-112" rev="02" cls="DECODED OPS · ISSUED">
-
-                <g className="sk-fade sk-s2">
-                  <rect x="120" y="290" width="420" height="320" rx="16" fill="url(#hb-node)"
-                        className="p-node" strokeWidth="1.4"/>
-                  <text x="330" y="440" textAnchor="middle" className="p-ink" fontFamily="Outfit,sans-serif"
-                        fontWeight="800" fontSize="30">Your platform</text>
-                  <text x="330" y="474" textAnchor="middle" className="p-mono" fontSize="17"
-                        opacity=".75">Unchanged. Kept.</text>
-                  <text x="330" y="580" textAnchor="middle" className="p-mono" fontSize="16"
-                         letterSpacing="1.6" opacity=".55">RUNG 1: WHAT YOU ALREADY OWN</text>
-                </g>
-
-                <g className="sk-fade sk-s4">
-                  <path id="hb-l1" pathLength={1} className="sk-draw p-scyan" fill="none" strokeWidth="2.4"
-                        markerEnd="url(#hb-ah)" d="M540 400 H1050"/>
-                  <path id="hb-l2" pathLength={1} className="sk-draw p-samber" fill="none" strokeWidth="2.4"
-                        markerEnd="url(#hb-ah)" d="M1050 500 H540"/>
-                </g>
-
-                <g className="sk-fade sk-s5" filter="url(#hb-shadow)">
-                  <rect x="1050" y="290" width="420" height="320" rx="16" fill="url(#hb-amber-n)"
-                        className="p-node-a" strokeWidth="2"/>
-                  <text x="1260" y="380" textAnchor="middle" className="p-ink" fontFamily="Outfit,sans-serif"
-                        fontWeight="800" fontSize="26">Custom layer</text>
-                  <text x="1260" y="428" textAnchor="middle" className="p-accent-ink" fontSize="17"
-                        fontWeight="600">Supplier feeds</text>
-                  <text x="1260" y="454" textAnchor="middle" className="p-accent-ink" fontSize="17"
-                        fontWeight="600">Artwork</text>
-                  <text x="1260" y="480" textAnchor="middle" className="p-accent-ink" fontSize="17"
-                        fontWeight="600">Cross-business reporting</text>
-                  <text x="1260" y="580" textAnchor="middle" className="p-mono" fontSize="16"
-                         letterSpacing="1.6" opacity=".6">RUNG 2: THE GAPS, NAMED</text>
-                </g>
-
-                <text x="800" y="740" textAnchor="middle" className="p-mono sk-fade sk-s6" fontSize="16"
-                      letterSpacing="1.6" opacity=".55">NOTHING ON THE LEFT CHANGES</text>
-
-                <g className="sk-dots">
-                  <circle r="5" className="p-cyan"><animateMotion dur="2.6s" repeatCount="indefinite"><mpath href="#hb-l1"/></animateMotion></circle>
-                  <circle r="5" className="p-amber"><animateMotion dur="2.6s" repeatCount="indefinite" begin="1.3s"><mpath href="#hb-l2"/></animateMotion></circle>
-                </g>
-              </Artwork>
+        {/* ══════════ 02 · THE LADDER ══════════ */}
+        <section className="g-navy" data-od-id="ladder">
+          <div className="do-dot-grid" aria-hidden="true" style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }} />
+          <div className="wrap">
+            <div className="route-head">
+              <div><span className="eyebrow">The ladder</span><h2 data-od-id="ladder-h2">Three rungs, always in the same order.</h2></div>
+              <p className="lede">Every engagement climbs the same ladder, and it starts at the bottom every time. The bottom rung isn&rsquo;t always right. You should have to reject it out loud before anyone spends money on the one above.</p>
             </div>
+            <div className="areas" data-od-id="ladder-cards">
+              <article className="area" data-od-id="rung-buy">
+                <div className="area-top"><span className="ic-tile"><svg className="ic ic-24" aria-hidden="true"><use href="#i-shopping-cart" /></svg></span><span className="num">Rung 1</span></div>
+                <h3>Buy</h3>
+                <p className="t-card">If something on the market already fits, it goes on the table, named and priced. There are several good platforms in this sector, and the right one depends on your business. I don&rsquo;t resell any of them, and no vendor pays me for a recommendation.</p>
+                <p className="t-card">Being upfront: I build software too, so I&rsquo;m not a bystander in this decision. That is exactly why the scoring is written down. You can check the recommendation against your own brief, mine included.</p>
+              </article>
+              <article className="area" data-od-id="rung-layer">
+                <div className="area-top"><span className="ic-tile"><svg className="ic ic-24" aria-hidden="true"><use href="#i-puzzle" /></svg></span><span className="num">Rung 2</span></div>
+                <h3>Buy plus a custom layer <span className="flag">The normal answer</span></h3>
+                <p className="t-card">On an ERP implementation the platform is usually right but leaves gaps: supplier feeds, artwork, reporting across more than one business. I&rsquo;ll show you what the gap costs to leave alone versus what it costs to close with a custom layer, and let you weigh it up.</p>
+              </article>
+              <article className="area" data-od-id="rung-custom">
+                <div className="area-top"><span className="ic-tile"><svg className="ic ic-24" aria-hidden="true"><use href="#i-hammer" /></svg></span><span className="num">Rung 3 &middot; Last resort</span></div>
+                <h3>Full custom</h3>
+                <p className="t-card">If nothing off the shelf fits, that option goes on the table too, priced and put next to everything else considered, and why it didn&rsquo;t make the cut.</p>
+                <p className="t-card">You own the decision. I just make sure you&rsquo;re making it with the facts in front of you.</p>
+              </article>
+            </div>
+            <p className="route-cap"><svg className="ic ic-16" aria-hidden="true"><use href="#i-check" /></svg>Every option priced, including the ones I did not recommend.</p>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* 3 · QUOTE PULL */}
-      <section className="g-navy">
-        <div className="wrap">
-          <p className="eyebrow">Why it works this way</p>
-          <h2>No vendor pays me for a recommendation.</h2>
-
-          <div className="grid grid--2" style={{ marginTop: 40, alignItems: 'start' }}>
+        {/* ══════════ 03 · ARCHITECTURE ══════════ */}
+        <section className="g-white" data-od-id="architecture">
+          <div className="wrap split-6">
             <div>
-              <figure className="pull" style={{ marginTop: 0 }}>
-                <blockquote>There are several good platforms in this sector. I don&rsquo;t resell any of
-                  them, and no one pays me for naming them. My own software gets scored the same way, in writing.</blockquote>
-                <cite>Craig Blackman &middot; Decoded Ops</cite>
+              <span className="eyebrow">Architecture</span>
+              <h2 data-od-id="architecture-h2">Platform plus layer, not platform replaced.</h2>
+              <p className="t-lede">The gap the layer closes, named specifically.</p>
+              <p className="t-body">Your platform is unchanged and kept. The layer sits beside it and data flows both ways between them. Nothing you already own changes.</p>
+            </div>
+            <div>
+              <span className="t-meta">Rung 2 &middot; the gaps, named</span>
+              <ul className="ticks" data-od-id="architecture-gaps" style={{ marginTop: 14 }}>
+                <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>Supplier feeds</span></li>
+                <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>Artwork</span></li>
+                <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>Cross-business reporting</span></li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* ══════════ 04 · ON SITE: three site-visit photographs ══════════ */}
+        <section className="g-tint" data-od-id="photo-band">
+          <div className="wrap">
+            <div className="route-head">
+              <div><span className="eyebrow">On site</span><h2 data-od-id="photo-band-h2">The floor decides what fits.</h2></div>
+              <p className="lede">Three of my own photographs from client visits this year. The options only mean something once they&rsquo;ve met the machines, the stock and the way the work moves.</p>
+            </div>
+            <div className="ev-grid" data-od-id="photo-band-photos">
+              <figure className="d17 ev" data-od-id="photo-embroidery" data-tx="photo">
+                <div className="d17-ph"><img src="/images/site/evidence/hero-embroidery-floor-84216c.webp" width={1600} height={900} alt="An embroidery production floor at a client site." loading="lazy" /></div>
+                <div className="d17-scan" aria-hidden="true" />
+                <p className="k d17-mono">The floor &middot; 2026</p>
+                <p className="line">The embroidery floor</p>
+                <span className="d17-mark">decodedops.co.uk</span>
+              </figure>
+              <figure className="d17 ev" data-od-id="photo-pallets" data-tx="photo">
+                <div className="d17-ph"><img src="/images/site/evidence/plate-pallets-12eebd.webp" width={1600} height={900} alt="Pallets of inbound stock on a client&rsquo;s goods-in floor." loading="lazy" /></div>
+                <div className="d17-scan" aria-hidden="true" />
+                <p className="k d17-mono">Goods in &middot; June 2026</p>
+                <p className="line">Inbound, before it is counted</p>
+                <span className="d17-mark">decodedops.co.uk</span>
+              </figure>
+              <figure className="d17 ev" data-od-id="photo-cartons" data-tx="photo">
+                <div className="d17-ph"><img src="/images/site/evidence/plate-cartons-packed-2fb0ae.webp" width={1600} height={900} alt="Packed cartons stacked and labelled, waiting for collection at a client site." loading="lazy" /></div>
+                <div className="d17-scan" aria-hidden="true" />
+                <p className="k d17-mono">Despatch &middot; June 2026</p>
+                <p className="line">Packed, checked, out the door</p>
+                <span className="d17-mark">decodedops.co.uk</span>
               </figure>
             </div>
-            <div className="panel">
-              <h3>No reseller margin, no referral fee, and nothing that looks like a partner tier.</h3>
-              <p>I&rsquo;m not on anyone&rsquo;s partner list, so there&rsquo;s no version of this where the platform I
-                name pays me for naming it. If your own choice lands on rung 2 or rung 3, you&rsquo;ll see
-                what every option would have cost, not only the one you chose.</p>
-              <p>The interest I do have is my own software. It sits on the same table, scored against the same brief, and if another platform covers you better, the report says so. That is the whole arrangement, and it is why the recommendation is worth something.</p>
+          </div>
+        </section>
+
+        {/* ══════════ 05 · WHY IT WORKS THIS WAY ══════════ */}
+        <section className="g-navy" data-od-id="why">
+          <div className="wrap split-6">
+            <div>
+              <span className="eyebrow">Why it works this way</span>
+              <h2 data-od-id="why-h2">No vendor pays me for a recommendation.</h2>
+              <p className="t-lede">There are several good platforms in this sector. I don&rsquo;t resell any of them, and no one pays me for naming them. My own software gets scored the same way, in writing.</p>
+            </div>
+            <div>
+              <p className="t-lede">No reseller margin, no referral fee, and nothing that looks like a partner tier.</p>
+              <ul className="ticks" data-od-id="why-ticks">
+                <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>No reseller margin</span></li>
+                <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>No referral fee</span></li>
+                <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>Nothing that looks like a partner tier</span></li>
+              </ul>
+              <p className="t-body">I&rsquo;m not on anyone&rsquo;s partner list, so there&rsquo;s no version of this where the platform I name pays me for naming it. If your own choice lands on rung 2 or rung 3, you&rsquo;ll see what every option would have cost, not only the one you chose.</p>
+              <p className="t-body">The interest I do have is my own software. It sits on the same table, scored against the same brief, and if another platform covers you better, the report says so. That is the whole arrangement, and it is why the recommendation is worth something.</p>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* 4 · CTA STRIP */}
-      <section className="g-off cta-strip">
-        <div className="wrap" style={{ maxWidth: 760 }}>
-          <h2>Book a free discovery call.</h2>
-          <p className="lede">An hour on what&rsquo;s actually going wrong. You&rsquo;ll get an honest read on which
-            rung you&rsquo;re on, including if the answer is that you don&rsquo;t need me at all.</p>
-          <div className="btn-row">
-            <Link className="btn btn--primary" href="/contact">Book a free discovery call</Link>
-            <Link className="btn btn--ghost btn-arrow" href="/apps">See what I&rsquo;ve built</Link>
+        {/* ══════════ 06 · CLOSER ══════════ */}
+        <section className="g-off closer" data-od-id="cta">
+          <div className="wrap closer-grid">
+            <div><h2 data-od-id="cta-h2">Not sure which rung you&rsquo;re on?</h2></div>
+            <div>
+              <p className="lede">An hour on what&rsquo;s actually going wrong. You&rsquo;ll get an honest read on which rung you&rsquo;re on, including if the answer is that you don&rsquo;t need me at all.</p>
+              <div className="btn-row">
+                <Link className="btn btn--primary" href="/contact" data-od-id="cta-primary">Book a free discovery call</Link>
+                <Link className="go" href="/apps">See what I&rsquo;ve built <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+
+      </main>
+      <D17Motion />
     </>
   );
 }
