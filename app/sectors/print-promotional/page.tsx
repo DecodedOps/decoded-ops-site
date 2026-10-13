@@ -1,12 +1,12 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
 import { JsonLd } from '@/components/JsonLd';
 import { D17Motion } from '@/components/D17Motion';
-import '@/app/d17-global.css';
+import { IconSprite } from '@/components/IconSprite';
 import { BreadcrumbSchema } from '@/components/BreadcrumbSchema';
-import { sectorRouting } from '@/data/sector-routing';
-import styles from '@/components/SectorPageDS.module.css';
+import '@/app/d17-global.css';
+import '@/app/design-system/site-v3.css';
+import './print-v2.css';
 
 export const metadata: Metadata = {
   title: 'Print Shop Management Software for Promo | Decoded Ops',
@@ -54,28 +54,29 @@ const sectorSchema = {
   ],
 };
 
-const tagline = 'Print shop operations ||start with knowing what your current process actually costs.||';
-const parts = tagline.split('||');
-
 const challenges = [
-  { title: 'Product complexity at volume', body: "One client order can run to 40 different product lines, each with its own supplier, spec, and lead time. Manage that by hand and margin quietly leaks on every job." },
-  { title: 'Supplier fragmentation', body: "Multiple suppliers, multiple portals, multiple confirmation processes. The admin of chasing incoming goods rarely shows in the P&L, but it's real." },
-  { title: 'The sample and approval cycle', body: "Pre-production samples, client approvals, artwork sign-off. Every step that happens outside your system is a step you can't measure or improve." },
-  { title: 'What quoting actually costs you', body: "How much does it cost you to produce a quote? How much of that time converts to an order? Most businesses in this sector have never measured it. And the answer is usually uncomfortable." },
-  { title: 'Artwork approval workflow', body: "Artwork approval is where most print shop schedules break down. Every unapproved job stuck in an email thread is a press slot you can't plan. Automating approval, from brief to proof to sign-off, cuts production delays with no change to the print process." },
-  { title: 'Print production scheduling and capacity planning', body: "Print shop management software that ignores substrate, print method, drying time, and finishing can't produce a realistic schedule. Most print shops schedule by eye and experience. That works until volume outgrows what one person can hold in their head." },
+  { id: 'challenge-product-complexity', icon: 'i-layers', num: '01', h: 'Product complexity at volume',
+    p: 'One client order can run to 40 different product lines, each with its own supplier, spec, and lead time. Manage that by hand and margin quietly leaks on every job.' },
+  { id: 'challenge-supplier-fragmentation', icon: 'i-truck', num: '02', h: 'Supplier fragmentation',
+    p: 'Multiple suppliers, multiple portals, multiple confirmation processes. The admin of chasing incoming goods rarely shows in the P&L, but it’s real.' },
+  { id: 'challenge-sample-approval', icon: 'i-clipboard-check', num: '03', h: 'The sample and approval cycle',
+    p: 'Pre-production samples, client approvals, artwork sign-off. Every step that happens outside your system is a step you can’t measure or improve.' },
+  { id: 'challenge-quoting-cost', icon: 'i-calculator', num: '04', h: 'What quoting actually costs you',
+    p: 'How much does it cost you to produce a quote? How much of that time converts to an order? Most businesses in this sector have never measured it. And the answer is usually uncomfortable.' },
+  { id: 'challenge-artwork-approval', icon: 'i-file-check', num: '05', h: 'Artwork approval workflow',
+    p: 'Artwork approval is where most print shop schedules break down. Every unapproved job stuck in an email thread is a press slot you can’t plan. Automating approval, from brief to proof to sign-off, cuts production delays with no change to the print process.' },
+  { id: 'challenge-scheduling', icon: 'i-calendar-clock', num: '06', h: 'Print production scheduling and capacity planning',
+    p: 'Print shop management software that ignores substrate, print method, drying time, and finishing can’t produce a realistic schedule. Most print shops schedule by eye and experience. That works until volume outgrows what one person can hold in their head.' },
 ];
 
-const whatIdo = [
-  'Audit your order intake and quoting for hidden time cost',
-  'Map the full supplier workflow, from order to receipt',
-  'Find where samples and approvals are creating delay',
-  'Review your product data and supplier pricing',
-  'Check your systems for gaps and manual workarounds',
-  'Put a real cost on every inefficiency found',
+const helpSteps = [
+  { id: 'help-step-1', icon: 'i-calculator', meta: 'Step 01', text: 'Audit your order intake and quoting for hidden time cost' },
+  { id: 'help-step-2', icon: 'i-truck', meta: 'Step 02', text: 'Map the full supplier workflow, from order to receipt' },
+  { id: 'help-step-3', icon: 'i-clipboard-check', meta: 'Step 03', text: 'Find where samples and approvals are creating delay' },
+  { id: 'help-step-4', icon: 'i-database', meta: 'Step 04', text: 'Review your product data and supplier pricing' },
+  { id: 'help-step-5', icon: 'i-search', meta: 'Step 05', text: 'Check your systems for gaps and manual workarounds' },
+  { id: 'help-step-6', icon: 'i-pound', meta: 'Step 06', out: true, text: 'Put a real cost on every inefficiency found' },
 ];
-
-const route = sectorRouting['print-promotional'];
 
 export default function PrintPromotionalPage() {
   return (
@@ -86,30 +87,24 @@ export default function PrintPromotionalPage() {
         { name: 'Sectors', url: 'https://decodedops.co.uk/#sectors' },
         { name: 'Print & Promotional', url: 'https://decodedops.co.uk/sectors/print-promotional' },
       ]} />
-      {/* HERO SPLIT */}
-      <section className={`g-off ${styles.heroSection}`}>
-        <div className={`wrap ${styles.heroSplit}`}>
-          <div>
-            <span className="eyebrow">Sector · print & promotional</span>
-            <h1>
-              {parts.map((p, i) =>
-                i % 2 === 0
-                  ? <span key={i}>{p}</span>
-                  : <span key={i} style={{ color: 'var(--do-text-cerulean)' }}>{p}</span>
-              )}
-            </h1>
-            <div className={styles.heroBody}>
-              <p>Print and promotional businesses run short jobs on tight deadlines, with artwork approvals that eat time and print shop management software whose scheduling is built for longer runs. The result is missed deadlines, rework, and complaints, even when the team is working hard.</p>
+      <IconSprite />
+      <main id="content">
+
+        {/* HERO — DO-ART-927 Rev 02: the DTF print line, client unnamed */}
+        <section className="g-off hero" data-od-id="hero">
+          <div className="wrap hero-split">
+            <div>
+              <span className="eyebrow">Sector · print &amp; promotional</span>
+              <h1 data-od-id="hero-title">Print shop operations start with knowing what your current process actually costs</h1>
+              <p className="t-lede">Print and promotional businesses run short jobs on tight deadlines, with artwork approvals that eat time and print shop management software whose scheduling is built for longer runs. The result is missed deadlines, rework, and complaints, even when the team is working hard.</p>
+              <div className="btn-row">
+                <Link className="btn btn--primary" href="/contact" data-od-id="hero-cta">Book a free call <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+                <Link className="btn btn--outline" href="/clarity">See how the audit works <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+              </div>
             </div>
-            <div className="btn-row">
-              <Link className="btn btn--primary" href="/contact">Book a free call <ArrowRight size={16} aria-hidden="true" /></Link>
-              <Link className="btn btn--outline" href="/clarity">See how the audit works <ArrowRight size={16} aria-hidden="true" /></Link>
-            </div>
-          </div>
-          <div dangerouslySetInnerHTML={{ __html: `
-<figure class="d17 sx a927" data-od-id="hero-evidence" data-motion data-no="DO-ART-927" data-rev="01" data-tx="photo"
-        aria-label="Artwork DO-ART-927. A graded photograph of a screen-print press hall with a run sheet pinned over it. The press slot was planned as one long run; what arrived was several short runs and one gap waiting on artwork sign-off. Short runs, a schedule built for long ones.">
-  <div class="d17-ph"><img src="/images/d17/sectors/gen-press-hall-7c2764.webp" alt="" width="1000" height="1000"></div>
+            <div dangerouslySetInnerHTML={{ __html: `<figure class="d17 sx a927" data-od-id="hero-evidence" data-motion data-no="DO-ART-927" data-rev="02" data-tx="photo"
+        aria-label="Artwork DO-ART-927. A graded photograph of a direct-to-film print line on a client's floor with a run sheet pinned over it. The press slot was planned as one long run; what arrived was several short runs and one gap waiting on artwork sign-off. Short runs, a schedule built for long ones.">
+  <div class="d17-ph"><img src="/images/site/evidence/plate-dtf-conveyor-a1f1d1.webp" alt="" width="1600" height="900"></div>
   <div class="d17-scan" aria-hidden="true"></div>
   <div class="sx-top d17-mono" aria-hidden="true"><span>Print &amp; promotional</span><span>Press 2 · today</span></div>
   <div class="stage" aria-hidden="true">
@@ -125,17 +120,43 @@ export default function PrintPromotionalPage() {
   <div class="sx-foot">
     <div class="sx-bar" aria-hidden="true"></div>
     <p class="sx-say">Short runs, <em>a schedule built for long ones.</em></p>
-    <span class="d17-mark">decodedops.co.uk · DO-ART-927 · Rev 01</span>
+    <span class="d17-mark">decodedops.co.uk · DO-ART-927 · Rev 02</span>
   </div>
 </figure>` }} />
-        </div>
-      </section>
+          </div>
+        </section>
 
-      {/* D17 INLINE ARTWORK · DO-ART-928 */}
-      <section className="g-navy">
-        <div className="wrap">
-          <div dangerouslySetInnerHTML={{ __html: `
-<figure class="d17 sw a928" data-od-id="plate-architecture" data-motion data-no="DO-ART-928" data-rev="01" data-tx="schematic"
+        {/* CHALLENGES — icon cards, sentence-case titles, 14px card body */}
+        <section className="g-white" data-od-id="challenges">
+          <div className="wrap">
+            <div className="sec-head">
+              <span className="eyebrow">Common challenges</span>
+              <h2>Where the problems tend to live</h2>
+              <div className="hair" />
+              <p className="t-lede">In this sector, the same operational problems appear in different shapes across different businesses. These are the ones that cost the most.</p>
+            </div>
+            <div className="challenges">
+              {challenges.map(c => (
+                <article className="challenge" key={c.id} data-od-id={c.id}>
+                  <div className="challenge-top"><span className="ic-tile"><svg className="ic ic-24" aria-hidden="true"><use href={`#${c.icon}`} /></svg></span><span className="num">{c.num}</span></div>
+                  <h3>{c.h}</h3>
+                  <p className="t-card">{c.p}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* DO-ART-928 — the answer to challenges 05 and 06 */}
+        <section className="g-navy" data-od-id="plate-928">
+          <div className="wrap">
+            <div className="sec-head">
+              <span className="eyebrow">How it fits together</span>
+              <h2>An approval stuck in email is a press slot nobody can plan</h2>
+              <div className="hair" />
+              <p className="t-lede">Quoting, suppliers, artwork sign-off and the press schedule are one chain. When sign-off sits in the same system as the schedule, the slot can be planned.</p>
+            </div>
+            <div dangerouslySetInnerHTML={{ __html: `<figure class="d17 sw a928" data-od-id="plate-architecture" data-motion data-no="DO-ART-928" data-rev="01" data-tx="schematic"
         aria-label="Drawn plate DO-ART-928. Four connected systems: quoting, supplier management, artwork approval and production scheduling, each feeding the next. Below them, a press week across two presses and finishing: short runs, each with its own drying and finishing step, and one press slot held open by a job waiting on artwork sign-off. When approval is in the same system as the schedule, the slot can be planned.">
   <div class="q-grid" aria-hidden="true"></div>
   <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><pattern id="q-hatch" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="12" height="12" fill="#023047"/><line x1="0" y1="0" x2="0" y2="12" stroke="#8ECAE6" stroke-opacity=".3" stroke-width="3"/></pattern></defs></svg>
@@ -211,151 +232,154 @@ export default function PrintPromotionalPage() {
   </svg>
   <div class="foot"><span class="k d17-mono">Quote · supply · approval · schedule</span><span class="d17-mark">decodedops.co.uk · DO-ART-928 · Rev 01</span></div>
 </figure>` }} />
-        </div>
-      </section>
-
-      {/* CHALLENGES */}
-      <section className="g-white">
-        <div className="wrap">
-          <span className="eyebrow">Common challenges</span>
-          <h2>Where the problems tend to live</h2>
-          <div className="hair" />
-          <p className="lede">In this sector, the same operational problems appear in different shapes across different businesses. These are the ones that cost the most.</p>
-          <div className="grid grid--2">
-            {challenges.map((c, i) => (
-              <article key={i} className="card">
-                <span className="kicker">{String(i + 1).padStart(2, '0')} &middot; {c.title}</span>
-                <p>{c.body}</p>
-              </article>
-            ))}
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* WHAT I DO */}
-      <section className="g-navy">
-        <div className="wrap">
-          <span className="eyebrow">How I help</span>
-          <h2>What the work actually looks like</h2>
-          <div className="hair" />
-          <p className="lede">A structured audit followed by specific, costed recommendations. No vague frameworks, no generic advice.</p>
-          <div className="grid grid--2" style={{ marginTop: '32px' }}>
-            {whatIdo.map((item, i) => (
-              <div key={i} className="card" style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
-                <span style={{ minWidth: '28px', height: '28px', borderRadius: 'var(--do-radius-full)', background: 'color-mix(in srgb, var(--do-cerulean) 20%, transparent)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 'var(--do-text-xs)', fontWeight: 'var(--do-weight-bold)', color: 'var(--do-sky-blue)' }}>{String(i + 1).padStart(2, '0')}</span>
-                <p>{item}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CROSS-LINKS */}
-      {(route.targetService || (route.relatedProblems && route.relatedProblems.length > 0) || (route.relatedResources && route.relatedResources.length > 0) || (route.relatedSectors && route.relatedSectors.length > 0)) && (
-        <section style={{ padding: 'clamp(40px, 4.5vw, 60px) 0' }} className="g-tint">
+        {/* ON THE DAY · three site-visit photographs */}
+        <section className="g-white" data-od-id="on-the-day">
           <div className="wrap">
-            <div className="grid grid--3">
-              {route.targetService && (
-                <div className="card" style={{ background: 'var(--do-surface-dark)', color: 'var(--do-text-on-dark)' }}>
-                  <span className="kicker" style={{ color: 'var(--do-amber)' }}>The work in this sector</span>
-                  <h3 style={{ fontSize: 'var(--do-text-xl)', margin: '8px 0' }}>{route.targetService.label}</h3>
-                  <p style={{ marginBottom: '20px' }}>{route.targetService.anchor}</p>
-                  <Link href={route.targetService.href} style={{ color: 'var(--do-amber)', fontWeight: 'var(--do-weight-semibold)', display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
-                    See how it works <ArrowRight size={18} aria-hidden="true" />
-                  </Link>
-                </div>
-              )}
-              {route.relatedProblems && route.relatedProblems.length > 0 && (
-                <div className="card">
-                  <span className="kicker">Most common in print & promotional</span>
-                  <h3 style={{ fontSize: 'var(--do-text-lg)', margin: '8px 0' }}>The problems I see most often</h3>
-                  <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                    {route.relatedProblems.map((p) => (
-                      <li key={p.href} style={{ marginBottom: '10px' }}>
-                        <Link href={p.href} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', fontSize: 'var(--do-text-sm)' }}>
-                          <ArrowRight size={14} style={{ marginTop: '2px', flexShrink: 0, color: 'var(--do-text-cerulean)' }} aria-hidden="true" />
-                          <span>{p.label}</span>
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-              {route.relatedResources && route.relatedResources.length > 0 && (
-                <div className="card">
-                  <span className="kicker">Useful next steps</span>
-                  <h3 style={{ fontSize: 'var(--do-text-lg)', margin: '8px 0' }}>Resources</h3>
-                  <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                    {route.relatedResources.map((r) => (
-                      <li key={r.href} style={{ marginBottom: '10px' }}>
-                        <Link href={r.href} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', fontSize: 'var(--do-text-sm)' }}>
-                          <ArrowRight size={14} style={{ marginTop: '2px', flexShrink: 0, color: 'var(--do-text-cerulean)' }} aria-hidden="true" />
-                          <span>{r.label}</span>
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-              {route.relatedSectors && route.relatedSectors.length > 0 && (
-                <div className="card">
-                  <span className="kicker">Related sectors</span>
-                  <h3 style={{ fontSize: 'var(--do-text-lg)', margin: '8px 0' }}>Adjacent trades</h3>
-                  <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                    {route.relatedSectors.map((s) => (
-                      <li key={s.href} style={{ marginBottom: '10px' }}>
-                        <Link href={s.href} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', fontSize: 'var(--do-text-sm)' }}>
-                          <ArrowRight size={14} style={{ marginTop: '2px', flexShrink: 0, color: 'var(--do-text-cerulean)' }} aria-hidden="true" />
-                          <span>{s.label}</span>
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
+            <div className="ev-head">
+              <div>
+                <span className="eyebrow">On the day</span>
+                <h2 data-od-id="on-the-day-h2">The floors this is written from.</h2>
+              </div>
+              <p className="t-lede">Three of my own photographs from client visits this year. The carousel, the bench and the despatch door are where the four systems either agree or don&apos;t.</p>
+            </div>
+            <div className="ev-grid" data-od-id="on-the-day-photos">
+              <figure className="d17 ev" data-od-id="photo-carousel" data-no="DO-ART-979o" data-rev="01" data-tx="photo">
+                <div className="d17-ph"><img src="/images/site/evidence/band-screenprint-carousel-f0dce0.webp" width={1600} height={900} alt="A screen-print carousel on a client's production floor." /></div>
+                <div className="d17-scan" aria-hidden="true" />
+                <p className="k d17-mono">The press &middot; June 2026</p>
+                <p className="line">The carousel, mid-run</p>
+                <span className="d17-mark">decodedops.co.uk &middot; DO-ART-979o &middot; Rev 01</span>
+              </figure>
+              <figure className="d17 ev" data-od-id="photo-job-sheets" data-no="DO-ART-979k" data-rev="01" data-tx="photo">
+                <div className="d17-ph"><img src="/images/site/evidence/plate-job-sheets-63dd9c.webp" width={1600} height={900} alt="Paper job sheets laid out on a workbench at a client site." /></div>
+                <div className="d17-scan" aria-hidden="true" />
+                <p className="k d17-mono">The bench &middot; June 2026</p>
+                <p className="line">Job sheets, still on paper</p>
+                <span className="d17-mark">decodedops.co.uk &middot; DO-ART-979k &middot; Rev 01</span>
+              </figure>
+              <figure className="d17 ev" data-od-id="photo-cartons" data-no="DO-ART-979q" data-rev="01" data-tx="photo">
+                <div className="d17-ph"><img src="/images/site/evidence/plate-cartons-packed-2fb0ae.webp" width={1600} height={900} alt="Packed cartons stacked and labelled, waiting for collection at a client site." /></div>
+                <div className="d17-scan" aria-hidden="true" />
+                <p className="k d17-mono">Despatch &middot; June 2026</p>
+                <p className="line">Packed, checked, out the door</p>
+                <span className="d17-mark">decodedops.co.uk &middot; DO-ART-979q &middot; Rev 01</span>
+              </figure>
             </div>
           </div>
         </section>
-      )}
 
-      {/* RELATED SECTOR */}
-      <section style={{ padding: 'clamp(40px, 4.5vw, 60px) 0' }} className="g-tint">
-        <div className="wrap">
-          <span className="eyebrow">Related</span>
-          <h2>Operations consultant for print & embroidery</h2>
-          <div className="hair" />
-          <p className="lede">If your print shop also runs embroidery, the operational challenges multiply. See the dedicated page for print and embroidery businesses.</p>
-          <div className="btn-row" style={{ marginTop: '24px' }}>
-            <Link className="btn btn--outline" href="/sectors/operations-consultant-print-embroidery">See the print & embroidery page <ArrowRight size={16} aria-hidden="true" /></Link>
+        {/* HOW I HELP — one numbered route, not six empty tiles */}
+        <section className="g-off" data-od-id="how-i-help">
+          <div className="wrap">
+            <div className="sec-head">
+              <span className="eyebrow">How I help</span>
+              <h2>What the work actually looks like</h2>
+              <div className="hair" />
+              <p className="t-lede">A structured audit followed by specific, costed recommendations. No vague frameworks, no generic advice.</p>
+            </div>
+            <ol className="route route--6" data-od-id="help-steps">
+              {helpSteps.map(step => (
+                <li key={step.id} className={`stop${step.out ? ' stop--out' : ''}`} data-od-id={step.id}>
+                  <span className="node"><svg className="ic ic-24" aria-hidden="true"><use href={`#${step.icon}`} /></svg></span>
+                  <span className="t-meta">{step.meta}</span><span className="t-card stop-text">{step.text}</span>
+                </li>
+              ))}
+            </ol>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* CASE STUDY */}
-      <section style={{ padding: 'clamp(40px, 4.5vw, 60px) 0' }} className="g-off">
-        <div className="wrap">
-          <span className="eyebrow">Case study</span>
-          <h2>Supplier data and channel automation for a print business</h2>
-          <div className="hair" />
-          <p className="lede">Project-leading an ERP implementation alongside a custom Works build for supplier catalogue management and multi-channel automation.</p>
-          <div className="btn-row" style={{ marginTop: '24px' }}>
-            <Link className="btn btn--outline" href="/case-studies/case-study-01">Read the case study <ArrowRight size={16} aria-hidden="true" /></Link>
+        {/* CASE STUDY — honest label, real figures */}
+        <section className="g-white" data-od-id="case-study">
+          <div className="wrap proof">
+            <div>
+              <span className="eyebrow">Case study</span>
+              <h2>Supplier data and channel automation</h2>
+              <div className="hair" />
+              <p className="t-lede">Project-leading an ERP implementation alongside a custom Works build for supplier catalogue management and multi-channel automation.</p>
+              <p className="note">This client sells heating spares, not print. The problem underneath is the same one a promo house has: a large catalogue arriving from many suppliers in different formats, which has to stay clean on every channel.</p>
+              <Link className="text-link" href="/case-studies/case-study-01" data-od-id="case-study-link">Read the case study <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+            </div>
+            <div className="feed" data-od-id="case-study-figures" role="img" aria-label="317,812 products came in from supplier feeds. 154,518 of them, 49%, were matched to a supplier automatically. 40 of 89 suppliers on file are actively feeding in.">
+              <span className="t-meta feed-k">Supplier feeds into one catalogue</span>
+              <p className="feed-big"><b>317,812</b> products brought in from supplier feeds</p>
+              <div className="meter" aria-hidden="true"><span style={{ width: '48.6%' }} /></div>
+              <div className="meter-legend" aria-hidden="true"><span><b>154,518</b> matched to a supplier automatically, before anyone had to touch them</span><span className="pct">49%</span></div>
+              <div className="feed-rule" />
+              <div className="sup">
+                <div className="dots" aria-hidden="true">
+                  {Array.from({ length: 89 }, (_, i) => (
+                    <i key={i} className={i < 40 ? 'on' : undefined} />
+                  ))}
+                </div>
+                <p><b>40</b> active suppliers feeding in <span>(89 on file)</span></p>
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* CTA STRIP */}
-      <section className="g-off">
-        <div className={`wrap ${styles.centred}`}>
-          <h2>Book a free discovery call.</h2>
-          <div className="hair" />
-          <p className="lede">The audit starts with a free 60-minute call. No obligation. Just a conversation about what&apos;s happening in your business.</p>
-          <div className="btn-row">
-            <Link className="btn btn--primary" href="/contact">Book a free discovery call <ArrowRight size={16} aria-hidden="true" /></Link>
-            <Link className="btn btn--outline" href="/clarity">See how a Clarity Audit works <ArrowRight size={16} aria-hidden="true" /></Link>
+        {/* KEEP READING — four equal columns */}
+        <section className="g-tint next" data-od-id="keep-reading">
+          <div className="wrap">
+            <span className="eyebrow">Keep reading</span>
+            <div className="next-grid">
+              <div className="next-card next-card--service" data-od-id="next-service">
+                <span className="t-meta">The work in this sector</span>
+                <h3>Print shop operations and systems</h3>
+                <p className="t-card">Production scheduling, order management, artwork approval workflow, and the systems that make a busy print shop scale without chaos.</p>
+                <Link className="go" href="/transform">See how it works <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+              </div>
+              <div className="next-card" data-od-id="next-problems">
+                <span className="t-meta">Most common in print &amp; promotional</span>
+                <h3>The problems I see most often</h3>
+                <ul className="t-card">
+                  <li><Link href="/problems/slow-processes"><svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg><span>Production scheduling and capacity issues</span></Link></li>
+                  <li><Link href="/problems/erp-implementation-failure"><svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg><span>Print MIS or ERP that doesn&rsquo;t fit</span></Link></li>
+                  <li><Link href="/problems/manual-workarounds"><svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg><span>Manual artwork approval and re-keying</span></Link></li>
+                </ul>
+              </div>
+              <div className="next-card" data-od-id="next-resources">
+                <span className="t-meta">Useful next steps</span>
+                <h3>Resources</h3>
+                <ul className="t-card">
+                  <li><Link href="/resources/artwork-approval-playbook"><svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg><span>Artwork approval playbook</span></Link></li>
+                  <li><Link href="/resources/erp-selection-playbook"><svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg><span>ERP selection playbook</span></Link></li>
+                </ul>
+              </div>
+              <div className="next-card" data-od-id="next-sectors">
+                <span className="t-meta">Related sectors</span>
+                <h3>Adjacent trades</h3>
+                <ul className="t-card">
+                  <li><Link href="/sectors/operations-consultant-print-embroidery"><svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg><span>Print &amp; embroidery<span className="sub">If your shop runs both</span></span></Link></li>
+                  <li><Link href="/sectors/garment-decoration"><svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg><span>Garment decoration</span></Link></li>
+                  <li><Link href="/sectors/promotional-merchandise"><svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg><span>Promotional merchandise</span></Link></li>
+                  <li><Link href="/sectors/signs-graphics"><svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg><span>Signs &amp; graphics</span></Link></li>
+                  <li><Link href="/sectors/awards-engraving"><svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg><span>Awards &amp; engraving</span></Link></li>
+                </ul>
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+
+        {/* CLOSING CALL — left-aligned, one primary, one text link */}
+        <section className="g-off close" data-od-id="closing-cta">
+          <div className="wrap">
+            <div className="close-band">
+              <div>
+                <h2>Book a free discovery call</h2>
+                <p className="t-lede">The audit starts with a free 60-minute call. No obligation. Just a conversation about what&rsquo;s happening in your business.</p>
+              </div>
+              <div className="close-actions">
+                <Link className="btn btn--primary" href="/contact" data-od-id="closing-cta-primary">Book a free discovery call <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+                <Link className="text-link" href="/clarity">See how a Clarity Audit works <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </main>
       <D17Motion />
     </>
   );
