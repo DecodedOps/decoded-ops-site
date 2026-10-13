@@ -55,8 +55,8 @@ const sectorSchema = {
 };
 
 const data: SectorV2Data = {
-  h1Lead: "Sign shop management software:",
-  h1: "signs and graphics run on tight margins, and every job starts with a site survey.",
+  h1Lead: "Signs & graphics · sign shop management software",
+  h1: "Tight margins, and every job starts with a site survey.",
   eyebrow: "Sector · signs & graphics",
   lede: "Signs and graphics jobs don’t fit generic ERP systems. So without sign shop management software that fits, most businesses run on spreadsheets, whiteboards, and information carried in people’s heads.",
   heroHtml: `<figure class="d17 sx a933" data-od-id="hero-evidence" data-motion data-no="DO-ART-933" data-rev="01" data-tx="photo"

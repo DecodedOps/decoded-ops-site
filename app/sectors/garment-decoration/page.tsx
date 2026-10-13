@@ -55,8 +55,8 @@ const sectorSchema = {
 };
 
 const data: SectorV2Data = {
-  h1Lead: "Garment decoration",
-  h1: "business systems were never built for how you actually work.",
+  h1Lead: "Sector · garment decoration",
+  h1: "Garment decoration business systems were never built for how you actually work.",
   eyebrow: "Sector · garment decoration",
   lede: "Embroidery, screen print, DTF, and DTG each work in their own way. But the ERP and MIS systems sold to decoration businesses rarely account for that. Embroidery is not the same as screen print. Your systems should match how you actually work.",
   heroHtml: `<figure class="d17 sx a923" data-od-id="hero-evidence" data-motion data-no="DO-ART-923" data-rev="01" data-tx="photo"

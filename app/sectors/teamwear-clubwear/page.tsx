@@ -4,19 +4,19 @@ import { BreadcrumbSchema } from '@/components/BreadcrumbSchema';
 import { SectorPageV2, type SectorV2Data } from '@/components/SectorPageV2';
 
 export const metadata: Metadata = {
-  title: 'B2B Ordering Portal for Teamwear & Clubwear | Decoded Ops',
-  description: 'A B2B ordering portal for squad numbers, sponsor logos and a hard deadline before the first match, with the proof loop sorted before the season starts.',
+  title: 'Teamwear Software for Clubwear Suppliers | Decoded Ops',
+  description: 'Teamwear software for squad numbers, sponsor logos and a hard deadline before the first match, with the proof loop sorted before the season starts.',
   alternates: { canonical: '/sectors/teamwear-clubwear' },
   openGraph: {
-    title: 'B2B Ordering Portal for Teamwear & Clubwear | Decoded Ops',
-    description: 'A B2B ordering portal for squad numbers, sponsor logos and a hard deadline before the first match, with the proof loop sorted before the season starts.',
+    title: 'Teamwear Software for Clubwear Suppliers | Decoded Ops',
+    description: 'Teamwear software for squad numbers, sponsor logos and a hard deadline before the first match, with the proof loop sorted before the season starts.',
     url: 'https://decodedops.co.uk/sectors/teamwear-clubwear',
     images: [{ url: '/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'B2B Ordering Portal for Teamwear & Clubwear | Decoded Ops',
-    description: 'A B2B ordering portal for squad numbers, sponsor logos and a hard deadline before the first match, with the proof loop sorted before the season starts.',
+    title: 'Teamwear Software for Clubwear Suppliers | Decoded Ops',
+    description: 'Teamwear software for squad numbers, sponsor logos and a hard deadline before the first match, with the proof loop sorted before the season starts.',
   },
 };
 
@@ -55,10 +55,10 @@ const sectorSchema = {
 };
 
 const data: SectorV2Data = {
-  h1Lead: "A B2B ordering portal for",
-  h1: "teamwear and clubwear, sized to the squad.",
+  h1Lead: "Teamwear & clubwear · teamwear software",
+  h1: "Sized to the squad.",
   eyebrow: "Sector · teamwear & clubwear",
-  lede: "Squad numbers, sponsor logos, and a hard deadline before the first match of the season: a B2B ordering portal for a club has to carry all three.",
+  lede: "Squad numbers, sponsor logos, and a hard deadline before the first match of the season: club shop software has to carry all three.",
   body: "Get the data wrong and it’s not a quiet admin cost, it’s kit that doesn’t arrive in time.",
   heroHtml: `<figure class="d17 sx a935" data-od-id="hero-evidence" data-motion data-no="DO-ART-935" data-rev="01" data-tx="photo"
         aria-label="Product screen DO-ART-935. The supplier feed overview at a teamwear business, live in September 2026: 17 supplier feeds automated, 27,778 supplier products, 236,056 variants, 952 products live on their website, 1,846 decorated products, and every stock record with a bin location. Kit range churn, kept current on its own.">
@@ -180,7 +180,7 @@ const data: SectorV2Data = {
   ],
   caseStudy: {
     heading: "B2B portal and ERP evaluation for a workwear distributor",
-    lede: "Vendor requirements, procurement, and integration architecture for a B2B ordering portal: the same ordering complexity, the same sector challenges.",
+    lede: "Vendor requirements, procurement, and integration architecture for a trade ordering portal: the same ordering complexity, the same sector challenges.",
     layout: "split-6",
     href: "/case-studies/case-study-03",
     linkLabel: "Read the case study",
@@ -202,6 +202,7 @@ const data: SectorV2Data = {
       { label: "Can’t scale beyond manual processes", href: "/problems/cant-scale-operations" },
     ],
     resources: [
+      { label: "club shop and trade portal software", href: "/apps/commerce" },
       { label: "SOP template for decoration businesses", href: "/resources/sop-template" },
       { label: "Ops health score", href: "/tools/ops-health-score" },
     ],

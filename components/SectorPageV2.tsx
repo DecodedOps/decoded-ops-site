@@ -16,7 +16,7 @@ import './SectorPageV2.css';
 export type SectorV2Link = { label: string; href: string };
 
 export type SectorV2Data = {
-  /** Keyword lead-in span of the single H1 (SEO spec, H1 pattern). */
+  /** H1 pill: NAME · KEYWORD, rendered as the .h1-kw pill above the headline. */
   h1Lead: string;
   /** Designed headline, rendered after the lead-in at the plate's own size. */
   h1: string;
@@ -79,7 +79,6 @@ export function SectorPageV2({ data: d }: { data: SectorV2Data }) {
         <section className="g-off hero" data-od-id="hero">
           <div className="wrap hero-split">
             <div>
-              <span className="eyebrow">{d.eyebrow}</span>
               <h1 data-od-id="hero-title"><span className="h1-kw">{d.h1Lead}</span>{' '}{d.h1}</h1>
               <p className="t-lede">{d.lede}</p>
               {d.body && <p className="t-body">{d.body}</p>}

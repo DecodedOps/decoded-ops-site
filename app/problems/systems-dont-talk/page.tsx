@@ -139,7 +139,7 @@ export default function SystemsDontTalkPage() {
     slug="systems-dont-talk"
     problem="Systems that don't talk to each other"
     crumb="Systems don't talk to each other"
-    h1Lead="Systems that don't talk to each other:"
+    h1Lead="Problem · systems that don't talk to each other"
     headline="You have five systems. ||None of them know what the others are doing.||"
     heroLede="Most decoration and print businesses run four to seven separate systems. Order management, accounts, artwork, the website, despatch. Each one is an island."
     heroBody="The only bridges between them are people typing the same data in again, spreadsheets, and emails."

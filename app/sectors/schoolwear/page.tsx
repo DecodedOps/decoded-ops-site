@@ -55,8 +55,8 @@ const sectorSchema = {
 };
 
 const data: SectorV2Data = {
-  h1Lead: "A uniform ordering system for",
-  h1: "schoolwear, built for the back-to-school peak that decides your year.",
+  h1Lead: "Schoolwear · uniform ordering system",
+  h1: "Built for the back-to-school peak that decides your year.",
   eyebrow: "Sector · schoolwear",
   lede: "Blazers, PE kit, and growing pupils, all needing to be right before the first week of September.",
   body: "The businesses that get this right have their supplier data and sizing sorted well before the rush starts, whatever uniform ordering system sits on top.",
