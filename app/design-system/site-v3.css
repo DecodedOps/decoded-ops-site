@@ -464,3 +464,10 @@ a.area:focus-visible:not(.d17 *){ outline:3px solid var(--do-cerulean); outline-
 .pull:not(.d17 *){ margin:44px 0 0; padding:28px 0 0; border-top:1px solid var(--do-border-dark); max-width:62ch }
 .pull:not(.d17 *) blockquote{ margin:0; font-family:var(--do-font-heading); font-weight:var(--do-weight-semibold); font-size:clamp(1.2rem,2vw,1.6rem); line-height:1.35; letter-spacing:-.01em; color:var(--do-text-on-dark) }
 .pull:not(.d17 *) cite{ display:block; margin-top:14px; font-style:normal; font-family:var(--do-font-mono); font-size:var(--do-text-xs); letter-spacing:var(--do-tracking-wider); text-transform:uppercase; color:var(--do-text-muted-on-dark) }
+
+/* ── Route column-count modifiers (CR-WEB-076 fix 2): re-assert the mobile single-column rule after
+   the .route--N modifiers so 3/5/6/7-stop routes stack on phones and keep the vertical connector. ── */
+@media(max-width:1000px){
+  .route--3:not(.d17 *), .route--5:not(.d17 *), .route--6:not(.d17 *), .route--7:not(.d17 *){ grid-template-columns:1fr }
+  .route--3:not(.d17 *)::before, .route--5:not(.d17 *)::before, .route--6:not(.d17 *)::before, .route--7:not(.d17 *)::before{ left:calc(24px + 23px); right:auto; width:2px; top:52px; bottom:52px; height:auto }
+}
