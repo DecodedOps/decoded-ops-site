@@ -1,7 +1,4 @@
 /* PAGE-SPECIFIC LAYOUT ONLY - deliver v1 (CR-WEB-076 set 1).
-   Shared patterns live in app/design-system/site-v3.css. */
-
-/* SEO H1 (CR-WEB-076): "Business process improvement that gets built, and a system you keep to
-   run it." is longer than the mockup line, so the cap comes down to hold three lines in the
-   widened copy column. Measured in headless Chrome (Outfit 800, line-height 1.2, 642px column). */
-.hero h1{ font-size:clamp(2.1rem,4.1vw,3.1rem) }
+   Shared patterns live in app/design-system/site-v3.css.
+   No page-owned rules: the SEO H1 now uses the lead-in pattern (.h1-kw) with the
+   designed line back at the plate's own size, so the temporary font cap is gone. */

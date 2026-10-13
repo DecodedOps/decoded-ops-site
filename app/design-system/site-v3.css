@@ -33,14 +33,23 @@ h1,h2,h3{ text-wrap:balance }
 
 /* ── Hero · split head ─────────────────────────────────────────────────── */
 .hero{ padding:72px 0 88px }
-/* SEO H1 (CR-WEB-076): the keyword-led line is longer than the mockup line, so the copy column
-   is widened and the 14ch cap dropped -- the column now bounds the measure. Measured in headless
-   Chrome (Outfit 800, line-height 1.2): clarity / transform fit at the full 59.2px cap; deliver and
-   retained need a slightly smaller cap, which is per-route further down. */
-.hero-head{ display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:48px; align-items:end }
+/* SEO H1 pattern (CR-WEB-076 fix 1): one <h1> = keyword lead-in (.h1-kw, below) + the designed
+   headline from the plate at the plate's own size and wrapping. The plate's 14ch cap and 7/5
+   split are restored so the big line wraps as the plate does; the lead-in sits above it at 0.42em. */
+.hero-head{ display:grid; grid-template-columns:minmax(0,7fr) minmax(0,5fr); gap:48px; align-items:end }
+.hero h1{ max-width:14ch }
 .hero .t-lede{ margin:0; color:color-mix(in srgb, var(--do-prussian-blue) 74%, transparent) }
 .hero .btn-row{ margin:26px 0 0 }
 @media(max-width:960px){ .hero-head{ grid-template-columns:1fr; gap:24px; align-items:start } }
+
+/* ── SEO H1 keyword lead-in ────────────────────────────────────────────── */
+/* Small block kicker carrying the primary keyword, ahead of the designed headline, inside the
+   one <h1>. Screen readers and crawlers read one sentence; the eye sees a kicker over the big
+   line. Colour is a mid tier, never Cerulean as text (D11). Sets 2+ reuse this class as-is. */
+.h1-kw{ display:block; font-size:.42em; font-weight:var(--do-weight-semibold);
+  letter-spacing:normal; text-transform:none; margin-bottom:.35em; color:var(--do-text-secondary) }
+.g-navy .h1-kw{ color:var(--do-text-muted-on-dark) }
+@media(max-width:760px){ .h1-kw{ font-size:.5em } }
 
 /* ── Hero piece · document mock-up over a site-visit photograph (base) ─── */
 .sw{ --u:calc(100cqw / 1152); --pu:calc(100% / 1152); margin:44px 0 0 }

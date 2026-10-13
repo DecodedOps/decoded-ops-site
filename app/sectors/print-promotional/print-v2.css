@@ -3,12 +3,12 @@
    (hero-split, challenges, route, feed, proof, next cards, ev band) live in
    app/design-system/site-v3.css, loaded before this file. */
 
-/* SEO H1 (CR-WEB-076): "Print shop management software starts with knowing what your current
-   process actually costs" is longer than the mockup line, so the 16ch cap is dropped and the copy
-   column widened; the cap comes down so it holds three lines on desktop and four on mobile.
+/* SEO H1 (CR-WEB-076 fix 1): no lead-in on this route - one sentence, kept at a reduced size so
+   it holds <=4 lines at 1440. The 14ch cap in site-v3.css (restored for the lead-in pattern on the
+   service pages) is explicitly dropped here; the copy column bounds the measure instead.
    Measured in headless Chrome (Outfit 800, line-height 1.2, 780px column, 29.6px at 390px). */
 .hero-split{ grid-template-columns:1.45fr .55fr }
-.hero h1{ font-size:clamp(1.9rem,4vw,3.4rem) }
+.hero h1{ max-width:none; font-size:clamp(1.9rem,4vw,3.4rem) }
 .t-lede{ color:color-mix(in srgb, var(--do-prussian-blue) 74%, transparent) }
 .g-navy .t-lede{ color:var(--do-text-muted-on-dark) }
 .g-navy .t-body{ color:color-mix(in srgb, var(--do-off-white) 86%, transparent) }

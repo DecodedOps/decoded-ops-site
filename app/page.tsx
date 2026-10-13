@@ -88,7 +88,7 @@ export default function HomePage() {
             <div className="stage-grid">
               <div className="stage-copy">
                 <span className="eyebrow">Operations &amp; technology consultancy</span>
-                <h1>Operations consultant for print and embroidery: <span>I find what&rsquo;s quietly costing you money.</span></h1>
+                <h1><span className="h1-kw">Operations consultant for print and embroidery:</span> I find what&rsquo;s quietly costing you money.</h1>
                 <p>I&rsquo;m an operations consultant. I help owners of print, embroidery, workwear and promotional merchandise businesses
                   fix the systems that are holding them back. Start with a Clarity Audit: a day inside your
                   business, six areas followed from start to finish, and within five working days a written
