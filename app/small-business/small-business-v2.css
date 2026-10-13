@@ -1,0 +1,9 @@
+/* Small business (CR-WEB-077 part B): page layout only. Every shared pattern lives in site-v3.css. */
+.hero-head{ grid-template-columns:minmax(0,8fr) minmax(0,4fr) }
+.hero h1{ max-width:20ch }
+.byline{ margin:14px 0 0; font-size:var(--do-text-sm); color:var(--do-text-secondary) }
+.a1017 .d17-ph img{ --d17-grade:saturate(.7) contrast(1.06) brightness(.82) }
+.a1017 .stage{ min-height:calc(440 * var(--u)) }
+.a1017 .doc-f{ left:calc(150 * var(--u)); top:calc(26 * var(--u)); width:calc(430 * var(--u)); transform:rotate(-1.6deg) }
+.a1017 .t5{ right:calc(30 * var(--u)); top:calc(40 * var(--u)) }
+@media (max-width:760px){ .a1017 .t5{ position:relative; right:auto; top:auto; align-self:flex-start; order:4 } }

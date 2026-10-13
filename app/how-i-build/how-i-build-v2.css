@@ -1,0 +1,9 @@
+/* How I build (CR-WEB-077 part B): page layout only. Every shared pattern lives in site-v3.css. */
+.a1016 .d17-ph{ left:0; right:28% }
+
+.a1016 .d17-ph img{ --d17-grade:saturate(.7) contrast(1.06) brightness(.82) }
+.a1016 .stage{ min-height:calc(500 * var(--u)) }
+.a1016 .doc-f{ left:calc(8 * var(--u)); top:calc(20 * var(--u)); width:calc(390 * var(--u)); transform:rotate(-2.4deg) }
+.a1016 .doc-m{ left:calc(396 * var(--u)); top:calc(206 * var(--u)); width:calc(292 * var(--u)); transform:rotate(3.2deg); z-index:2 }
+.a1016 .t5{ left:calc(40 * var(--u)); bottom:calc(10 * var(--u)) }
+@media (max-width:760px){ .a1016 .stage .d17-doc:nth-child(odd){ transform:rotate(-1deg) } .a1016 .stage .d17-doc:nth-child(even){ transform:rotate(1deg) } .a1016 .t5{ position:relative; left:auto; bottom:auto; align-self:flex-start; order:4 } }
