@@ -1,11 +1,10 @@
 import type { Metadata } from 'next';
-import { ProblemPageDS } from '@/components/ProblemPageDS';
-import { SystemsDontTalkSchematic } from '@/components/schematics/problems/SystemsDontTalkSchematic';
 import { JsonLd } from '@/components/JsonLd';
+import { ProblemPageV2 } from '@/components/ProblemPageV2';
 import { problemRouting } from '@/data/problem-routing';
-import { problemVideos } from '@/data/problem-videos';
 import '@/app/d17-global.css';
 import '@/app/d17-problems.css';
+import '@/app/problems/problems-v2.css';
 import { D17Motion } from '@/components/D17Motion';
 
 export const metadata: Metadata = {
@@ -136,38 +135,56 @@ export default function SystemsDontTalkPage() {
  return (
   <>
    <JsonLd data={systemsDontTalkSchema} />
-   <ProblemPageDS
-   problem="Systems don't talk to each other"
-   headline="You have five systems. ||None of them know what the others are doing.||"
-   intro="Most decoration and print businesses run four to seven separate systems. Order management, accounts, artwork, the website, despatch. Each one is an island. The only bridges between them are people typing the same data in again, spreadsheets, and emails."
-   heroGraphic={<SystemsDontTalkSchematic />}
-   heroArt={heroArt976}
-   inlineArt={inlineArt1012}
-   symptoms={[
-    "You type the same data into more than one system",
-    "You can't see the whole order without checking three different places",
-    "Getting a report means pulling data out of several systems and stitching it together",
-    "Mistakes creep in every time data moves between systems",
-    "Different teams are working from different versions of the same information",
-    "You've accepted admin work that shouldn't need doing",
-    "Every time you add a system, the admin gets worse, not better",
-   ]}
-   causes={[
-    { title: 'Each system was bought on its own', body: "Each system was picked to solve one problem, without asking how it would connect to the rest. The 'how will this talk to everything else?' question got put off and never answered." },
-    { title: 'No plan for how the systems connect', body: "Nobody ever looked at the whole picture. Systems piled up one at a time, and each new one made the last one harder to fit." },
-    { title: 'Software that is hard to connect to anything else', body: "Some systems in this sector won't connect to others without expensive, fiddly work. You're rarely told that at the point of sale." },
-    { title: 'You never see what the workarounds cost', body: "Typing the same data in twice, fixing errors, and pulling reports by hand never shows up on an invoice. It's hidden in staff time that gets blamed on everything except the real cause." },
-   ]}
-   howIHelp="I map every system you use, every bit of data that moves between them, and every manual bridge your team has built to paper over the gaps. Then I show you what it's actually costing you. After that, I give you independent options: connect systems where it makes sense, merge them where that's cheaper, or replace the ones that are the problem. No vendor relationships. No preferred solutions. Just a clear picture and a practical way forward."
-  
-   slug="systems-dont-talk"
-   targetService={problemRouting['systems-dont-talk'].targetService}
-   relatedProblems={problemRouting['systems-dont-talk'].relatedProblems}
-   relatedReading={problemRouting['systems-dont-talk'].relatedReading}
-   relatedSectors={problemRouting['systems-dont-talk'].relatedSectors}
-   relatedResources={problemRouting['systems-dont-talk'].relatedResources}
-   video={problemVideos['systems-dont-talk']}
-  />
+   <ProblemPageV2
+    slug="systems-dont-talk"
+    problem="Systems that don't talk to each other"
+    crumb="Systems don't talk to each other"
+    h1Lead="Systems that don't talk to each other:"
+    headline="You have five systems. ||None of them know what the others are doing.||"
+    heroLede="Most decoration and print businesses run four to seven separate systems. Order management, accounts, artwork, the website, despatch. Each one is an island."
+    heroBody="The only bridges between them are people typing the same data in again, spreadsheets, and emails."
+    heroArt={heroArt976}
+    symptomsHeading="Seven signs your systems aren’t talking to each other."
+    symptomsLede="You don’t need all seven. Three is usually enough to mean the gaps are in the systems, not in the people working around them."
+    symptomsCaption="Count the ones that apply. Each one is a place where someone is re-typing what a system already knows."
+    symptoms={[
+     "You type the same data into more than one system",
+     "You can't see the whole order without checking three different places",
+     "Getting a report means pulling data out of several systems and stitching it together",
+     "Mistakes creep in every time data moves between systems",
+     "Different teams are working from different versions of the same information",
+     "You've accepted admin work that shouldn't need doing",
+     "Every time you add a system, the admin gets worse, not better",
+    ]}
+    photoBand={{
+     eyebrow: 'Where the bridges are',
+     heading: 'Where one system hands over to the next.',
+     lede: 'Three of my own photographs from client visits this year. The job sheet, the despatch bench and the stock bay are where data leaves one system and gets typed into the next.',
+     photos: [
+      { odId: 'photo-job-sheets', no: 'DO-ART-979k', src: '/images/site/evidence/plate-job-sheets-63dd9c.webp', alt: 'Paper job sheets laid out on a workbench at a client site.', kicker: 'The bench · June 2026', line: 'Job sheets, still on paper' },
+      { odId: 'photo-packing', no: 'DO-ART-979n', src: '/images/site/evidence/band-packing-station-7c4f80.webp', alt: 'A packing station with cartons, tape and a label printer at a client site.', kicker: 'Despatch · June 2026', line: 'The packing station' },
+      { odId: 'photo-racking', no: 'DO-ART-979m', src: '/images/site/evidence/plate-racking-bays-626a9b.webp', alt: 'Warehouse racking bays holding boxed stock at a client site.', kicker: 'Stock · April 2026', line: 'Racking bays, counted by hand' },
+     ],
+    }}
+    causes={[
+     { icon: 'i-shopping-cart', title: 'Each system was bought on its own', body: "Each system was picked to solve one problem, without asking how it would connect to the rest. The 'how will this talk to everything else?' question got put off and never answered." },
+     { icon: 'i-map', title: 'No plan for how the systems connect', body: "Nobody ever looked at the whole picture. Systems piled up one at a time, and each new one made the last one harder to fit." },
+     { icon: 'i-unplug', title: 'Software that is hard to connect to anything else', body: "Some systems in this sector won't connect to others without expensive, fiddly work. You're rarely told that at the point of sale." },
+     { icon: 'i-eye-off', title: 'You never see what the workarounds cost', body: "Typing the same data in twice, fixing errors, and pulling reports by hand never shows up on an invoice. It's hidden in staff time that gets blamed on everything except the real cause." },
+    ]}
+    plate={{
+     eyebrow: 'Add it up',
+     heading: 'Nobody has added up what the bridges cost.',
+     lede: 'Five systems, when each was bought, and what each one connects to. The cost column is the one nobody has filled in.',
+     art: inlineArt1012,
+    }}
+    plateNote="Each island knows only what it is told. Every gap gets bridged by hand. Every bridge is a place data goes wrong."
+    proof
+    howLede="I map every system you use, every bit of data that moves between them, and every manual bridge your team has built to paper over the gaps. Then I show you what it's actually costing you."
+    howBody="After that, I give you independent options: connect systems where it makes sense, merge them where that's cheaper, or replace the ones that are the problem. No vendor relationships. No preferred solutions. Just a clear picture and a practical way forward."
+    howTone="off"
+    routing={problemRouting['systems-dont-talk']}
+   />
    <D17Motion />
   </>
  );
