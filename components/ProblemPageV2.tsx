@@ -35,7 +35,7 @@ export interface ProblemPageV2Props {
   problem: string;
   /** Breadcrumb name (kept as staging, so the JSON-LD does not change) */
   crumb: string;
-  /** Keyword lead-in inside the H1 (SEO spec H1 pattern), ends with a colon */
+  /** H1 pill: NAME · KEYWORD, rendered as the .h1-kw pill above the headline */
   h1Lead: string;
   /** Designed headline; '||' toggles the <em> part, as in ProblemPageDS */
   headline: string;
@@ -102,7 +102,6 @@ export function ProblemPageV2(p: ProblemPageV2Props) {
       <section className="g-off p-hero" data-od-id="hero">
         <div className="wrap p-hero-grid">
           <div>
-            <span className="eyebrow">{p.problem}</span>
             <h1 data-od-id="hero-h1">
               <span className="h1-kw">{p.h1Lead}</span>{' '}
               <Headline text={p.headline} />

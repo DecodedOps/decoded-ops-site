@@ -156,7 +156,7 @@ export default function ManualWorkaroundsPage() {
     slug="manual-workarounds"
     problem="Manual workarounds and shadow systems"
     crumb="Manual workarounds and shadow systems"
-    h1Lead="Manual workarounds:"
+    h1Lead="Problem · manual workarounds"
     headline="Your team has built a second system. ||It lives in spreadsheets.||"
     heroLede="Almost every business in this sector has a second system of manual workarounds running quietly alongside the official one. Spreadsheets, manual logs, sticky notes, workarounds."
     heroBody="They keep the business moving, but they hide the real cost. This isn't about replacing people. It's about removing the double-typing, duplicate data, and shadow spreadsheets that slow every team down."

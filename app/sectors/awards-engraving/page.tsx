@@ -4,19 +4,19 @@ import { BreadcrumbSchema } from '@/components/BreadcrumbSchema';
 import { SectorPageV2, type SectorV2Data } from '@/components/SectorPageV2';
 
 export const metadata: Metadata = {
-  title: 'Print Shop Software for Awards & Engraving | Decoded Ops',
-  description: 'Print shop software that gets names, dates and titles from customer to engraver without errors, proofs approved at volume, and jobs scheduled on time.',
+  title: 'Engraving Business Software for Awards | Decoded Ops',
+  description: 'Engraving business software that gets names, dates and titles from customer to engraver without errors, proofs approved at volume, and jobs scheduled on time.',
   alternates: { canonical: '/sectors/awards-engraving' },
   openGraph: {
-    title: 'Print Shop Software for Awards & Engraving | Decoded Ops',
-    description: 'Print shop software that gets names, dates and titles from customer to engraver without errors, proofs approved at volume, and jobs scheduled on time.',
+    title: 'Engraving Business Software for Awards | Decoded Ops',
+    description: 'Engraving business software that gets names, dates and titles from customer to engraver without errors, proofs approved at volume, and jobs scheduled on time.',
     url: 'https://decodedops.co.uk/sectors/awards-engraving',
     images: [{ url: '/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Print Shop Software for Awards & Engraving | Decoded Ops',
-    description: 'Print shop software that gets names, dates and titles from customer to engraver without errors, proofs approved at volume, and jobs scheduled on time.',
+    title: 'Engraving Business Software for Awards | Decoded Ops',
+    description: 'Engraving business software that gets names, dates and titles from customer to engraver without errors, proofs approved at volume, and jobs scheduled on time.',
   },
 };
 
@@ -55,10 +55,10 @@ const sectorSchema = {
 };
 
 const data: SectorV2Data = {
-  h1Lead: "Print shop software for awards and engraving:",
-  h1: "personalisation at scale is hard, and most businesses still do it by hand.",
+  h1Lead: "Awards & engraving · engraving business software",
+  h1: "Personalisation at scale is hard. Most awards businesses still do it by hand.",
   eyebrow: "Sector · awards & engraving",
-  lede: "Every award carries different names, titles, and dates, and every order is for a specific event with a hard deadline. That makes awards and engraving one of the most demanding corners of the decorated products sector. Most print shop software treats a personalised award like any other order line, and that is where the rework starts.",
+  lede: "Every award carries different names, titles, and dates, and every order is for a specific event with a hard deadline. That makes awards and engraving one of the most demanding corners of the decorated products sector. Most engraving business software treats a personalised award like any other order line, and that is where the rework starts.",
   heroHtml: `<figure class="d17 sx a921" data-od-id="hero-evidence" data-motion data-no="DO-ART-921" data-rev="01" data-tx="photo"
         aria-label="Artwork DO-ART-921. A graded photograph of glass, crystal and metal awards, with an awards job ticket and a client-approved engraving proof laid over it. Fifty pieces, fifty approved proofs.">
   <div class="d17-ph"><img src="/images/site/d17/sectors/cat-awards-70dc2f.webp" alt="" width="900" height="1200"></div>
@@ -94,7 +94,7 @@ const data: SectorV2Data = {
     <span class="d17-mark">decodedops.co.uk · DO-ART-921 · Rev 01</span>
   </div>
 </figure>`,
-  challengesLede: "In this sector, the same operational problems appear in different shapes across different businesses. These are the ones that cost the most, and the ones general print shop software handles worst.",
+  challengesLede: "In this sector, the same operational problems appear in different shapes across different businesses. These are the ones that cost the most, and the ones general engraving business software handles worst.",
   challenges: [
     { icon: "i-database", title: "Variable data management", body: "Every award is different. Names, titles, dates, messages, each one needing to move from the customer to the engraving or print without a single error. Most businesses in this sector don't have the systems for that." },
     { icon: "i-calendar-clock", title: "Event deadline pressure", body: "Awards are nearly always for a specific event, so there's no room for lateness. Production has to schedule backwards from the date, and most systems don't." },
@@ -175,6 +175,7 @@ const data: SectorV2Data = {
       { label: "If the server died tomorrow…", href: "/problems/disaster-recovery" },
     ],
     resources: [
+      { label: "ERP for printing companies", href: "/apps/works" },
       { label: "Artwork approval playbook", href: "/resources/artwork-approval-playbook" },
       { label: "Ops health score", href: "/tools/ops-health-score" },
     ],

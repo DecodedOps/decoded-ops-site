@@ -4,19 +4,19 @@ import { BreadcrumbSchema } from '@/components/BreadcrumbSchema';
 import { SectorPageV2, type SectorV2Data } from '@/components/SectorPageV2';
 
 export const metadata: Metadata = {
-  title: 'Print MIS Software for Labels & Packaging | Decoded Ops',
-  description: 'A print MIS that puts the right version on press every time, handles variable data without workarounds, and delivers the EDI your bigger customers ask for.',
+  title: 'Labels & Packaging Operations and Systems | Decoded Ops',
+  description: 'Systems that put the right version on press every time, handle variable data without workarounds, and deliver the EDI your bigger customers ask for.',
   alternates: { canonical: '/sectors/labels-packaging' },
   openGraph: {
-    title: 'Print MIS Software for Labels & Packaging | Decoded Ops',
-    description: 'A print MIS that puts the right version on press every time, handles variable data without workarounds, and delivers the EDI your bigger customers ask for.',
+    title: 'Labels & Packaging Operations and Systems | Decoded Ops',
+    description: 'Systems that put the right version on press every time, handle variable data without workarounds, and deliver the EDI your bigger customers ask for.',
     url: 'https://decodedops.co.uk/sectors/labels-packaging',
     images: [{ url: '/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Print MIS Software for Labels & Packaging | Decoded Ops',
-    description: 'A print MIS that puts the right version on press every time, handles variable data without workarounds, and delivers the EDI your bigger customers ask for.',
+    title: 'Labels & Packaging Operations and Systems | Decoded Ops',
+    description: 'Systems that put the right version on press every time, handle variable data without workarounds, and deliver the EDI your bigger customers ask for.',
   },
 };
 
@@ -55,10 +55,10 @@ const sectorSchema = {
 };
 
 const data: SectorV2Data = {
-  h1Lead: "Print MIS for labels and packaging:",
-  h1: "variable data and compliance labelling demand precision most systems can't deliver.",
+  h1Lead: "Sector · labels and packaging",
+  h1: "Variable data printing and compliance labelling demand precision most systems can't deliver.",
   eyebrow: "Sector · labels & packaging",
-  lede: "Labels and packaging businesses sit where print, compliance, and the supply chain meet, which is a lot to ask of a print MIS. There’s no tolerance for error, and turnaround is always tight.",
+  lede: "Labels and packaging businesses sit where print, compliance, and the supply chain meet, which is a lot to ask of a production system. There’s no tolerance for error, and turnaround is always tight.",
   heroHtml: `<figure class="d17 sx a925" data-od-id="hero-evidence" data-motion data-no="DO-ART-925" data-rev="01" data-tx="schematic"
         aria-label="Drawn plate DO-ART-925. One label SKU with three revisions. Revisions A and B are superseded and stopped at the version check. Revision C is live and is the only version released to the press. Hundreds of SKUs, one right version.">
   <div class="q-grid" aria-hidden="true"></div>
@@ -196,7 +196,7 @@ const data: SectorV2Data = {
     { icon: "i-settings", text: "Map substrate and press matching for accuracy" },
     { icon: "i-link", text: "Assess your customer integration and EDI readiness" },
     { icon: "i-search", text: "Find where compliance risk sits in your current processes" },
-    { icon: "i-badge-check", text: "Recommend a print MIS built for short-run, variable-data label production" },
+    { icon: "i-badge-check", text: "Recommend a production system built for short-run, variable-data label production" },
   ],
   keepReading: {
     service: {
@@ -207,10 +207,11 @@ const data: SectorV2Data = {
     },
     problems: [
       { label: "AI hype vs what would actually help", href: "/problems/ai-paralysis" },
-      { label: "Print MIS that doesn’t fit your business", href: "/problems/wrong-erp-software" },
+      { label: "An ERP that doesn’t fit your business", href: "/problems/wrong-erp-software" },
       { label: "If the server died tomorrow…", href: "/problems/disaster-recovery" },
     ],
     resources: [
+      { label: "ERP for printing companies", href: "/apps/works" },
       { label: "ERP selection playbook", href: "/resources/erp-selection-playbook" },
       { label: "RTO calculator", href: "/tools/rto-calculator" },
     ],

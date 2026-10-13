@@ -55,8 +55,8 @@ const sectorSchema = {
 };
 
 const data: SectorV2Data = {
-  h1Lead: "Promotional products software,",
-  h1: "without the spreadsheet chaos.",
+  h1Lead: "Promo merch · promotional products software",
+  h1: "Without the spreadsheet chaos.",
   eyebrow: "Sector · promotional merchandise",
   lede: "Every client wants something slightly different, on a deadline, at a price point that leaves no room for error.",
   body: "The businesses that do this well have their product data and their production process under control, whatever promotional products software they run. Most don’t, and it’s costing them.",

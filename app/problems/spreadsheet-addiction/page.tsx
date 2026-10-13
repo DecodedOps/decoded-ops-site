@@ -152,9 +152,8 @@ export default function SpreadsheetAddictionPage() {
    <section className="g-off p-hero" data-od-id="hero">
     <div className="wrap p-hero-grid">
      <div>
-      <span className="eyebrow">The problem</span>
       <h1 data-od-id="hero-h1">
-       <span className="h1-kw">Manual processes in spreadsheets:</span>{' '}
+       <span className="h1-kw">Problem · manual processes</span>{' '}
        The spreadsheet that runs your business is one corrupted file away from disaster.
       </h1>
       <p className="t-lede">It started as a tidy little order log. Now it&apos;s got five tabs, three people

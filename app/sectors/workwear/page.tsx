@@ -55,8 +55,8 @@ const sectorSchema = {
 };
 
 const data: SectorV2Data = {
-  h1Lead: "Workwear software,",
-  h1: "from someone who's run the floor.",
+  h1Lead: "Workwear · workwear software",
+  h1: "From someone who's run the floor.",
   eyebrow: "Sector · workwear",
   lede: "Personalised orders, decoration methods that vary by garment, and stock that has to match sizes, colours, and branding all at once.",
   body: "Generic tech advice and generic workwear software get this sector wrong from the start, because the production step sits between order and despatch, not after it.",
