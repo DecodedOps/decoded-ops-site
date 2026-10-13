@@ -1,0 +1,33 @@
+/* Commerce page layout only. Shared patterns live in app/design-system/site-v3.css. */
+.hero-split .btn-row{ margin:26px 0 0; align-items:center; gap:14px 28px }
+.hero .status{ margin:14px 0 0; color:var(--do-text-secondary) }
+
+/* web-to-stitch: the checked-before-production note beside the order screen */
+.w2s-proof{ display:grid; grid-template-columns:minmax(0,5fr) minmax(0,7fr); gap:24px 56px; align-items:center; margin-top:40px }
+.w2s-proof h3{ margin:0 0 10px; font-size:var(--do-text-xl); color:var(--do-text-primary) }
+.w2s-proof .t-body{ margin:0 0 12px; max-width:52ch }
+@media(max-width:900px){ .w2s-proof{ grid-template-columns:1fr } }
+
+/* editions */
+.area .go{ margin-top:auto }
+.combo{ margin:28px 0 0; padding-top:24px; border-top:1px solid var(--do-border-subtle); font-size:var(--do-text-lg); line-height:1.5;
+  font-weight:var(--do-weight-semibold); color:var(--do-text-primary); max-width:70ch }
+.area--here{ border-color:var(--do-border-default) }
+
+/* routes: site-v3's mobile stop grid gives the node two rows; these stops have three text rows, and the --3 modifier
+   sits after the mobile rule, so the stack is re-asserted here */
+@media(max-width:1000px){
+  .route:not(.d17 *){ grid-template-columns:1fr }
+  .route::before:not(.d17 *){ right:auto }
+  .route .stop:not(.d17 *) .node{ grid-row:1 / span 3; align-self:start }
+  .route .stop:not(.d17 *) > :not(.node){ grid-column:2 }
+}
+
+/* FAQ, always visible */
+.faq{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:0 56px; margin-top:32px }
+.faq-item{ padding:22px 0; border-top:1px solid var(--do-border-subtle) }
+.faq-item h3{ margin:0 0 8px; font-size:var(--do-text-lg); line-height:1.3; color:var(--do-text-primary) }
+.faq-item .t-card{ font-size:var(--do-text-base); max-width:58ch }
+@media(max-width:900px){ .faq{ grid-template-columns:1fr } }
+
+.stop-text a{ color:var(--do-text-primary); text-decoration:underline; text-underline-offset:3px }
