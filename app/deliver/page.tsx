@@ -5,6 +5,7 @@ import { IconSprite } from '@/components/IconSprite';
 import { OG_IMAGE, OG_IMAGE_PATH } from '@/lib/seo';
 import '@/app/d17-global.css';
 import '@/app/design-system/site-v3.css';
+import './deliver-v1.css';
 
 export const metadata: Metadata = {
   title: 'Business Process Improvement, ERP Delivery | Decoded Ops',

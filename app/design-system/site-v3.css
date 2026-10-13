@@ -33,8 +33,11 @@ h1,h2,h3{ text-wrap:balance }
 
 /* ── Hero · split head ─────────────────────────────────────────────────── */
 .hero{ padding:72px 0 88px }
+/* SEO H1 (CR-WEB-076): the keyword-led line is longer than the mockup line, so the copy column
+   is widened and the 14ch cap dropped -- the column now bounds the measure. Measured in headless
+   Chrome (Outfit 800, line-height 1.2): clarity / transform fit at the full 59.2px cap; deliver and
+   retained need a slightly smaller cap, which is per-route further down. */
 .hero-head{ display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:48px; align-items:end }
-.hero h1{ max-width:14ch }
 .hero .t-lede{ margin:0; color:color-mix(in srgb, var(--do-prussian-blue) 74%, transparent) }
 .hero .btn-row{ margin:26px 0 0 }
 @media(max-width:960px){ .hero-head{ grid-template-columns:1fr; gap:24px; align-items:start } }
