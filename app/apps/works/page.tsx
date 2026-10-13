@@ -56,6 +56,28 @@ const dataAppFaqSchema = {
   ],
 };
 
+const softwareSchema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'SoftwareApplication',
+      name: 'Decoded Works',
+      applicationCategory: 'BusinessApplication',
+      operatingSystem: 'Web',
+      provider: { '@type': 'Organization', name: 'Decoded Ops', url: 'https://decodedops.co.uk' },
+      url: 'https://decodedops.co.uk/apps/works',
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://decodedops.co.uk/' },
+        { '@type': 'ListItem', position: 2, name: 'Software', item: 'https://decodedops.co.uk/apps' },
+        { '@type': 'ListItem', position: 3, name: 'Works', item: 'https://decodedops.co.uk/apps/works' },
+      ],
+    },
+  ],
+};
+
 // Supplier coverage row on the case-study panel: 89 suppliers on file, 40 active.
 const supplierDots = Array.from({ length: 89 }, (_, i) => i);
 
@@ -63,6 +85,7 @@ export default function DataAppPage() {
   return (
     <>
       <JsonLd data={dataAppFaqSchema} />
+      <JsonLd data={softwareSchema} />
       <IconSprite />
       <WorksIconSprite />
       <main id="content">
@@ -71,12 +94,11 @@ export default function DataAppPage() {
         <section className="g-off hero" data-od-id="hero">
           <div className="wrap hero-split">
             <div>
-              <span className="eyebrow">Decoded Works &middot; the ERP for decorated goods</span>
-              <h1 data-od-id="hero-title"><span className="h1-kw">An ERP for printing companies:</span> the ERP I couldn&rsquo;t buy for my clients.</h1>
+              <h1 data-od-id="hero-title"><span className="h1-kw">Decoded Works &middot; ERP for printing companies</span> The ERP I couldn&rsquo;t buy for my clients.</h1>
               <p className="t-lede">Every Clarity Audit ends in a written brief, and for years the same brief asked for an ERP for printing companies built for decorated goods. Nothing on the market covered it: supplier feeds, decoration data, blank-to-finished mapping, artwork held against the job. So I built the missing piece.</p>
               <p className="t-body">Engagement by engagement it grew into an ERP for a printing company or embroiderer, and today it runs the whole operation: catalogue, orders, purchasing, stock, production and despatch. It still plays both ways. Alongside the platform you already own, or as the system itself.</p>
               <div className="btn-row">
-                <Link className="btn btn--primary" href="/contact" data-od-id="hero-cta">Book a free 60 minute call</Link>
+                <Link className="btn btn--primary" href="/contact?product=works" data-od-id="hero-cta">Book a discovery call</Link>
                 <Link className="go" href="/clarity">See how a Clarity Audit works <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
               </div>
             </div>
@@ -240,7 +262,7 @@ export default function DataAppPage() {
               </article>
               <article className="area" data-od-id="tier-2">
                 <div className="area-top"><span className="ic-tile"><svg className="ic ic-24" aria-hidden="true"><use href="#i-link" /></svg></span><span className="num">02</span></div>
-                <h3>Connected <span className="flag">Most take this</span></h3>
+                <h3>Connected <span className="flag">Recommended</span></h3>
                 <p className="t-card">Up to 10 feeds, up to 3 channels, platform integration.</p>
               </article>
               <article className="area" data-od-id="tier-3">
@@ -250,6 +272,7 @@ export default function DataAppPage() {
               </article>
             </div>
             <p className="t-body tier-note">What this costs depends on scope, so it&rsquo;s quoted once I know what your setup needs rather than read off a list. I&rsquo;m not VAT registered, so there&rsquo;s no VAT to add. How I price everything else is on the <Link className="go" href="/pricing">pricing page</Link>.</p>
+            <p className="t-body tier-note">Already using Decoded Catalogue or Proof? Works includes both. You only pay the difference.</p>
           </div>
         </section>
 
@@ -297,6 +320,80 @@ export default function DataAppPage() {
           </div>
         </section>
 
+        {/* ══════════ 07b · SHAPED TO YOU (off-white) ══════════ */}
+        <section className="g-off" data-od-id="shaped">
+          <div className="wrap split-6">
+            <div>
+              <span className="eyebrow">Shaped to you</span>
+              <h2 data-od-id="shaped-h2">Built on a proven core, shaped to how you work.</h2>
+              <p className="t-lede">Off-the-shelf tools make you work their way. Works is set up around yours.</p>
+              <p className="t-body">If you&rsquo;ve looked at ERP for printing companies and found it built for somebody else&rsquo;s business, this is the difference. When the way you sell changes, you tell me and I change it for you, without touching the core.</p>
+            </div>
+            <ul className="ticks" data-od-id="shaped-list">
+              <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>Your suppliers and catalogue, and which of their ranges you sell</span></li>
+              <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>How orders flow from quote to despatch</span></li>
+              <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>Your decoration methods and production stations</span></li>
+              <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>Which channels and accounts connect</span></li>
+            </ul>
+          </div>
+        </section>
+
+        {/* ══════════ 07c · WHAT HAPPENS NEXT (tint) ══════════ */}
+        <section className="g-tint" data-od-id="what-happens-next">
+          <div className="wrap">
+            <div className="route-head">
+              <div>
+                <span className="eyebrow">What happens next</span>
+                <h2 data-od-id="next-h2">Three steps to running it.</h2>
+              </div>
+              <p className="lede">You know what setup involves before anything is booked. <Link className="go" href="/apps#what-happens-next">How getting it works <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link></p>
+            </div>
+            <ol className="route route--3" data-od-id="next-route">
+              <li className="stop" data-od-id="next-call"><span className="node"><svg className="ic ic-24" aria-hidden="true"><use href="#i-phone" /></svg></span><span className="t-meta">Step 1</span><h3>Discovery call</h3><p className="t-card stop-text">We talk through what you run now: your suppliers, your orders, and where the keying-in happens.</p></li>
+              <li className="stop" data-od-id="next-audit"><span className="node"><svg className="ic ic-24" aria-hidden="true"><use href="#i-search" /></svg></span><span className="t-meta">Step 2</span><h3>Audit first, if it&rsquo;s needed</h3><p className="t-card stop-text">I tell you if a <Link href="/clarity">Clarity Audit</Link> should come first, and why.</p></li>
+              <li className="stop" data-od-id="next-setup"><span className="node"><svg className="ic ic-24" aria-hidden="true"><use href="#i-settings" /></svg></span><span className="t-meta">Step 3</span><h3>Set up and connected</h3><p className="t-card stop-text">I set it up, connect it to what you already run, and move your data across.</p></li>
+            </ol>
+          </div>
+        </section>
+
+        {/* ══════════ 07d · FOUR PRODUCTS (off-white) ══════════ */}
+        <section className="g-off" data-od-id="products">
+          <div className="wrap">
+            <div className="route-head">
+              <div>
+                <span className="eyebrow">The software</span>
+                <h2 data-od-id="products-h2">Four products, one way of working.</h2>
+              </div>
+              <p className="lede">Start where the problem is. Add the rest when you need it.</p>
+            </div>
+            <div className="areas areas--4" data-od-id="product-cards">
+              <div className="area area--here" data-od-id="product-works" aria-current="page">
+                <div className="area-top"><span className="ic-tile"><svg className="ic ic-24" aria-hidden="true"><use href="#i-workflow" /></svg></span></div>
+                <h3>Works <span className="flag">You&rsquo;re here</span></h3>
+                <p className="t-card">One system for the whole operation</p>
+              </div>
+              <Link className="area" href="/apps/proof" data-od-id="product-proof">
+                <div className="area-top"><span className="ic-tile"><svg className="ic ic-24" aria-hidden="true"><use href="#i-badge-check" /></svg></span></div>
+                <h3>Proof</h3>
+                <p className="t-card">Artwork approval and proofing</p>
+                <span className="go">See Proof <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></span>
+              </Link>
+              <Link className="area" href="/apps/commerce" data-od-id="product-commerce">
+                <div className="area-top"><span className="ic-tile"><svg className="ic ic-24" aria-hidden="true"><use href="#i-shopping-cart" /></svg></span></div>
+                <h3>Commerce</h3>
+                <p className="t-card">Your online shop and trade portal</p>
+                <span className="go">See Commerce <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></span>
+              </Link>
+              <Link className="area" href="/apps/catalogue" data-od-id="product-catalogue">
+                <div className="area-top"><span className="ic-tile"><svg className="ic ic-24" aria-hidden="true"><use href="#i-database" /></svg></span></div>
+                <h3>Catalogue</h3>
+                <p className="t-card">Supplier feeds in, one clean catalogue, feeds out</p>
+                <span className="go">See Catalogue <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></span>
+              </Link>
+            </div>
+          </div>
+        </section>
+
         {/* ══════════ 08 · CLOSER (off-white) ══════════ */}
         <section className="g-off closer" data-od-id="cta">
           <div className="wrap closer-grid">
@@ -304,7 +401,7 @@ export default function DataAppPage() {
             <div>
               <p className="lede">No pitch. If it turns out you don&rsquo;t need this, that&rsquo;s what you&rsquo;ll hear.</p>
               <div className="btn-row">
-                <Link className="btn btn--primary" href="/contact" data-od-id="cta-primary">Book a free 60 minute call</Link>
+                <Link className="btn btn--primary" href="/contact?product=works" data-od-id="cta-primary">Book a discovery call</Link>
                 <Link className="go" href="/apps">See the other systems <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
               </div>
             </div>
