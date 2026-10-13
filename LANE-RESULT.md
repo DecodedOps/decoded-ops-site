@@ -167,3 +167,42 @@ shared sizes once the column was widened.
 3. **`/pricing`, `/how-i-build`, `/small-business`, the `/problems/*` and the other seven
    `/sectors/*` routes carry spec H1s in the table but are out of scope for this lane** — they are
    later sets. Their spec lines are untouched.
+
+## Fix 1 - H1 lead-in pattern (web076-set1-h1fit, CR-WEB-076)
+
+Measured problem: the SEO H1s set the whole keyword sentence at the hero display size, wrapping
+to 5 lines (home, /clarity, /transform) or 4 (/deliver, /retained, /sectors/print-promotional)
+at 1440px. Fix: one `<h1>` per route built as a keyword lead-in span (`.h1-kw` in
+`app/design-system/site-v3.css` - display:block, 0.42em / 0.5em mobile, weight 600,
+`--do-text-secondary` on light and `--do-text-muted-on-dark` on `.g-navy`, normal tracking,
+0.35em bottom margin) followed by the designed headline at the plate's own size and wrapping.
+The plate's `.hero h1{max-width:14ch}` and 7/5 `hero-head` split are restored in site-v3.css;
+the temporary font caps in `deliver-v1.css` and `retained-v1.css` are deleted; the homepage
+`section.stage h1` rule is back to the plate's `clamp(2.5rem,5.6vw,4.6rem)` / `-0.038em` /
+`13ch` / on-dark colour. /sectors/print-promotional has no lead-in: one sentence, kept at the
+reduced `clamp(1.9rem,4vw,3.4rem)` with `max-width:none` (its own print-v2.css override of the
+14ch cap) so it holds <=4 lines at 1440.
+
+Final H1 markup per route (verified in prerendered `.next/server/app/*.html` - one `<h1>` each):
+
+| Route | H1 markup |
+|---|---|
+| `/` | `<h1><span class="h1-kw">Operations consultant for print and embroidery:</span> I find what's quietly costing you money.</h1>` |
+| `/clarity` | `<h1 data-od-id="hero-h1"><span class="h1-kw">Process audit for print and embroidery:</span> One day on site. One written plan.</h1>` |
+| `/deliver` | `<h1 data-od-id="hero-h1"><span class="h1-kw">Business process improvement:</span> I get it built. And you keep the system that runs it.</h1>` |
+| `/transform` | `<h1 data-od-id="hero-h1"><span class="h1-kw">Digital transformation consultancy for print:</span> The plan, executed.</h1>` |
+| `/retained` | `<h1 data-od-id="hero-h1"><span class="h1-kw">Fractional CTO for print and embroidery.</span> Not a project. A standing decision-maker.</h1>` |
+| `/sectors/print-promotional` | `<h1 data-od-id="hero-title">Print shop management software starts with knowing what your current process actually costs</h1>` |
+
+The /deliver designed line reverts to the plate text ("I get it built. And you keep the system
+that runs it."), undoing the earlier pass's rewrite. Reading order of each H1's full text is
+unchanged from the SEO spec line; the keyword stays inside the H1 so body counts do not drop.
+Metadata and JSON-LD untouched.
+
+Verification: `npx tsc --noEmit` clean; `npx eslint` on the six page files 0 errors (18
+pre-existing `no-img-element` warnings); `npm run build` exit 0, all six routes prerendered;
+one `<h1>` per route confirmed in the built HTML. Line counts at 1440px are from the plate
+geometry (the designed lines are the plate's own text at the plate's own size and measure) -
+no browser render was taken in this lane (no-servers constraint), so the <=4-line claim for
+print-promotional rests on the previous lane's headless-Chrome measurement of the same CSS,
+which this lane did not change.
