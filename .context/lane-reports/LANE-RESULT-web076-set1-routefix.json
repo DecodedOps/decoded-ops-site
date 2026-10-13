@@ -1,0 +1,19 @@
+{
+  "lane": "web076-set1-routefix",
+  "wo": "wo-staging-design-review-2026-10",
+  "unit": "web076-set1-routefix",
+  "commits": [
+    { "sha": "5bb252236515f32f8bfbed1aca06d98d6c00e8d9", "subject": "fix(css): re-assert mobile single-column route after .route--N modifiers (CR-WEB-076 fix 2)" }
+  ],
+  "filesChanged": ["app/design-system/site-v3.css"],
+  "verify": {
+    "tsc": "clean",
+    "tests": "n/a",
+    "escapeGrep": "0 hits"
+  },
+  "deviations": [
+    "Included .route--7 in the appended mobile block alongside the brief's .route--3/.route--5/.route--6 — it has the same equal-specificity grid-template-columns/::before fight after line 127 (lines 381-382) and would have stayed 7-column on phones otherwise."
+  ],
+  "blockers": [],
+  "done": true
+}
