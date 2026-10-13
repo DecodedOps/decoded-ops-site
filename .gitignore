@@ -56,3 +56,7 @@ OPENCODE_INSTRUCTIONS.md
 supabase/MIGRATION*.md
 
 .vercel
+# lane / loop runtime churn (wo-github-org-move tidy, 13 Oct 2026)
+.context/lanes/*.log
+.context/lanes/_archive/
+opencode-run.log
