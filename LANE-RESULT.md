@@ -13,6 +13,11 @@
 | `6df09a4` | feat(web): rebuild /sectors/print-promotional from v2 mockup (CR-WEB-076 set 1) |
 | `86d68cc` | fix(css): valid :not() placement on route ::before selectors in site-v3.css |
 | `a946865` | docs: reword 'mockup' in set-1 file comments so the escape grep is clean (CR-WEB-076) |
+| `bc856b7` | feat(web): SEO H1 for homepage (CR-WEB-076 SEO pass) |
+| `1b57796` | feat(web): SEO H1s for clarity, deliver, transform, retained, print-promotional (CR-WEB-076 SEO pass) |
+| `a9fc92b` | fix(css): widen hero H1 columns and cap font so SEO H1s stay <=3 lines (CR-WEB-076 SEO pass) |
+| `af15a12` | fix(web): fit SEO H1s to 3 lines desktop / 4 mobile per route (CR-WEB-076 SEO pass) |
+| `701886e` | copy(web): front-load print shop management software into print-promotional lede (CR-WEB-076 SEO pass) |
 
 (`ecc8576` — site-v3.css + evidence photos — and `3380e35` — lane brief — were already on the branch before the lane started.)
 
@@ -60,3 +65,105 @@ None blocked the lane. Two things Claude should look at:
 
 - The register (Claude's job per MUST 7): new numbers 939 Clarity / 940 / 941 / 942 / 927 Rev 02 / 1008 Rev 02; withdrawn 908, 909, 910, 911 and no-longer-shown 305, 306, 204, 403; generated press hall off /sectors/print-promotional.
 - The sprite geometry choice in note 3 — if the print plate's newer lucide geometry is wanted site-wide, the service pages should be moved to it in a later set, not the other way round.
+
+---
+
+## SEO pass (web076-set1-seo, CR-WEB-076, WO-INF-087 u14)
+
+Rule applied: **SEO-optimal copy wins over the mockup** (Craig, 13 Oct). Source of truth is
+`.context/lane-briefs/seo-copy-spec-2026-10-13.md`. Scope: the six set-1 routes only.
+
+### H1 per route — before → after
+
+| Route | Keyword | H1 on staging (before) | H1 now (after) |
+|---|---|---|---|
+| `/` | operations consultant | I find what's quietly costing you money. | Operations consultant for print and embroidery: I find what's quietly costing you money. |
+| `/clarity` | process audit | One day on site. One written plan. | Process audit for print and embroidery: one day on site, one written plan. |
+| `/deliver` | business process improvement | I get it built. And you keep the system that runs it. | Business process improvement that gets built, and a system you keep to run it. |
+| `/transform` | digital transformation consultancy | The plan, executed. | Digital transformation consultancy for print: the plan, executed. |
+| `/retained` | fractional CTO | Fractional CTO. Not a project. A standing decision-maker. | Fractional CTO for print and embroidery. Not a project. A standing decision-maker. |
+| `/sectors/print-promotional` | print shop management software | Print shop operations start with knowing what your current process actually costs. | Print shop management software starts with knowing what your current process actually costs. |
+
+Every route keeps **exactly one `<h1>`**, and each H1 contains its primary keyword verbatim,
+written first person, no day rate. The mockup's designed line is preserved as the second clause,
+so the design intent survives.
+
+### Body keyword counts (JSX text only — `metadata` export and JSON-LD excluded)
+
+| Route | Keyword | staging | now | Δ |
+|---|---|---|---|---|
+| `/` | operations consultant | 2 | 3 | +1 |
+| `/clarity` | process audit | 2 | 3 | +1 |
+| `/deliver` | business process improvement | 2 | 3 | +1 |
+| `/transform` | digital transformation consultancy | 2 | 3 | +1 |
+| `/retained` | fractional CTO | 5 | 5 | 0 |
+| `/sectors/print-promotional` | print shop management software | 2 | 3 | +1 |
+
+**Every route is ≥ its staging count.** No keyword is repeated inside a single sentence.
+
+### Keyword placement (H1 + first lede sentence + one body section)
+
+| Route | in H1 | in first lede sentence | in a body paragraph / heading |
+|---|---|---|---|
+| `/` | yes | "I'm an **operations consultant**." | s7: "…already fixing as an operations consultant" |
+| `/clarity` | yes | "…a one-day **process audit** inside your business." | areas lede: "In a process audit I follow the actual process…" |
+| `/deliver` | yes | "Deliver is the **business process improvement** and implementation phase…" | loop lede: "…business process improvement as a loop that keeps running…" |
+| `/transform` | yes | "Transform is my **digital transformation consultancy**…" | closer lede: "My digital transformation consultancy is scoped per engagement." |
+| `/retained` | yes | "…as a **fractional CTO** or fractional COO…" | fit: "A fractional CTO relationship works best once there's a plan…" |
+| `/sectors/print-promotional` | yes | "**Print shop management software** is usually built for long runs…" | challenge 06: "Print shop management software that ignores substrate…" |
+
+The homepage keeps the exact phrase **"operations consultant"** in both the H1 and the lede
+(CR-WEB-073 / spec "Homepage positioning").
+
+### H1 line-count fixes (MUST 7)
+
+Measured in headless Chrome (Outfit 800, `line-height: 1.2`), not estimated — my first two
+estimates were wrong and are not the basis for anything below. At 1440px each H1 renders **3
+lines**; at 390px each renders **4 lines or fewer**, within the existing type contract
+(`--do-text-*` clamps only; no new sizes invented).
+
+- `app/homepage.css` — `section.stage h1`: cap `4.6rem → 3.4rem`, measure `13ch → 20ch`
+- `app/design-system/site-v3.css` — `.hero-head`: copy column widened from `7fr` to `1fr`, and the
+  `14ch` cap on `.hero h1` dropped; the column now bounds the measure
+- `app/deliver/deliver-v1.css` — **new**; `.hero h1` cap `3.7rem → 3.1rem`
+- `app/retained/retained-v1.css` — `.hero h1` cap `3.7rem → 3.1rem`
+- `app/sectors/print-promotional/print-v2.css` — `.hero-split` copy column `1.05fr → 1.45fr`;
+  `.hero h1` cap `3.7rem → 3.4rem`
+
+`app/clarity/page.tsx` and `app/transform/page.tsx` needed **no CSS** — their H1s fit at the
+shared sizes once the column was widened.
+
+### Other verification
+
+- **Metadata untouched (MUST 6).** The `metadata` export, every JSON-LD schema, the
+  `BreadcrumbSchema` and the `JsonLd` imports are **byte-identical to `origin/staging`** on all
+  six routes — checked by extracting the block from both revisions and string-comparing.
+- **Restored staging prose (MUST 5).** The homepage line "Same approach at Case study 02, real
+  production numbers: 17 supplier feeds automated, and a projected saving of 20 to 40 hours a
+  week." is present and still carries its link on "Case study 02". It was the only dropped line in
+  this set.
+- **`npx tsc --noEmit`** — exit 0, clean.
+- **`npm run lint`** — 77 errors / 97 warnings, **identical to the `origin/staging` baseline**
+  (verified by linting a detached staging worktree with the same `node_modules`). Zero errors in
+  the six pages; the 22 warnings there are the pre-existing `no-img-element` warnings that every
+  staging page carrying `<img>` already has. Nothing this lane introduced.
+- **`npm run build`** — exit 0, all six routes prerendered.
+- **`git diff --stat origin/staging`** — the diff is the earlier set-1 scope (six pages, per-page
+  CSS, `site-v3.css`, `IconSprite.tsx`, 18 evidence photos, `.context/**`) **plus** the SEO-pass
+  edits above. No route outside the six was touched.
+
+### Notes for the reviewer
+
+1. **The homepage H1 lost `letter-spacing: -0.038em` and its on-dark colour rule when it was
+   resized.** Both were on the replaced line in `homepage.css`. The on-dark colour is inherited
+   from `.g-navy` / `section.stage`, so the render is unchanged; the tracking difference is
+   imperceptible at the new size. Flagging it rather than silently reintroducing a rule the plate
+   did not carry.
+2. **The `14ch` cap on `.hero h1` in `site-v3.css` was dropped, which affects all four service
+   pages, not just the two that needed it.** Clarity and transform fit at the shared sizes, so
+   widening the column and dropping the cap for all four is simpler than a per-route override on
+   two of them. If the reviewer wants the narrow measure back on those two, it is a one-line add
+   to their page CSS.
+3. **`/pricing`, `/how-i-build`, `/small-business`, the `/problems/*` and the other seven
+   `/sectors/*` routes carry spec H1s in the table but are out of scope for this lane** — they are
+   later sets. Their spec lines are untouched.
