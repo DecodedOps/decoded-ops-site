@@ -11,7 +11,7 @@
 /* the route--3 modifier sits after site-v3's mobile rule, so the stack is re-asserted here */
 @media(max-width:1000px){
   .route--3:not(.d17 *){ grid-template-columns:1fr }
-  .route--3::before:not(.d17 *){ right:auto }
+  .route--3:not(.d17 *)::before{ right:auto }
   .route--3 .stop:not(.d17 *) .node{ grid-row:1 / span 3; align-self:start }
   .route--3 .stop:not(.d17 *) > :not(.node){ grid-column:2 }
 }

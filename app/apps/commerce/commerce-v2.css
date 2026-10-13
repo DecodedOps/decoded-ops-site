@@ -18,7 +18,7 @@
    sits after the mobile rule, so the stack is re-asserted here */
 @media(max-width:1000px){
   .route:not(.d17 *){ grid-template-columns:1fr }
-  .route::before:not(.d17 *){ right:auto }
+  .route:not(.d17 *)::before{ right:auto }
   .route .stop:not(.d17 *) .node{ grid-row:1 / span 3; align-self:start }
   .route .stop:not(.d17 *) > :not(.node){ grid-column:2 }
 }
