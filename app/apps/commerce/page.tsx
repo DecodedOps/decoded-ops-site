@@ -1,398 +1,390 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { D17Motion } from '@/components/D17Motion';
+import { IconSprite } from '@/components/IconSprite';
+import { CommerceIconSprite } from './CommerceIconSprite';
 import { JsonLd } from '@/components/JsonLd';
 import '@/app/d17-global.css';
 import '@/app/d17-apps-cases.css';
+import '@/app/design-system/site-v3.css';
+import './commerce-v2.css';
 import { OG_IMAGE, OG_IMAGE_PATH } from '@/lib/seo';
 
+const DESCRIPTION = 'Decoded Commerce is a B2B ordering portal and online shop for decorated goods: logo upload with live decoration prices, trade accounts and school or club stores.';
+const TITLE = 'B2B Ordering Portal for Decorated Goods | Decoded Ops';
+
 export const metadata: Metadata = {
-  title: 'B2B Ecommerce Platform for Wholesale | Decoded Ops',
-  description: 'Decoded Commerce is a B2B ecommerce platform built around how you actually sell: company accounts, spend limits and three tiers priced on what you need.',
+  title: TITLE,
+  description: DESCRIPTION,
   alternates: { canonical: '/apps/commerce' },
   openGraph: {
     type: 'website',
-    title: 'B2B Ecommerce Platform for Wholesale | Decoded Ops',
-    description: 'Decoded Commerce is a B2B ecommerce platform built around how you actually sell: company accounts, spend limits and three tiers priced on what you need.',
+    title: TITLE,
+    description: DESCRIPTION,
     url: 'https://decodedops.co.uk/apps/commerce',
     images: OG_IMAGE,
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'B2B Ecommerce Platform for Wholesale | Decoded Ops',
-    description: 'Decoded Commerce is a B2B ecommerce platform built around how you actually sell: company accounts, spend limits and three tiers priced on what you need.',
+    title: TITLE,
+    description: DESCRIPTION,
     images: [OG_IMAGE_PATH],
   },
 };
 
-const commerceFaqSchema = {
+const faqs = [
+  {
+    question: 'Can I keep my existing website?',
+    answer: 'Often, yes. Commerce can serve the customers your current site doesn’t, like trade accounts or school shops, and if you run Works too, it keeps a Shopify, WooCommerce or Magento site fed. Whether to move across is something we settle on the call.',
+  },
+  {
+    question: 'Do my trade customers get their own prices?',
+    answer: 'Yes, with Trade. Each company account gets its own price list, staff logins with roles, spend limits and order approvals.',
+  },
+  {
+    question: 'Can each school or club have its own shop?',
+    answer: 'Yes, with Stores. Each school, club or company gets its own shop with its own branding, products and prices, and every order lands in one queue.',
+  },
+  {
+    question: 'Does it work with my stock system?',
+    answer: 'Run alongside Decoded Works, the shop reads the same stock as the warehouse. If you run another stock system, connecting it is something we scope on the call.',
+  },
+];
+
+const commerceSchema = {
   '@context': 'https://schema.org',
   '@graph': [
     {
       '@type': 'FAQPage',
-      mainEntity: [
-        {
-          '@type': 'Question',
-          name: 'What are the three tiers?',
-          acceptedAnswer: { '@type': 'Answer', text: 'Core is a single storefront with catalogue, customer accounts and manual pricing. Connected adds company accounts, spend limits, approval workflows and quote negotiation. Scaled adds multi-site, ERP integration and bespoke checkout and pricing.' },
-        },
-        {
-          '@type': 'Question',
-          name: 'How is this different from a bespoke build?',
-          acceptedAnswer: { '@type': 'Answer', text: 'It is built on the open-source B2B commerce core with real foundations, not a from-scratch build. That keeps the cost well under a bespoke quote for the same thing.' },
-        },
-        {
-          '@type': 'Question',
-          name: 'Does it integrate with ERP systems?',
-          acceptedAnswer: { '@type': 'Answer', text: 'ERP integration is part of the Scaled tier. A full migration off an existing platform is scoped and quoted separately, not read off a tier list.' },
-        },
+      mainEntity: faqs.map((f) => ({
+        '@type': 'Question',
+        name: f.question,
+        acceptedAnswer: { '@type': 'Answer', text: f.answer },
+      })),
+    },
+    {
+      '@type': 'SoftwareApplication',
+      name: 'Decoded Commerce',
+      applicationCategory: 'BusinessApplication',
+      operatingSystem: 'Web',
+      provider: {
+        '@type': 'Organization',
+        name: 'Decoded Ops',
+        url: 'https://decodedops.co.uk',
+      },
+      url: 'https://decodedops.co.uk/apps/commerce',
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://decodedops.co.uk/' },
+        { '@type': 'ListItem', position: 2, name: 'Software', item: 'https://decodedops.co.uk/apps' },
+        { '@type': 'ListItem', position: 3, name: 'Commerce', item: 'https://decodedops.co.uk/apps/commerce' },
       ],
     },
   ],
 };
 
+// phase 2: link to sub-page
+const TRADE_HREF = '#trade';
+// phase 2: link to sub-page
+const STORES_HREF = '#stores';
+
 export default function CommercePage() {
   return (
     <>
-      <JsonLd data={commerceFaqSchema} />
-      {/* 1 · HERO SPLIT + DO-ART-946 */}
-      <section className="g-off" data-od-id="hero">
-        <div className="wrap hero-split">
-          <div>
-            <span className="eyebrow">Decoded Commerce · the trade storefront that runs off Works</span>
-            <h1>A storefront that fits how you actually sell.</h1>
-            <div className="hero-body">
-              <p>Three tiers, priced on what you need rather than how many days it takes. Where a client
-                wants more than a tier covers, that&rsquo;s scoped and costed separately.</p>
-              <p>It&rsquo;s a B2B ecommerce platform, built on an open-source commerce starter: company accounts, spend limits,
-                approval workflows, quote negotiation, order editing, and a full storefront and
-                checkout. Real foundations, not a from-scratch build, which keeps the cost well under a
-                bespoke quote for the same thing.</p>
+      <JsonLd data={commerceSchema} />
+      <IconSprite />
+      <CommerceIconSprite />
+      <main id="content">
+
+        {/* ══════════ 01 · HERO ══════════ */}
+        <section className="g-off hero" data-od-id="hero">
+          <div className="wrap hero-split">
+            <div>
+              <h1 data-od-id="hero-title"><span className="h1-kw">Decoded Commerce &middot; B2B ordering portal</span>A storefront that fits how you actually sell.</h1>
+              <p className="t-lede" style={{ marginTop: 20 }}>A B2B ordering portal and webstore software for decorators: your shop in your brand, trade customers ordering on account, and a shop for every school, club or company you supply.</p>
+              <p className="t-body" style={{ margin: '12px 0 0', maxWidth: '56ch' }}>It’s built on an open-source commerce starter, so the foundations are real rather than built from scratch, and decoration is built into every shop.</p>
+              <div className="btn-row">
+                <Link className="btn btn--primary" href="/contact?product=commerce" data-od-id="hero-cta">Book a discovery call</Link>
+                <Link className="go" href="#web-to-stitch">How decoration works <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+              </div>
             </div>
-            <div className="btn-row" style={{ marginTop: 30 }}>
-              <Link className="btn btn--primary" href="/contact">Talk about your storefront</Link>
-              <Link className="btn btn--ghost btn-arrow" href="#pricing">How I price this</Link>
+            <div>
+              <figure className="shot" data-od-id="shot-storefront">
+                <img src="/images/site/screens/commerce/do-art-1027a-commerce-storefront.webp" width={1600} height={1000} alt="Decoded Commerce storefront home page in the shop's own brand, sample data." loading="eager" />
+                <figcaption><b>Storefront</b><span>Your brand, your domain &middot; sample data</span></figcaption>
+              </figure>
+              <p className="t-meta status">Running at Hanicks ahead of its public launch</p>
             </div>
           </div>
+        </section>
 
-          <div className="hero-shot" dangerouslySetInnerHTML={{ __html: `
-<figure class="d17 sx a946" data-od-id="hero-visual" data-motion data-no="DO-ART-946" data-rev="01" data-tx="photo"
-        aria-label="Product screen DO-ART-946. A Decoded Commerce trade storefront, signed in as a trade account: a filtered catalogue of decorated workwear and merchandise with range and decoration method facets, the account's own price list on every product, and a quote request for a hundred and fifty embroidered polos sitting alongside the basket. Trade pricing per account, quotes next to the basket, one catalogue with the warehouse.">
-  <div class="d17-ph"><img src="/images/d17/apps-cases/gen-press-hall-03697e.webp" alt="" width="1024" height="1024"></div>
-  <div class="d17-scan" aria-hidden="true"></div>
-  <div class="sx-top d17-mono" aria-hidden="true"><span>Decoded Commerce · trade storefront</span><span>In build at Hanicks</span></div>
-  <div class="stage" aria-hidden="true">
-    <div class="mw">
-      <div class="mw-bar"><span class="dots"><i></i><i></i><i></i></span><span class="crumb"><span>Commerce ›</span> Full catalogue</span><span class="pill">SIGNED IN</span></div>
-      <div class="acct"><span>Trade account · your price list applies</span><b>Basket 2 · Quotes 1</b></div>
-      <div class="mw-main">
-        <h5>Full trade catalogue</h5>
-        <p class="s">Decoration-ready lines, live stock, prices for your account</p>
-        <div class="shop">
-          <div class="facets">
-            <div class="fh">Range</div>
-            <label class="on"><i></i>Workwear</label><label><i></i>Promo</label><label><i></i>Packaging</label>
-            <div class="fh">Decoration</div>
-            <label class="on"><i></i>Embroidery</label><label><i></i>Screen print</label><label><i></i>DTF</label><label><i></i>Engraving</label>
-          </div>
-          <div class="tiles">
-            <div class="tile m-rise" style="animation-delay:.1s"><img src="/images/d17/apps-cases/prod-polo-a16032.webp" alt=""><div class="tb"><div class="stock">In stock</div><div class="nm">Piqué polo</div><div class="pr"><b>Your price</b><i></i></div><div class="act"><span>Quote</span><span>Add</span></div></div></div>
-            <div class="tile m-rise" style="animation-delay:.2s"><img src="/images/d17/apps-cases/prod-hivis-c5b3cd.webp" alt=""><div class="tb"><div class="stock">In stock</div><div class="nm">Hi-vis vest</div><div class="pr"><b>Your price</b><i></i></div><div class="act"><span>Quote</span><span>Add</span></div></div></div>
-            <div class="tile m-rise" style="animation-delay:.3s"><img src="/images/d17/apps-cases/cat-promo-89c58a.webp" alt=""><div class="tb"><div class="stock">Made to order</div><div class="nm">Ceramic mug</div><div class="pr"><b>Your price</b><i></i></div></div></div>
-            <div class="tile m-rise" style="animation-delay:.4s"><img src="/images/d17/apps-cases/prod-mailer-9c1448.webp" alt=""><div class="tb"><div class="stock">In stock</div><div class="nm">Kraft mailer box</div><div class="pr"><b>Your price</b><i></i></div></div></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="quote m-pop" style="animation-delay:.9s"><span class="l">Quote request · sent</span><b>150 × piqué polo</b><p>Embroidered left chest, logo from your vault. Approver: purchasing lead.</p></div>
-  </div>
-  <div class="sx-foot">
-    <div class="sx-bar" aria-hidden="true"></div>
-    <p class="sx-say">Their prices, their approvals, <em>one catalogue with the warehouse.</em></p>
-    <span class="d17-mark">decodedops.co.uk · DO-ART-946 · Rev 01</span>
-  </div>
-</figure>` }} />
-          <p className="shot-caption">Trade pricing per account, quote requests alongside the basket, and
-            a catalogue that reads from the same data as the warehouse.</p>
-        </div>
-      </section>
-
-      {/* 2 · FEATURES TRIPLET · per tier */}
-      <section className="g-white" data-od-id="tiers">
-        <div className="wrap">
-          <span className="eyebrow">What each tier is</span>
-          <h2>Priced on functionality, not on days.</h2>
-          <p className="lede" style={{ marginTop: 16 }}>You pick the tier by what the business needs to do,
-            not by how long I think it&rsquo;ll take me. The scope is written down before anything starts.</p>
-
-          <div className="grid grid--3">
-            <div className="feature" data-od-id="tier-core">
-              <div className="feature-mark" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"
-                     strokeLinecap="round" strokeLinejoin="round">
-                  <rect x="3" y="4" width="18" height="16" rx="2.5" /><path d="M3 9h18" />
-                </svg>
-              </div>
-              <h3>Core</h3>
-              <p className="feature-meta">Single storefront</p>
-              <p>Product catalogue, customer accounts and logins, manual pricing tiers. No approval
-                workflow. If nobody in your customers&rsquo; businesses needs to sign off an order, you don&rsquo;t
-                need to pay for the machinery that makes them.</p>
+        {/* ══════════ 02 · UPLOAD A LOGO (web-to-stitch) ══════════ */}
+        <section className="g-white" id="web-to-stitch" data-od-id="web-to-stitch">
+          <div className="wrap">
+            <div className="route-head">
+              <div><span className="eyebrow">Decoration, built in</span><h2 data-od-id="w2s-h2">Upload a logo. See it placed and priced.</h2></div>
+              <p className="lede">The part most webstore software for decorators leaves out. Your customer decorates the garment in the shop, and you get an order you can actually make.</p>
             </div>
-
-            <div className="feature" data-od-id="tier-standard">
-              <div className="feature-mark" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"
-                     strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="9" cy="8" r="3" /><path d="M3 19c0-3 2.7-4.6 6-4.6s6 1.6 6 4.6" />
-                  <path d="M17 9.5h4M17 13.5h4" />
-                </svg>
+            <ol className="route" data-od-id="w2s-route">
+              <li className="stop" data-od-id="w2s-choose"><span className="node"><svg className="ic ic-24" aria-hidden="true"><use href="#i-map-pin" /></svg></span><span className="t-meta">Choose</span><h3>Position and method</h3><p className="t-card stop-text">Left chest or back, embroidered or printed.</p></li>
+              <li className="stop" data-od-id="w2s-upload"><span className="node"><svg className="ic ic-24" aria-hidden="true"><use href="#i-upload" /></svg></span><span className="t-meta">Upload</span><h3>Their own logo</h3><p className="t-card stop-text">In the shop, on the product they’re buying.</p></li>
+              <li className="stop" data-od-id="w2s-price"><span className="node"><svg className="ic ic-24" aria-hidden="true"><use href="#i-tags" /></svg></span><span className="t-meta">See the price</span><h3>Before they order</h3><p className="t-card stop-text">The decoration price sits alongside the garment price.</p></li>
+              <li className="stop" data-od-id="w2s-arrives"><span className="node"><svg className="ic ic-24" aria-hidden="true"><use href="#i-package-check" /></svg></span><span className="t-meta">Order arrives</span><h3>With the artwork attached</h3><p className="t-card stop-text">No chasing the logo by email afterwards.</p></li>
+            </ol>
+            <div className="w2s-proof">
+              <div>
+                <h3>Checked before anything is made.</h3>
+                <p className="t-body">Every uploaded logo is checked by your team before production starts. Nothing is digitised automatically and no stitch count is guessed: the shop takes the order, people sign off the artwork.</p>
+                <p className="t-body">With <Link className="go" href="/apps/works">Decoded Works</Link> alongside, the proof goes to the customer for sign-off first, through <Link className="go" href="/apps/proof">Proof</Link>.</p>
               </div>
-              <h3>Connected</h3>
-              <p className="feature-meta">The B2B trade portal shape</p>
-              <p>Adds company accounts with multi-user roles, per-employee spending limits, approval
-                workflows, and quote negotiation. This is what most trade businesses in this sector
-                actually mean when they say they want a trade portal or a B2B ecommerce platform.</p>
-            </div>
-
-            <div className="feature" data-od-id="tier-extended">
-              <div className="feature-mark" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"
-                     strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M4 6h7v5H4zM13 13h7v5h-7z" /><path d="M7.5 11v4.5H13" />
-                </svg>
-              </div>
-              <h3>Scaled</h3>
-              <p className="feature-meta">More than one of everything</p>
-              <p>Multi-site storefronts, ERP integration, and bespoke checkout and pricing logic where
-                the standard rules don&rsquo;t describe how you price.</p>
+              <figure className="shot" data-od-id="shot-order">
+                <img src="/images/site/screens/commerce/do-art-1027d-commerce-order-received.webp" width={1600} height={1000} alt="Decoded Commerce order received page with the steps from proof to despatch, sample data." loading="lazy" />
+                <figcaption><b>Order received</b><span>Artwork checked before production &middot; sample data</span></figcaption>
+              </figure>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* 3 · CAPABILITY · DO-ART-947 (supersedes 103) */}
-      <section className="g-tint" data-od-id="architecture">
-        <div className="wrap">
-          <span className="eyebrow">Capability · DO-ART-947</span>
-          <h2>Core to Extended, by capability.</h2>
-          <p className="lede" style={{ marginTop: 16 }}>Each tier adds what the one below doesn&rsquo;t have.</p>
+        {/* ══════════ 03 · SHOP, TRADE AND STORES ══════════ */}
+        <section className="g-off" id="editions" data-od-id="editions">
+          <div className="wrap">
+            <div className="route-head">
+              <div><span className="eyebrow">Shop, Trade and Stores</span><h2 data-od-id="editions-h2">Start with the shop. Add Trade, Stores, or both.</h2></div>
+              <p className="lede">Shop is the base. Trade and Stores are add-ons, in any combination, so you only run what matches how you sell.</p>
+            </div>
+            <div className="areas" data-od-id="edition-cards">
+              <article className="area" data-od-id="edition-shop">
+                <div className="area-top"><span className="ic-tile"><svg className="ic ic-24" aria-hidden="true"><use href="#i-shopping-cart" /></svg></span><span className="t-meta">The base</span></div>
+                <h3>Shop</h3>
+                <p className="t-card">Selling online to the public, schools or clubs.</p>
+                <ul className="ticks">
+                  <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>Your online shop, in your brand, on your own domain</span></li>
+                  <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>Your catalogue loaded from supplier feeds</span></li>
+                  <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>Decoration built in: position, method, logo upload, the price, and the artwork attached to the order</span></li>
+                  <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>Customer accounts and order history</span></li>
+                  <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>Card payments and discount codes</span></li>
+                </ul>
+              </article>
+              <article className="area" id="trade" data-od-id="edition-trade">
+                <div className="area-top"><span className="ic-tile"><svg className="ic ic-24" aria-hidden="true"><use href="#i-users" /></svg></span><span className="t-meta">Add-on</span></div>
+                <h3>Trade</h3>
+                <p className="t-card">A wholesale ordering portal for trade customers buying on account.</p>
+                <ul className="ticks">
+                  <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>Company accounts, with staff and roles</span></li>
+                  <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>Spend limits and order approvals</span></li>
+                  <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>Quotes agreed online, with messaging</span></li>
+                  <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>Bulk ordering</span></li>
+                </ul>
+                <Link className="go" href={TRADE_HREF}>The trade portal <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+              </article>
+              <article className="area" id="stores" data-od-id="edition-stores">
+                <div className="area-top"><span className="ic-tile"><svg className="ic ic-24" aria-hidden="true"><use href="#i-layout-grid" /></svg></span><span className="t-meta">Add-on</span></div>
+                <h3>Stores</h3>
+                <p className="t-card">A shop for every school, club or company, from a company uniform portal to a club kit shop.</p>
+                <ul className="ticks">
+                  <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>A shop per school, club or company, from one system</span></li>
+                  <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>Each with its own branding, products and prices</span></li>
+                  <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>One catalogue and one order queue behind them all</span></li>
+                </ul>
+                <Link className="go" href={STORES_HREF}>School and club stores <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+              </article>
+            </div>
+            <p className="combo" data-od-id="editions-combos">Schoolwear and teamwear usually run Shop and Stores. Trade suppliers run Shop and Trade. Some run all three. Add Trade or Stores later, when you need them.</p>
+          </div>
+        </section>
 
-          <figure className="d17 sw a947" data-od-id="plate-architecture" data-motion data-no="DO-ART-947" data-rev="01" data-tx="schematic"
-                  aria-label="Drawn plate DO-ART-947. Three nested tiers drawn as a plan. Core, at the centre: a single storefront with a product catalogue, customer accounts and logins, and manual pricing tiers. Connected wraps Core and adds company accounts with multi-user roles, per-employee spending limits, approval workflows and quote negotiation: the B2B trade portal shape most take. Scaled wraps Connected and adds multi-site storefronts, ERP integration, and bespoke checkout and pricing logic. Each tier adds what the one below does not have.">
-            <div className="q-grid" aria-hidden="true" />
-            <svg width="0" height="0" style={{ position: 'absolute' }} aria-hidden="true"><defs>
-              <marker id="q-ah947" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8ECAE6" /></marker>
-            </defs></svg>
-            <svg className="q v-wide" viewBox="0 0 1600 680" aria-hidden="true">
-              {/* Scaled */}
-              <g className="m-fade" style={{ animationDelay: '.9s' }}>
-                <rect x="20" y="20" width="1000" height="640" rx="22" fill="none" stroke="#8ECAE6" strokeOpacity=".7" strokeWidth="2" />
-                <text className="t-m" x="50" y="62" style={{ fontSize: '17px' }}>Scaled · more than one of everything</text>
-              </g>
-              {/* Connected */}
-              <g className="m-fade" style={{ animationDelay: '.5s' }}>
-                <rect className="bx-a" x="80" y="92" width="880" height="508" rx="18" style={{ fillOpacity: '.9' }} />
-                <text className="t-m t-a" x="110" y="134" style={{ fontSize: '17px' }}>Connected · the B2B trade portal shape · most take this</text>
-              </g>
-              {/* Core */}
-              <g className="m-pop" style={{ animationDelay: '.1s' }}>
-                <rect className="bx" x="140" y="164" width="420" height="376" rx="14" />
-                <text className="t-m" x="170" y="204" style={{ fontSize: '16px' }}>Core · single storefront</text>
-                <g className="t" style={{ fontSize: '22px' }}>
-                  <rect x="170" y="228" width="360" height="56" rx="9" fill="#8ECAE6" fillOpacity=".12" stroke="#8ECAE6" strokeOpacity=".45" /><text className="t" x="192" y="264" style={{ fontSize: '22px' }}>Product catalogue</text>
-                  <rect x="170" y="296" width="360" height="56" rx="9" fill="#8ECAE6" fillOpacity=".12" stroke="#8ECAE6" strokeOpacity=".45" /><text className="t" x="192" y="332" style={{ fontSize: '22px' }}>Customer accounts, logins</text>
-                  <rect x="170" y="364" width="360" height="56" rx="9" fill="#8ECAE6" fillOpacity=".12" stroke="#8ECAE6" strokeOpacity=".45" /><text className="t" x="192" y="400" style={{ fontSize: '22px' }}>Manual pricing tiers</text>
-                </g>
-                <text className="t-d" x="170" y="470" style={{ fontSize: '18px' }}>No approval workflow:</text>
-                <text className="t-d" x="170" y="496" style={{ fontSize: '18px' }}>nobody has to sign off</text>
-              </g>
-              {/* Connected adds */}
-              <g className="m-rise" style={{ animationDelay: '.6s' }}>
-                <rect x="590" y="164" width="340" height="68" rx="9" fill="#FFB703" fillOpacity=".13" stroke="#FFB703" strokeOpacity=".6" /><text className="t" x="612" y="206" style={{ fontSize: '22px' }}>Company accounts, roles</text>
-                <rect x="590" y="246" width="340" height="68" rx="9" fill="#FFB703" fillOpacity=".13" stroke="#FFB703" strokeOpacity=".6" /><text className="t" x="612" y="288" style={{ fontSize: '22px' }}>Per-employee spend limits</text>
-                <rect x="590" y="328" width="340" height="68" rx="9" fill="#FFB703" fillOpacity=".13" stroke="#FFB703" strokeOpacity=".6" /><text className="t" x="612" y="370" style={{ fontSize: '22px' }}>Approval workflows</text>
-                <rect x="590" y="410" width="340" height="68" rx="9" fill="#FFB703" fillOpacity=".13" stroke="#FFB703" strokeOpacity=".6" /><text className="t" x="612" y="452" style={{ fontSize: '22px' }}>Quote negotiation</text>
-              </g>
-              {/* Scaled adds */}
-              <g className="m-rise" style={{ animationDelay: '1s' }}>
-                <text className="t-d" x="110" y="636" style={{ fontSize: '19px' }}>Multi-site storefronts  ·  ERP integration  ·  bespoke checkout and pricing logic</text>
-              </g>
-              {/* call-outs */}
-              <g className="m-fade" style={{ animationDelay: '1.2s' }}>
-                <path className="ln-f" d="M1060 20 V660 M1050 20 H1070 M1050 660 H1070" />
-                <path className="ln m-draw" pathLength="1" style={{ animationDelay: '1.3s' }} d="M1110 120 H1026" markerEnd="url(#q-ah947)" />
-                <text className="t-m" x="1120" y="112" style={{ fontSize: '15px' }}>Scaled adds</text>
-                <text className="t" x="1120" y="142" style={{ fontSize: '20px' }}>more than one of everything</text>
-                <path className="ln-a m-draw" pathLength="1" style={{ animationDelay: '1.1s' }} d="M1110 320 H966" />
-                <text className="t-m t-a" x="1120" y="312" style={{ fontSize: '15px' }}>Connected adds</text>
-                <text className="t" x="1120" y="342" style={{ fontSize: '20px' }}>the machinery for sign-off</text>
-                <path className="ln m-draw" pathLength="1" style={{ animationDelay: '.9s' }} d="M1110 500 H566" markerEnd="url(#q-ah947)" />
-                <text className="t-m" x="1120" y="492" style={{ fontSize: '15px' }}>Core</text>
-                <text className="t" x="1120" y="522" style={{ fontSize: '20px' }}>one storefront, sold simply</text>
-                <text className="t-d" x="1120" y="620" style={{ fontSize: '17px' }}>A full rebuild is scoped separately,</text>
-                <text className="t-d" x="1120" y="644" style={{ fontSize: '17px' }}>not read off this drawing.</text>
-              </g>
-            </svg>
-            <svg className="q v-tall" viewBox="0 0 700 1130" aria-hidden="true">
-              <rect x="6" y="6" width="688" height="1118" rx="20" fill="none" stroke="#8ECAE6" strokeOpacity=".7" strokeWidth="2" />
-              <text className="t-m" x="30" y="50" style={{ fontSize: '20px' }}>Scaled · more than one of everything</text>
-              <rect className="bx-a" x="30" y="76" width="640" height="850" rx="16" />
-              <text className="t-m t-a" x="54" y="118" style={{ fontSize: '20px' }}>Connected · most take this</text>
-              <rect className="bx" x="54" y="140" width="592" height="320" rx="12" />
-              <text className="t-m" x="78" y="182" style={{ fontSize: '20px' }}>Core · single storefront</text>
-              <text className="t" x="78" y="238" style={{ fontSize: '28px' }}>Product catalogue</text>
-              <text className="t" x="78" y="290" style={{ fontSize: '28px' }}>Customer accounts, logins</text>
-              <text className="t" x="78" y="342" style={{ fontSize: '28px' }}>Manual pricing tiers</text>
-              <text className="t-d" x="78" y="414" style={{ fontSize: '23px' }}>No approval workflow</text>
-              <text className="t-m t-a" x="54" y="514" style={{ fontSize: '20px' }}>Connected adds</text>
-              <text className="t" x="54" y="570" style={{ fontSize: '28px' }}>Company accounts, roles</text>
-              <text className="t" x="54" y="624" style={{ fontSize: '28px' }}>Per-employee spend limits</text>
-              <text className="t" x="54" y="678" style={{ fontSize: '28px' }}>Approval workflows</text>
-              <text className="t" x="54" y="732" style={{ fontSize: '28px' }}>Quote negotiation</text>
-              <text className="t-d" x="54" y="800" style={{ fontSize: '23px' }}>the B2B trade portal shape</text>
-              <text className="t-m" x="30" y="984" style={{ fontSize: '20px' }}>Scaled adds</text>
-              <text className="t" x="30" y="1034" style={{ fontSize: '27px' }}>Multi-site · ERP integration</text>
-              <text className="t" x="30" y="1080" style={{ fontSize: '27px' }}>Bespoke checkout and pricing</text>
-            </svg>
-            <div className="foot"><span className="k d17-mono">Core · Connected · Scaled</span><span className="d17-mark">decodedops.co.uk · DO-ART-947 · Rev 01</span></div>
-          </figure>
-        </div>
-      </section>
+        {/* ══════════ 04 · THE SCREENS ══════════ */}
+        <section className="g-tint" data-od-id="screens">
+          <div className="wrap">
+            <div className="route-head">
+              <div><span className="eyebrow">The screens</span><h2 data-od-id="screens-h2">What your trade customer sees.</h2></div>
+              <p className="lede">A catalogue at the buyer’s own prices, and a basket that knows their spending limit and routes the order for approval. Every screen on this page is the product’s own, running with sample data.</p>
+            </div>
+            <div className="shots-2" data-od-id="screens-pair">
+              <figure className="shot" data-od-id="shot-catalogue"><img src="/images/site/screens/commerce/do-art-1027b-commerce-catalogue.webp" width={1600} height={1000} alt="Decoded Commerce trade catalogue, signed in, with decoration filters and trade prices, sample data." loading="lazy" /><figcaption><b>Trade catalogue</b><span>Signed in &middot; sample data</span></figcaption></figure>
+              <figure className="shot" data-od-id="shot-basket"><img src="/images/site/screens/commerce/do-art-1027c-commerce-basket-approval.webp" width={1600} height={1000} alt="Decoded Commerce basket over the buyer's spending limit, routed to the company admin for approval, sample data." loading="lazy" /><figcaption><b>Basket</b><span>Over the limit &middot; goes for approval</span></figcaption></figure>
+            </div>
+          </div>
+        </section>
 
-      {/* 4 · CUSTOM WORK · DO-ART-948 */}
-      <section className="g-navy" data-od-id="custom-work">
-        <div className="wrap">
-          <span className="eyebrow">Off the tier list</span>
-          <h2>When it&rsquo;s a full rebuild, not a tier.</h2>
-
-          <figure className="d17 sw sw-doc a948" data-od-id="custom-visual" data-motion data-no="DO-ART-948" data-rev="01" data-tx="photo"
-                  aria-label="Artwork DO-ART-948. Two documents over a graded photograph of packed kraft boxes. A scope sheet for a full rebuild in three parts: migrate products, customers and order history off the existing platform; build a new storefront; reintegrate orders and stock back into the ERP. And an options sheet: everything on the market goes on the table first, priced, including the options expected to be rejected, with the decision left to the client. Scoped and quoted like any full custom build.">
-            <div className="d17-ph"><img src="/images/d17/apps-cases/cat-packaging-2b20a6.webp" alt="" width="900" height="800" /></div>
-            <div className="d17-scan" aria-hidden="true" />
-            <figcaption className="sw-cap">
-              <div className="k d17-mono">The worked example <span>· scoped, not tiered</span></div>
-              <div className="bar" aria-hidden="true" />
-              <h3>Migration, new storefront, back into the ERP.</h3>
-              <p>The scope is written down first. Everything on the market goes on the table beside it,
-                priced, and the decision stays yours.</p>
-              <span className="d17-mark">decodedops.co.uk · DO-ART-948 · Rev 01</span>
-            </figcaption>
-            <div className="stage" aria-hidden="true">
-              <div className="d17-doc doc-s m-drop" style={{ animationDelay: '.1s' }}>
-                <span className="tab">SCOPE</span>
-                <span className="ref">SC-01 · Full rebuild · written first</span>
-                <h4>Storefront rebuild</h4>
-                <p className="sub">three parts · one written scope</p>
-                <ol>
-                  <li><b>01</b><span>Migrate products, customers, order history</span><em>EXPORTED</em></li>
-                  <li><b>02</b><span>New storefront and checkout</span><em>NEW</em></li>
-                  <li className="hit"><b>03</b><span>Orders and stock back into the ERP</span><em>REINTEGRATED</em></li>
-                </ol>
-                <div className="lines"><i style={{ width: '92%' }} /><i style={{ width: '74%' }} /></div>
+        {/* ══════════ 05 · WITH WORKS ══════════ */}
+        <section className="g-white" data-od-id="with-works">
+          <div className="wrap split-6" style={{ marginTop: 0 }}>
+            <div>
+              <span className="eyebrow">With Decoded Works</span>
+              <h2 data-od-id="with-works-h2">On its own, or alongside Works.</h2>
+              <p className="t-lede">Commerce runs on its own as a b2b ecommerce platform, or alongside Decoded Works, where the catalogue, stock and orders already live.</p>
+              <p className="t-body">With Works Connected or Scaled, the full decoration workflow comes with it.</p>
+              <div className="t-links">
+                <Link className="go" href="/apps/works">See Decoded Works <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+                <Link className="go" href="/apps/proof">See Decoded Proof <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
               </div>
-              <div className="d17-doc doc-o m-drop" style={{ animationDelay: '.45s' }}>
-                <span className="tab">OPTIONS</span>
-                <span className="ref">OP-01 · On the table first</span>
-                <h4>Everything on the market</h4>
-                <p className="sub">priced, including the ones to reject</p>
-                <div className="opt">
-                  <span>Off-the-shelf platform</span><span>PRICED</span>
-                  <span>Hosted store, add-ons</span><span>PRICED</span>
-                  <span>Full custom build</span><span>PRICED</span>
-                  <span className="you">Decision: yours</span>
+            </div>
+            <ul className="ticks" data-od-id="with-works-list">
+              <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>An approved logo gallery, so repeat logos need no setup</span></li>
+              <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>Proofs signed off before production</span></li>
+              <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>Artwork and decorated products created in Works</span></li>
+              <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>A production job on every order</span></li>
+            </ul>
+          </div>
+        </section>
+
+        {/* ══════════ 06 · MOVING ACROSS · DO-ART-948 rev 02 ══════════ */}
+        <section className="g-navy" data-od-id="custom-work">
+          <div className="wrap">
+            <div className="route-head">
+              <div><span className="eyebrow">Moving across</span><h2 data-od-id="custom-h2">When you’re moving off another shop.</h2></div>
+              <p className="lede">A full migration off an existing web platform, a new storefront, and reintegration back into your ERP. That’s scoped and quoted like any other full custom build, with the scope written down first.</p>
+            </div>
+            <figure className="d17 sw sw-doc a948" data-od-id="custom-visual" data-motion data-no="DO-ART-948" data-rev="02" data-tx="photo"
+                    aria-label="Artwork DO-ART-948. Two documents over a graded photograph of packed kraft boxes. A scope sheet for a full rebuild in three parts: migrate products, customers and order history off the existing platform; build a new storefront; reintegrate orders and stock back into the ERP. And an options sheet: everything on the market goes on the table first, priced, including the options expected to be rejected, with the decision left to the client. Scoped and quoted like any full custom build.">
+              <div className="d17-ph"><img src="/images/site/d17/apps-cases/cat-packaging-2b20a6.webp" alt="" width={900} height={800} /></div>
+              <div className="d17-scan" aria-hidden="true"></div>
+              <figcaption className="sw-cap">
+                <div className="k d17-mono">The worked example <span>· scoped first</span></div>
+                <div className="bar" aria-hidden="true"></div>
+                <h3>Migration, new storefront, back into the ERP.</h3>
+                <p>The scope is written down first. Everything on the market goes on the table beside it, priced, and the decision stays yours.</p>
+                <span className="d17-mark">decodedops.co.uk · DO-ART-948 · Rev 02</span>
+              </figcaption>
+              <div className="stage" aria-hidden="true">
+                <div className="d17-doc doc-s m-drop" style={{ animationDelay: '.1s' }}>
+                  <span className="tab">SCOPE</span>
+                  <span className="ref">SC-01 · Full rebuild · written first</span>
+                  <h4>Storefront rebuild</h4>
+                  <p className="sub">three parts · one written scope</p>
+                  <ol>
+                    <li><b>01</b><span>Migrate products, customers, order history</span><em>EXPORTED</em></li>
+                    <li><b>02</b><span>New storefront and checkout</span><em>NEW</em></li>
+                    <li className="hit"><b>03</b><span>Orders and stock back into the ERP</span><em>REINTEGRATED</em></li>
+                  </ol>
+                  <div className="lines"><i style={{ width: '92%' }}></i><i style={{ width: '74%' }}></i></div>
+                </div>
+                <div className="d17-doc doc-o m-drop" style={{ animationDelay: '.45s' }}>
+                  <span className="tab">OPTIONS</span>
+                  <span className="ref">OP-01 · On the table first</span>
+                  <h4>Everything on the market</h4>
+                  <p className="sub">priced, including the ones to reject</p>
+                  <div className="opt">
+                    <span>Off-the-shelf platform</span><span>PRICED</span>
+                    <span>Hosted store, add-ons</span><span>PRICED</span>
+                    <span>Full custom build</span><span>PRICED</span>
+                    <span className="you">Decision: yours</span>
+                  </div>
                 </div>
               </div>
-            </div>
-          </figure>
-
-          <div className="grid grid--2" style={{ marginTop: 40 }}>
-            <div className="panel" data-od-id="custom-example">
-              <h3>The worked example</h3>
-              <p>A full migration off an existing web platform, a new storefront, and reintegration back
-                into your ERP. That&rsquo;s scoped and quoted like any other full custom build, not read off
-                a tier list.</p>
-            </div>
-            <div className="panel" data-od-id="custom-route">
-              <h3>How it starts</h3>
-              <p>With a Clarity Audit, the same as any rung 3 conversation. Everything on the market
-                goes on the table first, priced, including the options I&rsquo;d expect you to reject. And
-                the decision stays yours.</p>
-              <p><Link href="/how-i-build" style={{ color: 'var(--do-sky-blue)', fontWeight: 600 }}>How I decide
-                what to build &rarr;</Link></p>
+            </figure>
+            <div className="split-6" data-od-id="custom-route">
+              <div><span className="t-meta">How it starts</span><p className="t-lede" style={{ marginTop: 12 }}>With a Clarity Audit, the same as any rung 3 conversation.</p></div>
+              <div><p className="t-body" style={{ marginTop: 0 }}>Everything on the market goes on the table first, priced, including the options I’d expect you to reject. And the decision stays yours.</p>
+                <div className="t-links"><Link className="go" href="/how-i-build">How I decide what to build <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link></div></div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* 5 · COMPARISON TABLE */}
-      <section className="g-white" id="pricing" data-od-id="pricing">
-        <div className="wrap">
-          <span className="eyebrow">What each tier covers</span>
-          <h2>Three tiers. Pick by what the business needs to do.</h2>
-
-          <div className="inset" data-od-id="entry-point">
-            <b>Which tier fits depends on your setup.</b> What you sell, who buys it, and how
-            they&rsquo;re allowed to buy it. That gets settled in conversation before the build is
-            quoted.
+        {/* ══════════ 07 · SHAPED TO YOU ══════════ */}
+        <section className="g-white" data-od-id="shaped">
+          <div className="wrap split-6" style={{ marginTop: 0 }}>
+            <div>
+              <span className="eyebrow">Shaped to you</span>
+              <h2 data-od-id="shaped-h2">Built on a proven core, shaped to how you work.</h2>
+              <p className="t-lede">Every decorator sells a little differently. The shop is set up around how you do it, not the other way round.</p>
+              <p className="t-body">When the way you sell changes, you tell me and I change it for you, without touching the core.</p>
+            </div>
+            <ul className="ticks" data-od-id="shaped-list">
+              <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>Your brand, your domain and how the shop looks</span></li>
+              <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>Which supplier ranges and products each shop shows</span></li>
+              <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>Trade price lists, spend limits and who approves</span></li>
+              <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>Decoration positions, methods and prices</span></li>
+            </ul>
           </div>
+        </section>
 
-          <div className="table-wrap" data-od-id="pricing-table">
-            <table className="ds-table">
-              <caption>Decoded Commerce</caption>
-              <thead>
-                <tr>
-                  <th scope="col">Tier</th>
-                  <th scope="col">Scope</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">Core</th>
-                  <td className="scope">Single storefront, catalogue, accounts, manual pricing</td>
-                </tr>
-                <tr>
-                  <th scope="row">Connected <span className="star">Most take this</span></th>
-                  <td className="scope">Company accounts, spend limits, approval workflows, quote
-                    negotiation</td>
-                </tr>
-                <tr>
-                  <th scope="row">Scaled</th>
-                  <td className="scope">Multi-site, ERP integration, bespoke checkout and pricing</td>
-                </tr>
-              </tbody>
-            </table>
+        {/* ══════════ 08 · WHAT HAPPENS NEXT ══════════ */}
+        <section className="g-tint" data-od-id="what-happens-next">
+          <div className="wrap">
+            <div className="route-head">
+              <div><span className="eyebrow">What happens next</span><h2 data-od-id="next-h2">Three steps to running it.</h2></div>
+              <p className="lede">You know what setup involves before anything is booked. <Link className="go" href="/apps#what-happens-next">How getting it works <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link></p>
+            </div>
+            <ol className="route route--3" data-od-id="next-route">
+              <li className="stop" data-od-id="next-call"><span className="node"><svg className="ic ic-24" aria-hidden="true"><use href="#i-phone" /></svg></span><span className="t-meta">Step 1</span><h3>Discovery call</h3><p className="t-card stop-text">We talk through how you sell now: who orders, how they pay, and where orders get keyed in by hand.</p></li>
+              <li className="stop" data-od-id="next-audit"><span className="node"><svg className="ic ic-24" aria-hidden="true"><use href="#i-search" /></svg></span><span className="t-meta">Step 2</span><h3>Audit first, if it’s needed</h3><p className="t-card stop-text">I tell you if a <Link href="/clarity">Clarity Audit</Link> should come first, and why.</p></li>
+              <li className="stop" data-od-id="next-setup"><span className="node"><svg className="ic ic-24" aria-hidden="true"><use href="#i-settings" /></svg></span><span className="t-meta">Step 3</span><h3>Set up and connected</h3><p className="t-card stop-text">I set it up, connect it to what you already run, and move your data across.</p></li>
+            </ol>
           </div>
-          <p className="table-foot">A full rebuild, like a migration off an existing platform, isn&rsquo;t on this table on
-            purpose. That&rsquo;s scoped separately.</p>
-          <p className="table-foot">What this costs depends on scope, so it&rsquo;s quoted once I know what your setup needs rather than read off a list. I&rsquo;m not VAT registered, so there&rsquo;s no VAT to add. How I price everything else is on the <Link href="/pricing"               style={{ color: 'var(--do-text-cerulean)', fontWeight: 600 }}>pricing page</Link>.</p>
+        </section>
 
-          <div className="notice" data-od-id="founding-terms">
-            <p className="notice-tag">Founding-client terms</p>
-            <h3>Hanicks is already running its storefront through Commerce, ahead of a public launch.</h3>
-            <p>Their store reads the same catalogue as their Works instance. Nobody has yet bought Commerce as a tiered, off-the-shelf product,
-              so until that happens it sells at the rates above with the first six months of support
-              included, in exchange for agreeing to be a named reference.</p>
-            <p>Stated plainly, because you&rsquo;d find out anyway. And you should be able to price it in
-              before you decide, not after.</p>
+        {/* ══════════ 09 · FOUR PRODUCTS ══════════ */}
+        <section className="g-off" data-od-id="products">
+          <div className="wrap">
+            <div className="route-head">
+              <div><span className="eyebrow">The software</span><h2 data-od-id="products-h2">Four products, one way of working.</h2></div>
+              <p className="lede">Start where the problem is. Add the rest when you need it.</p>
+            </div>
+            <div className="areas areas--4" data-od-id="product-cards">
+              <Link className="area" href="/apps/works" data-od-id="product-works">
+                <div className="area-top"><span className="ic-tile"><svg className="ic ic-24" aria-hidden="true"><use href="#i-workflow" /></svg></span></div>
+                <h3>Works</h3>
+                <p className="t-card">One system for the whole operation</p>
+                <span className="go">See Works <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></span>
+              </Link>
+              <Link className="area" href="/apps/proof" data-od-id="product-proof">
+                <div className="area-top"><span className="ic-tile"><svg className="ic ic-24" aria-hidden="true"><use href="#i-badge-check" /></svg></span></div>
+                <h3>Proof</h3>
+                <p className="t-card">Artwork approval and proofing</p>
+                <span className="go">See Proof <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></span>
+              </Link>
+              <div className="area area--here" data-od-id="product-commerce" aria-current="page">
+                <div className="area-top"><span className="ic-tile"><svg className="ic ic-24" aria-hidden="true"><use href="#i-shopping-cart" /></svg></span></div>
+                <h3>Commerce <span className="flag">You’re here</span></h3>
+                <p className="t-card">Your online shop and trade portal</p>
+              </div>
+              <Link className="area" href="/apps/catalogue" data-od-id="product-catalogue">
+                <div className="area-top"><span className="ic-tile"><svg className="ic ic-24" aria-hidden="true"><use href="#i-database" /></svg></span></div>
+                <h3>Catalogue</h3>
+                <p className="t-card">Supplier feeds in, one clean catalogue, feeds out</p>
+                <span className="go">See Catalogue <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></span>
+              </Link>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* 6 · CTA STRIP */}
-      <section className="g-off" data-od-id="cta-strip">
-        <div className="wrap centred">
-          <h2>Talk about your storefront.</h2>
-          <div className="hair" />
-          <p className="lede">An hour on what you sell and who buys it. If a tier fits, I&rsquo;ll name it. If
-            what you actually need is a migration, I&rsquo;ll say that instead of selling you a tier.</p>
-          <div className="btn-row">
-            <Link className="btn btn--primary" href="/contact">Talk about your storefront</Link>
-            <Link className="btn btn--ghost btn-arrow" href="/apps">See the other systems</Link>
+        {/* ══════════ 10 · FAQ (visible, matches FAQPage JSON-LD) ══════════ */}
+        <section className="g-white" data-od-id="faq">
+          <div className="wrap">
+            <div className="route-head">
+              <div><span className="eyebrow">Questions</span><h2 data-od-id="faq-h2">What people ask first.</h2></div>
+            </div>
+            <div className="faq" data-od-id="faq-list">
+              {faqs.map((f) => (
+                <div className="faq-item" key={f.question}>
+                  <h3>{f.question}</h3>
+                  <p className="t-card">{f.answer}</p>
+                </div>
+              ))}
+            </div>
+            <div className="t-links" data-od-id="further-reading">
+              <Link className="go" href="/case-studies/case-study-03">Case study 03: a B2B portal for a workwear distributor <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+              <Link className="go" href="/problems/ecommerce-not-connected">Your eCommerce isn’t connected to operations <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
+        {/* ══════════ 11 · CLOSER ══════════ */}
+        <section className="g-off closer" data-od-id="cta">
+          <div className="wrap closer-grid">
+            <div><h2 data-od-id="cta-h2">Still taking trade orders by email?</h2></div>
+            <div>
+              <p className="lede">Tell me who buys from you and how they order now. If a shop isn’t the answer, I’ll say so.</p>
+              <div className="btn-row"><Link className="btn btn--primary" href="/contact?product=commerce" data-od-id="cta-primary">Book a discovery call</Link><Link className="go" href="/apps">See all four products <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link></div>
+            </div>
+          </div>
+        </section>
+
+      </main>
       <D17Motion />
     </>
   );
