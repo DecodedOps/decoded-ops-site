@@ -51,7 +51,7 @@ const nextConfig: NextConfig = {
       { source: '/case-studies/hanicks', destination: '/case-studies/case-study-01', permanent: true },
       { source: '/case-studies/tacklebag', destination: '/case-studies/case-study-02', permanent: true },
       { source: '/case-studies/cobra-workwear', destination: '/case-studies/case-study-03', permanent: true },
-      { source: '/apps/crm', destination: '/apps', permanent: true },
+      { source: '/apps/crm', destination: '/apps/proof#crm', permanent: true },
       { source: '/apps/data-app', destination: '/apps/works', permanent: true },
       { source: '/apps/artwork-manager', destination: '/apps/proof', permanent: true },
       // BUG-WEB-017: blog slugs renamed during relaunch — preserve Search Console equity

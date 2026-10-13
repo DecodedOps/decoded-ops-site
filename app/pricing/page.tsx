@@ -95,8 +95,7 @@ export default function PricingPage() {
           <div className="wrap">
             <div className="hero-head">
               <div>
-                <span className="eyebrow">Pricing</span>
-                <h1 data-od-id="hero-h1"><span className="h1-kw">Operations consultancy pricing:</span> Start with the audit.</h1>
+                <h1 data-od-id="hero-h1"><span className="h1-kw">Pricing &middot; operations consultancy</span> Start with the audit.</h1>
               </div>
               <div>
                 <p className="t-lede">One fixed price to begin. Everything else in my operations consultancy is scoped once I understand your operation.</p>

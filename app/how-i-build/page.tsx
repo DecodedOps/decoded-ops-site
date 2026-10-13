@@ -99,8 +99,7 @@ export default function HowIBuildPage() {
           <div className="wrap">
             <div className="hero-head">
               <div>
-                <span className="eyebrow">How I build</span>
-                <h1 data-od-id="hero-h1"><span className="h1-kw">ERP implementation consultant:</span> The facts, the options, and the decision stays yours.</h1>
+                <h1 data-od-id="hero-h1"><span className="h1-kw">How I build &middot; ERP implementation consultant</span> The facts, the options, and the decision stays yours.</h1>
               </div>
               <div>
                 <p className="t-lede">As an ERP implementation consultant, I don&rsquo;t tell you what to buy. I show you what&rsquo;s on the market, what it costs, and where it falls short, so whatever you decide, you decide on the merits, not on my say-so.</p>

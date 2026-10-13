@@ -57,8 +57,7 @@ export default function DeliverPage() {
           <div className="wrap">
             <div className="hero-head">
               <div>
-                <span className="eyebrow">Deliver</span>
-                <h1 data-od-id="hero-h1"><span className="h1-kw">Business process improvement:</span> I get it built. And you keep the system that runs it.</h1>
+                <h1 data-od-id="hero-h1"><span className="h1-kw">Deliver &middot; business process improvement</span> I get it built. And you keep the system that runs it.</h1>
               </div>
               <div>
                 <p className="t-lede">Deliver is the business process improvement and implementation phase after a Clarity Audit. I sit on your side

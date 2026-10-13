@@ -104,8 +104,7 @@ export default function SmallBusinessPage() {
           <div className="wrap">
             <div className="hero-head">
               <div>
-                <span className="eyebrow">For small businesses</span>
-                <h1 data-od-id="hero-h1"><span className="h1-kw">Small business consultant for print and embroidery:</span> Technology and systems support without the big-business price tag.</h1>
+                <h1 data-od-id="hero-h1"><span className="h1-kw">Small business consultant</span> Technology and systems support without the big-business price tag.</h1>
               </div>
               <div>
                 <p className="t-lede">As a small business consultant, I bring the same operational thinking I use with larger businesses, adapted for smaller ones. Remote delivery. Fixed prices. No jargon. No vendor agenda.</p>

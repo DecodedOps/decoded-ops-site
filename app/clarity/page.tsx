@@ -90,8 +90,7 @@ export default function ClarityPage() {
           <div className="wrap">
             <div className="hero-head">
               <div>
-                <span className="eyebrow">Clarity Audit</span>
-                <h1 data-od-id="hero-h1"><span className="h1-kw">Process audit for print and embroidery:</span> One day on site. One written plan.</h1>
+                <h1 data-od-id="hero-h1"><span className="h1-kw">Clarity Audit &middot; process audit</span> One day on site. One written plan.</h1>
               </div>
               <div>
                 <p className="t-lede">A free 60-minute call, then a one-day process audit inside your business. I follow six

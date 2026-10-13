@@ -27,6 +27,7 @@ const appsLinks: FooterLink[] = [
   { label: 'Works', href: '/apps/works' },
   { label: 'Proof', href: '/apps/proof' },
   { label: 'Commerce', href: '/apps/commerce' },
+  { label: 'Catalogue', href: '/apps/catalogue' },
   { label: 'All apps', href: '/apps' },
 ];
 
@@ -112,7 +113,7 @@ export function Footer() {
             <p className="f-blurb">Independent technology and operations consultancy for the
               decorated-goods sector. No vendor agenda.</p>
             <div className="f-reach">
-              <Link className="f-cta" href="/contact">Book a free 60-min call</Link>
+              <Link className="f-cta" href="/contact">Book a discovery call</Link>
             </div>
             <div className="f-contact">
               <a href="mailto:craig@decodedops.co.uk">craig@decodedops.co.uk</a>

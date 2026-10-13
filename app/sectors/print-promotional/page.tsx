@@ -94,8 +94,7 @@ export default function PrintPromotionalPage() {
         <section className="g-off hero" data-od-id="hero">
           <div className="wrap hero-split">
             <div>
-              <span className="eyebrow">Sector · print &amp; promotional</span>
-              <h1 data-od-id="hero-title">Print shop management software starts with knowing what your current process actually costs</h1>
+              <h1 data-od-id="hero-title"><span className="h1-kw">Print &amp; promo &middot; print shop management software</span> Start with knowing what your current process actually costs.</h1>
               <p className="t-lede">Print shop management software is usually built for long runs; print and promotional businesses run short jobs on tight deadlines instead, with artwork approvals that eat time. The result is missed deadlines, rework, and complaints, even when the team is working hard.</p>
               <div className="btn-row">
                 <Link className="btn btn--primary" href="/contact" data-od-id="hero-cta">Book a free call <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>

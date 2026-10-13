@@ -60,6 +60,7 @@ const helpBuilt: NavGroup = {
     { label: 'Works', sub: 'The ERP for decorated goods', href: '/apps/works' },
     { label: 'Proof', sub: 'Versions, approvals and delivery', href: '/apps/proof' },
     { label: 'Commerce', sub: 'B2B ordering for your customers', href: '/apps/commerce' },
+    { label: 'Catalogue', sub: 'Supplier feeds in, one clean catalogue', href: '/apps/catalogue' },
     { label: 'All apps', sub: "What's ready to buy today", href: '/apps' },
   ],
 };
@@ -157,7 +158,7 @@ function MegaGroup({ group, onNavigate }: { group: NavGroup; onNavigate: () => v
   );
 }
 
-function MegaRail({ heading, note, ctaHref = '/contact', ctaLabel = 'Book a free 60-min call', extra }: {
+function MegaRail({ heading, note, ctaHref = '/contact', ctaLabel = 'Book a discovery call', extra }: {
   heading: string; note: string; ctaHref?: string; ctaLabel?: string; extra?: { label: string; href: string };
 }) {
   return (
@@ -340,7 +341,7 @@ export function Header() {
                       <p>Then the on-site work is a better fit, same steps, done in person.</p>
                     </div>
                     <div className="band-actions">
-                      <Link className="btn btn--primary btn--sm" href="/contact" onClick={() => { closePanel(); setMobileOpen(false); }}>Book a free 60-min call</Link>
+                      <Link className="btn btn--primary btn--sm" href="/contact" onClick={() => { closePanel(); setMobileOpen(false); }}>Book a discovery call</Link>
                       <Link className="rail-all" href="/clarity" onClick={() => { closePanel(); setMobileOpen(false); }}>See Clarity</Link>
                     </div>
                   </div>
@@ -370,7 +371,7 @@ export function Header() {
             <Link className="nav-flat" href="/clients/login" onClick={() => setMobileOpen(false)}>Client Login</Link>
 
             <div className="nav-tools">
-              <Link className="btn btn--outline btn--sm" href="/contact" onClick={() => setMobileOpen(false)}>Book a free call</Link>
+              <Link className="btn btn--outline btn--sm" href="/contact" onClick={() => setMobileOpen(false)}>Book a discovery call</Link>
             </div>
           </nav>
         </div>

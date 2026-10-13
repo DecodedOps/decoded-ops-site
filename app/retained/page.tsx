@@ -94,12 +94,11 @@ export default function RetainedPage() {
           <div className="wrap">
             <div className="hero-head">
               <div>
-                <span className="eyebrow">Fractional CTO</span>
-                <h1 data-od-id="hero-h1"><span className="h1-kw">Fractional CTO for print and embroidery.</span> Not a project. A standing decision-maker.</h1>
+                <h1 data-od-id="hero-h1"><span className="h1-kw">Retained &middot; fractional CTO</span> Not a project. A standing decision-maker.</h1>
               </div>
               <div>
                 <p className="t-lede">Ongoing technology and operations leadership, as a fractional CTO or <Link href="/fractional-coo">fractional COO</Link>, without the cost of a full-time hire.
-                  The scope and cadence are agreed at the start.</p>
+                  The scope and cadence of this fractional CTO role are agreed at the start.</p>
                 <div className="btn-row"><Link className="btn btn--primary" href="/contact" data-od-id="hero-cta">Let&rsquo;s talk about whether this suits you</Link></div>
               </div>
             </div>
