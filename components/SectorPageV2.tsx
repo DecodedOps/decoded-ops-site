@@ -7,10 +7,10 @@ import './SectorPageV2.css';
 
 /*
  * Sector page template, v2 (CR-WEB-078, release set 3).
- * One structure for the eight sector mockups: hero split, challenge cards, drawn plate,
+ * One structure for the eight sector pages: hero split, challenge cards, drawn plate,
  * photo band, route of steps, optional case study, keep reading, house closer.
  * Each page passes its own data (see app/sectors/<slug>/page.tsx). Artwork pieces arrive as
- * the mockup's own HTML and are rendered as issued.
+ * the review plate's own HTML and are rendered as issued.
  */
 
 export type SectorV2Link = { label: string; href: string };
@@ -18,20 +18,19 @@ export type SectorV2Link = { label: string; href: string };
 export type SectorV2Data = {
   /** Keyword lead-in span of the single H1 (SEO spec, H1 pattern). */
   h1Lead: string;
-  /** Designed headline, rendered after the lead-in at its mockup size. */
+  /** Designed headline, rendered after the lead-in at the plate's own size. */
   h1: string;
   eyebrow: string;
   lede: string;
   body?: string;
   heroHtml: string;
-  challengesPreface?: string;
   challengesLede: string;
   challenges: { icon: string; title: string; body: string }[];
   plate: { heading: string; lede?: string; html: string };
   band: { heading: string; lede: string; photosHtml: string[] };
   steps: { icon: string; text: string }[];
   caseStudy?: {
-    /** Mockup wrapper: 'split-6' (6fr/6fr) or 'proof' (5fr/7fr). */
+    /** Layout wrapper: 'split-6' (6fr/6fr) or 'proof' (5fr/7fr). */
     layout: 'split-6' | 'proof';
     heading: string;
     lede: string;
@@ -57,7 +56,7 @@ const ArrowIcon = ({ size = 16 }: { size?: 16 | 24 }) => (
   </svg>
 );
 
-// Icons used by the mockups that are not in IconSprite. Geometry copied from the mockup sprites.
+// Icons used by the review plates that are not in IconSprite. Geometry copied from the plate sprites.
 const EXTRA_SYMBOLS = [
   '<symbol id="i-badge-check" viewBox="0 0 24 24"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m16 9-5.5 5.5L8 12"/></symbol>',
   '<symbol id="i-history" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></symbol>',
@@ -77,11 +76,11 @@ export function SectorPageV2({ data: d }: { data: SectorV2Data }) {
       <main id="content">
 
         {/* HERO: split head, one H1 = keyword lead-in + designed headline */}
-        <section className="g-off hero">
+        <section className="g-off hero" data-od-id="hero">
           <div className="wrap hero-split">
             <div>
               <span className="eyebrow">{d.eyebrow}</span>
-              <h1><span className="h1-kw">{d.h1Lead}</span>{' '}{d.h1}</h1>
+              <h1 data-od-id="hero-title"><span className="h1-kw">{d.h1Lead}</span>{' '}{d.h1}</h1>
               <p className="t-lede">{d.lede}</p>
               {d.body && <p className="t-body">{d.body}</p>}
               <div className="btn-row">
@@ -94,17 +93,16 @@ export function SectorPageV2({ data: d }: { data: SectorV2Data }) {
         </section>
 
         {/* CHALLENGES */}
-        <section className="g-white">
+        <section className="g-white" data-od-id="challenges">
           <div className="wrap">
             <div className="sec-head">
               <span className="eyebrow">Common challenges</span>
               <h2>Where the problems tend to live</h2>
-              {d.challengesPreface && <p className="t-lede" style={{ marginTop: '18px' }}>{d.challengesPreface}</p>}
               <p className="t-lede" style={{ marginTop: '18px' }}>{d.challengesLede}</p>
             </div>
             <div className="areas">
               {d.challenges.map((c, i) => (
-                <article className="area" key={c.title}>
+                <article className="area" key={c.title} data-od-id={`challenge-${i + 1}`}>
                   <div className="area-top">
                     <span className="ic-tile"><svg className="ic ic-24" aria-hidden="true"><use href={`#${c.icon}`} /></svg></span>
                     <span className="num">{pad(i + 1)}</span>
@@ -118,7 +116,7 @@ export function SectorPageV2({ data: d }: { data: SectorV2Data }) {
         </section>
 
         {/* PLATE: drawn artwork as issued, under its own heading */}
-        <section className="g-navy">
+        <section className="g-navy" data-od-id="plate">
           <div className="wrap">
             <div className="sec-head">
               <span className="eyebrow">How it fits together</span>
@@ -130,7 +128,7 @@ export function SectorPageV2({ data: d }: { data: SectorV2Data }) {
         </section>
 
         {/* PHOTO BAND: three site-visit photographs */}
-        <section className="g-white">
+        <section className="g-white" data-od-id="on-the-day">
           <div className="wrap">
             <div className="route-head">
               <div>
@@ -144,7 +142,7 @@ export function SectorPageV2({ data: d }: { data: SectorV2Data }) {
         </section>
 
         {/* HOW I HELP: the route of steps, last stop amber */}
-        <section className="g-off">
+        <section className="g-off" data-od-id="how-i-help">
           <div className="wrap">
             <div className="sec-head">
               <span className="eyebrow">How I help</span>
@@ -153,7 +151,7 @@ export function SectorPageV2({ data: d }: { data: SectorV2Data }) {
             </div>
             <ol className={`route route--${d.steps.length}`}>
               {d.steps.map((s, i) => (
-                <li className="stop" key={i}>
+                <li className="stop" key={i} data-od-id={`help-step-${i + 1}`}>
                   <span className="node"><svg className="ic ic-24" aria-hidden="true"><use href={`#${s.icon}`} /></svg></span>
                   <span className="t-meta">Step {pad(i + 1)}</span>
                   <span className="t-card stop-text">{s.text}</span>
@@ -163,9 +161,9 @@ export function SectorPageV2({ data: d }: { data: SectorV2Data }) {
           </div>
         </section>
 
-        {/* CASE STUDY (absent on the pages whose mockups carry none) */}
+        {/* CASE STUDY (absent on the pages whose plates carry none) */}
         {d.caseStudy && (
-          <section className="g-white">
+          <section className="g-white" data-od-id="case-study">
             <div className={`wrap ${d.caseStudy.layout}`}>
               <div>
                 <span className="eyebrow">Case study</span>
@@ -183,7 +181,7 @@ export function SectorPageV2({ data: d }: { data: SectorV2Data }) {
         )}
 
         {/* KEEP READING */}
-        <section className="g-tint next">
+        <section className="g-tint next" data-od-id="keep-reading">
           <div className="wrap">
             <span className="eyebrow">Keep reading</span>
             <div className="next-grid">
@@ -225,7 +223,7 @@ export function SectorPageV2({ data: d }: { data: SectorV2Data }) {
         </section>
 
         {/* HOUSE CLOSER */}
-        <section className="g-off closer">
+        <section className="g-off closer" data-od-id="cta">
           <div className="wrap closer-grid">
             <div><h2>Book a free discovery call</h2></div>
             <div>

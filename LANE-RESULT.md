@@ -38,8 +38,10 @@ Lead-in is a `.h1-kw` span followed by the designed line, per the H1 pattern.
 - **Schoolwear:** "Three problems, all of them worse in August." restored as the first sentence of
   the challenges lede. **Flag:** the mockup has four challenge cards, so "Three problems" sits over four
   cards. Kept because the audit asks for it; Craig to decide wording.
-- **Garment decoration:** embroidery cross-link kept as the first Related sectors item, labelled
-  "Operations consultant for print & embroidery" (same href). Body count raised with natural phrasing in the
+- **Garment decoration:** embroidery cross-link kept as the first Related sectors item. **Deviation from
+  the mockup:** the mockup label "Print & embroidery" is changed to "Operations consultant for print & embroidery"
+  (same href). One-line revert in `app/sectors/garment-decoration/page.tsx` if the longer label wraps badly.
+  Body count raised with natural phrasing in the
   challenges lede, the decoration-method and artwork cards, and the keep-reading service body.
 - **FAQPage JSON-LD:** unchanged from staging on all eight.
 

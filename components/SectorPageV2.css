@@ -1,5 +1,6 @@
 /* SectorPageV2 layout only (CR-WEB-078). Every shared pattern lives in app/design-system/site-v3.css.
-   Rules lifted from the eight sector mockups' page-local style blocks (identical across the set). */
+   Rules lifted from the eight sector review plates' page-local style blocks (identical across the set). */
+.hero .t-lede{ margin-top:20px }
 .hero-split .t-body{ margin:12px 0 0; max-width:56ch }
 .hero-split .btn-row{ margin:26px 0 0 }
 .feed .ticks{ margin-top:4px }

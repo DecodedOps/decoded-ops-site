@@ -102,8 +102,7 @@ const data: SectorV2Data = {
           <span class="d17-mark">decodedops.co.uk · DO-ART-931 · Rev 01</span>
         </div>
       </figure>`,
-  challengesPreface: "Three problems, all of them worse in August.",
-  challengesLede: "In schoolwear, the same operational problems appear in different shapes across different businesses. These are the ones that cost the most.",
+  challengesLede: "Three problems, all of them worse in August. In schoolwear, the same operational problems appear in different shapes across different businesses. These are the ones that cost the most.",
   challenges: [
     { icon: "i-database", title: "Supplier feeds before the peak", body: "Schoolwear ranges don't change often, but when a supplier does update sizing or stock, you need to know before the August rush, not during it. Stale supplier data at peak season creates orders you can't fulfil." },
     { icon: "i-trending-up", title: "Sizing that scales with growing pupils", body: "A school's sizing spread is wider and shifts every year. Stock management that understands that means fewer stockouts of the sizes everyone actually needs in the first week of term." },
