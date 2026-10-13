@@ -1,11 +1,7 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
-import { D17Motion } from '@/components/D17Motion';
 import { JsonLd } from '@/components/JsonLd';
 import { BreadcrumbSchema } from '@/components/BreadcrumbSchema';
-import { sectorRouting } from '@/data/sector-routing';
-import '@/app/d17-global.css';
+import { SectorPageV2, type SectorV2Data } from '@/components/SectorPageV2';
 
 export const metadata: Metadata = {
   title: 'Promotional Products Software for Suppliers | Decoded Ops',
@@ -58,37 +54,15 @@ const sectorSchema = {
   ],
 };
 
-export default function PromotionalMerchandisePage() {
-  const route = sectorRouting['promotional-merchandise'];
-  return (
-    <>
-      <JsonLd data={sectorSchema} />
-      <BreadcrumbSchema items={[
-        { name: 'Home', url: 'https://decodedops.co.uk' },
-        { name: 'Sectors', url: 'https://decodedops.co.uk/sectors' },
-        { name: 'Promotional Merchandise', url: 'https://decodedops.co.uk/sectors/promotional-merchandise' },
-      ]} />
-
-      {/* HERO SPLIT */}
-      <section className="g-off" style={{ padding: 'clamp(40px, 4.5vw, 60px) 0' }}>
-        <div className="wrap" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'clamp(24px, 3vw, 48px)', alignItems: 'center' }}>
-          <div>
-            <span className="eyebrow">Sector · promotional merchandise</span>
-            <h1>Promotional merchandise, without the spreadsheet chaos.</h1>
-            <div style={{ marginTop: '20px' }}>
-              <p style={{ fontSize: 'var(--do-text-lg)', lineHeight: 1.6, marginBottom: '12px' }}>Every client wants something slightly different, on a deadline, at a price point that leaves no room for error.</p>
-              <p style={{ fontSize: 'var(--do-text-lg)', lineHeight: 1.6 }}>The businesses that do this well have their product data and their production process under control, whatever promotional products software they run. Most don&apos;t, and it&apos;s costing them.</p>
-            </div>
-            <div className="btn-row" style={{ marginTop: '24px' }}>
-              <Link className="btn btn--primary" href="/contact">Book a free call <ArrowRight size={16} aria-hidden="true" /></Link>
-              <Link className="btn btn--outline" href="/clarity">See how the audit works <ArrowRight size={16} aria-hidden="true" /></Link>
-            </div>
-          </div>
-          {/* D17 hero artwork · DO-ART-929 */}
-          <div dangerouslySetInnerHTML={{ __html: `
-<figure class="d17 sx a929" data-od-id="hero-evidence" data-motion data-no="DO-ART-929" data-rev="01" data-tx="photo"
+const data: SectorV2Data = {
+  h1Lead: "Promotional products software,",
+  h1: "without the spreadsheet chaos.",
+  eyebrow: "Sector · promotional merchandise",
+  lede: "Every client wants something slightly different, on a deadline, at a price point that leaves no room for error.",
+  body: "The businesses that do this well have their product data and their production process under control, whatever promotional products software they run. Most don’t, and it’s costing them.",
+  heroHtml: `<figure class="d17 sx a929" data-od-id="hero-evidence" data-motion data-no="DO-ART-929" data-rev="01" data-tx="photo"
         aria-label="Artwork DO-ART-929. A graded photograph of blank mugs with a client order laid over it: four product lines from four supplier ranges, each with its own lead time, and the four purchase orders it becomes. The order ships when the slowest line lands. One order, four supplier ranges, four different lead times.">
-  <div class="d17-ph"><img src="/images/d17/sectors/cat-promo-96b20f.webp" alt="" width="900" height="771"></div>
+  <div class="d17-ph"><img src="/images/site/d17/sectors/cat-promo-96b20f.webp" alt="" width="900" height="771"></div>
   <div class="d17-scan" aria-hidden="true"></div>
   <div class="sx-top d17-mono" aria-hidden="true"><span>Promotional merchandise</span><span>One client order</span></div>
   <div class="stage" aria-hidden="true">
@@ -121,17 +95,20 @@ export default function PromotionalMerchandisePage() {
     <p class="sx-say">One order, four supplier ranges, <em>four different lead times.</em></p>
     <span class="d17-mark">decodedops.co.uk · DO-ART-929 · Rev 01</span>
   </div>
-</figure>` }} />
-        </div>
-      </section>
-
-      {/* D17 INLINE ARTWORK · DO-ART-930 */}
-      <section className="g-navy">
-        <div className="wrap">
-          <div dangerouslySetInnerHTML={{ __html: `
-<figure class="d17 sw a930" data-od-id="plate-architecture" data-motion data-no="DO-ART-930" data-rev="01" data-tx="photo"
+</figure>`,
+  challengesLede: "In promotional merchandise, the same operational problems appear in different shapes across different businesses. These are the ones that cost the most.",
+  challenges: [
+    { icon: "i-layers", title: "Multi-supplier catalogue management", body: "Dozens of supplier ranges, each with their own pricing, stock levels, and lead times. Matching products, managing pricing, and keeping stock current across all of them without re-keying data eats more admin hours than anything else in this trade." },
+    { icon: "i-clipboard-check", title: "The artwork loop", body: "Client logos in every format, with version control and an audit trail. Customers should approve their own proofs instead of a back-and-forth that eats a day per order. Most promotional merchandise businesses are still managing approval by email." },
+    { icon: "i-pound", title: "Margin erosion at the order level", body: "When decoration cost, supplier lead time variation, and artwork rework aren’t tracked at the individual order level, margin quietly erodes on every job. It’s invisible in the P&L until the year-end numbers land." },
+    { icon: "i-calculator", title: "What quoting actually costs you", body: "The cost of producing quotes that don’t convert is rarely measured, and the answer is usually uncomfortable. A quoting process that takes thirty minutes per prospect becomes a full-time salary at scale." },
+    { icon: "i-unplug", title: "eCommerce disconnected from supply", body: "A product listed online that isn’t connected to live supplier data means manual checks on every order. A catalogue of thousands of items makes that impossible to sustain at any volume." },
+  ],
+  plate: {
+    heading: "Every supplier range, one clean catalogue.",
+    html: `<figure class="d17 sw a930" data-od-id="plate-architecture" data-motion data-no="DO-ART-930" data-rev="01" data-tx="photo"
         aria-label="Product screen DO-ART-930. The Works supplier matching view, live in September 2026: 317,812 products brought in from supplier feeds, 154,518 matched to a supplier automatically, 40 active suppliers. Example product rows are shown matched to suppliers A to D.">
-  <div class="d17-ph"><img src="/images/d17/sectors/cat-promo-6d25d2.webp" alt="" width="1100" height="733"></div>
+  <div class="d17-ph"><img src="/images/site/d17/sectors/cat-promo-6d25d2.webp" alt="" width="1100" height="733"></div>
   <div class="d17-scan" aria-hidden="true"></div>
   <figcaption class="sw-cap">
     <div class="k d17-mono">Works <span>· supplier matching</span></div>
@@ -171,130 +148,89 @@ export default function PromotionalMerchandisePage() {
       </div>
     </div>
   </div>
-</figure>` }} />
-        </div>
-      </section>
+</figure>`,
+  },
+  band: {
+    heading: "The stockrooms this is written from.",
+    lede: "Three of my own photographs from client visits this year. The stockroom, goods-in and the warehouse floor are where four supplier lead times meet one client deadline.",
+    photosHtml: [
+      `<figure class="d17 ev" data-od-id="photo-stockroom" data-no="DO-ART-979c" data-rev="01" data-tx="photo">
+        <div class="d17-ph"><img src="/images/site/evidence/hero-stockroom-mixed-fa24e6.webp" width="1600" height="900" alt="A mixed stockroom with shelved garments and boxed goods at a client site." loading="lazy"></div>
+        <div class="d17-scan" aria-hidden="true"></div>
+        <p class="k d17-mono">The stockroom &middot; 2026</p>
+        <p class="line">A mixed stockroom</p>
+        <span class="d17-mark">decodedops.co.uk &middot; DO-ART-979c &middot; Rev 01</span>
+      </figure>`,
+      `<figure class="d17 ev" data-od-id="photo-crates" data-no="DO-ART-979a" data-rev="01" data-tx="photo">
+        <div class="d17-ph"><img src="/images/site/evidence/plate-crates-aisle-e843b7.webp" width="1600" height="900" alt="An aisle of stacked crates at a client site." loading="lazy"></div>
+        <div class="d17-scan" aria-hidden="true"></div>
+        <p class="k d17-mono">Goods in &middot; 2026</p>
+        <p class="line">Crates in the aisle, not yet booked in</p>
+        <span class="d17-mark">decodedops.co.uk &middot; DO-ART-979a &middot; Rev 01</span>
+      </figure>`,
+      `<figure class="d17 ev" data-od-id="photo-floor" data-no="DO-ART-979h" data-rev="01" data-tx="photo">
+        <div class="d17-ph"><img src="/images/site/evidence/card-warehouse-floor-f1d62c.webp" width="1600" height="900" alt="A warehouse floor at a client site." loading="lazy"></div>
+        <div class="d17-scan" aria-hidden="true"></div>
+        <p class="k d17-mono">The floor &middot; 2026</p>
+        <p class="line">The warehouse floor</p>
+        <span class="d17-mark">decodedops.co.uk &middot; DO-ART-979h &middot; Rev 01</span>
+      </figure>`,
+    ],
+  },
+  steps: [
+    { icon: "i-map", text: "Map your full workflow, from client enquiry to delivery" },
+    { icon: "i-database", text: "Audit multi-supplier product data for accuracy and currency" },
+    { icon: "i-clipboard-check", text: "Review how artwork is stored, approved, and versioned" },
+    { icon: "i-truck", text: "Find where supplier fragmentation creates admin work" },
+    { icon: "i-trending-up", text: "See how margin is calculated and tracked per order" },
+    { icon: "i-calculator", text: "Review quoting accuracy and quote-to-order costs" },
+    { icon: "i-pound", text: "Put a number on every finding in time, margin, and admin cost" },
+  ],
+  caseStudy: {
+    heading: "Custom tooling for a service business",
+    lede: "Full site rebuild and a custom tool: the kind of bespoke build that promotional merchandise businesses need when off-the-shelf promotional products software doesn’t fit.",
+    body: "This client runs a training studio, not a promo house. The question underneath is the same one: what gets built when nothing off the shelf fits, and who owns the decisions.",
+    layout: "split-6",
+    href: "/case-studies/eternal-fitness",
+    linkLabel: "Read the case study",
+    panelHtml: `<div>
+      <span class="t-meta">What was built</span>
+      <ul class="ticks" style="margin-top:14px"><li><svg class="ic ic-20" aria-hidden="true"><use href="#i-check"/></svg><span>A full site rebuild with clinical framing, not fitness-marketing convention</span></li><li><svg class="ic ic-20" aria-hidden="true"><use href="#i-check"/></svg><span>A training plan tool that drafts against a confirmed equipment list and each client’s condition, with every output reviewed and approved by the owner</span></li><li><svg class="ic ic-20" aria-hidden="true"><use href="#i-check"/></svg><span>Brand and tooling consistency across the site and the plan output, so the two don’t drift apart</span></li><li><svg class="ic ic-20" aria-hidden="true"><use href="#i-check"/></svg><span>A technical foundation the owner relies on without managing it herself</span></li></ul>
+    </div>`,
+  },
+  keepReading: {
+    service: {
+      title: "Promotional merchandise systems",
+      body: "Product data across suppliers, artwork approval, margin tracking, and the catalogue management that keeps every client’s branded goods accurate.",
+      href: "/transform",
+      linkLabel: "See how it works",
+    },
+    problems: [
+      { label: "No real visibility of stock levels", href: "/problems/inventory-blind" },
+      { label: "Manual order processing and artwork checks", href: "/problems/manual-workarounds" },
+      { label: "Running the business on spreadsheets", href: "/problems/spreadsheet-addiction" },
+    ],
+    resources: [
+      { label: "Artwork approval playbook", href: "/resources/artwork-approval-playbook" },
+      { label: "SOP template for decoration businesses", href: "/resources/sop-template" },
+    ],
+    sectors: [
+      { label: "Print & promotional", href: "/sectors/print-promotional" },
+      { label: "Workwear", href: "/sectors/workwear" },
+    ],
+  },
+};
 
-      {/* COMMON CHALLENGES */}
-      <section className="g-white">
-        <div className="wrap">
-          <span className="eyebrow">Common challenges</span>
-          <h2>Where the problems tend to live</h2>
-          <div className="hair" />
-          <p className="lede">In promotional merchandise, the same operational problems appear in different shapes across different businesses. These are the ones that cost the most.</p>
-          <div className="grid grid--2">
-            {[
-              { title: 'Multi-supplier catalogue management', body: 'Dozens of supplier ranges, each with their own pricing, stock levels, and lead times. Matching products, managing pricing, and keeping stock current across all of them without re-keying data eats more admin hours than anything else in this trade.' },
-              { title: 'The artwork loop', body: 'Client logos in every format, with version control and an audit trail. Customers should approve their own proofs instead of a back-and-forth that eats a day per order. Most promotional merchandise businesses are still managing approval by email.' },
-              { title: 'Margin erosion at the order level', body: 'When decoration cost, supplier lead time variation, and artwork rework aren\u2019t tracked at the individual order level, margin quietly erodes on every job. It\u2019s invisible in the P&L until the year-end numbers land.' },
-              { title: 'What quoting actually costs you', body: 'The cost of producing quotes that don\u2019t convert is rarely measured, and the answer is usually uncomfortable. A quoting process that takes thirty minutes per prospect becomes a full-time salary at scale.' },
-              { title: 'eCommerce disconnected from supply', body: 'A product listed online that isn\u2019t connected to live supplier data means manual checks on every order. A catalogue of thousands of items makes that impossible to sustain at any volume.' },
-            ].map((c, i) => (
-              <article key={i} className="card">
-                <span className="kicker">{String(i + 1).padStart(2, '0')} &middot; {c.title}</span>
-                <p>{c.body}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* HOW I HELP */}
-      <section className="g-navy">
-        <div className="wrap">
-          <span className="eyebrow">How I help</span>
-          <h2>What the work actually looks like</h2>
-          <div className="hair" />
-          <p className="lede">A structured audit followed by specific, costed recommendations. No vague frameworks, no generic advice.</p>
-          <div className="grid grid--2" style={{ marginTop: '32px' }}>
-            {[
-              'Map your full workflow, from client enquiry to delivery',
-              'Audit multi-supplier product data for accuracy and currency',
-              'Review how artwork is stored, approved, and versioned',
-              'Find where supplier fragmentation creates admin work',
-              'See how margin is calculated and tracked per order',
-              'Review quoting accuracy and quote-to-order costs',
-              'Put a number on every finding in time, margin, and admin cost',
-            ].map((item, i) => (
-              <div key={i} className="card" style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
-                <span style={{ minWidth: '28px', height: '28px', borderRadius: 'var(--do-radius-full)', background: 'color-mix(in srgb, var(--do-cerulean) 20%, transparent)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 'var(--do-text-xs)', fontWeight: 'var(--do-weight-bold)', color: 'var(--do-sky-blue)' }}>{String(i + 1).padStart(2, '0')}</span>
-                <p>{item}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* RELATED PROBLEMS + RESOURCES */}
-      <section style={{ padding: 'clamp(40px, 4.5vw, 60px) 0' }} className="g-tint">
-        <div className="wrap">
-          <div className="grid grid--3">
-            {route.relatedProblems.length > 0 && (
-              <article className="card">
-                <span className="kicker">Common problems</span>
-                <h3>The problems I see most often</h3>
-                <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                  {route.relatedProblems.map((p) => (
-                    <li key={p.href} style={{ marginBottom: '10px' }}>
-                      <Link href={p.href} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', fontSize: 'var(--do-text-sm)' }}>
-                        <ArrowRight size={14} style={{ marginTop: '2px', flexShrink: 0, color: 'var(--do-text-cerulean)' }} aria-hidden="true" />
-                        <span>{p.label}</span>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </article>
-            )}
-            {route.relatedResources.length > 0 && (
-              <article className="card">
-                <span className="kicker">Useful next steps</span>
-                <h3>Resources</h3>
-                <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                  {route.relatedResources.map((r) => (
-                    <li key={r.href} style={{ marginBottom: '10px' }}>
-                      <Link href={r.href} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', fontSize: 'var(--do-text-sm)' }}>
-                        <ArrowRight size={14} style={{ marginTop: '2px', flexShrink: 0, color: 'var(--do-text-cerulean)' }} aria-hidden="true" />
-                        <span>{r.label}</span>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </article>
-            )}
-            {route.relatedSectors.length > 0 && (
-              <article className="card">
-                <span className="kicker">Related sectors</span>
-                <h3>Adjacent trades</h3>
-                <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                  {route.relatedSectors.map((s) => (
-                    <li key={s.href} style={{ marginBottom: '10px' }}>
-                      <Link href={s.href} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', fontSize: 'var(--do-text-sm)' }}>
-                        <ArrowRight size={14} style={{ marginTop: '2px', flexShrink: 0, color: 'var(--do-text-cerulean)' }} aria-hidden="true" />
-                        <span>{s.label}</span>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </article>
-            )}
-          </div>
-        </div>
-      </section>
-
-      {/* CASE STUDY */}
-      <section style={{ padding: 'clamp(40px, 4.5vw, 60px) 0' }} className="g-off">
-        <div className="wrap">
-          <span className="eyebrow">Case study</span>
-          <h2>Custom tooling for a service business</h2>
-          <div className="hair" />
-          <p className="lede">Full site rebuild and a custom tool: the kind of bespoke build that promotional merchandise businesses need when off-the-shelf promotional products software doesn&apos;t fit.</p>
-          <div className="btn-row" style={{ marginTop: '24px' }}>
-            <Link className="btn btn--outline" href="/case-studies/eternal-fitness">Read the case study <ArrowRight size={16} aria-hidden="true" /></Link>
-          </div>
-        </div>
-      </section>
-
-      <D17Motion />
+export default function PromotionalMerchandisePage() {
+  return (
+    <>
+      <JsonLd data={sectorSchema} />
+      <BreadcrumbSchema items={[
+              { name: 'Home', url: 'https://decodedops.co.uk' },
+              { name: 'Sectors', url: 'https://decodedops.co.uk/sectors' },
+              { name: 'Promotional Merchandise', url: 'https://decodedops.co.uk/sectors/promotional-merchandise' },
+            ]} />
+      <SectorPageV2 data={data} />
     </>
   );
 }

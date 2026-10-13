@@ -1,12 +1,7 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
 import { JsonLd } from '@/components/JsonLd';
-import { D17Motion } from '@/components/D17Motion';
-import '@/app/d17-global.css';
 import { BreadcrumbSchema } from '@/components/BreadcrumbSchema';
-import { sectorRouting } from '@/data/sector-routing';
-import styles from '@/components/SectorPageDS.module.css';
+import { SectorPageV2, type SectorV2Data } from '@/components/SectorPageV2';
 
 export const metadata: Metadata = {
   title: 'Sign Shop Management Software for Graphics | Decoded Ops',
@@ -59,60 +54,14 @@ const sectorSchema = {
   ],
 };
 
-const tagline = 'Signs and graphics businesses run on ||tight margins, and every job starts with a site survey.||';
-const parts = tagline.split('||');
-
-const challenges = [
-  { title: 'Survey-to-installation workflow', body: "The job doesn't start when the order is placed. It starts with a site survey. Most systems can't track a job from survey, through design, production, and installation, to sign-off as one connected flow." },
-  { title: 'Substrate and finish complexity', body: "Substrate, finish, size, fixing method, installation. Every job is different, which makes costing difficult. Cost it by hand and margin leaks on every complex job." },
-  { title: 'Installation scheduling', body: "Scheduling installation teams, site access, contractors, and material deliveries is a logistics problem most job systems handle poorly." },
-  { title: 'Artwork and proof management', body: "Artwork has to be approved before production. Run that approval outside your production system and you get delay, rework, and missed deadlines." },
-];
-
-const whatIdo = [
-  'Map your full workflow, from enquiry to survey, design, production, installation, and sign-off',
-  'Find where jobs fall through system gaps into manual processes',
-  'Review how you cost jobs, and where margin leaks on complex work',
-  'Look at installation scheduling and how it connects to production',
-  'Audit your artwork and proof approval process',
-  'Recommend sign shop management software that fits the way a signs and graphics business actually runs',
-];
-
-const route = sectorRouting['signs-graphics'];
-
-export default function SignsGraphicsPage() {
-  return (
-    <>
-      <JsonLd data={sectorSchema} />
-      <BreadcrumbSchema items={[
-        { name: 'Home', url: 'https://decodedops.co.uk' },
-        { name: 'Sectors', url: 'https://decodedops.co.uk/#sectors' },
-        { name: 'Signs & Graphics', url: 'https://decodedops.co.uk/sectors/signs-graphics' },
-      ]} />
-      {/* HERO SPLIT */}
-      <section className={`g-off ${styles.heroSection}`}>
-        <div className={`wrap ${styles.heroSplit}`}>
-          <div>
-            <span className="eyebrow">Sector · signs & graphics</span>
-            <h1>
-              {parts.map((p, i) =>
-                i % 2 === 0
-                  ? <span key={i}>{p}</span>
-                  : <span key={i} style={{ color: 'var(--do-text-cerulean)' }}>{p}</span>
-              )}
-            </h1>
-            <div className={styles.heroBody}>
-              <p>Signs and graphics jobs don&apos;t fit generic ERP systems. So without sign shop management software that fits, most businesses run on spreadsheets, whiteboards, and information carried in people&apos;s heads.</p>
-            </div>
-            <div className="btn-row">
-              <Link className="btn btn--primary" href="/contact">Book a free call <ArrowRight size={16} aria-hidden="true" /></Link>
-              <Link className="btn btn--outline" href="/clarity">See how the audit works <ArrowRight size={16} aria-hidden="true" /></Link>
-            </div>
-          </div>
-          <div dangerouslySetInnerHTML={{ __html: `
-<figure class="d17 sx a933" data-od-id="hero-evidence" data-motion data-no="DO-ART-933" data-rev="01" data-tx="photo"
+const data: SectorV2Data = {
+  h1Lead: "Sign shop management software:",
+  h1: "signs and graphics run on tight margins, and every job starts with a site survey.",
+  eyebrow: "Sector · signs & graphics",
+  lede: "Signs and graphics jobs don’t fit generic ERP systems. So without sign shop management software that fits, most businesses run on spreadsheets, whiteboards, and information carried in people’s heads.",
+  heroHtml: `<figure class="d17 sx a933" data-od-id="hero-evidence" data-motion data-no="DO-ART-933" data-rev="01" data-tx="photo"
         aria-label="Artwork DO-ART-933. A graded photograph of a blank sign panel on a brick wall, measured with amber dimension lines, and a site survey sheet laid over it: size, substrate, fixing, access and photos, recorded before anything is quoted or made. The job starts at the site survey, not the order.">
-  <div class="d17-ph"><img src="/images/d17/sectors/cat-signage-982ce6.webp" alt="" width="900" height="701"></div>
+  <div class="d17-ph"><img src="/images/site/d17/sectors/cat-signage-982ce6.webp" alt="" width="900" height="701"></div>
   <svg class="dims" viewBox="0 0 770 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
     <rect x="28" y="170" width="641" height="273" fill="none" stroke="#FFB703" stroke-width="3" stroke-dasharray="10 8"/>
     <g class="m-draw-g">
@@ -143,17 +92,20 @@ export default function SignsGraphicsPage() {
     <p class="sx-say">The job starts at the site survey, <em>not the order.</em></p>
     <span class="d17-mark">decodedops.co.uk · DO-ART-933 · Rev 01</span>
   </div>
-</figure>` }} />
-        </div>
-      </section>
-
-      {/* D17 INLINE ARTWORK · DO-ART-934 */}
-      <section className="g-navy">
-        <div className="wrap">
-          <div dangerouslySetInnerHTML={{ __html: `
-<figure class="d17 sw a934" data-od-id="plate-architecture" data-motion data-no="DO-ART-934" data-rev="01" data-tx="screen"
+</figure>`,
+  challengesLede: "In this sector, the same operational problems appear in different shapes across different businesses. These are the ones that cost the most.",
+  challenges: [
+    { icon: "i-map", title: "Survey-to-installation workflow", body: "The job doesn't start when the order is placed. It starts with a site survey. Most systems can't track a job from survey, through design, production, and installation, to sign-off as one connected flow." },
+    { icon: "i-layers", title: "Substrate and finish complexity", body: "Substrate, finish, size, fixing method, installation. Every job is different, which makes costing difficult. Cost it by hand and margin leaks on every complex job." },
+    { icon: "i-calendar-clock", title: "Installation scheduling", body: "Scheduling installation teams, site access, contractors, and material deliveries is a logistics problem most job systems handle poorly." },
+    { icon: "i-clipboard-check", title: "Artwork and proof management", body: "Artwork has to be approved before production. Run that approval outside your production system and you get delay, rework, and missed deadlines." },
+  ],
+  plate: {
+    heading: "The job starts at the site survey, not the order.",
+    lede: "Survey, design, proof, production, install, signed off. The survey, the substrate and the install details travel with the job card instead of living in someone’s head.",
+    html: `<figure class="d17 sw a934" data-od-id="plate-architecture" data-motion data-no="DO-ART-934" data-rev="01" data-tx="screen"
         aria-label="Product screen DO-ART-934. A production board for a signs and graphics business with six columns: survey, design, proof, production, install and signed off. Each job card carries its survey, substrate and install details with it as it moves, and a fitted fascia job lands in signed off.">
-  <div class="d17-ph"><img src="/images/d17/sectors/cat-signage-58e48c.webp" alt="" width="1100" height="733"></div>
+  <div class="d17-ph"><img src="/images/site/d17/sectors/cat-signage-58e48c.webp" alt="" width="1100" height="733"></div>
   <div class="d17-scan" aria-hidden="true"></div>
   <div class="head">
     <div class="sw-cap">
@@ -180,127 +132,91 @@ export default function SignsGraphicsPage() {
       <div class="col"><div class="ch">Install<i>1</i></div>
         <div class="card-j m-rise" style="animation-delay:.65s"><span class="r">J-2199</span><b>Pub fascia, re-brand</b><div class="m"><span>tower booked</span><span>2 fitters</span></div></div></div>
       <div class="col"><div class="ch">Signed off<i>1</i></div>
-        <div class="card-j card-j--a m-rise" style="animation-delay:1s"><img class="th" src="/images/d17/sectors/cat-signage-2bf918.webp" alt="" width="320" height="165"><span class="r">J-2194</span><b>Shopfront fascia</b><div class="m"><span>fitted</span><span>photo signed</span><span>invoiced</span></div></div></div>
+        <div class="card-j card-j--a m-rise" style="animation-delay:1s"><img class="th" src="/images/site/d17/sectors/cat-signage-2bf918.webp" alt="" width="320" height="165"><span class="r">J-2194</span><b>Shopfront fascia</b><div class="m"><span>fitted</span><span>photo signed</span><span>invoiced</span></div></div></div>
     </div>
   </div>
-</figure>` }} />
-        </div>
-      </section>
+</figure>`,
+  },
+  band: {
+    heading: "The handoffs this is written from.",
+    lede: "Three of my own photographs from client visits this year. Not a sign shop, but the same handoffs: the floor, the job sheet and the despatch bench, where a job either carries its details with it or loses them.",
+    photosHtml: [
+      `<figure class="d17 ev" data-od-id="photo-floor" data-no="DO-ART-979h" data-rev="01" data-tx="photo">
+        <div class="d17-ph"><img src="/images/site/evidence/card-warehouse-floor-f1d62c.webp" width="1600" height="900" alt="A warehouse floor at a client site." loading="lazy"></div>
+        <div class="d17-scan" aria-hidden="true"></div>
+        <p class="k d17-mono">The floor &middot; 2026</p>
+        <p class="line">The warehouse floor</p>
+        <span class="d17-mark">decodedops.co.uk &middot; DO-ART-979h &middot; Rev 01</span>
+      </figure>`,
+      `<figure class="d17 ev" data-od-id="photo-job-sheets" data-no="DO-ART-979k" data-rev="01" data-tx="photo">
+        <div class="d17-ph"><img src="/images/site/evidence/plate-job-sheets-63dd9c.webp" width="1600" height="900" alt="Paper job sheets laid out on a workbench at a client site." loading="lazy"></div>
+        <div class="d17-scan" aria-hidden="true"></div>
+        <p class="k d17-mono">The bench &middot; June 2026</p>
+        <p class="line">Job sheets, still on paper</p>
+        <span class="d17-mark">decodedops.co.uk &middot; DO-ART-979k &middot; Rev 01</span>
+      </figure>`,
+      `<figure class="d17 ev" data-od-id="photo-packing" data-no="DO-ART-979n" data-rev="01" data-tx="photo">
+        <div class="d17-ph"><img src="/images/site/evidence/band-packing-station-7c4f80.webp" width="1600" height="900" alt="A packing station with cartons, tape and a label printer at a client site." loading="lazy"></div>
+        <div class="d17-scan" aria-hidden="true"></div>
+        <p class="k d17-mono">Despatch &middot; June 2026</p>
+        <p class="line">The packing station</p>
+        <span class="d17-mark">decodedops.co.uk &middot; DO-ART-979n &middot; Rev 01</span>
+      </figure>`,
+    ],
+  },
+  steps: [
+    { icon: "i-map", text: "Map your full workflow, from enquiry to survey, design, production, installation, and sign-off" },
+    { icon: "i-search", text: "Find where jobs fall through system gaps into manual processes" },
+    { icon: "i-calculator", text: "Review how you cost jobs, and where margin leaks on complex work" },
+    { icon: "i-calendar-clock", text: "Look at installation scheduling and how it connects to production" },
+    { icon: "i-clipboard-check", text: "Audit your artwork and proof approval process" },
+    { icon: "i-badge-check", text: "Recommend sign shop management software that fits the way a signs and graphics business actually runs" },
+  ],
+  caseStudy: {
+    heading: "Custom tooling for a service business",
+    lede: "Full site rebuild and a custom AI-assisted tool: the kind of bespoke build that signs and graphics businesses need when off-the-shelf doesn’t fit.",
+    body: "This client runs a training studio, not a sign shop. The question underneath is the same one: what gets built when nothing off the shelf fits, and who owns the decisions.",
+    layout: "split-6",
+    href: "/case-studies/eternal-fitness",
+    linkLabel: "Read the case study",
+    panelHtml: `<div>
+      <span class="t-meta">What was built</span>
+      <ul class="ticks" style="margin-top:14px"><li><svg class="ic ic-20" aria-hidden="true"><use href="#i-check"/></svg><span>A full site rebuild with clinical framing, not fitness-marketing convention</span></li><li><svg class="ic ic-20" aria-hidden="true"><use href="#i-check"/></svg><span>A training plan tool that drafts against a confirmed equipment list and each client’s condition, with every output reviewed and approved by the owner</span></li><li><svg class="ic ic-20" aria-hidden="true"><use href="#i-check"/></svg><span>Brand and tooling consistency across the site and the plan output, so the two don’t drift apart</span></li><li><svg class="ic ic-20" aria-hidden="true"><use href="#i-check"/></svg><span>A technical foundation the owner relies on without managing it herself</span></li></ul>
+    </div>`,
+  },
+  keepReading: {
+    service: {
+      title: "Operations audit for signs & graphics",
+      body: "A one-day audit that looks at your job-to-cash flow, supplier integration, file management, and production planning, and tells you what to fix first.",
+      href: "/clarity",
+      linkLabel: "See how it works",
+    },
+    problems: [
+      { label: "AI hype vs what would actually help", href: "/problems/ai-paralysis" },
+      { label: "No one owns the operational picture", href: "/problems/no-ops-owner" },
+      { label: "Job-management software that doesn’t fit", href: "/problems/wrong-erp-software" },
+    ],
+    resources: [
+      { label: "ERP selection playbook", href: "/resources/erp-selection-playbook" },
+      { label: "Ops health score", href: "/tools/ops-health-score" },
+    ],
+    sectors: [
+      { label: "Awards & engraving", href: "/sectors/awards-engraving" },
+      { label: "Labels & packaging", href: "/sectors/labels-packaging" },
+    ],
+  },
+};
 
-      {/* CHALLENGES */}
-      <section className="g-white">
-        <div className="wrap">
-          <span className="eyebrow">Common challenges</span>
-          <h2>Where the problems tend to live</h2>
-          <div className="hair" />
-          <p className="lede">In this sector, the same operational problems appear in different shapes across different businesses. These are the ones that cost the most.</p>
-          <div className="grid grid--2">
-            {challenges.map((c, i) => (
-              <article key={i} className="card">
-                <span className="kicker">{String(i + 1).padStart(2, '0')} &middot; {c.title}</span>
-                <p>{c.body}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* WHAT I DO */}
-      <section className="g-navy">
-        <div className="wrap">
-          <span className="eyebrow">How I help</span>
-          <h2>What the work actually looks like</h2>
-          <div className="hair" />
-          <p className="lede">A structured audit followed by specific, costed recommendations. No vague frameworks, no generic advice.</p>
-          <div className="grid grid--2" style={{ marginTop: '32px' }}>
-            {whatIdo.map((item, i) => (
-              <div key={i} className="card" style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
-                <span style={{ minWidth: '28px', height: '28px', borderRadius: 'var(--do-radius-full)', background: 'color-mix(in srgb, var(--do-cerulean) 20%, transparent)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 'var(--do-text-xs)', fontWeight: 'var(--do-weight-bold)', color: 'var(--do-sky-blue)' }}>{String(i + 1).padStart(2, '0')}</span>
-                <p>{item}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CROSS-LINKS */}
-      {(route.targetService || (route.relatedProblems && route.relatedProblems.length > 0) || (route.relatedResources && route.relatedResources.length > 0)) && (
-        <section style={{ padding: 'clamp(40px, 4.5vw, 60px) 0' }} className="g-tint">
-          <div className="wrap">
-            <div className="grid grid--3">
-              {route.targetService && (
-                <div className="card" style={{ background: 'var(--do-surface-dark)', color: 'var(--do-text-on-dark)' }}>
-                  <span className="kicker" style={{ color: 'var(--do-amber)' }}>The work in this sector</span>
-                  <h3 style={{ fontSize: 'var(--do-text-xl)', margin: '8px 0' }}>{route.targetService.label}</h3>
-                  <p style={{ marginBottom: '20px' }}>{route.targetService.anchor}</p>
-                  <Link href={route.targetService.href} style={{ color: 'var(--do-amber)', fontWeight: 'var(--do-weight-semibold)', display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
-                    See how it works <ArrowRight size={18} aria-hidden="true" />
-                  </Link>
-                </div>
-              )}
-              {route.relatedProblems && route.relatedProblems.length > 0 && (
-                <div className="card">
-                  <span className="kicker">Most common in signs & graphics</span>
-                  <h3 style={{ fontSize: 'var(--do-text-lg)', margin: '8px 0' }}>The problems I see most often</h3>
-                  <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                    {route.relatedProblems.map((p) => (
-                      <li key={p.href} style={{ marginBottom: '10px' }}>
-                        <Link href={p.href} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', fontSize: 'var(--do-text-sm)' }}>
-                          <ArrowRight size={14} style={{ marginTop: '2px', flexShrink: 0, color: 'var(--do-text-cerulean)' }} aria-hidden="true" />
-                          <span>{p.label}</span>
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-              {route.relatedResources && route.relatedResources.length > 0 && (
-                <div className="card">
-                  <span className="kicker">Useful next steps</span>
-                  <h3 style={{ fontSize: 'var(--do-text-lg)', margin: '8px 0' }}>Resources</h3>
-                  <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                    {route.relatedResources.map((r) => (
-                      <li key={r.href} style={{ marginBottom: '10px' }}>
-                        <Link href={r.href} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', fontSize: 'var(--do-text-sm)' }}>
-                          <ArrowRight size={14} style={{ marginTop: '2px', flexShrink: 0, color: 'var(--do-text-cerulean)' }} aria-hidden="true" />
-                          <span>{r.label}</span>
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* CASE STUDY */}
-      <section style={{ padding: 'clamp(40px, 4.5vw, 60px) 0' }} className="g-off">
-        <div className="wrap">
-          <span className="eyebrow">Case study</span>
-          <h2>Custom tooling for a service business</h2>
-          <div className="hair" />
-          <p className="lede">Full site rebuild and a custom AI-assisted tool: the kind of bespoke build that signs and graphics businesses need when off-the-shelf doesn&apos;t fit.</p>
-          <div className="btn-row" style={{ marginTop: '24px' }}>
-            <Link className="btn btn--outline" href="/case-studies/eternal-fitness">Read the case study <ArrowRight size={16} aria-hidden="true" /></Link>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA STRIP */}
-      <section className="g-off">
-        <div className={`wrap ${styles.centred}`}>
-          <h2>Book a free discovery call.</h2>
-          <div className="hair" />
-          <p className="lede">The audit starts with a free 60-minute call. No obligation. Just a conversation about what&apos;s happening in your business.</p>
-          <div className="btn-row">
-            <Link className="btn btn--primary" href="/contact">Book a free discovery call <ArrowRight size={16} aria-hidden="true" /></Link>
-            <Link className="btn btn--outline" href="/clarity">See how a Clarity Audit works <ArrowRight size={16} aria-hidden="true" /></Link>
-          </div>
-        </div>
-      </section>
-      <D17Motion />
+export default function SignsGraphicsPage() {
+  return (
+    <>
+      <JsonLd data={sectorSchema} />
+      <BreadcrumbSchema items={[
+              { name: 'Home', url: 'https://decodedops.co.uk' },
+              { name: 'Sectors', url: 'https://decodedops.co.uk/#sectors' },
+              { name: 'Signs & Graphics', url: 'https://decodedops.co.uk/sectors/signs-graphics' },
+            ]} />
+      <SectorPageV2 data={data} />
     </>
   );
 }

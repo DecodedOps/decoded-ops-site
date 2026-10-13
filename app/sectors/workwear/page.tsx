@@ -1,11 +1,7 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
-import { D17Motion } from '@/components/D17Motion';
 import { JsonLd } from '@/components/JsonLd';
 import { BreadcrumbSchema } from '@/components/BreadcrumbSchema';
-import { sectorRouting } from '@/data/sector-routing';
-import '@/app/d17-global.css';
+import { SectorPageV2, type SectorV2Data } from '@/components/SectorPageV2';
 
 export const metadata: Metadata = {
   title: 'Workwear Software for Supply & Decoration | Decoded Ops',
@@ -58,37 +54,15 @@ const sectorSchema = {
   ],
 };
 
-export default function WorkwearPage() {
-  const route = sectorRouting['workwear'];
-  return (
-    <>
-      <JsonLd data={sectorSchema} />
-      <BreadcrumbSchema items={[
-        { name: 'Home', url: 'https://decodedops.co.uk' },
-        { name: 'Sectors', url: 'https://decodedops.co.uk/sectors' },
-        { name: 'Workwear', url: 'https://decodedops.co.uk/sectors/workwear' },
-      ]} />
-
-      {/* HERO SPLIT */}
-      <section className="g-off" style={{ padding: 'clamp(40px, 4.5vw, 60px) 0' }}>
-        <div className="wrap" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'clamp(24px, 3vw, 48px)', alignItems: 'center' }}>
-          <div>
-            <span className="eyebrow">Sector · workwear</span>
-            <h1>Workwear, from someone who&apos;s run the floor.</h1>
-            <div style={{ marginTop: '20px' }}>
-              <p style={{ fontSize: 'var(--do-text-lg)', lineHeight: 1.6, marginBottom: '12px' }}>Personalised orders, decoration methods that vary by garment, and stock that has to match sizes, colours, and branding all at once.</p>
-              <p style={{ fontSize: 'var(--do-text-lg)', lineHeight: 1.6 }}>Generic tech advice and generic workwear software get this sector wrong from the start, because the production step sits between order and despatch, not after it.</p>
-            </div>
-            <div className="btn-row" style={{ marginTop: '24px' }}>
-              <Link className="btn btn--primary" href="/contact">Book a free call <ArrowRight size={16} aria-hidden="true" /></Link>
-              <Link className="btn btn--outline" href="/clarity">See how the audit works <ArrowRight size={16} aria-hidden="true" /></Link>
-            </div>
-          </div>
-          {/* D17 hero artwork DO-ART-937 */}
-          <div dangerouslySetInnerHTML={{ __html: `
-<figure class="d17 sx a937" data-od-id="hero-evidence" data-motion data-no="DO-ART-937" data-rev="01" data-tx="photo"
+const data: SectorV2Data = {
+  h1Lead: "Workwear software,",
+  h1: "from someone who's run the floor.",
+  eyebrow: "Sector · workwear",
+  lede: "Personalised orders, decoration methods that vary by garment, and stock that has to match sizes, colours, and branding all at once.",
+  body: "Generic tech advice and generic workwear software get this sector wrong from the start, because the production step sits between order and despatch, not after it.",
+  heroHtml: `<figure class="d17 sx a937" data-od-id="hero-evidence" data-motion data-no="DO-ART-937" data-rev="01" data-tx="photo"
         aria-label="Artwork DO-ART-937. A graded photograph of a worker in a hi-vis vest, tagged three ways: the plain garment as one SKU with its own stock, an embroidered logo on the left chest, and a heat-transfer company name on the back, each a decorated product of its own. One garment, a dozen colourways, three decoration methods.">
-  <div class="d17-ph"><img src="/images/d17/sectors/prod-hivis-7a7ace.webp" alt="" width="900" height="1220"></div>
+  <div class="d17-ph"><img src="/images/site/d17/sectors/prod-hivis-7a7ace.webp" alt="" width="900" height="1220"></div>
   <div class="d17-scan" aria-hidden="true"></div>
   <div class="sx-top d17-mono" aria-hidden="true"><span>Workwear</span><span>Plain in, decorated out</span></div>
   <div class="stage" aria-hidden="true">
@@ -105,15 +79,19 @@ export default function WorkwearPage() {
     <p class="sx-say">One garment, a dozen colourways, <em>three decoration methods.</em></p>
     <span class="d17-mark">decodedops.co.uk · DO-ART-937 · Rev 01</span>
   </div>
-</figure>` }} />
-        </div>
-      </section>
-
-      {/* D17 INLINE ARTWORK · DO-ART-938 */}
-      <section className="g-navy">
-        <div className="wrap">
-          <div dangerouslySetInnerHTML={{ __html: `
-<figure class="d17 sw a938" data-od-id="plate-architecture" data-motion data-no="DO-ART-938" data-rev="01" data-tx="schematic"
+</figure>`,
+  challengesLede: "In workwear, the same operational problems appear in different shapes across different businesses. These are the ones that cost the most.",
+  challenges: [
+    { icon: "i-layers", title: "Supplier feed chaos", body: "Workwear catalogues change constantly. New ranges, discontinued colours, updated sizing. Keeping that current across every channel without re-keying it by hand eats more admin hours than anything else in this trade." },
+    { icon: "i-tags", title: "Decoration and stock, in the same picture", body: "A plain garment isn’t the same SKU as the decorated one. Systems that don’t understand that force workarounds that mean data outside the system, errors, and extra admin on every order." },
+    { icon: "i-package-check", title: "Blank stock dependency", body: "Your production schedule is hostage to blank availability. Most businesses have no real visibility of incoming stock versus committed orders until the problem is already in the queue." },
+    { icon: "i-unplug", title: "eCommerce disconnected from production", body: "Online orders that don’t automatically flow into the production schedule. Personalisation requiring manual re-entry. Artwork files arriving separately from the order. All of this is solvable." },
+    { icon: "i-history", title: "Replenishment that waits on you", body: "Staff uniform orders repeat on their own schedule, not a seasonal one. Workwear software that tracks reorder points and sizing history means fewer calls chasing stockouts of the sizes everyone actually needs." },
+  ],
+  plate: {
+    heading: "One blank, three decorated products, one stock picture.",
+    lede: "The supplier catalogue keeps the plain garment current. The floor turns it into three products. The portal sees plain and decorated stock together, so reorders trigger on their own.",
+    html: `<figure class="d17 sw a938" data-od-id="plate-architecture" data-motion data-no="DO-ART-938" data-rev="01" data-tx="schematic"
         aria-label="Drawn plate DO-ART-938. The supplier catalogue keeps the plain garment current. The plain garment is one SKU with its own stock. On the production floor it becomes three decorated products, embroidered, screen printed and name transferred, each its own product but all drawing on the same blank stock. The customer portal sees decorated and plain stock in one picture, so reorder points and sizing history trigger replenishment on their own.">
   <div class="q-grid" aria-hidden="true"></div>
   <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
@@ -161,129 +139,88 @@ export default function WorkwearPage() {
     <text class="t-d" x="34" y="1050" style="font-size:25px">reorder points and sizing history,</text><text class="t-d" x="34" y="1084" style="font-size:25px">plain and decorated in one stock picture</text>
   </svg>
   <div class="foot"><span class="k d17-mono">Catalogue · production floor · portal</span><span class="d17-mark">decodedops.co.uk · DO-ART-938 · Rev 01</span></div>
-</figure>` }} />
-        </div>
-      </section>
+</figure>`,
+  },
+  band: {
+    heading: "The racking this is written from.",
+    lede: "Three of my own photographs from client visits this year. The garment rail, the shelf and the despatch bench are where plain stock and decorated stock either agree or don’t.",
+    photosHtml: [
+      `<figure class="d17 ev" data-od-id="photo-rail" data-no="DO-ART-979p" data-rev="01" data-tx="photo">
+        <div class="d17-ph"><img src="/images/site/evidence/hero-garment-racking-219356.webp" width="1600" height="900" alt="Garments hung on racking at a client site." loading="lazy"></div>
+        <div class="d17-scan" aria-hidden="true"></div>
+        <p class="k d17-mono">Stock &middot; 2026</p>
+        <p class="line">Garments on the rail</p>
+        <span class="d17-mark">decodedops.co.uk &middot; DO-ART-979p &middot; Rev 01</span>
+      </figure>`,
+      `<figure class="d17 ev" data-od-id="photo-shelf" data-no="DO-ART-979j" data-rev="01" data-tx="photo">
+        <div class="d17-ph"><img src="/images/site/evidence/card-garment-shelf-724253.webp" width="1600" height="900" alt="Folded garments on a stock shelf at a client site." loading="lazy"></div>
+        <div class="d17-scan" aria-hidden="true"></div>
+        <p class="k d17-mono">Stock &middot; June 2026</p>
+        <p class="line">Folded garments on the shelf</p>
+        <span class="d17-mark">decodedops.co.uk &middot; DO-ART-979j &middot; Rev 01</span>
+      </figure>`,
+      `<figure class="d17 ev" data-od-id="photo-cartons" data-no="DO-ART-979q" data-rev="01" data-tx="photo">
+        <div class="d17-ph"><img src="/images/site/evidence/plate-cartons-packed-2fb0ae.webp" width="1600" height="900" alt="Packed cartons stacked and labelled, waiting for collection at a client site." loading="lazy"></div>
+        <div class="d17-scan" aria-hidden="true"></div>
+        <p class="k d17-mono">Despatch &middot; June 2026</p>
+        <p class="line">Packed, checked, out the door</p>
+        <span class="d17-mark">decodedops.co.uk &middot; DO-ART-979q &middot; Rev 01</span>
+      </figure>`,
+    ],
+  },
+  steps: [
+    { icon: "i-map", text: "Map the full supplier-to-customer workflow, including decoration" },
+    { icon: "i-database", text: "Find where supplier catalogue data is being re-keyed by hand" },
+    { icon: "i-package-check", text: "Check blank stock against committed orders for supply gaps" },
+    { icon: "i-tags", text: "See how personalisation flows from order to production" },
+    { icon: "i-shopping-cart", text: "Assess how your online shop connects to production" },
+    { icon: "i-pound", text: "Put a number on every finding in time, headcount, and money" },
+  ],
+  caseStudy: {
+    heading: "B2B portal and ERP evaluation for a workwear distributor",
+    lede: "Vendor requirements, procurement, and integration architecture for a B2B ordering portal: the same sector, the same challenges.",
+    layout: "split-6",
+    href: "/case-studies/case-study-03",
+    linkLabel: "Read the case study",
+    panelHtml: `<div>
+      <span class="t-meta">What the portal had to do</span>
+      <ul class="ticks" style="margin-top:14px"><li><svg class="ic ic-20" aria-hidden="true"><use href="#i-check"/></svg><span>Company accounts, with buyer roles</span></li><li><svg class="ic ic-20" aria-hidden="true"><use href="#i-check"/></svg><span>Account pricing read from the ERP</span></li><li><svg class="ic ic-20" aria-hidden="true"><use href="#i-check"/></svg><span>Approval before an order goes</span></li><li><svg class="ic ic-20" aria-hidden="true"><use href="#i-check"/></svg><span>Stock read live, not nightly</span></li></ul>
+    </div>`,
+  },
+  keepReading: {
+    service: {
+      title: "Workwear B2B portal and ERP",
+      body: "Corporate account ordering, managed-account complexity, multi-location despatch, and a B2B portal that connects directly with production and stock.",
+      href: "/transform",
+      linkLabel: "See how it works",
+    },
+    problems: [
+      { label: "Your B2B portal isn’t connected to operations", href: "/problems/ecommerce-not-connected" },
+      { label: "Scaling beyond manual account management", href: "/problems/cant-scale-operations" },
+      { label: "No real visibility of stock levels", href: "/problems/inventory-blind" },
+    ],
+    resources: [
+      { label: "ERP selection playbook", href: "/resources/erp-selection-playbook" },
+      { label: "Ops health score", href: "/tools/ops-health-score" },
+    ],
+    sectors: [
+      { label: "Teamwear & clubwear", href: "/sectors/teamwear-clubwear" },
+      { label: "Garment decoration", href: "/sectors/garment-decoration" },
+      { label: "Labels & packaging", href: "/sectors/labels-packaging" },
+    ],
+  },
+};
 
-      {/* COMMON CHALLENGES */}
-      <section className="g-white">
-        <div className="wrap">
-          <span className="eyebrow">Common challenges</span>
-          <h2>Where the problems tend to live</h2>
-          <div className="hair" />
-          <p className="lede">In workwear, the same operational problems appear in different shapes across different businesses. These are the ones that cost the most.</p>
-          <div className="grid grid--2">
-            {[
-              { title: 'Supplier feed chaos', body: 'Workwear catalogues change constantly. New ranges, discontinued colours, updated sizing. Keeping that current across every channel without re-keying it by hand eats more admin hours than anything else in this trade.' },
-              { title: 'Decoration and stock, in the same picture', body: "A plain garment isn\u2019t the same SKU as the decorated one. Systems that don\u2019t understand that force workarounds that mean data outside the system, errors, and extra admin on every order." },
-              { title: 'Blank stock dependency', body: 'Your production schedule is hostage to blank availability. Most businesses have no real visibility of incoming stock versus committed orders until the problem is already in the queue.' },
-              { title: 'eCommerce disconnected from production', body: "Online orders that don\u2019t automatically flow into the production schedule. Personalisation requiring manual re-entry. Artwork files arriving separately from the order. All of this is solvable." },
-              { title: 'Replenishment that waits on you', body: 'Staff uniform orders repeat on their own schedule, not a seasonal one. Workwear software that tracks reorder points and sizing history means fewer calls chasing stockouts of the sizes everyone actually needs.' },
-            ].map((c, i) => (
-              <article key={i} className="card">
-                <span className="kicker">{String(i + 1).padStart(2, '0')} &middot; {c.title}</span>
-                <p>{c.body}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* HOW I HELP */}
-      <section className="g-navy">
-        <div className="wrap">
-          <span className="eyebrow">How I help</span>
-          <h2>What the work actually looks like</h2>
-          <div className="hair" />
-          <p className="lede">A structured audit followed by specific, costed recommendations. No vague frameworks, no generic advice.</p>
-          <div className="grid grid--2" style={{ marginTop: '32px' }}>
-            {[
-              'Map the full supplier-to-customer workflow, including decoration',
-              'Find where supplier catalogue data is being re-keyed by hand',
-              'Check blank stock against committed orders for supply gaps',
-              'See how personalisation flows from order to production',
-              'Assess how your online shop connects to production',
-              'Put a number on every finding in time, headcount, and money',
-            ].map((item, i) => (
-              <div key={i} className="card" style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
-                <span style={{ minWidth: '28px', height: '28px', borderRadius: 'var(--do-radius-full)', background: 'color-mix(in srgb, var(--do-cerulean) 20%, transparent)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 'var(--do-text-xs)', fontWeight: 'var(--do-weight-bold)', color: 'var(--do-sky-blue)' }}>{String(i + 1).padStart(2, '0')}</span>
-                <p>{item}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CASE STUDY */}
-      <section style={{ padding: 'clamp(40px, 4.5vw, 60px) 0' }} className="g-off">
-        <div className="wrap">
-          <span className="eyebrow">Case study</span>
-          <h2>B2B portal and ERP evaluation for a workwear distributor</h2>
-          <div className="hair" />
-          <p className="lede">Vendor requirements, procurement, and integration architecture for a B2B ordering portal: the same sector, the same challenges.</p>
-          <div className="btn-row" style={{ marginTop: '24px' }}>
-            <Link className="btn btn--outline" href="/case-studies/case-study-03">Read the case study <ArrowRight size={16} aria-hidden="true" /></Link>
-          </div>
-        </div>
-      </section>
-
-      {/* RELATED PROBLEMS + RESOURCES */}
-      <section style={{ padding: 'clamp(40px, 4.5vw, 60px) 0' }} className="g-tint">
-        <div className="wrap">
-          <div className="grid grid--3">
-            {route.relatedProblems.length > 0 && (
-              <article className="card">
-                <span className="kicker">Common problems</span>
-                <h3>The problems I see most often</h3>
-                <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                  {route.relatedProblems.map((p) => (
-                    <li key={p.href} style={{ marginBottom: '10px' }}>
-                      <Link href={p.href} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', fontSize: 'var(--do-text-sm)' }}>
-                        <ArrowRight size={14} style={{ marginTop: '2px', flexShrink: 0, color: 'var(--do-text-cerulean)' }} aria-hidden="true" />
-                        <span>{p.label}</span>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </article>
-            )}
-            {route.relatedResources.length > 0 && (
-              <article className="card">
-                <span className="kicker">Useful next steps</span>
-                <h3>Resources</h3>
-                <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                  {route.relatedResources.map((r) => (
-                    <li key={r.href} style={{ marginBottom: '10px' }}>
-                      <Link href={r.href} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', fontSize: 'var(--do-text-sm)' }}>
-                        <ArrowRight size={14} style={{ marginTop: '2px', flexShrink: 0, color: 'var(--do-text-cerulean)' }} aria-hidden="true" />
-                        <span>{r.label}</span>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </article>
-            )}
-            {route.relatedSectors.length > 0 && (
-              <article className="card">
-                <span className="kicker">Related sectors</span>
-                <h3>Adjacent trades</h3>
-                <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                  {route.relatedSectors.map((s) => (
-                    <li key={s.href} style={{ marginBottom: '10px' }}>
-                      <Link href={s.href} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', fontSize: 'var(--do-text-sm)' }}>
-                        <ArrowRight size={14} style={{ marginTop: '2px', flexShrink: 0, color: 'var(--do-text-cerulean)' }} aria-hidden="true" />
-                        <span>{s.label}</span>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </article>
-            )}
-          </div>
-        </div>
-      </section>
-
-      <D17Motion />
+export default function WorkwearPage() {
+  return (
+    <>
+      <JsonLd data={sectorSchema} />
+      <BreadcrumbSchema items={[
+              { name: 'Home', url: 'https://decodedops.co.uk' },
+              { name: 'Sectors', url: 'https://decodedops.co.uk/sectors' },
+              { name: 'Workwear', url: 'https://decodedops.co.uk/sectors/workwear' },
+            ]} />
+      <SectorPageV2 data={data} />
     </>
   );
 }

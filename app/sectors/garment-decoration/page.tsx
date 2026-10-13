@@ -1,12 +1,7 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
 import { JsonLd } from '@/components/JsonLd';
-import { D17Motion } from '@/components/D17Motion';
-import '@/app/d17-global.css';
 import { BreadcrumbSchema } from '@/components/BreadcrumbSchema';
-import { sectorRouting } from '@/data/sector-routing';
-import styles from '@/components/SectorPageDS.module.css';
+import { SectorPageV2, type SectorV2Data } from '@/components/SectorPageV2';
 
 export const metadata: Metadata = {
   title: "ERP for Garment Decoration Businesses | Decoded Ops",
@@ -59,62 +54,14 @@ const sectorSchema = {
   ],
 };
 
-const tagline = 'Garment decoration business systems ||were never built for how you actually work.||';
-const parts = tagline.split('||');
-
-const challenges = [
-  { title: 'Decoration method mix', body: "Run embroidery, screen print, and DTG under one roof and you're running three production processes, three lead times, and three cost structures. Most systems treat them all the same." },
-  { title: 'The artwork loop', body: "Artwork sign-off causes more delay than almost anything else in this sector. Every manual chase and email thread is time and money that shows up nowhere. Artwork software can automate sign-off, but only if it connects to your order system. Most businesses still approve artwork by email." },
-  { title: 'Blank dependency', body: "Your production schedule is hostage to blank availability. Most businesses have no real visibility of incoming stock against committed orders, until the problem is already in the queue." },
-  { title: 'eCommerce disconnected from production', body: "Online orders that don't automatically flow into the production schedule. Personalisation that needs manual re-entry. Artwork files that arrive separately from the order. All of this is solvable." },
-  { title: 'Embroidery production workflow versus other methods', body: "Embroidery scheduling is not the same as screen print or DTF. Machine capacity, stitch count, digitising time, and thread changes all affect the schedule in ways generic software ignores. A system that can't represent embroidery accurately just means manual workarounds." },
-];
-
-const whatIdo = [
-  'Map your whole workflow, from order intake to despatch',
-  'Find where the artwork loop is causing delay and cost',
-  'Assess artwork software and how it connects to your order system',
-  'Review how you source blanks and where that leaves you exposed',
-  'Check for gaps between your online shop, order system, and production',
-  'Write an independent vendor brief if new software is needed',
-  'Put a number on every finding in time, headcount, and money',
-];
-
-const route = sectorRouting['garment-decoration'];
-
-export default function GarmentDecorationPage() {
-  return (
-    <>
-      <JsonLd data={sectorSchema} />
-      <BreadcrumbSchema items={[
-        { name: 'Home', url: 'https://decodedops.co.uk' },
-        { name: 'Sectors', url: 'https://decodedops.co.uk/#sectors' },
-        { name: 'Garment Decoration', url: 'https://decodedops.co.uk/sectors/garment-decoration' },
-      ]} />
-      {/* HERO SPLIT */}
-      <section className={`g-off ${styles.heroSection}`}>
-        <div className={`wrap ${styles.heroSplit}`}>
-          <div>
-            <span className="eyebrow">Sector · garment decoration</span>
-            <h1>
-              {parts.map((p, i) =>
-                i % 2 === 0
-                  ? <span key={i}>{p}</span>
-                  : <span key={i} style={{ color: 'var(--do-text-cerulean)' }}>{p}</span>
-              )}
-            </h1>
-            <div className={styles.heroBody}>
-              <p>Embroidery, screen print, DTF, and DTG each work in their own way. But the ERP and MIS systems sold to decoration businesses rarely account for that. Embroidery is not the same as screen print. Your systems should match how you actually work.</p>
-            </div>
-            <div className="btn-row">
-              <Link className="btn btn--primary" href="/contact">Book a free call <ArrowRight size={16} aria-hidden="true" /></Link>
-              <Link className="btn btn--outline" href="/clarity">See how the audit works <ArrowRight size={16} aria-hidden="true" /></Link>
-            </div>
-          </div>
-          <div dangerouslySetInnerHTML={{ __html: `
-<figure class="d17 sx a923" data-od-id="hero-evidence" data-motion data-no="DO-ART-923" data-rev="01" data-tx="photo"
+const data: SectorV2Data = {
+  h1Lead: "Garment decoration",
+  h1: "business systems were never built for how you actually work.",
+  eyebrow: "Sector · garment decoration",
+  lede: "Embroidery, screen print, DTF, and DTG each work in their own way. But the ERP and MIS systems sold to decoration businesses rarely account for that. Embroidery is not the same as screen print. Your systems should match how you actually work.",
+  heroHtml: `<figure class="d17 sx a923" data-od-id="hero-evidence" data-motion data-no="DO-ART-923" data-rev="01" data-tx="photo"
         aria-label="Artwork DO-ART-923. Thread spools racked on an embroidery machine, graded, above three drawn production runs: embroidery (digitise, hoop, stitch, trim), screen print (screens, set-up, print, flash, cure) and direct-to-garment (pre-treat, press, print, cure). Three methods, three production logics.">
-  <div class="d17-ph"><img src="/images/d17/sectors/thread-spools-1c52d7.webp" alt="" width="1000" height="889"></div>
+  <div class="d17-ph"><img src="/images/site/d17/sectors/thread-spools-1c52d7.webp" alt="" width="1000" height="889"></div>
   <div class="d17-scan" aria-hidden="true"></div>
   <div class="sx-top d17-mono" aria-hidden="true"><span>Garment decoration</span><span>One floor, three methods</span></div>
   <div class="stage" aria-hidden="true"></div>
@@ -131,15 +78,19 @@ export default function GarmentDecorationPage() {
     <p class="sx-say">Three methods, <em>three production logics.</em></p>
     <span class="d17-mark">decodedops.co.uk · DO-ART-923 · Rev 01</span>
   </div>
-</figure>` }} />
-        </div>
-      </section>
-
-      {/* D17 INLINE ARTWORK · DO-ART-924 */}
-      <section className="g-navy">
-        <div className="wrap">
-          <div dangerouslySetInnerHTML={{ __html: `
-<figure class="d17 sw a924" data-od-id="plate-architecture" data-motion data-no="DO-ART-924" data-rev="01" data-tx="journey"
+</figure>`,
+  challengesLede: "In garment decoration, the same operational problems appear in different shapes across different businesses. These are the ones that cost the most.",
+  challenges: [
+    { icon: "i-layers", title: "Decoration method mix", body: "In garment decoration, running embroidery, screen print, and DTG under one roof means three production processes, three lead times, and three cost structures. Most systems treat them all the same." },
+    { icon: "i-clipboard-check", title: "The artwork loop", body: "Artwork sign-off causes more delay than almost anything else in garment decoration. Every manual chase and email thread is time and money that shows up nowhere. Artwork software can automate sign-off, but only if it connects to your order system. Most businesses still approve artwork by email." },
+    { icon: "i-package-check", title: "Blank dependency", body: "Your production schedule is hostage to blank availability. Most businesses have no real visibility of incoming stock against committed orders, until the problem is already in the queue." },
+    { icon: "i-unplug", title: "eCommerce disconnected from production", body: "Online orders that don't automatically flow into the production schedule. Personalisation that needs manual re-entry. Artwork files that arrive separately from the order. All of this is solvable." },
+    { icon: "i-workflow", title: "Embroidery production workflow versus other methods", body: "Embroidery scheduling is not the same as screen print or DTF. Machine capacity, stitch count, digitising time, and thread changes all affect the schedule in ways generic software ignores. A system that can't represent embroidery accurately just means manual workarounds." },
+  ],
+  plate: {
+    heading: "One order, four stops, three production logics.",
+    lede: "Order intake, the artwork loop, blanks checked against committed orders, then production split by method and despatch on the date promised.",
+    html: `<figure class="d17 sw a924" data-od-id="plate-architecture" data-motion data-no="DO-ART-924" data-rev="01" data-tx="journey"
         aria-label="Journey poster DO-ART-924. One order's route through a garment decoration business: order intake, the artwork loop, blanks checked against committed orders, then production split by method, each scheduled by its own logic, and despatch on the date promised. Two pinned prints: an embroidery head and a screen-print press.">
   <div class="q-grid" aria-hidden="true"></div>
   <p class="eb d17-mono">One order's route</p>
@@ -158,8 +109,8 @@ export default function GarmentDecorationPage() {
     <span style="left:70.6%;top:51.2%">Embroidery</span><span style="left:70.6%;top:63.4%">Screen print</span><span style="left:70.6%;top:75.6%">DTG</span>
   </div>
   <div class="prints" aria-hidden="true">
-    <div class="print" style="left:55%;top:5%;width:14%;height:31%;transform:rotate(-3deg)"><img src="/images/d17/sectors/hero-workshop-783ec1.webp" alt="" width="520" height="455"><div class="tint"></div><span>Embroidery · by stitch count</span></div>
-    <div class="print" style="left:73%;top:8%;width:14%;height:31%;transform:rotate(2.5deg)"><img src="/images/d17/sectors/gen-press-hall-40f9e1.webp" alt="" width="520" height="327"><div class="tint"></div><span>Screen print · by set-up</span></div>
+    <div class="print" style="left:55%;top:5%;width:14%;height:31%;transform:rotate(-3deg)"><img src="/images/site/d17/sectors/hero-workshop-783ec1.webp" alt="" width="520" height="455"><div class="tint"></div><span>Embroidery · by stitch count</span></div>
+    <div class="print" style="left:73%;top:8%;width:14%;height:31%;transform:rotate(2.5deg)"><img src="/images/site/d17/sectors/gen-press-hall-40f9e1.webp" alt="" width="520" height="327"><div class="tint"></div><span>Screen print · by set-up</span></div>
   </div>
   <div class="stations">
     <div class="st" style="left:5%;top:68%"><span class="n">01 · In</span><h3>Order intake</h3><p>Online, trade and repeat orders in one place.</p></div>
@@ -168,153 +119,93 @@ export default function GarmentDecorationPage() {
     <div class="st st--end" style="left:84%;top:68%;width:calc(230 * var(--u))"><span class="n">04 · Out</span><h3>Despatch</h3><p>Each method on its own clock, out on the date promised.</p></div>
   </div>
   <span class="d17-mark d17-mark--abs">decodedops.co.uk · DO-ART-924 · Rev 01</span>
-</figure>` }} />
-        </div>
-      </section>
+</figure>`,
+  },
+  band: {
+    heading: "The floors this is written from.",
+    lede: "Three of my own photographs from client visits this year. Embroidery, screen print and DTF on three different floors, each running on its own logic.",
+    photosHtml: [
+      `<figure class="d17 ev" data-od-id="photo-embroidery" data-no="DO-ART-979d" data-rev="01" data-tx="photo">
+        <div class="d17-ph"><img src="/images/site/evidence/hero-embroidery-floor-84216c.webp" width="1600" height="900" alt="An embroidery production floor at a client site." loading="lazy"></div>
+        <div class="d17-scan" aria-hidden="true"></div>
+        <p class="k d17-mono">The floor &middot; 2026</p>
+        <p class="line">The embroidery floor</p>
+        <span class="d17-mark">decodedops.co.uk &middot; DO-ART-979d &middot; Rev 01</span>
+      </figure>`,
+      `<figure class="d17 ev" data-od-id="photo-carousel" data-no="DO-ART-979o" data-rev="01" data-tx="photo">
+        <div class="d17-ph"><img src="/images/site/evidence/band-screenprint-carousel-f0dce0.webp" width="1600" height="900" alt="A screen-print carousel on a client's production floor." loading="lazy"></div>
+        <div class="d17-scan" aria-hidden="true"></div>
+        <p class="k d17-mono">The press &middot; June 2026</p>
+        <p class="line">The carousel, mid-run</p>
+        <span class="d17-mark">decodedops.co.uk &middot; DO-ART-979o &middot; Rev 01</span>
+      </figure>`,
+      `<figure class="d17 ev" data-od-id="photo-dtf" data-no="DO-ART-979b" data-rev="01" data-tx="photo">
+        <div class="d17-ph"><img src="/images/site/evidence/plate-dtf-conveyor-a1f1d1.webp" width="1600" height="900" alt="A direct-to-film print conveyor running on a client's production floor." loading="lazy"></div>
+        <div class="d17-scan" aria-hidden="true"></div>
+        <p class="k d17-mono">The print line &middot; 2026</p>
+        <p class="line">A print conveyor, mid-run</p>
+        <span class="d17-mark">decodedops.co.uk &middot; DO-ART-979b &middot; Rev 01</span>
+      </figure>`,
+    ],
+  },
+  steps: [
+    { icon: "i-map", text: "Map your whole workflow, from order intake to despatch" },
+    { icon: "i-clipboard-check", text: "Find where the artwork loop is causing delay and cost" },
+    { icon: "i-link", text: "Assess artwork software and how it connects to your order system" },
+    { icon: "i-package-check", text: "Review how you source blanks and where that leaves you exposed" },
+    { icon: "i-shopping-cart", text: "Check for gaps between your online shop, order system, and production" },
+    { icon: "i-file-check", text: "Write an independent vendor brief if new software is needed" },
+    { icon: "i-pound", text: "Put a number on every finding in time, headcount, and money" },
+  ],
+  caseStudy: {
+    heading: "ERP and supplier data integration",
+    lede: "Project-leading an ERP change alongside a custom Works build for supplier data, Amazon FBA, and channel automation.",
+    note: "This client sells heating spares, not garments. The problem underneath is the same one a decorator has: supplier ranges arriving in different formats that have to stay clean on every channel.",
+    layout: "proof",
+    href: "/case-studies/case-study-01",
+    linkLabel: "Read the case study",
+    panelHtml: `<div class="feed" data-od-id="case-study-figures" role="img" aria-label="317,812 products brought in from supplier feeds. 154,518 matched to a supplier automatically, before anyone had to touch them (49%). 40 active suppliers feeding in (89 on file). 2,872 new products and 28 new suppliers found in a stock-take reconciliation. 3,844 Amazon listings re-optimised ahead of a title-format deadline.">
+      <span class="t-meta feed-k">Supplier feeds into one catalogue</span>
+      <p class="feed-big"><b>317,812</b> products brought in from supplier feeds</p>
+      <div class="feed-rule"></div>
+      <ul class="ticks"><li><svg class="ic ic-20" aria-hidden="true"><use href="#i-check"/></svg><span><b>154,518</b> matched to a supplier automatically, before anyone had to touch them (49%)</span></li><li><svg class="ic ic-20" aria-hidden="true"><use href="#i-check"/></svg><span><b>40</b> active suppliers feeding in (89 on file)</span></li><li><svg class="ic ic-20" aria-hidden="true"><use href="#i-check"/></svg><span><b>2,872</b> new products and <b>28</b> new suppliers found in a stock-take reconciliation</span></li><li><svg class="ic ic-20" aria-hidden="true"><use href="#i-check"/></svg><span><b>3,844</b> Amazon listings re-optimised ahead of a title-format deadline</span></li></ul>
+    </div>`,
+  },
+  keepReading: {
+    service: {
+      title: "Garment decoration ERP and systems",
+      body: "ERP, eCommerce integration, artwork management, and production workflow, built around how garment decoration businesses actually work, not how generic ERPs assume you work.",
+      href: "/transform",
+      linkLabel: "See how it works",
+    },
+    problems: [
+      { label: "Your eCommerce isn’t connected to operations", href: "/problems/ecommerce-not-connected" },
+      { label: "ERP for decorated goods has gone wrong", href: "/problems/erp-implementation-failure" },
+      { label: "Manual workarounds in your decoration workflow", href: "/problems/manual-workarounds" },
+    ],
+    resources: [
+      { label: "Artwork approval playbook", href: "/resources/artwork-approval-playbook" },
+      { label: "SOP template for decoration businesses", href: "/resources/sop-template" },
+    ],
+    sectors: [
+      { label: "Operations consultant for print & embroidery", href: "/sectors/operations-consultant-print-embroidery" },
+      { label: "Print & promotional", href: "/sectors/print-promotional" },
+      { label: "Workwear", href: "/sectors/workwear" },
+      { label: "Signs & graphics", href: "/sectors/signs-graphics" },
+    ],
+  },
+};
 
-      {/* CHALLENGES */}
-      <section className="g-white">
-        <div className="wrap">
-          <span className="eyebrow">Common challenges</span>
-          <h2>Where the problems tend to live</h2>
-          <div className="hair" />
-          <p className="lede">In garment decoration, the same operational problems appear in different shapes across different businesses. These are the ones that cost the most.</p>
-          <div className="grid grid--2">
-            {challenges.map((c, i) => (
-              <article key={i} className="card">
-                <span className="kicker">{String(i + 1).padStart(2, '0')} &middot; {c.title}</span>
-                <p>{c.body}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* WHAT I DO */}
-      <section className="g-navy">
-        <div className="wrap">
-          <span className="eyebrow">How I help</span>
-          <h2>What the work actually looks like</h2>
-          <div className="hair" />
-          <p className="lede">A structured audit followed by specific, costed recommendations. No vague frameworks, no generic advice.</p>
-          <div className="grid grid--2" style={{ marginTop: '32px' }}>
-            {whatIdo.map((item, i) => (
-              <div key={i} className="card" style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
-                <span style={{ minWidth: '28px', height: '28px', borderRadius: 'var(--do-radius-full)', background: 'color-mix(in srgb, var(--do-cerulean) 20%, transparent)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 'var(--do-text-xs)', fontWeight: 'var(--do-weight-bold)', color: 'var(--do-sky-blue)' }}>{String(i + 1).padStart(2, '0')}</span>
-                <p>{item}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CROSS-LINKS */}
-      {(route.targetService || (route.relatedProblems && route.relatedProblems.length > 0) || (route.relatedResources && route.relatedResources.length > 0) || (route.relatedSectors && route.relatedSectors.length > 0)) && (
-        <section style={{ padding: 'clamp(40px, 4.5vw, 60px) 0' }} className="g-tint">
-          <div className="wrap">
-            <div className="grid grid--3">
-              {route.targetService && (
-                <div className="card" style={{ background: 'var(--do-surface-dark)', color: 'var(--do-text-on-dark)' }}>
-                  <span className="kicker" style={{ color: 'var(--do-amber)' }}>The work in this sector</span>
-                  <h3 style={{ fontSize: 'var(--do-text-xl)', margin: '8px 0' }}>{route.targetService.label}</h3>
-                  <p style={{ marginBottom: '20px' }}>{route.targetService.anchor}</p>
-                  <Link href={route.targetService.href} style={{ color: 'var(--do-amber)', fontWeight: 'var(--do-weight-semibold)', display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
-                    See how it works <ArrowRight size={18} aria-hidden="true" />
-                  </Link>
-                </div>
-              )}
-              {route.relatedProblems && route.relatedProblems.length > 0 && (
-                <div className="card">
-                  <span className="kicker">Most common in garment decoration</span>
-                  <h3 style={{ fontSize: 'var(--do-text-lg)', margin: '8px 0' }}>The problems I see most often</h3>
-                  <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                    {route.relatedProblems.map((p) => (
-                      <li key={p.href} style={{ marginBottom: '10px' }}>
-                        <Link href={p.href} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', fontSize: 'var(--do-text-sm)' }}>
-                          <ArrowRight size={14} style={{ marginTop: '2px', flexShrink: 0, color: 'var(--do-text-cerulean)' }} aria-hidden="true" />
-                          <span>{p.label}</span>
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-              {route.relatedResources && route.relatedResources.length > 0 && (
-                <div className="card">
-                  <span className="kicker">Useful next steps</span>
-                  <h3 style={{ fontSize: 'var(--do-text-lg)', margin: '8px 0' }}>Resources</h3>
-                  <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                    {route.relatedResources.map((r) => (
-                      <li key={r.href} style={{ marginBottom: '10px' }}>
-                        <Link href={r.href} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', fontSize: 'var(--do-text-sm)' }}>
-                          <ArrowRight size={14} style={{ marginTop: '2px', flexShrink: 0, color: 'var(--do-text-cerulean)' }} aria-hidden="true" />
-                          <span>{r.label}</span>
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-              {route.relatedSectors && route.relatedSectors.length > 0 && (
-                <div className="card">
-                  <span className="kicker">Related sectors</span>
-                  <h3 style={{ fontSize: 'var(--do-text-lg)', margin: '8px 0' }}>Adjacent trades</h3>
-                  <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                    {route.relatedSectors.map((s) => (
-                      <li key={s.href} style={{ marginBottom: '10px' }}>
-                        <Link href={s.href} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', fontSize: 'var(--do-text-sm)' }}>
-                          <ArrowRight size={14} style={{ marginTop: '2px', flexShrink: 0, color: 'var(--do-text-cerulean)' }} aria-hidden="true" />
-                          <span>{s.label}</span>
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* RELATED SECTOR */}
-      <section style={{ padding: 'clamp(40px, 4.5vw, 60px) 0' }} className="g-tint">
-        <div className="wrap">
-          <span className="eyebrow">Related</span>
-          <h2>Operations consultant for print & embroidery</h2>
-          <div className="hair" />
-          <p className="lede">If you run embroidery alongside screen print or DTF, the same operational challenges apply, but with the added complexity of decoration-method-specific scheduling. See the full picture for print & embroidery businesses.</p>
-          <div className="btn-row" style={{ marginTop: '24px' }}>
-            <Link className="btn btn--outline" href="/sectors/operations-consultant-print-embroidery">See the print & embroidery page <ArrowRight size={16} aria-hidden="true" /></Link>
-          </div>
-        </div>
-      </section>
-
-      {/* CASE STUDY */}
-      <section style={{ padding: 'clamp(40px, 4.5vw, 60px) 0' }} className="g-off">
-        <div className="wrap">
-          <span className="eyebrow">Case study</span>
-          <h2>ERP and supplier data integration for a decoration business</h2>
-          <div className="hair" />
-          <p className="lede">Project-leading an ERP change alongside a custom Works build for supplier data, Amazon FBA, and channel automation.</p>
-          <div className="btn-row" style={{ marginTop: '24px' }}>
-            <Link className="btn btn--outline" href="/case-studies/case-study-01">Read the case study <ArrowRight size={16} aria-hidden="true" /></Link>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA STRIP */}
-      <section className="g-off">
-        <div className={`wrap ${styles.centred}`}>
-          <h2>Book a free discovery call.</h2>
-          <div className="hair" />
-          <p className="lede">The audit starts with a free 60-minute call. No obligation. Just a conversation about what&apos;s happening in your business.</p>
-          <div className="btn-row">
-            <Link className="btn btn--primary" href="/contact">Book a free discovery call <ArrowRight size={16} aria-hidden="true" /></Link>
-            <Link className="btn btn--outline" href="/clarity">See how a Clarity Audit works <ArrowRight size={16} aria-hidden="true" /></Link>
-          </div>
-        </div>
-      </section>
-      <D17Motion />
+export default function GarmentDecorationPage() {
+  return (
+    <>
+      <JsonLd data={sectorSchema} />
+      <BreadcrumbSchema items={[
+              { name: 'Home', url: 'https://decodedops.co.uk' },
+              { name: 'Sectors', url: 'https://decodedops.co.uk/#sectors' },
+              { name: 'Garment Decoration', url: 'https://decodedops.co.uk/sectors/garment-decoration' },
+            ]} />
+      <SectorPageV2 data={data} />
     </>
   );
 }

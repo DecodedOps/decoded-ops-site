@@ -1,12 +1,7 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
 import { JsonLd } from '@/components/JsonLd';
-import { D17Motion } from '@/components/D17Motion';
-import '@/app/d17-global.css';
 import { BreadcrumbSchema } from '@/components/BreadcrumbSchema';
-import { sectorRouting } from '@/data/sector-routing';
-import styles from '@/components/SectorPageDS.module.css';
+import { SectorPageV2, type SectorV2Data } from '@/components/SectorPageV2';
 
 export const metadata: Metadata = {
   title: 'Print MIS Software for Labels & Packaging | Decoded Ops',
@@ -59,58 +54,12 @@ const sectorSchema = {
   ],
 };
 
-const tagline = 'Variable data printing and compliance labelling ||demand precision most systems can\'t deliver.||';
-const parts = tagline.split('||');
-
-const challenges = [
-  { title: 'Compliance and specification management', body: "Label specs change, and so do compliance rules. Keeping the right version in production across hundreds of label SKUs is a constant challenge." },
-  { title: 'Variable data at speed', body: "Short-run, high-variation jobs need print systems most generic software wasn't built for. The workarounds are expensive." },
-  { title: 'Substrate and press matching', body: "Matching the right substrate, adhesive, and finish to the right press, without errors, needs product data most businesses keep in spreadsheets." },
-  { title: 'Customer integration and EDI', body: "Bigger label customers often expect EDI ordering, automated reorders, or direct system links. Setting that up and keeping it running is specialist work." },
-];
-
-const whatIdo = [
-  'Audit spec and version control across your label SKU range',
-  'Review your variable data workflow, from file intake to press-ready output',
-  'Map substrate and press matching for accuracy',
-  'Assess your customer integration and EDI readiness',
-  'Find where compliance risk sits in your current processes',
-  'Recommend a print MIS built for short-run, variable-data label production',
-];
-
-const route = sectorRouting['labels-packaging'];
-
-export default function LabelsPackagingPage() {
-  return (
-    <>
-      <JsonLd data={sectorSchema} />
-      <BreadcrumbSchema items={[
-        { name: 'Home', url: 'https://decodedops.co.uk' },
-        { name: 'Sectors', url: 'https://decodedops.co.uk/#sectors' },
-        { name: 'Labels & Packaging', url: 'https://decodedops.co.uk/sectors/labels-packaging' },
-      ]} />
-      {/* HERO SPLIT */}
-      <section className={`g-off ${styles.heroSection}`}>
-        <div className={`wrap ${styles.heroSplit}`}>
-          <div>
-            <span className="eyebrow">Sector · labels & packaging</span>
-            <h1>
-              {parts.map((p, i) =>
-                i % 2 === 0
-                  ? <span key={i}>{p}</span>
-                  : <span key={i} style={{ color: 'var(--do-text-cerulean)' }}>{p}</span>
-              )}
-            </h1>
-            <div className={styles.heroBody}>
-              <p>Labels and packaging businesses sit where print, compliance, and the supply chain meet, which is a lot to ask of a print MIS. There&apos;s no tolerance for error, and turnaround is always tight.</p>
-            </div>
-            <div className="btn-row">
-              <Link className="btn btn--primary" href="/contact">Book a free call <ArrowRight size={16} aria-hidden="true" /></Link>
-              <Link className="btn btn--outline" href="/clarity">See how the audit works <ArrowRight size={16} aria-hidden="true" /></Link>
-            </div>
-          </div>
-          <div dangerouslySetInnerHTML={{ __html: `
-<figure class="d17 sx a925" data-od-id="hero-evidence" data-motion data-no="DO-ART-925" data-rev="01" data-tx="schematic"
+const data: SectorV2Data = {
+  h1Lead: "Print MIS for labels and packaging:",
+  h1: "variable data and compliance labelling demand precision most systems can't deliver.",
+  eyebrow: "Sector · labels & packaging",
+  lede: "Labels and packaging businesses sit where print, compliance, and the supply chain meet, which is a lot to ask of a print MIS. There’s no tolerance for error, and turnaround is always tight.",
+  heroHtml: `<figure class="d17 sx a925" data-od-id="hero-evidence" data-motion data-no="DO-ART-925" data-rev="01" data-tx="schematic"
         aria-label="Drawn plate DO-ART-925. One label SKU with three revisions. Revisions A and B are superseded and stopped at the version check. Revision C is live and is the only version released to the press. Hundreds of SKUs, one right version.">
   <div class="q-grid" aria-hidden="true"></div>
   <div class="sx-top d17-mono" aria-hidden="true"><span>Labels &amp; packaging</span><span>SKU LBL-0141</span></div>
@@ -163,17 +112,19 @@ export default function LabelsPackagingPage() {
     <p class="sx-say">Hundreds of SKUs, <em>one right version.</em></p>
     <span class="d17-mark">decodedops.co.uk · DO-ART-925 · Rev 01</span>
   </div>
-</figure>` }} />
-        </div>
-      </section>
-
-      {/* D17 INLINE ARTWORK · DO-ART-926 */}
-      <section className="g-navy">
-        <div className="wrap">
-          <div dangerouslySetInnerHTML={{ __html: `
-<figure class="d17 sw sw-doc a926" data-od-id="plate-architecture" data-motion data-no="DO-ART-926" data-rev="01" data-tx="photo"
+</figure>`,
+  challengesLede: "In this sector, the same operational problems appear in different shapes across different businesses. These are the ones that cost the most.",
+  challenges: [
+    { icon: "i-file-check", title: "Compliance and specification management", body: "Label specs change, and so do compliance rules. Keeping the right version in production across hundreds of label SKUs is a constant challenge." },
+    { icon: "i-database", title: "Variable data at speed", body: "Short-run, high-variation jobs need print systems most generic software wasn't built for. The workarounds are expensive." },
+    { icon: "i-settings", title: "Substrate and press matching", body: "Matching the right substrate, adhesive, and finish to the right press, without errors, needs product data most businesses keep in spreadsheets." },
+    { icon: "i-link", title: "Customer integration and EDI", body: "Bigger label customers often expect EDI ordering, automated reorders, or direct system links. Setting that up and keeping it running is specialist work." },
+  ],
+  plate: {
+    heading: "Hundreds of SKUs, one right version.",
+    html: `<figure class="d17 sw sw-doc a926" data-od-id="plate-architecture" data-motion data-no="DO-ART-926" data-rev="01" data-tx="photo"
         aria-label="Artwork DO-ART-926. A label specification sheet, revision C, and a variable-data proof laid over a photograph of packed cartons. The specification ties substrate, adhesive, finish, press set-up, variable data and the compliance check to one live version.">
-  <div class="d17-ph"><img src="/images/d17/sectors/cat-packaging-48f149.webp" alt="" width="900" height="950"></div>
+  <div class="d17-ph"><img src="/images/site/d17/sectors/cat-packaging-48f149.webp" alt="" width="900" height="950"></div>
   <div class="d17-scan" aria-hidden="true"></div>
   <figcaption class="sw-cap">
     <div class="k d17-mono">Specification control <span>· one live version</span></div>
@@ -210,111 +161,76 @@ export default function LabelsPackagingPage() {
       <span class="approved m-pop" style="animation-delay:1.2s">Matches Rev C</span>
     </div>
   </div>
-</figure>` }} />
-        </div>
-      </section>
+</figure>`,
+  },
+  band: {
+    heading: "The chain this is written from.",
+    lede: "Three of my own photographs from client visits this year. Not a label press, but the same chain: goods in, stock on the racking, cartons checked and out, where the wrong version is caught or shipped.",
+    photosHtml: [
+      `<figure class="d17 ev" data-od-id="photo-pallets" data-no="DO-ART-979l" data-rev="01" data-tx="photo">
+        <div class="d17-ph"><img src="/images/site/evidence/plate-pallets-12eebd.webp" width="1600" height="900" alt="Pallets of inbound stock on a client's goods-in floor." loading="lazy"></div>
+        <div class="d17-scan" aria-hidden="true"></div>
+        <p class="k d17-mono">Goods in &middot; June 2026</p>
+        <p class="line">Inbound, before it is counted</p>
+        <span class="d17-mark">decodedops.co.uk &middot; DO-ART-979l &middot; Rev 01</span>
+      </figure>`,
+      `<figure class="d17 ev" data-od-id="photo-racking" data-no="DO-ART-979m" data-rev="01" data-tx="photo">
+        <div class="d17-ph"><img src="/images/site/evidence/plate-racking-bays-626a9b.webp" width="1600" height="900" alt="Warehouse racking bays holding boxed stock at a client site." loading="lazy"></div>
+        <div class="d17-scan" aria-hidden="true"></div>
+        <p class="k d17-mono">Stock &middot; April 2026</p>
+        <p class="line">Racking bays, counted by hand</p>
+        <span class="d17-mark">decodedops.co.uk &middot; DO-ART-979m &middot; Rev 01</span>
+      </figure>`,
+      `<figure class="d17 ev" data-od-id="photo-cartons" data-no="DO-ART-979q" data-rev="01" data-tx="photo">
+        <div class="d17-ph"><img src="/images/site/evidence/plate-cartons-packed-2fb0ae.webp" width="1600" height="900" alt="Packed cartons stacked and labelled, waiting for collection at a client site." loading="lazy"></div>
+        <div class="d17-scan" aria-hidden="true"></div>
+        <p class="k d17-mono">Despatch &middot; June 2026</p>
+        <p class="line">Packed, checked, out the door</p>
+        <span class="d17-mark">decodedops.co.uk &middot; DO-ART-979q &middot; Rev 01</span>
+      </figure>`,
+    ],
+  },
+  steps: [
+    { icon: "i-file-check", text: "Audit spec and version control across your label SKU range" },
+    { icon: "i-database", text: "Review your variable data workflow, from file intake to press-ready output" },
+    { icon: "i-settings", text: "Map substrate and press matching for accuracy" },
+    { icon: "i-link", text: "Assess your customer integration and EDI readiness" },
+    { icon: "i-search", text: "Find where compliance risk sits in your current processes" },
+    { icon: "i-badge-check", text: "Recommend a print MIS built for short-run, variable-data label production" },
+  ],
+  keepReading: {
+    service: {
+      title: "Operations audit for labels & packaging",
+      body: "Independent review of your prepress, MIS, despatch, and customer ordering, looking at where the time and cost are leaking.",
+      href: "/clarity",
+      linkLabel: "See how it works",
+    },
+    problems: [
+      { label: "AI hype vs what would actually help", href: "/problems/ai-paralysis" },
+      { label: "Print MIS that doesn’t fit your business", href: "/problems/wrong-erp-software" },
+      { label: "If the server died tomorrow…", href: "/problems/disaster-recovery" },
+    ],
+    resources: [
+      { label: "ERP selection playbook", href: "/resources/erp-selection-playbook" },
+      { label: "RTO calculator", href: "/tools/rto-calculator" },
+    ],
+    sectors: [
+      { label: "Signs & graphics", href: "/sectors/signs-graphics" },
+      { label: "Print & promotional", href: "/sectors/print-promotional" },
+    ],
+  },
+};
 
-      {/* CHALLENGES */}
-      <section className="g-white">
-        <div className="wrap">
-          <span className="eyebrow">Common challenges</span>
-          <h2>Where the problems tend to live</h2>
-          <div className="hair" />
-          <p className="lede">In this sector, the same operational problems appear in different shapes across different businesses. These are the ones that cost the most.</p>
-          <div className="grid grid--2">
-            {challenges.map((c, i) => (
-              <article key={i} className="card">
-                <span className="kicker">{String(i + 1).padStart(2, '0')} &middot; {c.title}</span>
-                <p>{c.body}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* WHAT I DO */}
-      <section className="g-navy">
-        <div className="wrap">
-          <span className="eyebrow">How I help</span>
-          <h2>What the work actually looks like</h2>
-          <div className="hair" />
-          <p className="lede">A structured audit followed by specific, costed recommendations. No vague frameworks, no generic advice.</p>
-          <div className="grid grid--2" style={{ marginTop: '32px' }}>
-            {whatIdo.map((item, i) => (
-              <div key={i} className="card" style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
-                <span style={{ minWidth: '28px', height: '28px', borderRadius: 'var(--do-radius-full)', background: 'color-mix(in srgb, var(--do-cerulean) 20%, transparent)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 'var(--do-text-xs)', fontWeight: 'var(--do-weight-bold)', color: 'var(--do-sky-blue)' }}>{String(i + 1).padStart(2, '0')}</span>
-                <p>{item}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CROSS-LINKS */}
-      {(route.targetService || (route.relatedProblems && route.relatedProblems.length > 0) || (route.relatedResources && route.relatedResources.length > 0)) && (
-        <section style={{ padding: 'clamp(40px, 4.5vw, 60px) 0' }} className="g-tint">
-          <div className="wrap">
-            <div className="grid grid--3">
-              {route.targetService && (
-                <div className="card" style={{ background: 'var(--do-surface-dark)', color: 'var(--do-text-on-dark)' }}>
-                  <span className="kicker" style={{ color: 'var(--do-amber)' }}>The work in this sector</span>
-                  <h3 style={{ fontSize: 'var(--do-text-xl)', margin: '8px 0' }}>{route.targetService.label}</h3>
-                  <p style={{ marginBottom: '20px' }}>{route.targetService.anchor}</p>
-                  <Link href={route.targetService.href} style={{ color: 'var(--do-amber)', fontWeight: 'var(--do-weight-semibold)', display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
-                    See how it works <ArrowRight size={18} aria-hidden="true" />
-                  </Link>
-                </div>
-              )}
-              {route.relatedProblems && route.relatedProblems.length > 0 && (
-                <div className="card">
-                  <span className="kicker">Most common in labels & packaging</span>
-                  <h3 style={{ fontSize: 'var(--do-text-lg)', margin: '8px 0' }}>The problems I see most often</h3>
-                  <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                    {route.relatedProblems.map((p) => (
-                      <li key={p.href} style={{ marginBottom: '10px' }}>
-                        <Link href={p.href} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', fontSize: 'var(--do-text-sm)' }}>
-                          <ArrowRight size={14} style={{ marginTop: '2px', flexShrink: 0, color: 'var(--do-text-cerulean)' }} aria-hidden="true" />
-                          <span>{p.label}</span>
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-              {route.relatedResources && route.relatedResources.length > 0 && (
-                <div className="card">
-                  <span className="kicker">Useful next steps</span>
-                  <h3 style={{ fontSize: 'var(--do-text-lg)', margin: '8px 0' }}>Resources</h3>
-                  <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                    {route.relatedResources.map((r) => (
-                      <li key={r.href} style={{ marginBottom: '10px' }}>
-                        <Link href={r.href} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', fontSize: 'var(--do-text-sm)' }}>
-                          <ArrowRight size={14} style={{ marginTop: '2px', flexShrink: 0, color: 'var(--do-text-cerulean)' }} aria-hidden="true" />
-                          <span>{r.label}</span>
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* CTA STRIP */}
-      <section className="g-off">
-        <div className={`wrap ${styles.centred}`}>
-          <h2>Book a free discovery call.</h2>
-          <div className="hair" />
-          <p className="lede">The audit starts with a free 60-minute call. No obligation. Just a conversation about what&apos;s happening in your business.</p>
-          <div className="btn-row">
-            <Link className="btn btn--primary" href="/contact">Book a free discovery call <ArrowRight size={16} aria-hidden="true" /></Link>
-            <Link className="btn btn--outline" href="/clarity">See how a Clarity Audit works <ArrowRight size={16} aria-hidden="true" /></Link>
-          </div>
-        </div>
-      </section>
-      <D17Motion />
+export default function LabelsPackagingPage() {
+  return (
+    <>
+      <JsonLd data={sectorSchema} />
+      <BreadcrumbSchema items={[
+              { name: 'Home', url: 'https://decodedops.co.uk' },
+              { name: 'Sectors', url: 'https://decodedops.co.uk/#sectors' },
+              { name: 'Labels & Packaging', url: 'https://decodedops.co.uk/sectors/labels-packaging' },
+            ]} />
+      <SectorPageV2 data={data} />
     </>
   );
 }

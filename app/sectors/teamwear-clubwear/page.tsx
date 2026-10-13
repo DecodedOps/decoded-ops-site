@@ -1,11 +1,7 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
-import { D17Motion } from '@/components/D17Motion';
 import { JsonLd } from '@/components/JsonLd';
 import { BreadcrumbSchema } from '@/components/BreadcrumbSchema';
-import { sectorRouting } from '@/data/sector-routing';
-import '@/app/d17-global.css';
+import { SectorPageV2, type SectorV2Data } from '@/components/SectorPageV2';
 
 export const metadata: Metadata = {
   title: 'B2B Ordering Portal for Teamwear & Clubwear | Decoded Ops',
@@ -58,37 +54,15 @@ const sectorSchema = {
   ],
 };
 
-export default function TeamwearClubwearPage() {
-  const route = sectorRouting['teamwear-clubwear'];
-  return (
-    <>
-      <JsonLd data={sectorSchema} />
-      <BreadcrumbSchema items={[
-        { name: 'Home', url: 'https://decodedops.co.uk' },
-        { name: 'Sectors', url: 'https://decodedops.co.uk/sectors' },
-        { name: 'Teamwear & Clubwear', url: 'https://decodedops.co.uk/sectors/teamwear-clubwear' },
-      ]} />
-
-      {/* HERO SPLIT */}
-      <section className="g-off" style={{ padding: 'clamp(40px, 4.5vw, 60px) 0' }}>
-        <div className="wrap" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'clamp(24px, 3vw, 48px)', alignItems: 'center' }}>
-          <div>
-            <span className="eyebrow">Sector · teamwear & clubwear</span>
-            <h1>Teamwear and clubwear, sized to the squad.</h1>
-            <div style={{ marginTop: '20px' }}>
-              <p style={{ fontSize: 'var(--do-text-lg)', lineHeight: 1.6, marginBottom: '12px' }}>Squad numbers, sponsor logos, and a hard deadline before the first match of the season: a B2B ordering portal for a club has to carry all three.</p>
-              <p style={{ fontSize: 'var(--do-text-lg)', lineHeight: 1.6 }}>Get the data wrong and it&apos;s not a quiet admin cost, it&apos;s kit that doesn&apos;t arrive in time.</p>
-            </div>
-            <div className="btn-row" style={{ marginTop: '24px' }}>
-              <Link className="btn btn--primary" href="/contact">Book a free call <ArrowRight size={16} aria-hidden="true" /></Link>
-              <Link className="btn btn--outline" href="/clarity">See how the audit works <ArrowRight size={16} aria-hidden="true" /></Link>
-            </div>
-          </div>
-          {/* D17 hero artwork — DO-ART-935 */}
-          <div dangerouslySetInnerHTML={{ __html: `
-<figure class="d17 sx a935" data-od-id="hero-evidence" data-motion data-no="DO-ART-935" data-rev="01" data-tx="photo"
+const data: SectorV2Data = {
+  h1Lead: "A B2B ordering portal for",
+  h1: "teamwear and clubwear, sized to the squad.",
+  eyebrow: "Sector · teamwear & clubwear",
+  lede: "Squad numbers, sponsor logos, and a hard deadline before the first match of the season: a B2B ordering portal for a club has to carry all three.",
+  body: "Get the data wrong and it’s not a quiet admin cost, it’s kit that doesn’t arrive in time.",
+  heroHtml: `<figure class="d17 sx a935" data-od-id="hero-evidence" data-motion data-no="DO-ART-935" data-rev="01" data-tx="photo"
         aria-label="Product screen DO-ART-935. The supplier feed overview at a teamwear business, live in September 2026: 17 supplier feeds automated, 27,778 supplier products, 236,056 variants, 952 products live on their website, 1,846 decorated products, and every stock record with a bin location. Kit range churn, kept current on its own.">
-  <div class="d17-ph"><img src="/images/d17/sectors/gen-bench-flatlay-v2-215572.webp" alt="" width="900" height="900"></div>
+  <div class="d17-ph"><img src="/images/site/d17/sectors/gen-bench-flatlay-v2-215572.webp" alt="" width="900" height="900"></div>
   <div class="d17-scan" aria-hidden="true"></div>
   <div class="sx-top d17-mono" aria-hidden="true"><span>Teamwear &amp; clubwear</span><span>Live, September 2026</span></div>
   <div class="win" aria-hidden="true">
@@ -114,17 +88,20 @@ export default function TeamwearClubwearPage() {
     <p class="sx-say">Kit range churn, <em>kept current on its own.</em></p>
     <span class="d17-mark">decodedops.co.uk · DO-ART-935 · Rev 01</span>
   </div>
-</figure>` }} />
-        </div>
-      </section>
-
-      {/* D17 INLINE ARTWORK — DO-ART-936 */}
-      <section className="g-navy">
-        <div className="wrap">
-          <div dangerouslySetInnerHTML={{ __html: `
-<figure class="d17 sw sw-doc a936" data-od-id="plate-architecture" data-motion data-no="DO-ART-936" data-rev="01" data-tx="photo"
+</figure>`,
+  challengesLede: "In teamwear and clubwear, the same operational problems appear in different shapes across different businesses. These are the ones that cost the most.",
+  challenges: [
+    { icon: "i-users", title: "Squad-level personalisation data", body: "Names, numbers, sponsor logos: every kit is a variant of the same product. Systems that treat that as one SKU force manual workarounds on every order." },
+    { icon: "i-calendar-clock", title: "Seasonal deadline pressure", body: "The first match of the season is a fixed date. The tolerance for lateness is zero. Production scheduling has to work backwards from that, and most systems don't account for it." },
+    { icon: "i-layers", title: "Kit range churn", body: "Kit ranges change season to season. Keeping supplier data current across every channel is a constant maintenance task. When it's wrong, it's the order that fails, not the system." },
+    { icon: "i-badge-check", title: "Sponsor logo management", body: "Every sponsor has their own logo specifications, positioning requirements, and approval process. Managing that at squad scale across multiple teams and age groups is a dedicated workflow that email can't handle." },
+    { icon: "i-clipboard-check", title: "The proof and approval bottleneck", body: "When twenty-four kits each need a proof, the approval cycle can consume more time than the production itself. Fix that loop and you win back more time than anywhere else in the job." },
+  ],
+  plate: {
+    heading: "The squad list is the order.",
+    html: `<figure class="d17 sw sw-doc a936" data-od-id="plate-architecture" data-motion data-no="DO-ART-936" data-rev="01" data-tx="photo"
         aria-label="Artwork DO-ART-936. A graded photograph of a folded base garment with a squad list and a sponsor logo specification laid over it. One base garment becomes twenty-four kits, each with its own name, number and size, and the same approved sponsor logo. One base garment, twenty-four names, twenty-four numbers.">
-  <div class="d17-ph"><img src="/images/d17/sectors/prod-polo-5947fe.webp" alt="" width="900" height="905"></div>
+  <div class="d17-ph"><img src="/images/site/d17/sectors/prod-polo-5947fe.webp" alt="" width="900" height="905"></div>
   <div class="d17-scan" aria-hidden="true"></div>
   <figcaption class="sw-cap">
     <div class="k d17-mono">Squad-level data <span>· one kit per player</span></div>
@@ -164,129 +141,87 @@ export default function TeamwearClubwearPage() {
       </dl>
     </div>
   </div>
-</figure>` }} />
-        </div>
-      </section>
+</figure>`,
+  },
+  band: {
+    heading: "The floors this is written from.",
+    lede: "Three of my own photographs from client visits this year. The machine heads, the bench and the packing station are where a squad order either lands before the first match or doesn’t.",
+    photosHtml: [
+      `<figure class="d17 ev" data-od-id="photo-heads" data-no="DO-ART-979e" data-rev="01" data-tx="photo">
+        <div class="d17-ph"><img src="/images/site/evidence/hero-embroidery-heads-b5b1fb.webp" width="1600" height="900" alt="Embroidery machine heads at a client site." loading="lazy"></div>
+        <div class="d17-scan" aria-hidden="true"></div>
+        <p class="k d17-mono">The floor &middot; 2026</p>
+        <p class="line">Machine heads, threaded up</p>
+        <span class="d17-mark">decodedops.co.uk &middot; DO-ART-979e &middot; Rev 01</span>
+      </figure>`,
+      `<figure class="d17 ev" data-od-id="photo-job-sheets" data-no="DO-ART-979k" data-rev="01" data-tx="photo">
+        <div class="d17-ph"><img src="/images/site/evidence/plate-job-sheets-63dd9c.webp" width="1600" height="900" alt="Paper job sheets laid out on a workbench at a client site." loading="lazy"></div>
+        <div class="d17-scan" aria-hidden="true"></div>
+        <p class="k d17-mono">The bench &middot; June 2026</p>
+        <p class="line">Job sheets, still on paper</p>
+        <span class="d17-mark">decodedops.co.uk &middot; DO-ART-979k &middot; Rev 01</span>
+      </figure>`,
+      `<figure class="d17 ev" data-od-id="photo-packing" data-no="DO-ART-979n" data-rev="01" data-tx="photo">
+        <div class="d17-ph"><img src="/images/site/evidence/band-packing-station-7c4f80.webp" width="1600" height="900" alt="A packing station with cartons, tape and a label printer at a client site." loading="lazy"></div>
+        <div class="d17-scan" aria-hidden="true"></div>
+        <p class="k d17-mono">Despatch &middot; June 2026</p>
+        <p class="line">The packing station</p>
+        <span class="d17-mark">decodedops.co.uk &middot; DO-ART-979n &middot; Rev 01</span>
+      </figure>`,
+    ],
+  },
+  steps: [
+    { icon: "i-map", text: "Map your full workflow, from squad list to delivery" },
+    { icon: "i-users", text: "Find where personalisation data is managed by hand" },
+    { icon: "i-database", text: "Check supplier catalogue data for kit range accuracy" },
+    { icon: "i-clipboard-check", text: "Audit proof approval for sponsor logos and numbering" },
+    { icon: "i-calendar-clock", text: "See how seasonal deadlines sit against production capacity" },
+    { icon: "i-pound", text: "Put a number on every finding in time, admin cost, and rework" },
+  ],
+  caseStudy: {
+    heading: "B2B portal and ERP evaluation for a workwear distributor",
+    lede: "Vendor requirements, procurement, and integration architecture for a B2B ordering portal: the same ordering complexity, the same sector challenges.",
+    layout: "split-6",
+    href: "/case-studies/case-study-03",
+    linkLabel: "Read the case study",
+    panelHtml: `<div>
+      <span class="t-meta">What the portal had to do</span>
+      <ul class="ticks" style="margin-top:14px"><li><svg class="ic ic-20" aria-hidden="true"><use href="#i-check"/></svg><span>Company accounts, with buyer roles</span></li><li><svg class="ic ic-20" aria-hidden="true"><use href="#i-check"/></svg><span>Account pricing read from the ERP</span></li><li><svg class="ic ic-20" aria-hidden="true"><use href="#i-check"/></svg><span>Approval before an order goes</span></li><li><svg class="ic ic-20" aria-hidden="true"><use href="#i-check"/></svg><span>Stock read live, not nightly</span></li></ul>
+    </div>`,
+  },
+  keepReading: {
+    service: {
+      title: "Teamwear ordering and production",
+      body: "Squad numbers, sponsor logos, season deadlines, and the proof-and-approval loop that eats time before the first match.",
+      href: "/transform",
+      linkLabel: "See how it works",
+    },
+    problems: [
+      { label: "Busy season breaks your operation", href: "/problems/seasonal-peaks" },
+      { label: "Manual order processing and artwork checks", href: "/problems/manual-workarounds" },
+      { label: "Can’t scale beyond manual processes", href: "/problems/cant-scale-operations" },
+    ],
+    resources: [
+      { label: "SOP template for decoration businesses", href: "/resources/sop-template" },
+      { label: "Ops health score", href: "/tools/ops-health-score" },
+    ],
+    sectors: [
+      { label: "Workwear", href: "/sectors/workwear" },
+      { label: "Garment decoration", href: "/sectors/garment-decoration" },
+    ],
+  },
+};
 
-      {/* COMMON CHALLENGES */}
-      <section className="g-white">
-        <div className="wrap">
-          <span className="eyebrow">Common challenges</span>
-          <h2>Where the problems tend to live</h2>
-          <div className="hair" />
-          <p className="lede">In teamwear and clubwear, the same operational problems appear in different shapes across different businesses. These are the ones that cost the most.</p>
-          <div className="grid grid--2">
-            {[
-              { title: 'Squad-level personalisation data', body: "Names, numbers, sponsor logos: every kit is a variant of the same product. Systems that treat that as one SKU force manual workarounds on every order." },
-              { title: 'Seasonal deadline pressure', body: "The first match of the season is a fixed date. The tolerance for lateness is zero. Production scheduling has to work backwards from that, and most systems don't account for it." },
-              { title: 'Kit range churn', body: "Kit ranges change season to season. Keeping supplier data current across every channel is a constant maintenance task. When it's wrong, it's the order that fails, not the system." },
-              { title: 'Sponsor logo management', body: "Every sponsor has their own logo specifications, positioning requirements, and approval process. Managing that at squad scale across multiple teams and age groups is a dedicated workflow that email can't handle." },
-              { title: 'The proof and approval bottleneck', body: "When twenty-four kits each need a proof, the approval cycle can consume more time than the production itself. Fix that loop and you win back more time than anywhere else in the job." },
-            ].map((c, i) => (
-              <article key={i} className="card">
-                <span className="kicker">{String(i + 1).padStart(2, '0')} &middot; {c.title}</span>
-                <p>{c.body}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* HOW I HELP */}
-      <section className="g-navy">
-        <div className="wrap">
-          <span className="eyebrow">How I help</span>
-          <h2>What the work actually looks like</h2>
-          <div className="hair" />
-          <p className="lede">A structured audit followed by specific, costed recommendations. No vague frameworks, no generic advice.</p>
-          <div className="grid grid--2" style={{ marginTop: '32px' }}>
-            {[
-              'Map your full workflow, from squad list to delivery',
-              'Find where personalisation data is managed by hand',
-              'Check supplier catalogue data for kit range accuracy',
-              'Audit proof approval for sponsor logos and numbering',
-              'See how seasonal deadlines sit against production capacity',
-              'Put a number on every finding in time, admin cost, and rework',
-            ].map((item, i) => (
-              <div key={i} className="card" style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
-                <span style={{ minWidth: '28px', height: '28px', borderRadius: 'var(--do-radius-full)', background: 'color-mix(in srgb, var(--do-cerulean) 20%, transparent)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 'var(--do-text-xs)', fontWeight: 'var(--do-weight-bold)', color: 'var(--do-sky-blue)' }}>{String(i + 1).padStart(2, '0')}</span>
-                <p>{item}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* RELATED PROBLEMS + RESOURCES */}
-      <section style={{ padding: 'clamp(40px, 4.5vw, 60px) 0' }} className="g-tint">
-        <div className="wrap">
-          <div className="grid grid--3">
-            {route.relatedProblems.length > 0 && (
-              <article className="card">
-                <span className="kicker">Common problems</span>
-                <h3>The problems I see most often</h3>
-                <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                  {route.relatedProblems.map((p) => (
-                    <li key={p.href} style={{ marginBottom: '10px' }}>
-                      <Link href={p.href} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', fontSize: 'var(--do-text-sm)' }}>
-                        <ArrowRight size={14} style={{ marginTop: '2px', flexShrink: 0, color: 'var(--do-text-cerulean)' }} aria-hidden="true" />
-                        <span>{p.label}</span>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </article>
-            )}
-            {route.relatedResources.length > 0 && (
-              <article className="card">
-                <span className="kicker">Useful next steps</span>
-                <h3>Resources</h3>
-                <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                  {route.relatedResources.map((r) => (
-                    <li key={r.href} style={{ marginBottom: '10px' }}>
-                      <Link href={r.href} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', fontSize: 'var(--do-text-sm)' }}>
-                        <ArrowRight size={14} style={{ marginTop: '2px', flexShrink: 0, color: 'var(--do-text-cerulean)' }} aria-hidden="true" />
-                        <span>{r.label}</span>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </article>
-            )}
-            {route.relatedSectors.length > 0 && (
-              <article className="card">
-                <span className="kicker">Related sectors</span>
-                <h3>Adjacent trades</h3>
-                <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                  {route.relatedSectors.map((s) => (
-                    <li key={s.href} style={{ marginBottom: '10px' }}>
-                      <Link href={s.href} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', fontSize: 'var(--do-text-sm)' }}>
-                        <ArrowRight size={14} style={{ marginTop: '2px', flexShrink: 0, color: 'var(--do-text-cerulean)' }} aria-hidden="true" />
-                        <span>{s.label}</span>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </article>
-            )}
-          </div>
-        </div>
-      </section>
-
-      {/* CASE STUDY */}
-      <section style={{ padding: 'clamp(40px, 4.5vw, 60px) 0' }} className="g-off">
-        <div className="wrap">
-          <span className="eyebrow">Case study</span>
-          <h2>B2B portal and ERP evaluation for a workwear distributor</h2>
-          <div className="hair" />
-          <p className="lede">Vendor requirements, procurement, and integration architecture for a B2B ordering portal: the same ordering complexity, the same sector challenges.</p>
-          <div className="btn-row" style={{ marginTop: '24px' }}>
-            <Link className="btn btn--outline" href="/case-studies/case-study-03">Read the case study <ArrowRight size={16} aria-hidden="true" /></Link>
-          </div>
-        </div>
-      </section>
-
-      <D17Motion />
+export default function TeamwearClubwearPage() {
+  return (
+    <>
+      <JsonLd data={sectorSchema} />
+      <BreadcrumbSchema items={[
+              { name: 'Home', url: 'https://decodedops.co.uk' },
+              { name: 'Sectors', url: 'https://decodedops.co.uk/sectors' },
+              { name: 'Teamwear & Clubwear', url: 'https://decodedops.co.uk/sectors/teamwear-clubwear' },
+            ]} />
+      <SectorPageV2 data={data} />
     </>
   );
 }
