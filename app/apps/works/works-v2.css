@@ -1,0 +1,6 @@
+/* Apps · Decoded Works overview (CR-WEB-079). Page layout only; every pattern lives in site-v3.css. */
+.hero-split .t-lede{ margin-top:20px }
+.hero-split .t-body{ margin:12px 0 0; max-width:56ch }
+.hero-split .btn-row{ margin:26px 0 0; align-items:center; gap:14px 28px }
+.shot-note{ margin:14px 0 0; max-width:48ch }
+.tier-note{ margin-top:24px; max-width:70ch }

@@ -206,3 +206,71 @@ geometry (the designed lines are the plate's own text at the plate's own size an
 no browser render was taken in this lane (no-servers constraint), so the <=4-line claim for
 print-promotional rests on the previous lane's headless-Chrome measurement of the same CSS,
 which this lane did not change.
+
+---
+
+# Lane result: set 4 · apps-works (CR-WEB-079, WO-INF-087)
+
+**Branch:** `task/web07x-set4-apps-2026-10-13` (cut from `origin/staging` at f6e3c59)
+**Status:** built, `tsc --noEmit` exit 0, `eslint` 0 errors. Not pushed, not merged. No dev server, no browser, no `npm run build` (per brief).
+
+## Route: `/apps/works`
+
+- **Final H1:** "An ERP for printing companies: the ERP I couldn't buy for my clients." (lead-in span `.h1-kw` + designed headline, lowercase "the" after the colon per spec).
+- **Primary keyword, JSX body text (metadata and JSON-LD excluded):**
+  - `erp for printing companies`: staging 0 -> new 3 (H1, first lede sentence, modules h2 "An ERP for printing companies, in six modules over one catalogue.").
+  - `erp for printing company` (singular, the map's literal phrase): 0 -> 0. The spec's H1 uses the plural, so the singular is not carried. Flagged for the keyword map.
+  - `stock control software`: 0 -> 1 (architecture lede: "with stock control software and order management built in"). Module cards left as written.
+- **Metadata, canonical, OG/Twitter and the Apps FAQ JSON-LD:** extracted from staging and from this branch and diffed. Identical except the new `supplierDots` constant placed after the FAQ block.
+- **One `<h1>`.** No "mockup" string in the new files. No "DO-ART" in page JSX (the only occurrence is a code comment).
+
+### Copy edits beyond the mockup (SEO spec wins)
+
+1. Hero lede first sentence now carries the keyword: "Every Clarity Audit ends in a written brief, and for years the same brief asked for an ERP for printing companies built for decorated goods." The second sentence is now "Nothing on the market covered it: supplier feeds, ..." (staging said "with nothing on the market built for decorated goods"). "So I built the missing piece." kept.
+2. Modules h2 carries the keyword (one section heading only).
+3. Architecture lede: "stock control" -> "stock control software".
+4. Closer h2 keeps staging's full stop ("Talk it through first.").
+
+### Staging prose: restored, replaced, or dropped
+
+| Staging text | Outcome |
+|---|---|
+| Hero paragraph (split into lede and body) | Kept. First sentence reworded as in 1 above. "Engagement by engagement ... or as the system itself." verbatim. |
+| Architecture lede | Kept, plus "software" (edit 3). |
+| LAYER 1–3 cards | Kept as the three-stop route; text verbatim. |
+| DO-ART-941 figure and its caption "A live client system. Feeds in on the left..." | Withdrawn. Replaced by the real dashboard screen (DO-ART-1019a). Obviously replaced by a real screen. |
+| DO-ART-943 figure ("The screens" heading kept) | Withdrawn. Replaced by Production and Order readiness screens. Heading kept verbatim. |
+| Stat row (317,812 / 154,518 / 40) and labels | Carried in the feed panel. All three labels present. "Case study 01, real production numbers..." kept as the lede. |
+| Tier table (Core / Connected / Scaled, scope text, "Most take this") | Converted to three icon cards. Scope text kept, with the flag on Connected. The table `<caption>Decoded Works</caption>` is dropped (no table). |
+| Tier inset and table footnote (VAT, pricing page) | Kept. No price anywhere on the page. |
+| CTA "Talk it through first." and lede | Kept. |
+
+Nothing else dropped.
+
+### Assets
+
+- Copied to `public/images/site/screens/works/` (sub-path under `assets/screens/works/`; the mockup does not reference `assets/site/`):
+  `do-art-1019a` (dashboard), `b` (garments), `c` (pick queue), `d` (goods-in), `e` (works order), `g` (product sync), `h` (production), `i` (order readiness), `j` (stock policies).
+- **Not copied, not referenced:** 1019f (despatch), 1019k (tote scan), 1019l (supplier coverage). These are for the module pages; the overview mockup does not use them.
+
+### Files in this branch
+
+- `app/apps/works/page.tsx` (rewritten)
+- `app/apps/works/works-v2.css` (new; page layout only, the mockup's two inline rules plus three small classes)
+- `app/apps/works/WorksIconSprite.tsx` (new; `i-puzzle` and `i-workflow`, the only two icons the page needs that `IconSprite` lacks)
+- `public/images/site/screens/works/*.webp` (9 files)
+- `LANE-RESULT.md` (this section)
+
+Shared sheets untouched: `app/globals.css`, `app/design-system/ds-marketing.css`, `app/d17-global.css`, `app/d17-art.module.css`, `app/design-system/site-v3.css`, `components/IconSprite.tsx`.
+
+## Needs shared change
+
+1. **Merge `i-puzzle` and `i-workflow` into `components/IconSprite.tsx`.** The symbols live in `WorksIconSprite.tsx` for now. Once merged, delete that file and the `<WorksIconSprite />` render.
+2. **Decision for Claude, not a code change:** the staging a942 piece (`lib/d17-figures/a942.ts`) carries a visible "DO-ART-942 · Rev 01" mark in its footer. This is shared content, so it is not edited here. Brief rule is "no DO-ART numbers visible to visitors". Confirm whether that mark should be removed from the shared figure.
+
+## Verification run
+
+- `npx tsc --noEmit`: exit 0.
+- `npx eslint app/apps/works/`: 0 errors, 9 warnings (`no-img-element`, the same class every staging page with `<img>` already carries).
+- Metadata + FAQ JSON-LD: identical to `origin/staging` (diffed).
+- Visual check, mobile no-scroll check, and the Keep reading links: not run here (no browser, per brief). Links checked against `app/`: all resolve, including `/problems/inventory-blind` and `/problems/ecommerce-not-connected`.
