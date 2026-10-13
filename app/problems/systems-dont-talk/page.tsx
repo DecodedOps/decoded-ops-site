@@ -161,9 +161,9 @@ export default function SystemsDontTalkPage() {
      heading: 'Where one system hands over to the next.',
      lede: 'Three of my own photographs from client visits this year. The job sheet, the despatch bench and the stock bay are where data leaves one system and gets typed into the next.',
      photos: [
-      { src: '/images/site/evidence/plate-job-sheets-63dd9c.webp', alt: 'Paper job sheets laid out on a workbench at a client site.', kicker: 'The bench · June 2026', line: 'Job sheets, still on paper' },
-      { src: '/images/site/evidence/band-packing-station-7c4f80.webp', alt: 'A packing station with cartons, tape and a label printer at a client site.', kicker: 'Despatch · June 2026', line: 'The packing station' },
-      { src: '/images/site/evidence/plate-racking-bays-626a9b.webp', alt: 'Warehouse racking bays holding boxed stock at a client site.', kicker: 'Stock · April 2026', line: 'Racking bays, counted by hand' },
+      { odId: 'photo-job-sheets', no: 'DO-ART-979k', src: '/images/site/evidence/plate-job-sheets-63dd9c.webp', alt: 'Paper job sheets laid out on a workbench at a client site.', kicker: 'The bench · June 2026', line: 'Job sheets, still on paper' },
+      { odId: 'photo-packing', no: 'DO-ART-979n', src: '/images/site/evidence/band-packing-station-7c4f80.webp', alt: 'A packing station with cartons, tape and a label printer at a client site.', kicker: 'Despatch · June 2026', line: 'The packing station' },
+      { odId: 'photo-racking', no: 'DO-ART-979m', src: '/images/site/evidence/plate-racking-bays-626a9b.webp', alt: 'Warehouse racking bays holding boxed stock at a client site.', kicker: 'Stock · April 2026', line: 'Racking bays, counted by hand' },
      ],
     }}
     causes={[

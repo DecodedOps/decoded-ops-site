@@ -149,11 +149,11 @@ export default function SpreadsheetAddictionPage() {
    )}
 
    {/* 01 HERO */}
-   <section className="g-off p-hero">
+   <section className="g-off p-hero" data-od-id="hero">
     <div className="wrap p-hero-grid">
      <div>
       <span className="eyebrow">The problem</span>
-      <h1>
+      <h1 data-od-id="hero-h1">
        <span className="h1-kw">Manual processes in spreadsheets:</span>{' '}
        The spreadsheet that runs your business is one corrupted file away from disaster.
       </h1>
@@ -164,24 +164,24 @@ export default function SpreadsheetAddictionPage() {
        accidental keystroke away from taking a day&apos;s orders with it. Manual processes like this rarely get
        looked at until something breaks.</p>
       <div className="btn-row">
-       <Link className="btn btn--primary" href="/contact">Book a Clarity Audit</Link>
+       <Link className="btn btn--primary" href="/contact" data-od-id="hero-cta">Book a Clarity Audit</Link>
       </div>
      </div>
-     <div dangerouslySetInnerHTML={{ __html: heroArt975 }} />
+     <div data-od-id="hero-visual" dangerouslySetInnerHTML={{ __html: heroArt975 }} />
     </div>
    </section>
 
    {/* 02 SYMPTOMS */}
-   <section className="g-navy sym-sec">
+   <section className="g-navy sym-sec" data-od-id="symptoms">
     <div className="wrap sym-grid">
      <div className="sym-head">
       <span className="eyebrow">The signs</span>
-      <h2>Seven signs your spreadsheet has become the single point of failure.</h2>
+      <h2 data-od-id="symptoms-h2">Seven signs your spreadsheet has become the single point of failure.</h2>
       <p className="sec-lede">If you recognise three or more of these, the spreadsheet
        isn&apos;t a tool any more. It&apos;s a risk the business is carrying every day.</p>
      </div>
      <div>
-      <ol className="sym">
+      <ol className="sym" data-od-id="symptoms-ledger">
        <li><span className="n">01</span><p>You wouldn&apos;t know where to start if the file got corrupted or deleted</p></li>
        <li><span className="n">02</span><p>Supplier price lists in the spreadsheet are three versions out of date</p></li>
        <li><span className="n">03</span><p>Only one person knows how the macros work, and they&apos;re on holiday this week</p></li>
@@ -210,63 +210,66 @@ export default function SpreadsheetAddictionPage() {
    )}
 
    {/* 03 PHOTO BAND */}
-   <section className="g-white">
+   <section className="g-white" data-od-id="photo-band">
     <div className="wrap">
      <div className="ev-head">
       <div>
        <span className="eyebrow">What the file has to keep up with</span>
-       <h2>The orders, stock and deliveries behind the order log.</h2>
+       <h2 data-od-id="photo-band-h2">The orders, stock and deliveries behind the order log.</h2>
       </div>
       <p className="lede">Three of my own photographs from client visits this year. Every print run, pallet and bay here is a line somebody has to get into the file.</p>
      </div>
-     <div className="ev-grid">
-      <figure className="d17 ev">
+     <div className="ev-grid" data-od-id="photo-band-photos">
+      <figure className="d17 ev" data-od-id="photo-dtf" data-no="DO-ART-979b" data-rev="01" data-tx="photo">
        <div className="d17-ph"><img src="/images/site/evidence/plate-dtf-conveyor-a1f1d1.webp" width={1600} height={900} alt="A direct-to-film print conveyor running on a client's production floor." loading="lazy" /></div>
        <div className="d17-scan" aria-hidden="true" />
        <p className="k d17-mono">The print line &middot; 2026</p>
        <p className="line">A print conveyor, mid-run</p>
+       <span className="d17-mark">decodedops.co.uk &middot; DO-ART-979b &middot; Rev 01</span>
       </figure>
-      <figure className="d17 ev">
+      <figure className="d17 ev" data-od-id="photo-pallets" data-no="DO-ART-979l" data-rev="01" data-tx="photo">
        <div className="d17-ph"><img src="/images/site/evidence/plate-pallets-12eebd.webp" width={1600} height={900} alt="Pallets of inbound stock on a client's goods-in floor." loading="lazy" /></div>
        <div className="d17-scan" aria-hidden="true" />
        <p className="k d17-mono">Goods in &middot; June 2026</p>
        <p className="line">Pallets of inbound stock</p>
+       <span className="d17-mark">decodedops.co.uk &middot; DO-ART-979l &middot; Rev 01</span>
       </figure>
-      <figure className="d17 ev">
+      <figure className="d17 ev" data-od-id="photo-racking" data-no="DO-ART-979m" data-rev="01" data-tx="photo">
        <div className="d17-ph"><img src="/images/site/evidence/plate-racking-bays-626a9b.webp" width={1600} height={900} alt="Warehouse racking bays holding boxed stock at a client site." loading="lazy" /></div>
        <div className="d17-scan" aria-hidden="true" />
        <p className="k d17-mono">Stock &middot; April 2026</p>
        <p className="line">Racking bays, counted by hand</p>
+       <span className="d17-mark">decodedops.co.uk &middot; DO-ART-979m &middot; Rev 01</span>
       </figure>
      </div>
     </div>
    </section>
 
    {/* 04 FAILURE MODES: icon cards, two up */}
-   <section className="g-tint">
+   <section className="g-tint" data-od-id="causes">
     <div className="wrap">
      <div className="sec-head">
       <span className="eyebrow">Real failure modes</span>
-      <h2>These aren&apos;t theoretical. They&apos;ve all happened in this sector.</h2>
+      <h2 data-od-id="causes-h2">These aren&apos;t theoretical. They&apos;ve all happened in this sector.</h2>
       <p className="sec-lede">A spreadsheet failure in decorated goods doesn&apos;t look like an IT problem. It looks like a production line that doesn&apos;t know what it&apos;s making this morning.</p>
      </div>
-     <div className="areas areas--2">
-      <article className="area">
+     <div className="areas areas--2" data-od-id="causes-cards">
+      <article className="area" data-od-id="cause-1">
        <div className="area-top"><span className="ic-tile"><Icon id="i-tags" size={24} /></span><span className="num">01</span></div>
        <h3>The price list that went out of date</h3>
        <p className="t-card">A supplier raised prices in December. The spreadsheet still had the old rates. By the time anyone noticed, dozens of orders had been quoted at the wrong price, and the difference came out of margin, not the customer&apos;s invoice.</p>
       </article>
-      <article className="area">
+      <article className="area" data-od-id="cause-2">
        <div className="area-top"><span className="ic-tile"><Icon id="i-history" size={24} /></span><span className="num">02</span></div>
        <h3>The order log with no audit trail</h3>
        <p className="t-card">A key customer disputed an order quantity. The spreadsheet showed one number; they had an email confirming another. With no audit trail, there was no way to prove which was right, so the business ate the difference to keep the relationship.</p>
       </article>
-      <article className="area">
+      <article className="area" data-od-id="cause-3">
        <div className="area-top"><span className="ic-tile"><Icon id="i-laptop" size={24} /></span><span className="num">03</span></div>
        <h3>The macro that only worked on one machine</h3>
        <p className="t-card">One person built the order-processing macro over several years. When they left, nobody else knew how it worked, and the replacement system took six months to build, during which every order was processed by hand.</p>
       </article>
-      <article className="area">
+      <article className="area" data-od-id="cause-4">
        <div className="area-top"><span className="ic-tile"><Icon id="i-file-warning" size={24} /></span><span className="num">04</span></div>
        <h3>The corrupted file with no backup</h3>
        <p className="t-card">A spreadsheet with two years of order history became corrupted during a save. The most recent backup was months old. Months of order data had to be reconstructed from emails, delivery notes, and memory.</p>
@@ -276,12 +279,12 @@ export default function SpreadsheetAddictionPage() {
    </section>
 
    {/* 05 PLATE */}
-   <section className="g-navy plate-sec">
+   <section className="g-navy plate-sec" data-od-id="plate">
     <div className="wrap">
      <div className="plate-head">
       <div>
        <span className="eyebrow">The replacement</span>
-       <h2>From one file to a documented system.</h2>
+       <h2 data-od-id="plate-h2">From one file to a documented system.</h2>
       </div>
       <p className="lede">The order log stops being a file and becomes a named process with a documented workflow, with supplier prices fed in instead of typed.</p>
      </div>
@@ -290,13 +293,13 @@ export default function SpreadsheetAddictionPage() {
    </section>
 
    {/* 06 HOW I HELP */}
-   <section className="g-white">
+   <section className="g-white" data-od-id="how-i-help">
     <div className="wrap how-grid">
      <div>
       <span className="eyebrow">How I help</span>
-      <h2>Documented process, not a single file nobody else can read.</h2>
+      <h2 data-od-id="how-h2">Documented process, not a single file nobody else can read.</h2>
      </div>
-     <div className="how-r">
+     <div className="how-r" data-od-id="how-copy">
       <p className="t-lede">The Process &amp; Quality System replaces the dependency on one spreadsheet, and the manual processes around it, with documented processes that live outside anyone&apos;s laptop. <span className="answer-b">The order log becomes a named process with a documented workflow, not a file that only opens on one version of a spreadsheet.</span></p>
       <p className="t-body">Where the spreadsheet was actually doing something useful (tracking orders, managing supplier prices, routing artwork approvals), a Clarity Audit finds the right tool to replace it, whether that&apos;s a small system, a Works layer, or a properly-structured process document that doesn&apos;t rely on one person&apos;s macros.</p>
      </div>
@@ -304,13 +307,13 @@ export default function SpreadsheetAddictionPage() {
    </section>
 
    {/* 07 CLOSER */}
-   <section className="g-off cta-close">
+   <section className="g-off cta-close" data-od-id="cta">
     <div className="wrap closer-grid">
-     <div><h2>Find out what&apos;s actually living in your spreadsheets.</h2></div>
+     <div><h2 data-od-id="cta-h2">Find out what&apos;s actually living in your spreadsheets.</h2></div>
      <div>
       <p className="lede">A Clarity Audit maps every process that currently depends on a spreadsheet, and the written plan tells you which ones to move first, before the file that runs the business stops opening.</p>
       <div className="btn-row">
-       <Link className="btn btn--primary" href="/contact">Book a Clarity Audit</Link>
+       <Link className="btn btn--primary" href="/contact" data-od-id="cta-primary">Book a Clarity Audit</Link>
        <Link className="go" href="/deliver">See how Deliver works <Icon id="i-arrow-right" /></Link>
       </div>
      </div>
@@ -318,11 +321,11 @@ export default function SpreadsheetAddictionPage() {
    </section>
 
    {/* 08 KEEP READING */}
-   <section className="g-tint next">
+   <section className="g-tint next" data-od-id="keep-reading">
     <div className="wrap">
      <span className="eyebrow">Keep reading</span>
      <div className="next-grid">
-      <div className="next-card next-card--service">
+      <div className="next-card next-card--service" data-od-id="next-service">
        <span className="t-meta">Get this fixed</span>
        <h3>{routing.targetService.label}</h3>
        <p className="t-card">{routing.targetService.anchor}</p>
@@ -331,7 +334,7 @@ export default function SpreadsheetAddictionPage() {
       <div className="next-card">
        <span className="t-meta">Related problems</span>
        <h3>You might also have</h3>
-       <ul className="t-card">
+       <ul className="t-card" data-od-id="next-problems">
         {routing.relatedProblems.map(r => (
          <li key={r.href}><Link href={r.href}><Icon id="i-arrow-right" /><span>{r.label}</span></Link></li>
         ))}
@@ -340,7 +343,7 @@ export default function SpreadsheetAddictionPage() {
       <div className="next-card">
        <span className="t-meta">Further reading</span>
        <h3>From the blog and the toolkit</h3>
-       <ul className="t-card">
+       <ul className="t-card" data-od-id="next-reading">
         {reading.map(r => (
          <li key={r.href}><Link href={r.href}><Icon id="i-arrow-right" /><span>{r.label}</span></Link></li>
         ))}
@@ -349,7 +352,7 @@ export default function SpreadsheetAddictionPage() {
       <div className="next-card">
        <span className="t-meta">Sectors where this shows up</span>
        <h3>Common in</h3>
-       <ul className="t-card">
+       <ul className="t-card" data-od-id="next-sectors">
         {routing.relatedSectors.map(s => (
          <li key={s.href}><Link href={s.href}><Icon id="i-arrow-right" /><span>{s.label}</span></Link></li>
         ))}

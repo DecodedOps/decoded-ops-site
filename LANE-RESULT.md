@@ -209,59 +209,78 @@ which this lane did not change.
 
 ---
 
+---
+
 # Set 2 — CR-WEB-077A (WO-INF-087 set 2, problems part A)
 
 **Branch:** `task/web07x-set2-problems-2026-10-13` (cut from `origin/staging` f6e3c59). Not pushed, not merged.
 **Scope:** `/problems/systems-dont-talk`, `/problems/manual-workarounds`, `/problems/spreadsheet-addiction`. `ProblemPageDS.tsx` and the other six shared-template problem pages are untouched.
 
+## Commits
+
+| SHA | Subject |
+|---|---|
+| `c51c5d3` | feat(web): problem pages systems-dont-talk, manual-workarounds, spreadsheet-addiction from v6/v5 mockups (CR-WEB-077A) |
+| follow-up | fix(web): data-od-id parity, photo marks and lane-result corrections (CR-WEB-077A). Hash in the final report and `git log`. |
+
 ## Files
 
-- `components/ProblemPageV2.tsx` (new): mockup layout for the two shared-v6 pages. Same routing data (`problemRouting`) as DS; BreadcrumbSchema kept with the staging name.
-- `components/ProblemIconSprite.tsx` (new): the ten Lucide symbols the plates need that `IconSprite.tsx` lacks (i-map, i-unplug, i-eye-off, i-layout-template, i-timer, i-badge-check, i-tags, i-history, i-laptop, i-file-warning). `Icon` helper.
-- `app/problems/problems-v2.css` (new): mockup `<style>` rules for the problem family (type/icon contracts, symptoms ledger, photo band, icon causes, plate, proof feed, how-I-help offer, keep-reading), plus `.h1-kw` and the mobile steps. Footer rules left out.
-- `app/problems/systems-dont-talk/page.tsx`, `app/problems/manual-workarounds/page.tsx`: render replaced; metadata, JSON-LD and DO-ART artwork strings kept byte-identical.
-- `app/problems/spreadsheet-addiction/page.tsx`: own page rebuild in the v5 layout; metadata, JSON-LD and the 975/1013 artwork strings kept.
+- `components/ProblemPageV2.tsx` (new): mockup layout for the two shared-v6 pages. Routing data from `problemRouting`; BreadcrumbSchema keeps the staging name.
+- `components/ProblemIconSprite.tsx` (new): the ten Lucide symbols the plates need that `IconSprite.tsx` lacks, plus an `Icon` helper.
+- `app/problems/problems-v2.css` (new): mockup `<style>` rules for the problem family (type and icon contracts, symptoms ledger, photo band, icon causes, plate, proof feed, offer card, keep-reading), plus `.h1-kw`, `.pv2-pull` and the mobile steps. Footer rules left out.
+- `app/problems/systems-dont-talk/page.tsx`, `app/problems/manual-workarounds/page.tsx`: render replaced. Metadata, JSON-LD and DO-ART artwork strings are unchanged.
+- `app/problems/spreadsheet-addiction/page.tsx`: own page rebuild in the v5 layout. Metadata, JSON-LD and the 975/1013 artwork strings are unchanged.
 
 ## Metadata and JSON-LD
 
-`metadata` export, `*Schema` consts and the `BreadcrumbSchema` items compared against `origin/staging` by string match on all three routes: identical. No mockup `<title>` or meta used.
+`metadata` export, `*Schema` consts and `BreadcrumbSchema` items were compared with `origin/staging` by string match on all three routes: identical. No mockup `<title>` or meta was used.
 
 ## Per route
 
-| Route | Final H1 (one `<h1>`) | Primary keyword body count, staging → new | Lines restored | Skipped / notes |
+| Route | Final H1 (one `<h1>`) | Primary keyword body count, staging to new | Lines restored | Notes |
 |---|---|---|---|---|
-| `/problems/systems-dont-talk` | Systems that don't talk to each other: You have five systems. None of them know what the others are doing. | 0 → 2 (eyebrow + H1 lead-in; page-file method, see below). Staging body had no `<h1>` keyword. | "Each island knows only what it is told. Every gap gets bridged by hand. Every bridge is a place data goes wrong." under the plate | Video: `problemVideos['systems-dont-talk']` is commented out in data, so no embed and no VideoSchema (as on staging). Proof feed from the v6 plate kept. |
-| `/problems/manual-workarounds` | Manual workarounds: Your team has built a second system. It lives in spreadsheets. | 5 → 10 (9 if the breadcrumb name is excluded). Added: H1 lead-in, symptom 06, cause 3, cause 4. | "The workarounds are the real operating model. The official system just watches." under the cause cards | Video: no data entry (as staging). |
-| `/problems/spreadsheet-addiction` | Manual processes in spreadsheets: The spreadsheet that runs your business is one corrupted file away from disaster. | 2 → 3 (H1 lead-in added) | none (staging had no restore line for this page in the audit) | Mockup line says "one corrupted file away"; the SEO spec tail says "one corrupted save from disaster". Mockup line shipped; swap is one line if Craig prefers the spec wording. Video: no data entry. |
+| `/problems/systems-dont-talk` | Systems that don't talk to each other: You have five systems. None of them know what the others are doing. | 0 to 2 (eyebrow + H1 lead-in) | "Each island knows only what it is told. Every gap gets bridged by hand. Every bridge is a place data goes wrong." under the **1012** plate (the ledger), not the 976 hero | Video: `problemVideos['systems-dont-talk']` is commented out in the data file, so no embed and no VideoSchema (same as staging). Proof feed from the v6 plate kept. |
+| `/problems/manual-workarounds` | Manual workarounds: Your team has built a second system. It lives in spreadsheets. | 5 to 10 (9 with the breadcrumb name excluded) | "The workarounds are the real operating model. The official system just watches." under the cause cards | Video: no data entry (same as staging). |
+| `/problems/spreadsheet-addiction` | Manual processes in spreadsheets: The spreadsheet that runs your business is one corrupted file away from disaster. | 2 to 3 (H1 lead-in added) | none | Mockup says "one corrupted file away"; the SEO spec tail says "one corrupted save from disaster". Mockup line shipped; swap is one line if Craig prefers the spec wording. |
 
-Counting method (same for staging and new): `grep -i` over the page file with `metadata` and `*Schema` blocks removed (artwork strings included, `ProblemPageV2` text excluded). The audit's "8" for manual-workarounds used a wider method; new count is ≥8 on both.
+Count method (same for staging and new): `grep -i` over the page file with the `metadata` and `*Schema` blocks removed. Artwork strings are included, and the text inside `ProblemPageV2` is excluded. On manual-workarounds, nothing that counted on staging was removed, and four occurrences were added: H1 lead-in, symptom 06, cause 3, cause 4. So the new count is at least staging's on any method. I could not reproduce the audit's "8" for staging by this method (I get 5), so the claim rests on the delta, not on matching the audit figure.
 
 ## Copy decisions
 
-- H1s follow the set-1 precedent: lead-in span (`.h1-kw`) + the mockup headline, not the spec table's literal lowercase tail. Text reads as the spec keyword phrase followed by the designed line.
-- Systems eyebrow changed from "Systems don't talk to each other" to "Systems that don't talk to each other" (audit's suggested slot).
-- Manual workarounds, staging copy edited to carry the keyword (authorised by the lead): symptom 06 ("Your manual workarounds, custom spreadsheets or databases are now critical…"), cause 3 ("The cost of manual workarounds never appears on an invoice…"), cause 4 ("…these manual workarounds stop looking like workarounds…").
-- All v6 / v5 new copy (band headings, ledes, captions, symptoms h2/lede/caption, proof note, offer card) shipped as written.
-- Offer card: mockup version (duplicate "The first call is free." sentence dropped). Booking link is `BOOKING_URL` from `lib/constants.ts`.
-- Keep-reading cards, service/related/reading/sector links all come from `data/problem-routing.ts` (labels and hrefs match the mockup cards for all three pages; reading and resources merged into one card as the mockup does).
+- H1s follow the set-1 precedent: lead-in span (`.h1-kw`) plus the mockup headline, not the spec table's lowercase tail.
+- Systems eyebrow: "Systems that don't talk to each other" (was "Systems don't talk to each other"; the audit's suggested slot). This makes the hero eyebrow and the H1 lead-in carry the same phrase, one above the other. **For Craig's call:** a neutral eyebrow (as the SA page uses, "The problem") would avoid the stacking. Reverting to the staging eyebrow leaves the SDT body count at 1 (H1 only), still at least staging's 1.
+- Manual workarounds: staging copy edited to carry the keyword, as the lead authorised. Symptom 06 ("Your manual workarounds, custom spreadsheets or databases are now critical…"), cause 3 ("The cost of manual workarounds never appears on an invoice…"), cause 4 ("…these manual workarounds stop looking like workarounds…").
+- All v6 and v5 mockup-only copy (band headings, ledes, captions, symptoms h2/lede/caption, proof note, offer card) shipped as written.
+- Offer card: the mockup version (its duplicate "The first call is free." sentence dropped). Booking link is `BOOKING_URL` from `lib/constants.ts`.
+- Keep-reading, service, related, reading and sector links all come from `data/problem-routing.ts`. Labels and hrefs match the mockup cards on all three pages. Reading and resources are merged into one card, as the mockup does.
+- The two restored lines came from `components/schematics/problems/SystemsDontTalkSchematic.tsx` and `ManualWorkaroundsSchematic.tsx`. Staging imported those as `heroGraphic`, but `heroArt` short-circuits it in `ProblemPageDS`, so the lines were never visible on staging. They are new on the live page.
+
+## Parity attributes
+
+`data-od-id` values from both v6 mockups and the v5 SA mockup are on the matching sections and elements (hero, hero-h1, hero-cta, symptoms*, photo-band*, causes*, cause-1..4, plate, plate-h2, proof*, how*, offer-cta, offer-alt, keep-reading, next-*, cta*). Photo figures carry their `data-od-id`, `data-no`, `data-rev` and `data-tx`, and the `d17-mark` line, as set 1 does. The artwork strings keep their own ids.
 
 ## Deviations from the brief
 
-1. `site-v3.css` is **not imported** by these pages. Its `.area`, `.ticks`, `.next`, `.ev`, `.sw`, `.offer`, `.go` rules collide with the mockup's rules and would change the approved layout. `.h1-kw` is defined locally in `problems-v2.css` with set 1's values.
-2. Photo captions do not show a `DO-ART` number (the mockup's `d17-mark` lines were dropped on the three photo figures, per the brief's no-DO-ART-numbers-visible rule).
-3. Mobile 390px and desktop renders were not taken (no servers or browser per the brief). Mobile safeguards: `.areas.areas--2` 700px rule after the modifier; `.next-grid` 1100/600px steps added.
+1. `site-v3.css` is **not imported**. It defines `.ev` (identical to the mockup rule) and overlapping `.area` and `.ticks` rules scoped with `:not(.d17 *)`. For example, `.g-navy:not(.d17 *) .area` (site-v3 line 311) sets a translucent background. Importing it would double-define shared classes across the family, so the rules this set needs live only in `problems-v2.css`. `.h1-kw` uses set 1's values, copied.
+2. Mobile 390px and desktop renders were not taken (no servers or browser, per the brief). Mobile safeguards: the `.areas.areas--2` 700px rule sits after the modifier, and `.next-grid` has 1100px and 600px steps.
+
+## Notes for the reviewer
+
+- SDT eyebrow and H1 lead-in carry the same phrase (see copy decisions).
+- The DO-ART visible-marks rule: the photo `d17-mark` lines show DO-ART numbers, following set 1. The staging artwork strings also show them. This conflicts with the brief's "no DO-ART numbers visible" rule and needs a shared decision (see below).
 
 ## Needs shared change
 
-- Fold the ten `ProblemIconSprite` symbols into `components/IconSprite.tsx` later (kept separate here to avoid editing the shared sprite).
-- `.h1-kw` is defined in both `site-v3.css` (set 1) and `problems-v2.css` (this set); consolidate later.
-- Staging artwork strings (DO-ART-975, -970, -976, -1009, -1012, -1013) still render their own visible `DO-ART-…` marks and raw hex fallbacks (`#8ECAE6`, `#FFB703`) inside the art HTML. Left as issued; the brief's visible-DO-ART rule and the raw-hex rule need a shared artwork fix.
-- `problems-v2.css` is loaded globally once a problem page is visited. Its class names (`.area`, `.next`, `.ticks`, `.offer`) could collide with other routes; scope under a wrapper in a later set.
+- Fold the ten `ProblemIconSprite` symbols into `components/IconSprite.tsx` later. They are kept separate here so the shared sprite is not edited.
+- `.h1-kw` is defined in both `site-v3.css` (set 1) and `problems-v2.css` (this set). Consolidate later.
+- Visible `DO-ART-…` marks: set 1 and this set both show them (photo captions here, and the staging artwork strings for 975, 970, 976, 1009, 1012, 1013). The brief's rule says they should not be visible. This needs one decision across all sets, not a per-page fix.
+- Raw hex fallbacks (`#8ECAE6`, `#FFB703`) sit inside the 1012 and 1009 artwork strings. Pre-existing, left as issued.
+- `problems-v2.css` loads globally once a problem page is visited, and its class names (`.area`, `.next`, `.ticks`, `.offer`) could collide with other routes. Scope under a wrapper in a later set.
 
 ## Verification (no browser, no build, per brief)
 
 - `npx tsc --noEmit`: exit 0.
-- `npx eslint` on the five touched TSX files: 0 errors (img warnings only, same as staging).
-- `metadata` / schema / breadcrumb string-match against `origin/staging`: identical on all three.
-- One `<h1>` per route (`ProblemPageV2` renders one for the two shared pages; spreadsheet page renders its own).
+- `npx eslint` on the five touched TSX files: 0 errors, 4 `no-img-element` warnings (same class as staging).
+- `metadata`, schema and breadcrumb string match against `origin/staging`: identical on all three.
+- One `<h1>` per route: `ProblemPageV2` renders one for the two shared pages; the SA page renders its own.
 - `git diff --stat origin/staging`: only the three page files, `problems-v2.css`, `ProblemIconSprite.tsx`, `ProblemPageV2.tsx`, and this file. No images added. `ProblemPageDS.tsx` unchanged.

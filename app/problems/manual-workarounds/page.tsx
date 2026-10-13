@@ -178,9 +178,9 @@ export default function ManualWorkaroundsPage() {
      heading: 'The places the second system gets fed.',
      lede: 'Three of my own photographs from client visits this year. The stockroom, the despatch floor and the goods-in aisle are where work gets counted, written down and written down again.',
      photos: [
-      { src: '/images/site/evidence/hero-stockroom-mixed-fa24e6.webp', alt: 'A mixed stockroom with shelved garments and boxed goods at a client site.', kicker: 'The stockroom · 2026', line: 'A mixed stockroom' },
-      { src: '/images/site/evidence/plate-cartons-packed-2fb0ae.webp', alt: 'Packed cartons stacked and labelled, waiting for collection at a client site.', kicker: 'Despatch · 2026', line: 'Packed cartons, waiting for collection' },
-      { src: '/images/site/evidence/plate-crates-aisle-e843b7.webp', alt: 'An aisle of stacked crates at a client site.', kicker: 'The floor · 2026', line: 'An aisle of stacked crates' },
+      { odId: 'photo-stockroom', no: 'DO-ART-979c', src: '/images/site/evidence/hero-stockroom-mixed-fa24e6.webp', alt: 'A mixed stockroom with shelved garments and boxed goods at a client site.', kicker: 'The stockroom · 2026', line: 'A mixed stockroom' },
+      { odId: 'photo-cartons', no: 'DO-ART-979q', src: '/images/site/evidence/plate-cartons-packed-2fb0ae.webp', alt: 'Packed cartons stacked and labelled, waiting for collection at a client site.', kicker: 'Despatch · 2026', line: 'Packed cartons, waiting for collection' },
+      { odId: 'photo-crates', no: 'DO-ART-979a', src: '/images/site/evidence/plate-crates-aisle-e843b7.webp', alt: 'An aisle of stacked crates at a client site.', kicker: 'The floor · 2026', line: 'An aisle of stacked crates' },
      ],
     }}
     causes={[
