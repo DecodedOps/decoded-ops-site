@@ -1,8 +1,8 @@
 /**
  * Lucide icon sprite for the v3 redesigned routes (CR-WEB-076).
  * Geometry is lucide-static v1.54.0 (ISC), embedded path-for-path from the
- * approved review mockups. Import and render once per page, before the main
- * content; the six set-1 routes are the only consumers. Where two mockups
+ * approved review plates. Import and render once per page, before the main
+ * content; the six set-1 routes are the only consumers. Where two plates
  * carried different lucide versions of the same symbol (i-layers, i-file-check)
  * the service-pages geometry wins — see LANE-RESULT-web076-set1.md.
  */

@@ -1,6 +1,6 @@
 /* site-v3.css · Decoded Ops marketing page patterns · 10 Oct 2026
    Loaded only by the redesigned routes (CR-WEB-076 set 1 and later sets) after ds-marketing.css and d17-global.css.
-   Every rule below is lifted verbatim from the approved reference mockups (Clarity v2, homepage v3/v4, print v2, Transform v1),
+   Every rule below is lifted verbatim from the approved reference plates (Clarity v2, homepage v3/v4, print v2, Transform v1),
    except the blocks marked AUTHORED. Page files carry layout-only CSS; a pattern that is not here is not a house pattern.
    Page patterns (route, cards, ledger, ticks, figure panel, seal, closer, keep-reading) carry :not(.d17 *) so they never
    apply inside an artwork piece, whose plates reuse the same generic class names. */
@@ -348,7 +348,7 @@ a.area:focus-visible:not(.d17 *){ outline:3px solid var(--do-cerulean); outline-
 @media (max-width:760px){ .sw-doc--flip{ grid-template-columns:1fr } .sw-doc--flip .sw-cap{ order:1 } .sw-doc--flip .stage{ order:2 } .sw-doc--flip .d17-ph{ right:0 } .sw-doc--flip::before{ background:linear-gradient(180deg, var(--do-prussian-blue) 0 38%, color-mix(in srgb, var(--do-prussian-blue) 40%, transparent) 100%) } }
 /* the pattern-colour token the dot grid reads (was declared per page) */
 :root{ --do-pattern-color:rgba(33,158,188,.07) }
-/* ── COMPATIBILITY · names the Oct 9 mockups already use. Delete when they are relinked. ── */
+/* ── COMPATIBILITY · names the Oct 9 review plates already use. Delete when they are relinked. ── */
 .ev-head, .ledger-head:not(.d17 *){ display:grid; grid-template-columns:minmax(0,7fr) minmax(0,5fr); gap:48px; align-items:end }
 .ev-head h2, .ledger-head:not(.d17 *) h2{ max-width:18ch }
 .ev-head .lede, .ledger-head:not(.d17 *) .lede{ margin:0 }
@@ -388,7 +388,7 @@ a.area:focus-visible:not(.d17 *){ outline:3px solid var(--do-cerulean); outline-
 /* ── Hero piece variants ────────────────────────────────────────────────── */
 /* the 1004 recipe: two document mock-ups over a site-visit photograph.
    `.a939` is the class the Clarity (939), Deliver (940) and Transform (941)
-   hero pieces share in the approved mockups. */
+   hero pieces share in the approved review plates. */
 .a939 .d17-ph{ left:28% }
 .a939 .d17-ph img{ object-position:50% 55%; --d17-grade:saturate(.7) contrast(1.06) brightness(.82) }
 .a939 .stage{ min-height:calc(500 * var(--u)) }
