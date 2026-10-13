@@ -1,0 +1,34 @@
+{
+  "lane": "web076-set1-h1fit",
+  "wo": "wo-staging-design-review-2026-10",
+  "unit": "",
+  "commits": [
+    { "sha": "bfca782", "subject": "fix(web): restructure SEO H1s as keyword lead-in + plate headline, restore plate hero CSS (CR-WEB-076 fix 1)" },
+    { "sha": "655afa8", "subject": "docs: LANE-RESULT Fix 1 section - H1 lead-in markup per route, verification (CR-WEB-076)" }
+  ],
+  "filesChanged": [
+    "app/design-system/site-v3.css",
+    "app/page.tsx",
+    "app/homepage.css",
+    "app/clarity/page.tsx",
+    "app/deliver/page.tsx",
+    "app/deliver/deliver-v1.css",
+    "app/transform/page.tsx",
+    "app/retained/page.tsx",
+    "app/retained/retained-v1.css",
+    "app/sectors/print-promotional/print-v2.css",
+    "LANE-RESULT.md"
+  ],
+  "verify": {
+    "tsc": "clean",
+    "tests": "n/a",
+    "escapeGrep": "0 hits in this lane's changes"
+  },
+  "deviations": [
+    "No browser render was taken (no-servers constraint), so the <=4-line claim for /sectors/print-promotional and the plate-wrapping claim for the five lead-in routes rest on the CSS being the plates' own text at the plates' own size and measure (plus the previous lane's headless-Chrome measurement of the unchanged print CSS). Markup and one-h1-per-route were verified in the prerendered .next/server/app HTML.",
+    "The hero-head grid in site-v3.css was restored to the plates' 7/5 split (it had been widened to 1/1 by the earlier SEO pass solely to fit the long single-line H1s); print-promotional keeps its own widened 1.45/.55 hero-split in print-v2.css, unchanged.",
+    "price-audit --check exits non-zero, but every violation is in files this lane never touched (tools, apps, case-studies, how-i-build, workwear, ecommerce problems) - pre-existing, same set the prior lane recorded."
+  ],
+  "blockers": [],
+  "done": true
+}
