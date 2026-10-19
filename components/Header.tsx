@@ -54,16 +54,6 @@ const helpLadder: (NavLink & { sub: string; startHere?: boolean })[] = [
   { label: 'Transform', sub: 'Rebuild how the business runs', href: '/transform' },
   { label: 'Retained', sub: 'A technology director, part time', href: '/retained' },
 ];
-const helpBuilt: NavGroup = {
-  title: 'Software I’ve already built',
-  items: [
-    { label: 'Works', sub: 'The ERP for decorated goods', href: '/apps/works' },
-    { label: 'Proof', sub: 'Versions, approvals and delivery', href: '/apps/proof' },
-    { label: 'Commerce', sub: 'B2B ordering for your customers', href: '/apps/commerce' },
-    { label: 'Catalogue', sub: 'Supplier feeds in, one clean catalogue', href: '/apps/catalogue' },
-    { label: 'All apps', sub: "What's ready to buy today", href: '/apps' },
-  ],
-};
 const helpHow: NavGroup = {
   title: 'How I work',
   items: [
@@ -71,6 +61,28 @@ const helpHow: NavGroup = {
     { label: 'How I build software', href: '/how-i-build' },
     { label: 'Prices, in plain numbers', href: '/pricing' },
     { label: 'About Craig', href: '/about' },
+  ],
+};
+
+// ── "Software", top-level — promoted out of "How I help" (CR-WEB-080, u13) ──
+const softwareProducts: NavGroup = {
+  title: 'The four products',
+  items: [
+    { label: 'Works', sub: 'The ERP for decorated goods', href: '/apps/works' },
+    { label: 'Proof', sub: 'Versions, approvals and delivery', href: '/apps/proof' },
+    { label: 'Commerce', sub: 'B2B ordering for your customers', href: '/apps/commerce' },
+    { label: 'Catalogue', sub: 'Supplier feeds in, one clean catalogue', href: '/apps/catalogue' },
+  ],
+};
+const softwareDecide: NavGroup = {
+  title: 'Deciding',
+  items: [
+    // No /apps/own-or-rent page exists. The "buy outright, or lease to own"
+    // software section on /pricing is the nearest existing page.
+    { label: 'Own or rent', sub: 'Buy outright, or lease to own', href: '/pricing' },
+    // No /compare page exists (marked "phase 3" in app/apps/page.tsx).
+    // The /apps hub lays the four products out side by side.
+    { label: 'Compare', sub: 'The four products side by side', href: '/apps' },
   ],
 };
 
@@ -138,7 +150,7 @@ const proofGuides: NavGroup = {
   ],
 };
 
-type PanelKey = 'wrong' | 'help' | 'industry' | 'small' | 'proof';
+type PanelKey = 'wrong' | 'help' | 'software' | 'industry' | 'small' | 'proof';
 
 function MegaGroup({ group, onNavigate }: { group: NavGroup; onNavigate: () => void }) {
   return (
@@ -281,7 +293,6 @@ export function Header() {
                       ))}
                     </ul>
                   </div>
-                  <MegaGroup group={helpBuilt} onNavigate={() => { closePanel(); setMobileOpen(false); }} />
                   <MegaGroup group={helpHow} onNavigate={() => { closePanel(); setMobileOpen(false); }} />
                   <MegaRail heading="Not sure which step?" note="Almost everyone starts with Clarity, a day on site and a plan you own, whether you hire me after or not."
                     extra={{ label: 'See what each step costs', href: '/pricing' }} />
@@ -289,7 +300,25 @@ export function Header() {
               </div>
             </div>
 
-            {/* 3 · sectors — the easiest question anyone can answer */}
+            {/* 3 · software — promoted to its own top-level slot (CR-WEB-080) */}
+            <div className="nav-item">
+              <button className="nav-trigger" type="button" aria-expanded={openPanel === 'software'} aria-controls="mega-software"
+                onClick={() => openViaClick('software')} onMouseEnter={() => openViaHover('software')}>
+                Software
+                <svg className="nav-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div className="mega" id="mega-software" hidden={openPanel !== 'software'}>
+                <div className="container mega-inner">
+                  <p className="panel-note">Four products for decorated goods, each on its own or built to fit together.</p>
+                  <MegaGroup group={softwareProducts} onNavigate={() => { closePanel(); setMobileOpen(false); }} />
+                  <MegaGroup group={softwareDecide} onNavigate={() => { closePanel(); setMobileOpen(false); }} />
+                  <MegaRail heading="Which one first?" note="Most people start with the product that fixes the problem in front of them, and add the rest when they need them."
+                    ctaHref="/apps" ctaLabel="See all four" extra={{ label: 'How getting it works', href: '/apps#what-happens-next' }} />
+                </div>
+              </div>
+            </div>
+
+            {/* 4 · sectors — the easiest question anyone can answer */}
             <div className="nav-item">
               <button className="nav-trigger" type="button" aria-expanded={openPanel === 'industry'} aria-controls="mega-industry"
                 onClick={() => openViaClick('industry')} onMouseEnter={() => openViaHover('industry')}>
@@ -312,7 +341,7 @@ export function Header() {
               </div>
             </div>
 
-            {/* 4 · small business gets its own top-level slot */}
+            {/* 5 · small business gets its own top-level slot */}
             <div className="nav-item">
               <button className="nav-trigger" type="button" aria-expanded={openPanel === 'small'} aria-controls="mega-small"
                 onClick={() => openViaClick('small')} onMouseEnter={() => openViaHover('small')}>
@@ -349,7 +378,7 @@ export function Header() {
               </div>
             </div>
 
-            {/* 5 · proof, tools and reading */}
+            {/* 6 · proof, tools and reading */}
             <div className="nav-item">
               <button className="nav-trigger" type="button" aria-expanded={openPanel === 'proof'} aria-controls="mega-proof"
                 onClick={() => openViaClick('proof')} onMouseEnter={() => openViaHover('proof')}>
