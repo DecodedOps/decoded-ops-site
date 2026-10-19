@@ -24,6 +24,49 @@
  * (e.g. app/api/clients/uploads/route.ts) can take longer than 10s. A caller-supplied
  * `init.signal` always wins.
  */
+/**
+ * Lead-capture context fields (UTM attribution, page, referrer) accepted from
+ * website capture forms and forwarded in the hub /api/public/leads payload
+ * (WO-INF-070 u5). Fields the visitor did not provide are omitted entirely,
+ * never sent as empty strings, so the hub only ever stores context that
+ * actually arrived with the submission.
+ */
+export const LEAD_CONTEXT_FIELDS = ['utm_source', 'utm_medium', 'utm_campaign', 'page', 'referrer'] as const;
+export type LeadContextField = (typeof LEAD_CONTEXT_FIELDS)[number];
+
+const LEAD_CONTEXT_MAX_LENGTHS: Record<LeadContextField, number> = {
+  utm_source: 200,
+  utm_medium: 200,
+  utm_campaign: 200,
+  page: 500,
+  referrer: 1000,
+};
+
+/**
+ * Strip markup, trim and cap a single lead-context value. Returns undefined
+ * when the value is absent, not a string, or empty after cleaning, so missing
+ * context is never forwarded as a placeholder.
+ */
+export function sanitizeLeadContextField(field: LeadContextField, value: unknown): string | undefined {
+  if (typeof value !== 'string') return undefined;
+  const cleaned = value.replace(/<[^>]*>/g, '').trim().slice(0, LEAD_CONTEXT_MAX_LENGTHS[field]);
+  return cleaned || undefined;
+}
+
+/**
+ * Pick the lead-context fields present in a request body, sanitised.
+ * Callers should reject non-string values explicitly before calling this;
+ * non-strings are dropped here as a defence in depth.
+ */
+export function pickLeadContextFields(body: Record<string, unknown>): Record<string, string> {
+  const fields: Record<string, string> = {};
+  for (const field of LEAD_CONTEXT_FIELDS) {
+    const cleaned = sanitizeLeadContextField(field, body[field]);
+    if (cleaned !== undefined) fields[field] = cleaned;
+  }
+  return fields;
+}
+
 export function hubFetch(input: string, init: RequestInit = {}): Promise<Response> {
   const key = process.env.HUB_PUBLIC_API_KEY;
   const method = (init.method ?? 'GET').toUpperCase();

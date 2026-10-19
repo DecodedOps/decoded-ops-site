@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { sendEmail, getEmailStatus } from '@/lib/email';
 import { toolCaptureRatelimit } from '@/lib/rate-limit';
-import { hubFetch } from '@/lib/hub-fetch';
+import { hubFetch, LEAD_CONTEXT_FIELDS, pickLeadContextFields } from '@/lib/hub-fetch';
 
 const ALLOWED_ORIGINS = [
   'https://decodedops.co.uk',
@@ -87,6 +87,12 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Invalid input format.' }, { status: 400 });
     }
 
+    for (const field of LEAD_CONTEXT_FIELDS) {
+      if (body[field] !== undefined && typeof body[field] !== 'string') {
+        return NextResponse.json({ error: 'Invalid input format.' }, { status: 400 });
+      }
+    }
+
     const isResource = (VALID_RESOURCES as readonly string[]).includes(tool);
     const isTool = (VALID_TOOLS as readonly string[]).includes(tool);
 
@@ -148,6 +154,8 @@ export async function POST(req: NextRequest) {
     if (isResource) {
       payload.optin = 'ops-briefing';
     }
+    // UTM / page / referrer attribution, forwarded only when actually provided
+    Object.assign(payload, pickLeadContextFields(body));
 
     const hubResponse = await hubFetch(`${hubUrl}/api/public/leads`, {
       method: 'POST',

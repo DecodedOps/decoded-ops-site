@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 import { contactRatelimit } from '@/lib/rate-limit';
+import { hubFetch, LEAD_CONTEXT_FIELDS, pickLeadContextFields } from '@/lib/hub-fetch';
 
 const ALLOWED_ORIGINS = [
   'https://decodedops.co.uk',
@@ -52,6 +53,12 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Input too long.' }, { status: 400 });
     }
 
+    for (const field of LEAD_CONTEXT_FIELDS) {
+      if (body[field] !== undefined && typeof body[field] !== 'string') {
+        return NextResponse.json({ error: 'Invalid input format.' }, { status: 400 });
+      }
+    }
+
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       return NextResponse.json({ error: 'Invalid email address' }, { status: 400 });
@@ -85,6 +92,36 @@ export async function POST(req: NextRequest) {
       subject: `Contact form submission: ${sanitizedName}`,
       text: `Name: ${sanitizedName}\nEmail: ${sanitizedEmail}\n\nMessage:\n${sanitizedMessage}`,
     });
+
+    // Best-effort: also forward the submission (with UTM attribution) to the
+    // hub leads API so it lands in the CRM (WO-INF-070 u5). The email above is
+    // the user-visible deliverable; a hub failure is logged here but never
+    // fails the submission. NOTE: the hub currently validates `tool` against a
+    // whitelist that does not yet include 'contact-form' — until the hub side
+    // of WO-INF-070 lands, these forwards will be rejected with a 400 and
+    // logged below. That is expected, not a website regression.
+    const hubUrl = process.env.HUB_API_URL;
+    const hubKey = process.env.HUB_PUBLIC_API_KEY;
+    if (hubUrl && hubKey) {
+      try {
+        const hubResponse = await hubFetch(`${hubUrl}/api/public/leads`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            tool: 'contact-form',
+            name: sanitizedName,
+            email: sanitizedEmail,
+            resultSummary: sanitizedMessage.slice(0, 500),
+            ...pickLeadContextFields(body),
+          }),
+        });
+        if (!hubResponse.ok) {
+          console.error('Contact lead forward to hub failed:', hubResponse.status);
+        }
+      } catch (hubError) {
+        console.error('Contact lead forward to hub failed:', hubError);
+      }
+    }
 
     return NextResponse.json({ ok: true });
   } catch (error) {

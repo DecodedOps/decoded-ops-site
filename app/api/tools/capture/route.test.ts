@@ -5,7 +5,8 @@ vi.mock('@/lib/email', () => ({
   getEmailStatus: vi.fn(() => ({ configured: true, backend: 'resend', from: 'test@example.com' })),
 }));
 
-vi.mock('@/lib/hub-fetch', () => ({
+vi.mock('@/lib/hub-fetch', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/lib/hub-fetch')>()),
   hubFetch: vi.fn(),
 }));
 
@@ -216,5 +217,101 @@ describe('tool lead capture', () => {
     expect(emailCall.to).toBe('dave@example.com');
     expect(emailCall.subject).toBe('Your ERP selection playbook from Decoded Ops');
     expect(emailCall.text).toContain('decodedops.co.uk/downloads/decoded-ops-erp-selection-playbook.docx');
+  });
+
+  it('forwards utm, page and referrer context to the hub payload when provided', async () => {
+    (sendEmail as ReturnType<typeof vi.fn>).mockResolvedValue({ success: true });
+
+    const req = makeRequest({
+      ...VALID_PAYLOAD,
+      utm_source: 'linkedin',
+      utm_medium: 'social',
+      utm_campaign: 'spring-audit',
+      page: '/clarity',
+      referrer: 'https://www.linkedin.com/feed/',
+    });
+    const res = await POST(req);
+
+    expect(res.status).toBe(200);
+    const hubCall = (hubFetch as ReturnType<typeof vi.fn>).mock.calls[0][1];
+    const payload = JSON.parse(hubCall.body);
+    expect(payload.utm_source).toBe('linkedin');
+    expect(payload.utm_medium).toBe('social');
+    expect(payload.utm_campaign).toBe('spring-audit');
+    expect(payload.page).toBe('/clarity');
+    expect(payload.referrer).toBe('https://www.linkedin.com/feed/');
+  });
+
+  it('omits context fields from the hub payload when the visitor provided none', async () => {
+    (sendEmail as ReturnType<typeof vi.fn>).mockResolvedValue({ success: true });
+
+    const req = makeRequest(VALID_PAYLOAD);
+    const res = await POST(req);
+
+    expect(res.status).toBe(200);
+    const hubCall = (hubFetch as ReturnType<typeof vi.fn>).mock.calls[0][1];
+    const payload = JSON.parse(hubCall.body);
+    for (const key of ['utm_source', 'utm_medium', 'utm_campaign', 'page', 'referrer']) {
+      expect(payload).not.toHaveProperty(key);
+    }
+  });
+
+  it('drops empty or whitespace-only context values instead of forwarding placeholders', async () => {
+    (sendEmail as ReturnType<typeof vi.fn>).mockResolvedValue({ success: true });
+
+    const req = makeRequest({ ...VALID_PAYLOAD, utm_source: '   ', page: '' });
+    const res = await POST(req);
+
+    expect(res.status).toBe(200);
+    const hubCall = (hubFetch as ReturnType<typeof vi.fn>).mock.calls[0][1];
+    const payload = JSON.parse(hubCall.body);
+    expect(payload).not.toHaveProperty('utm_source');
+    expect(payload).not.toHaveProperty('page');
+  });
+
+  it('rejects non-string context fields', async () => {
+    const req = makeRequest({ ...VALID_PAYLOAD, utm_source: ['linkedin'] });
+    const res = await POST(req);
+
+    expect(res.status).toBe(400);
+    expect(hubFetch).not.toHaveBeenCalled();
+  });
+
+  it('strips markup from and caps the length of context fields', async () => {
+    (sendEmail as ReturnType<typeof vi.fn>).mockResolvedValue({ success: true });
+
+    const req = makeRequest({
+      ...VALID_PAYLOAD,
+      utm_source: '<b>linkedin</b>',
+      referrer: 'x'.repeat(2000),
+    });
+    const res = await POST(req);
+
+    expect(res.status).toBe(200);
+    const hubCall = (hubFetch as ReturnType<typeof vi.fn>).mock.calls[0][1];
+    const payload = JSON.parse(hubCall.body);
+    expect(payload.utm_source).toBe('linkedin');
+    expect(payload.referrer).toBe('x'.repeat(1000));
+  });
+
+  it('forwards context fields for resource requests too', async () => {
+    (sendEmail as ReturnType<typeof vi.fn>).mockResolvedValue({ success: true });
+    (getEmailStatus as ReturnType<typeof vi.fn>).mockReturnValue({ configured: true, backend: 'resend', from: 'test@example.com' });
+
+    const req = makeRequest({
+      tool: 'sop-template',
+      name: 'Alice Brown',
+      email: 'alice@example.com',
+      utm_source: 'newsletter',
+      page: '/resources/sop-template',
+    });
+    const res = await POST(req);
+
+    expect(res.status).toBe(200);
+    const hubCall = (hubFetch as ReturnType<typeof vi.fn>).mock.calls[0][1];
+    const payload = JSON.parse(hubCall.body);
+    expect(payload.utm_source).toBe('newsletter');
+    expect(payload.page).toBe('/resources/sop-template');
+    expect(payload).not.toHaveProperty('referrer');
   });
 });
