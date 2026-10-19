@@ -1,0 +1,26 @@
+{
+  "lane": "site013-u13-software-topnav",
+  "wo": "WO-WEB-013",
+  "unit": "u13",
+  "commits": [
+    {
+      "sha": "1488c70",
+      "subject": "feat(nav): promote Software to a top-level menu item with Works, Proof, Commerce, Catalogue, Own or rent and Compare (CR-WEB-080)"
+    }
+  ],
+  "filesChanged": ["components/Header.tsx"],
+  "verify": {
+    "tsc": "clean",
+    "tests": "n/a",
+    "escapeGrep": "0 hits"
+  },
+  "deviations": [
+    "Own or rent links to /pricing — no /apps/own-or-rent (or similar) route exists; the 'buy outright, or lease to own' software section on /pricing is the nearest existing page (task instruction: link to nearest existing page and note it).",
+    "Compare links to /apps — no /compare route exists (marked 'phase 3' in app/apps/page.tsx); the /apps hub lays the four products side by side (task instruction: link to nearest existing page and note it).",
+    "The 'Software I've already built' group was removed from the 'How I help' mega panel — this is a promotion to top-level, not a duplicate; 'How I help' still works with the four steps, How I work and its rail.",
+    "npm run check:nav exits 1, but only on 5 pre-existing ORPHANED pages (/fractional-coo, /problems/quoting-takes-too-long, /resources/capacity-planner, /resources/seasonal-capacity, /sectors/operations-consultant-print-embroidery) — the exact same list as the pre-change baseline; BROKEN = 0 before and after, so every new href resolves. Orphan fixing was out of SCOPE.",
+    "npm ci was run in the worktree to make tsc possible (fresh checkout, node_modules absent per AGENTS.md); no package.json changes."
+  ],
+  "blockers": [],
+  "done": true
+}
