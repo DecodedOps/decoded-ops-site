@@ -2,12 +2,20 @@
 
 import { z } from 'zod';
 import { sendEmail, getEmailStatus } from '@/lib/email';
+import { hubFetch, pickLeadContextFields } from '@/lib/hub-fetch';
 
 const contactFormSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters').max(100),
   email: z.string().email('Invalid email address'),
   company: z.string().min(2, 'Company must be at least 2 characters').max(200),
   message: z.string().min(10, 'Message must be at least 10 characters').max(5000),
+  // Attribution context from the browser (WO-INF-024 u80). Optional: an enquiry
+  // is never rejected for missing context, and zod would strip these otherwise.
+  utm_source: z.string().max(200).optional(),
+  utm_medium: z.string().max(200).optional(),
+  utm_campaign: z.string().max(200).optional(),
+  page: z.string().max(500).optional(),
+  referrer: z.string().max(1000).optional(),
 });
 
 type ContactFormInput = z.infer<typeof contactFormSchema>;
@@ -141,6 +149,13 @@ https://decodedops.co.uk
       console.error('Contact form confirmation send failed:', confirmationResult.error);
     }
 
+    // Best-effort: also land the enquiry in the CRM (WO-INF-024 u80). Before
+    // this the contact form only ever emailed Craig, so every enquiry was keyed
+    // in by hand or lost and nothing could be attributed to a page or campaign.
+    // The emails above are the user-visible deliverable: a hub failure is
+    // logged here and never fails the submission.
+    await forwardContactLeadToHub(validatedData);
+
     return {
       success: true,
       message: "Message sent successfully! I'll be in touch shortly.",
@@ -159,6 +174,38 @@ https://decodedops.co.uk
       success: false,
       error: 'Something went wrong. Please try again later.',
     };
+  }
+}
+
+/**
+ * Forward a contact enquiry to the hub leads API as tool 'contact-form', so it
+ * lands in the CRM with source 'website-contact' and its attribution context.
+ * Never throws: the caller has already emailed the enquiry.
+ */
+async function forwardContactLeadToHub(data: ContactFormInput): Promise<void> {
+  const hubUrl = process.env.HUB_API_URL;
+  if (!hubUrl || !process.env.HUB_PUBLIC_API_KEY) {
+    console.warn('[contact] hub lead forward skipped - HUB_API_URL/HUB_PUBLIC_API_KEY not set');
+    return;
+  }
+  try {
+    const res = await hubFetch(`${hubUrl}/api/public/leads`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        tool: 'contact-form',
+        name: data.name,
+        email: data.email,
+        company: data.company,
+        resultSummary: data.message.slice(0, 500),
+        ...pickLeadContextFields(data as unknown as Record<string, unknown>),
+      }),
+    });
+    if (!res.ok) {
+      console.error('[contact] hub lead forward failed:', res.status);
+    }
+  } catch (err) {
+    console.error('[contact] hub lead forward failed:', err);
   }
 }
 

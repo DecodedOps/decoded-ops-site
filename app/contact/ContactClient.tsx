@@ -7,6 +7,30 @@ import { BOOKING_URL } from '@/lib/constants';
 import { D17Motion } from '@/components/D17Motion';
 import d17 from '@/app/d17-art.module.css';
 
+/**
+ * Attribution context for the enquiry (WO-INF-024 u80): which page it came from,
+ * what referred the visitor, and any UTM tags still on the URL. Read at submit
+ * time so it survives client-side navigation. Absent values are omitted so the
+ * hub never stores empty placeholders.
+ */
+function captureContext(): Record<string, string> {
+  if (typeof window === 'undefined') return {};
+  const ctx: Record<string, string> = {};
+  try {
+    const params = new URLSearchParams(window.location.search);
+    for (const tag of ['utm_source', 'utm_medium', 'utm_campaign'] as const) {
+      const v = params.get(tag)?.trim();
+      if (v) ctx[tag] = v;
+    }
+    const page = window.location.pathname + window.location.search;
+    if (page) ctx.page = page;
+    if (document.referrer) ctx.referrer = document.referrer;
+  } catch {
+    // A locked-down browser must never cost us the enquiry.
+  }
+  return ctx;
+}
+
 export function ContactClient() {
   const [formState, setFormState] = useState<{
     status: 'idle' | 'loading' | 'success' | 'error';
@@ -31,7 +55,7 @@ export function ContactClient() {
     e.preventDefault();
     setFormState({ status: 'loading' });
 
-    const result = await submitContactForm(formData);
+    const result = await submitContactForm({ ...formData, ...captureContext() });
 
     if (result.success) {
       if (typeof window !== 'undefined') {
