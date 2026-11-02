@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, FormEvent } from 'react';
+import { captureContext } from '@/lib/lead-context';
 import { Send, CheckCircle } from 'lucide-react';
 import { BOOKING_URL } from '@/lib/constants';
 

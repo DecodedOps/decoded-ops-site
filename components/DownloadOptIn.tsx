@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, FormEvent } from 'react';
+import { captureContext } from '@/lib/lead-context';
 import { Download, Check, AlertCircle } from 'lucide-react';
 import s from './DownloadOptIn.module.css';
 
