@@ -1,0 +1,29 @@
+/* Page-local layout for /problems/slow-processes (RS2 P2, CR-WEB-083).
+   The shared ProblemPageV2 fragment renders the family sections; this file
+   orders them alongside the video block and hides elements the design leaves
+   out. Every global selector is anchored on .root. */
+
+.root {
+  display: flex;
+  flex-direction: column;
+}
+
+.video {
+  order: 5;
+}
+
+/* Section order follows the 3 Nov design, with the video block where the
+   current page renders it. */
+.root :global(section[data-od-id='hero']) { order: 1; }
+.root :global(section[data-od-id='symptoms']) { order: 2; }
+.root :global(section[data-od-id='photo-band']) { order: 3; }
+.root :global(section[data-od-id='causes']) { order: 4; }
+.root :global(section[data-od-id='plate']) { order: 6; }
+.root :global(section[data-od-id='how-i-help']) { order: 7; }
+.root :global(section[data-od-id='keep-reading']) { order: 8; }
+
+/* The design's photo figures carry no caption line, and this page has no
+   symptoms lede; hide the empty elements the shared layout still renders. */
+.root :global(.ev .k:empty),
+.root :global(.ev .line:empty),
+.root :global(.sym-head .sec-lede:empty) { display: none; }

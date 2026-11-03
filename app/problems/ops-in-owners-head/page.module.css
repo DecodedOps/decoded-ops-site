@@ -1,0 +1,38 @@
+/* Page-local layout for /problems/ops-in-owners-head (RS2 P2, CR-WEB-083).
+   The shared ProblemPageV2 fragment renders the family sections; this file
+   orders them alongside the page-file sections and hides the two slots this
+   page's design replaces. Every global selector is anchored on .shared. */
+
+.root {
+  display: flex;
+  flex-direction: column;
+}
+
+/* display: contents keeps the shared sections as flex items of .root so the
+   page-file sections can sit in the design's order between them. */
+.shared {
+  display: contents;
+}
+
+.video { order: 3; }
+.fix { order: 5; }
+.how { order: 7; }
+.cta { order: 9; }
+
+/* Section order follows the 3 Nov design. */
+.shared :global(section[data-od-id='hero']) { order: 1; }
+.shared :global(section[data-od-id='symptoms']) { order: 2; }
+.shared :global(section[data-od-id='photo-band']) { order: 4; }
+.shared :global(section[data-od-id='plate']) { order: 6; }
+.shared :global(section[data-od-id='keep-reading']) { order: 8; }
+
+/* The design's fix section carries its own heading, and the how section its
+   own h2; both are rendered in the page file, so the shared slots go. */
+.shared :global(section[data-od-id='causes']),
+.shared :global(section[data-od-id='how-i-help']) { display: none; }
+
+/* The design's photo figures carry no caption line; hide the empty elements
+   the shared layout still renders. */
+.shared :global(.ev .k:empty),
+.shared :global(.ev .line:empty),
+.shared :global(.sym-head .sec-lede:empty) { display: none; }
