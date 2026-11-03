@@ -1,12 +1,15 @@
 import Link from 'next/link';
-import { ArrowRight, CheckCircle2, Check } from 'lucide-react';
 import { BOOKING_URL } from '@/lib/constants';
 import { JsonLd } from '@/components/JsonLd';
+import { IconSprite } from '@/components/IconSprite';
 import { D17Motion } from '@/components/D17Motion';
 import '@/app/d17-global.css';
-import '@/app/d17-problems.css';
+import '@/app/d17-apps-cases.css';
 import '@/app/d17-resources.css';
+import '@/app/design-system/site-v3.css';
+import '@/app/resources/resources-live.css';
 import { OG_IMAGE, OG_IMAGE_PATH } from '@/lib/seo';
+import s from './page.module.css';
 
 const schema = {
   '@context': 'https://schema.org',
@@ -72,20 +75,31 @@ const faqs = [
   },
 ];
 
+const takeaways = [
+  'The brief is where most time is saved or lost. Never start artwork without a completed brief.',
+  'Proofs need a deadline and two clear options: approve or request changes. Ambiguous proofs generate ambiguous responses.',
+  'Chase automatically if no response within 24 hours. Relying on memory produces inconsistent results.',
+  'Sign-off should trigger production automatically. No second decision point.',
+];
+
 export default function ArtworkApprovalPlaybookPage() {
   return (
-    <>
+    <main className={s.root}>
+      <IconSprite />
       <JsonLd data={schema} />
 
-      {/* HERO — rt-split: copy left, DO-ART-989 right */}
-      <section className="g-off">
-        <div className="wrap rt-split">
+      {/* HERO — hero-split: copy left, DO-ART-989 right */}
+      <section className="g-off hero" data-od-id="hero">
+        <div className="wrap hero-split">
           <div>
-            <span className="eyebrow">Free resource</span>
-            <h1>Artwork approval playbook</h1>
-            <p className="lede">
+            <h1 data-od-id="hero-h1"><span className="h1-kw">Free resource &middot; artwork management software</span> Artwork approval playbook</h1>
+            <p className="t-lede">
               A 5-step workflow to take artwork approval from brief to sign-off in 24 hours. Structured brief, proof standard, automated chase, and production release.
             </p>
+            <div className="btn-row">
+              <a className="btn btn--outline" href="#s1" data-od-id="hero-cta">Read the playbook</a>
+              <Link className="go" href="/apps/proof" data-new-copy>See Decoded Proof <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+            </div>
           </div>
           <div dangerouslySetInnerHTML={{ __html: `
 <figure class="d17 sx a989" data-od-id="hero-art" data-motion data-no="DO-ART-989" data-rev="01" data-tx="photo"
@@ -126,10 +140,12 @@ export default function ArtworkApprovalPlaybookPage() {
       </section>
 
       {/* D17 inline artwork DO-ART-990 */}
-      <section className="g-navy">
+      <section className="g-navy route-sec" data-od-id="plate">
+        <div className="do-dot-grid" aria-hidden="true" style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }} />
         <div className="wrap">
+          <div className="route-head"><div><span className="eyebrow" data-new-copy>Where the time goes</span><h2 data-od-id="plate-h2" data-new-copy>The loop, or one line inside 24 hours.</h2></div><p className="lede" data-new-copy>Started without a brief, a job loops through proof and changes, and the time goes in the waiting between rounds. Run to the playbook it is one line: brief, artwork to a standard, proof with a deadline, an automatic chase, release.</p></div>
           <div dangerouslySetInnerHTML={{ __html: `
-<figure class="d17 sw a990" data-od-id="plate-route" data-motion data-no="DO-ART-990" data-rev="01" data-tx="schematic"
+<figure class="d17 sw a990" data-od-id="plate-time" data-motion data-no="DO-ART-990" data-rev="01" data-tx="schematic"
         aria-label="Drawn plate DO-ART-990, where the time goes. Started without a brief, the job loops: proof, changes, proof, changes, proof, and the time goes in the waiting between rounds, drawn hatched. Run to the playbook it is one line, in amber, inside 24 hours: one, the brief; two, artwork to a standard; three, the proof with a deadline; four, an automatic chase at 24 hours; five, sign-off releases the job to production.">
   <div class="q-grid" aria-hidden="true"></div>
   <div class="sw-cap">
@@ -197,185 +213,134 @@ export default function ArtworkApprovalPlaybookPage() {
         </div>
       </section>
 
-      <section className="g-off section--tight">
-        <div className="wrap" style={{ maxWidth: 720 }}>
+      <section className="g-white" data-od-id="article">
+        <div className="wrap post-grid">
+          <aside className="post-aside" data-od-id="article-aside">
+            <div>
+              <span className="toc-h">In this guide</span>
+              <ol className="toc">
+                <li><a href="#s1"><b>01</b><span>Where the time actually goes</span></a></li>
+                <li><a href="#s2"><b>02</b><span>The artwork brief</span></a></li>
+                <li><a href="#s3"><b>03</b><span>Artwork creation with a standard</span></a></li>
+                <li><a href="#s4"><b>04</b><span>The proof</span></a></li>
+                <li><a href="#s5"><b>05</b><span>Managing the response</span></a></li>
+                <li><a href="#s6"><b>06</b><span>Sign-off to production release</span></a></li>
+                <li><a href="#s7"><b>07</b><span>Automating the workflow</span></a></li>
+                <li><a href="#s8"><b>08</b><span>Common questions</span></a></li>
+                <li><a href="#s9"><b>09</b><span>Key takeaways</span></a></li>
+              </ol>
+            </div>
+            <div className="byline" data-od-id="byline">
+              <img src="/images/d17/craig-blackman.webp" width={56} height={56} alt="Craig Blackman" />
+              <p><b>Craig Blackman</b><span>Twenty-five years inside decorated-goods businesses. Written from the work, not from a template.</span></p>
+            </div>
 
-          <div className="card" style={{ background: 'color-mix(in srgb, var(--do-amber) 10%, transparent)', borderColor: 'color-mix(in srgb, var(--do-amber) 30%, transparent)', marginBottom: 64 }}>
-            <h2>Where the time actually goes</h2>
-            <p style={{ color: 'color-mix(in srgb, var(--do-prussian-blue) 80%, transparent)' }}>
+          </aside>
+          <div className="prose" data-od-id="article-body">
+            <h2 id="s1">Where the time actually goes</h2>
+            <p>
               Artwork approval is the single biggest schedule killer in most decoration businesses. Not because customers are difficult. Not because the artwork is complicated. Because the process starts without enough information, and every gap in that information adds a round trip to a process that should be linear.
             </p>
-            <p style={{ color: 'color-mix(in srgb, var(--do-prussian-blue) 80%, transparent)', marginBottom: 0 }}>
+            <p>
               The time is going in the gaps between rounds - not in the artwork creation itself. And most of those rounds exist because the requirements were not confirmed before work started.
             </p>
-          </div>
-
-          <div style={{ marginBottom: 64 }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16, paddingBottom: 16, borderBottom: '1px solid var(--do-border-subtle)' }}>
-              <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 36, height: 36, borderRadius: '50%', background: 'var(--do-cerulean)', color: 'white', fontWeight: 700, fontSize: 'var(--do-text-sm)' }}>1</span>
-              <h2>The artwork brief</h2>
-            </div>
-            <p style={{ color: 'color-mix(in srgb, var(--do-prussian-blue) 80%, transparent)' }}>
+            <h2 id="s2">The artwork brief</h2>
+            <p>
               The brief is where most of the time is saved or lost. If you start artwork without a completed brief, you are accepting the revision cycle as an inevitable part of the process. It is not.
             </p>
-            <p style={{ color: 'color-mix(in srgb, var(--do-prussian-blue) 80%, transparent)' }}>
+            <p>
               A brief template that every order passes through before artwork is started should capture:
             </p>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginTop: 20 }}>
-              {briefFields.map((field) => (
-                <div key={field.label} style={{ display: 'flex', gap: 12, alignItems: 'flex-start', padding: 16, borderRadius: 'var(--do-radius-lg)', background: 'var(--do-off-white)' }}>
-                  <CheckCircle2 size={18} style={{ flexShrink: 0, marginTop: 2, color: 'var(--do-text-cerulean)' }} />
-                  <p style={{ color: 'color-mix(in srgb, var(--do-prussian-blue) 80%, transparent)', marginBottom: 0 }}>
-                    <strong style={{ color: 'var(--do-text-primary)' }}>{field.label}</strong> - {field.detail}
-                  </p>
-                </div>
-              ))}
-            </div>
-            <p style={{ color: 'color-mix(in srgb, var(--do-prussian-blue) 80%, transparent)', marginTop: 20, fontWeight: 500 }}>
+            {briefFields.map((field) => (
+              <p key={field.label}><strong>{field.label}</strong> - {field.detail}</p>
+            ))}
+            <p>
               If any of these are missing, the brief goes back before artwork is started. Not after.
             </p>
-          </div>
-
-          <div style={{ marginBottom: 64 }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16, paddingBottom: 16, borderBottom: '1px solid var(--do-border-subtle)' }}>
-              <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 36, height: 36, borderRadius: '50%', background: 'var(--do-cerulean)', color: 'white', fontWeight: 700, fontSize: 'var(--do-text-sm)' }}>2</span>
-              <h2>Artwork creation with a standard</h2>
-            </div>
-            <p style={{ color: 'color-mix(in srgb, var(--do-prussian-blue) 80%, transparent)' }}>
+            <h2 id="s3">Artwork creation with a standard</h2>
+            <p>
               Once the brief is complete, artwork is created against a documented standard - not to whatever the individual artist thinks looks right.
             </p>
-            <p style={{ color: 'color-mix(in srgb, var(--do-prussian-blue) 80%, transparent)' }}>
+            <p>
               That standard includes: the templates you use for each garment type, the font rules if the design includes text, how you represent the garment in the proof (flat render, photographic mock-up, or simple line drawing), and what the proof document itself should contain before it is sent.
             </p>
-            <p style={{ color: 'color-mix(in srgb, var(--do-prussian-blue) 80%, transparent)' }}>
+            <p>
               Without a standard, two people creating proofs for the same type of job will produce different-looking documents. Customers who have seen one format get confused by another. Consistency reduces the customer&apos;s cognitive load and speeds sign-off.
             </p>
-          </div>
-
-          <div style={{ marginBottom: 64 }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16, paddingBottom: 16, borderBottom: '1px solid var(--do-border-subtle)' }}>
-              <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 36, height: 36, borderRadius: '50%', background: 'var(--do-cerulean)', color: 'white', fontWeight: 700, fontSize: 'var(--do-text-sm)' }}>3</span>
-              <h2>The proof</h2>
-            </div>
-            <p style={{ color: 'color-mix(in srgb, var(--do-prussian-blue) 80%, transparent)' }}>
+            <h2 id="s4">The proof</h2>
+            <p>
               A proof that gets signed off quickly is one that leaves nothing open to interpretation. It should show:
             </p>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginTop: 20 }}>
-              {proofItems.map((item, i) => (
-                <div key={i} style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
-                  <CheckCircle2 size={18} style={{ flexShrink: 0, marginTop: 2, color: 'var(--do-text-cerulean)' }} />
-                  <p style={{ color: 'color-mix(in srgb, var(--do-prussian-blue) 80%, transparent)', marginBottom: 0 }}>{item}</p>
-                </div>
-              ))}
-            </div>
-            <p style={{ color: 'color-mix(in srgb, var(--do-prussian-blue) 80%, transparent)', marginTop: 20 }}>
+            {proofItems.map((item, i) => (
+              <p key={i}>{item}</p>
+            ))}
+            <p>
               The deadline is important. Proofs sent without a deadline have no urgency. Proofs sent with &quot;please confirm by 5pm tomorrow&quot; get responses faster - because the customer understands what happens if they do not.
             </p>
-          </div>
-
-          <div style={{ marginBottom: 64 }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16, paddingBottom: 16, borderBottom: '1px solid var(--do-border-subtle)' }}>
-              <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 36, height: 36, borderRadius: '50%', background: 'var(--do-cerulean)', color: 'white', fontWeight: 700, fontSize: 'var(--do-text-sm)' }}>4</span>
-              <h2>Managing the response</h2>
-            </div>
-            <p style={{ color: 'color-mix(in srgb, var(--do-prussian-blue) 80%, transparent)' }}>
+            <h2 id="s5">Managing the response</h2>
+            <p>
               The most common failure point in approval workflows is what happens after the proof is sent. The ball is in the customer&apos;s court - and nobody is tracking whether it comes back.
             </p>
-            <p style={{ color: 'color-mix(in srgb, var(--do-prussian-blue) 80%, transparent)' }}>
+            <p>
               Your system should flag a proof as awaiting sign-off the moment it is sent, and trigger an automatic chase if no response is received within a defined window - typically 24 hours. That chase is a reminder, not a complaint: &quot;Just checking you have received the artwork for your order - please let us know if you have any questions.&quot;
             </p>
-            <p style={{ color: 'color-mix(in srgb, var(--do-prussian-blue) 80%, transparent)' }}>
+            <p>
               The alternative - relying on someone to remember to chase - produces inconsistent results and lost days when people are busy.
             </p>
-          </div>
-
-          <div style={{ marginBottom: 64 }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16, paddingBottom: 16, borderBottom: '1px solid var(--do-border-subtle)' }}>
-              <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 36, height: 36, borderRadius: '50%', background: 'var(--do-cerulean)', color: 'white', fontWeight: 700, fontSize: 'var(--do-text-sm)' }}>5</span>
-              <h2>Sign-off to production release</h2>
-            </div>
-            <p style={{ color: 'color-mix(in srgb, var(--do-prussian-blue) 80%, transparent)' }}>
+            <h2 id="s6">Sign-off to production release</h2>
+            <p>
               When sign-off arrives, the job should move to production without an additional decision point. Sign-off is the trigger - not a signal for someone to manually review the approval and decide whether to release the job.
             </p>
-            <p style={{ color: 'color-mix(in srgb, var(--do-prussian-blue) 80%, transparent)' }}>
+            <p>
               In a properly structured workflow, sign-off updates the order status automatically, the production queue is updated, and the relevant team is notified. The customer&apos;s reply to a proof email is not the end of the process - it is the start of the production process.
             </p>
-          </div>
-
-          <div style={{ marginBottom: 64 }}>
-            <h2>Automating the workflow</h2>
-            <p style={{ color: 'color-mix(in srgb, var(--do-prussian-blue) 80%, transparent)' }}>
+            <h2 id="s7">Automating the workflow</h2>
+            <p>
               Several production management platforms include proof delivery and sign-off tracking as standard features. The customer receives a link, views the proof on a web page, and clicks to approve or request changes. The sign-off is recorded with a timestamp. Production can be triggered automatically.
             </p>
-            <p style={{ color: 'color-mix(in srgb, var(--do-prussian-blue) 80%, transparent)' }}>
+            <p>
               This eliminates the email thread, creates an audit trail, and removes the manual step of checking whether a proof has been approved before releasing a job. For businesses processing more than 20-30 jobs per week, it is worth implementing.
             </p>
-            <p style={{ color: 'color-mix(in srgb, var(--do-prussian-blue) 80%, transparent)' }}>
+            <p>
               For smaller operations, a structured email template with a clear approval link and a tracked chase sequence achieves most of the same result without a platform investment.
             </p>
-          </div>
-
-          <div style={{ marginBottom: 64 }}>
-            <h2>Common questions</h2>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
-              {faqs.map((faq, i) => (
-                <div key={i}>
-                  <h3 style={{ fontWeight: 700, color: 'var(--do-text-primary)', marginBottom: 8 }}>{faq.q}</h3>
-                  <p style={{ color: 'color-mix(in srgb, var(--do-prussian-blue) 80%, transparent)' }}>{faq.a}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="g-tint" style={{ borderRadius: 'var(--do-radius-2xl)', padding: 32, marginBottom: 64 }}>
-            <h2>Key takeaways</h2>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-              <div style={{ display: 'flex', gap: 16, alignItems: 'flex-start' }}>
-                <CheckCircle2 size={20} style={{ flexShrink: 0, marginTop: 4, color: 'var(--do-text-cerulean)' }} />
-                <p style={{ marginBottom: 0 }}>
-                  The brief is where most time is saved or lost. Never start artwork without a completed brief.
-                </p>
+            <h2 id="s8">Common questions</h2>
+            {faqs.map((faq, i) => (
+              <div key={i}>
+                <h3>{faq.q}</h3>
+                <p>{faq.a}</p>
               </div>
-              <div style={{ display: 'flex', gap: 16, alignItems: 'flex-start' }}>
-                <CheckCircle2 size={20} style={{ flexShrink: 0, marginTop: 4, color: 'var(--do-text-cerulean)' }} />
-                <p style={{ marginBottom: 0 }}>
-                  Proofs need a deadline and two clear options: approve or request changes. Ambiguous proofs generate ambiguous responses.
-                </p>
-              </div>
-              <div style={{ display: 'flex', gap: 16, alignItems: 'flex-start' }}>
-                <CheckCircle2 size={20} style={{ flexShrink: 0, marginTop: 4, color: 'var(--do-text-cerulean)' }} />
-                <p style={{ marginBottom: 0 }}>
-                  Chase automatically if no response within 24 hours. Relying on memory produces inconsistent results.
-                </p>
-              </div>
-              <div style={{ display: 'flex', gap: 16, alignItems: 'flex-start' }}>
-                <CheckCircle2 size={20} style={{ flexShrink: 0, marginTop: 4, color: 'var(--do-text-cerulean)' }} />
-                <p style={{ marginBottom: 0 }}>
-                  Sign-off should trigger production automatically. No second decision point.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="card" style={{ background: 'color-mix(in srgb, var(--do-amber) 10%, transparent)', borderColor: 'color-mix(in srgb, var(--do-amber) 30%, transparent)' }}>
+            ))}
+            <h2 id="s9">Key takeaways</h2>
+            {takeaways.map((item, i) => (
+              <p key={i}>{item}</p>
+            ))}
             <h3>Once your artwork workflow is structured...</h3>
-            <p style={{ color: 'color-mix(in srgb, var(--do-prussian-blue) 80%, transparent)', marginBottom: 24 }}>
+            <p>
               The real value comes when artwork approval connects to production scheduling, costing, and despatch without manual handoffs. That is what a Clarity engagement maps out across your whole operation.
             </p>
-            <div className="btn-row" style={{ margin: 0, marginBottom: 12 }}>
-              <Link href="/contact" className="btn btn--primary">
-                Book a free discovery call <ArrowRight size={18} />
-              </Link>
-              <Link href="/clarity" className="btn btn--outline">
-                See what an audit covers
-              </Link>
-            </div>
-            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" style={{ fontSize: 'var(--do-text-sm)', color: 'var(--do-text-cerulean)', fontWeight: 'var(--do-weight-medium)', display: 'inline-flex', alignItems: 'center', gap: 4 }}>Or book a call directly <ArrowRight size={14} /></a>
+            <p><Link href="/contact">Book a free discovery call</Link> <Link href="/clarity">See what an audit covers</Link></p>
+            <p><a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">Or book a call directly</a></p>
           </div>
+        </div>
+      </section>
 
+      <section className="g-off closer" data-od-id="cta">
+        <div className="wrap closer-grid">
+          <div>
+            <span className="eyebrow" data-new-copy>Artwork holding up production?</span>
+            <h2 data-od-id="cta-h2" data-new-copy>Find where the rounds come from.</h2>
+          </div>
+          <div>
+            <p className="lede" data-new-copy>A Clarity Audit traces a week of artwork from enquiry to release and shows which gaps add the round trips, and what closing them is worth.</p>
+            <div className="btn-row">
+              <Link className="btn btn--primary" href="/contact" data-od-id="cta-primary">Book a free discovery call</Link>
+              <Link className="go" href="/clarity">See what an audit covers <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+            </div>
+          </div>
         </div>
       </section>
       <D17Motion />
-    </>
+    </main>
   );
 }
