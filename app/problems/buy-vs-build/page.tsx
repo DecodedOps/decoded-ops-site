@@ -1,13 +1,17 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { JsonLd } from '@/components/JsonLd';
-import { BreadcrumbSchema } from '@/components/BreadcrumbSchema';
+import { ProblemPageV2 } from '@/components/ProblemPageV2';
 import { VideoEmbed } from '@/components/VideoEmbed';
 import { VideoSchema } from '@/components/VideoSchema';
 import { problemVideos } from '@/data/problem-videos';
+import { problemRouting } from '@/data/problem-routing';
+import { BOOKING_URL } from '@/lib/constants';
 import '@/app/d17-global.css';
 import '@/app/d17-problems.css';
+import '@/app/problems/problems-v2.css';
 import { D17Motion } from '@/components/D17Motion';
+import styles from './page.module.css';
 
 export const metadata: Metadata = {
  title: 'ERP Evaluation Checklist, Buy vs Build | Decoded Ops',
@@ -62,41 +66,12 @@ const buyVsBuildSchema = {
  ],
 };
 
-export default function BuyVsBuildPage() {
- return (
-  <>
-   <JsonLd data={buyVsBuildSchema} />
-   <BreadcrumbSchema items={[
-    { name: 'Home', url: 'https://decodedops.co.uk/' },
-    { name: 'Problems', url: 'https://decodedops.co.uk/problems' },
-    { name: 'Buy vs build', url: 'https://decodedops.co.uk/problems/buy-vs-build' },
-   ]} />
-   {problemVideos['buy-vs-build'] && (
-    <VideoSchema
-     name={problemVideos['buy-vs-build'].title}
-     description={problemVideos['buy-vs-build'].closeLine}
-     youtubeId={problemVideos['buy-vs-build'].youtubeId}
-     uploadDate={problemVideos['buy-vs-build'].uploadDate}
-     durationSec={problemVideos['buy-vs-build'].durationSec}
-    />
-   )}
+/* i-refresh-cw is missing from the shared ProblemIconSprite (components/ are
+   out of bounds for this lane), so the symbol is defined locally, exactly as
+   the 3 Nov mockup draws it. */
+const iconRefreshCw = '<symbol id="i-refresh-cw" viewBox="0 0 24 24"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></symbol>';
 
-   {/* ── 1 · HERO ──────────────────────────────────────────────────────── */}
-   <section className="g-off">
-    <div className="wrap hero-split">
-     <div>
-      <span className="eyebrow">The real question</span>
-      <h1>It covers 25% of what you need. Do you buy it?</h1>
-      <p className="lede">This gets asked in different words most weeks, usually framed as buy
-       or build. It isn&apos;t really that question. If something covers a quarter of the job, the
-       decision isn&apos;t about the quarter. It&apos;s about the other three quarters, and what
-       closing them costs. The three questions below work as an ERP evaluation checklist.</p>
-      <div className="hero-cta">
-       <Link className="btn btn--primary" href="/contact">Book a free 60 minute call</Link>
-      </div>
-     </div>
-     <div dangerouslySetInnerHTML={{ __html: `
-<figure class="d17 sx a962" data-od-id="hero-evidence" data-motion data-no="DO-ART-962" data-rev="01" data-tx="photo"
+const heroArt962 = `<figure class="d17 sx a962" data-od-id="hero-evidence" data-motion data-no="DO-ART-962" data-rev="01" data-tx="photo"
         aria-label="Artwork DO-ART-962. Two papers over a photograph of a print hall. A coverage test runs a platform against eight steps of the workflow: it covers two, enquiry to quote and invoicing, and leaves six as gaps, a quarter covered and three quarters not. A second note, the other three quarters, lists what nobody has priced: the cost of the gap and the cost of changing how the business works. A quarter covered: what closes the rest?">
   <div class="d17-ph"><img src="/images/d17/problems/gen-press-hall-7c2764.webp" alt="" width="1000" height="1000"></div>
   <div class="d17-scan" aria-hidden="true"></div>
@@ -136,105 +111,9 @@ export default function BuyVsBuildPage() {
     <p class="sx-say">A quarter covered. <em>What closes the rest?</em></p>
     <span class="d17-mark">decodedops.co.uk · DO-ART-962 · Rev 01</span>
   </div>
-</figure>` }} />
-    </div>
-   </section>
+</figure>`;
 
-   {/* ── 2 · THE THREE QUESTIONS ───────────────────────────────────────── */}
-   <section className="g-tint">
-    <div className="wrap">
-     <span className="eyebrow">Before you buy anything</span>
-     <h2>Three questions that replace the binary.</h2>
-     <p className="lede" style={{ marginTop: 16 }}>None of these require naming a platform. They
-      work for whichever one you&apos;re looking at.</p>
-
-     <div className="rungs">
-      <article className="rung">
-       <span className="kicker">Coverage</span>
-       <h3>What percentage does it genuinely cover?</h3>
-       <p>If the best thing on the market covers a quarter of the job, the question isn&apos;t
-        whether to buy it. It&apos;s what closes the other three quarters, and what that costs.
-        Usually nobody has priced it, so it gets treated as free. It isn&apos;t free, it&apos;s
-        just invisible.</p>
-      </article>
-
-      <article className="rung">
-       <span className="kicker">Fit</span>
-       <h3>Does it work how you work?</h3>
-       <p>Or do you rework the business to fit the software? Every platform encodes an
-        assumption about how you should operate. Fine if you agree with it. Expensive if you
-        don&apos;t, and the cost never appears on the quote.</p>
-      </article>
-
-      <article className="rung">
-       <span className="kicker">Bloat</span>
-       <h3>How much of it will you actually use?</h3>
-       <p>Platforms are built to cover a hundred and one scenarios because they have to sell to
-        everyone. You&apos;ll use maybe a fifth of it. You pay for all of it, and you carry the
-        complexity of the rest for as long as you own it.</p>
-      </article>
-     </div>
-    </div>
-   </section>
-
-   {problemVideos['buy-vs-build'] && (
-    <section className="g-off" data-od-id="video-embed">
-     <div className="wrap">
-      <VideoEmbed
-       youtubeId={problemVideos['buy-vs-build'].youtubeId}
-       title={problemVideos['buy-vs-build'].title}
-       closeLine={problemVideos['buy-vs-build'].closeLine}
-       app={problemVideos['buy-vs-build'].app}
-       durationSec={problemVideos['buy-vs-build'].durationSec}
-       playlistUrl={problemVideos['buy-vs-build'].playlistUrl}
-      />
-     </div>
-    </section>
-   )}
-
-   {/* ── 3 · THE ARITHMETIC ────────────────────────────────────────────── */}
-   <section className="g-white">
-    <div className="wrap">
-     <span className="eyebrow">The arithmetic</span>
-     <h2>Three numbers, and you can work them out yourself.</h2>
-     <p className="lede" style={{ marginTop: 16 }}>Nobody needs to sell you this. Follow your own
-      processes and the numbers for your ERP evaluation checklist are already there.</p>
-
-     <div className="steps">
-      <article className="step">
-       <p className="step-n">STEP 1</p>
-       <h3>What it covers</h3>
-       <p>Follow the workflow start to finish. Every point where the platform doesn&apos;t fit is
-        part of the uncovered percentage.</p>
-      </article>
-      <article className="step">
-       <p className="step-n">STEP 2</p>
-       <h3>What the gap costs</h3>
-       <p>Closing it with more software, or with someone&apos;s time every week. Both are real
-        costs. Price whichever one you&apos;d actually choose.</p>
-      </article>
-      <article className="step step--last">
-       <p className="step-n">STEP 3</p>
-       <h3>What changing to fit it costs</h3>
-       <p>What you&apos;d have to rework about how the business runs to use the platform as
-        designed. That number is usually the one nobody wrote down.</p>
-      </article>
-     </div>
-
-     <div className="inset">
-      <b>Sometimes the answer is buy.</b> High coverage and a low cost to change how you work
-      means buy it, clearly and quickly. This has to be able to come out that way, or it isn&apos;t
-      a real test.
-     </div>
-    </div>
-   </section>
-
-   {/* ── INLINE ARTWORK · DO-ART-719 ──────────────────────────────────── */}
-   <section className="g-navy">
-    <div className="wrap">
-     <span className="eyebrow">The options · DO-ART-719</span>
-     <div dangerouslySetInnerHTML={{ __html: `
-<figure class="d17 sw a719" data-od-id="plate-gap" data-motion data-no="DO-ART-719" data-rev="03" data-tx="schematic"
+const plateArt = `<figure class="d17 sw a719" data-od-id="plate-gap" data-motion data-no="DO-ART-719" data-rev="03" data-tx="schematic"
         aria-label="Drawn plate DO-ART-719, three ways to fill the gap. The platform you already run, generic and never designed for print and embroidery, holds orders, stock, customers, products, accounts, suppliers, purchasing and reports, with custom development bolted on to make it fit. Decoration and artwork sit in a hatched gap it was not built for. Three ways out of the gap: one, use what's already there, sometimes we can do something with what's already there; two, add a layer on top, sometimes it needs an extra layer on top; three, in amber, use something already built, because there wasn't anything on the market designed to do that job.">
   <div class="q-grid" aria-hidden="true"></div>
   <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
@@ -327,42 +206,136 @@ export default function BuyVsBuildPage() {
     <text class="t" x="184" y="1226" style="font-size:24px;fill:#8ECAE6">market designed to do that job.</text>
   </svg>
   <div class="foot"><span class="k d17-mono">Inside the operation · the gap</span><span class="d17-mark">decodedops.co.uk · DO-ART-719 · Rev 03</span></div>
-</figure>` }} />
-    </div>
-   </section>
+</figure>`
+  .replace('data-od-id="plate-gap"', 'data-od-id="plate-options"');
 
-   {/* ── 4 · HOW I HELP ─────────────────────────────────────────────────── */}
-   <section className="g-navy">
-    <div className="wrap">
-     <span className="eyebrow eyebrow--amber">How I help</span>
-      <h2>Being upfront about where I stand.</h2>
-
-      <div className="answer">
-       <p>I build software too. Works started life plugging gaps nothing on the market
-        covered, and it has grown into the ERP. So I am not a neutral bystander, and I will
-        not pretend to be one.</p>
-       <p>What I will do is put every option through the same coverage test, in writing, mine
-        included. If an off-the-shelf platform covers what you need, that is what the report
-        will say. A recommendation you can check against your own brief beats one you have to
-        take on trust.</p>
+export default function BuyVsBuildPage() {
+ return (
+  <>
+   <JsonLd data={buyVsBuildSchema} />
+   {problemVideos['buy-vs-build'] && (
+    <VideoSchema
+     name={problemVideos['buy-vs-build'].title}
+     description={problemVideos['buy-vs-build'].closeLine}
+     youtubeId={problemVideos['buy-vs-build'].youtubeId}
+     uploadDate={problemVideos['buy-vs-build'].uploadDate}
+     durationSec={problemVideos['buy-vs-build'].durationSec}
+    />
+   )}
+   <div className={styles.flow}>
+    <ProblemPageV2
+     slug="buy-vs-build"
+     problem="Buy or build"
+     crumb="Buy vs build"
+     h1Lead="Problem · ERP evaluation checklist"
+     headline="It covers 25% of what you need. Do you buy it?"
+     heroLede="This gets asked in different words most weeks, usually framed as buy or build. It isn't really that question."
+     heroBody="If something covers a quarter of the job, the decision isn't about the quarter. It's about the other three quarters, and what closing them costs. The three questions below work as an ERP evaluation checklist."
+     heroArt={heroArt962}
+     symptomsEyebrow="Before you buy anything"
+     symptomsHeading="Three questions that replace the binary."
+     symptomsLede="None of these require naming a platform. They work for whichever one you're looking at."
+     symptoms={[
+      "Coverage. What percentage does it genuinely cover? If the best thing on the market covers a quarter of the job, the question isn't whether to buy it. It's what closes the other three quarters, and what that costs. Usually nobody has priced it, so it gets treated as free. It isn't free, it's just invisible.",
+      "Fit. Does it work how you work? Or do you rework the business to fit the software? Every platform encodes an assumption about how you should operate. Fine if you agree with it. Expensive if you don't, and the cost never appears on the quote.",
+      "Bloat. How much of it will you actually use? Platforms are built to cover a hundred and one scenarios because they have to sell to everyone. You'll use maybe a fifth of it. You pay for all of it, and you carry the complexity of the rest for as long as you own it.",
+     ]}
+     symptomsCaption="Answer all three in writing before you look at a quote."
+     photoBand={{
+      eyebrow: 'What the platform has to cover',
+      heading: 'The whole job, not the demo.',
+      lede: 'Three photographs from client sites. Machines mid-run, a racking aisle and packed cartons: the start-to-finish workflow a platform has to cover before its percentage means anything.',
+      photos: [
+       { odId: 'photo-i', no: 'DO-ART-979i', src: '/images/site/evidence/card-embroidery-heads-50b561.webp', alt: 'Embroidery machine heads mid-run at a client site.', kicker: '', line: '' },
+       { odId: 'photo-f', no: 'DO-ART-979f', src: '/images/site/evidence/hero-racking-aisle-7d129e.webp', alt: 'A long racking aisle of boxed stock at a client site.', kicker: '', line: '' },
+       { odId: 'photo-q', no: 'DO-ART-979q', src: '/images/site/evidence/plate-cartons-packed-2fb0ae.webp', alt: 'Packed cartons waiting for collection at a client site.', kicker: '', line: '' },
+      ],
+     }}
+     causes={[]}
+     plate={{
+      eyebrow: 'The options',
+      heading: 'Three ways to close the gap.',
+      lede: 'The platform covers what it covers. What closes the rest is more software, someone’s time every week, or a layer built for the gap. Each one has a price; the test is pricing all three.',
+      art: plateArt,
+     }}
+     howLede=""
+     howBody=""
+     howTone="off"
+     routing={problemRouting['buy-vs-build']}
+    />
+    {problemVideos['buy-vs-build'] && (
+     <section className="g-off" data-od-id="video-embed">
+      <div className="wrap">
+       <VideoEmbed
+        youtubeId={problemVideos['buy-vs-build'].youtubeId}
+        title={problemVideos['buy-vs-build'].title}
+        closeLine={problemVideos['buy-vs-build'].closeLine}
+        app={problemVideos['buy-vs-build'].app}
+        durationSec={problemVideos['buy-vs-build'].durationSec}
+        playlistUrl={problemVideos['buy-vs-build'].playlistUrl}
+       />
       </div>
-    </div>
-   </section>
+     </section>
+    )}
 
-   {/* ── 5 · CTA STRIP ──────────────────────────────────────────────────── */}
-   <section className="g-white cta-strip">
-    <div className="wrap" style={{ maxWidth: 760 }}>
-     <h2>You can&apos;t run these numbers without seeing the operation.</h2>
-     <p className="lede">Working out what percentage anything actually covers means following
-      your processes from start to finish first. A Clarity Audit is a day on site, then the
-      comparison in writing within five working days.</p>
-     <div className="hero-cta">
-      <Link className="btn btn--primary" href="/contact">Book a free 60 minute call</Link>
-      <Link className="btn-ghost btn-arrow" href="/clarity">See how a Clarity Audit works</Link>
+    {/* The 3 Nov mockup's arithmetic block: staging's three steps keep their own
+        heading and step labels, which ProblemPageV2's fixed causes section
+        cannot render. */}
+    <section className="g-tint" data-od-id="arithmetic">
+     <div className="wrap">
+      <div className="sec-head">
+       <span className="eyebrow">The arithmetic</span>
+       <h2 data-od-id="arithmetic-h2">Three numbers, and you can work them out yourself.</h2>
+       <p className="sec-lede">Nobody needs to sell you this. Follow your own processes and the numbers for your ERP evaluation checklist are already there.</p>
+      </div>
+      <svg width="0" height="0" aria-hidden="true" focusable="false" style={{ position: 'absolute' }} dangerouslySetInnerHTML={{ __html: iconRefreshCw }} />
+      <div className="areas" data-od-id="arithmetic-cards">
+       <article className="area" data-od-id="arithmetic-1">
+        <div className="area-top"><span className="ic-tile"><svg className="ic ic-24" aria-hidden="true"><use href="#i-search" /></svg></span><span className="num">Step 1</span></div>
+        <h3>What it covers</h3>
+        <p className="t-card">Follow the workflow start to finish. Every point where the platform doesn&apos;t fit is part of the uncovered percentage.</p>
+       </article>
+       <article className="area" data-od-id="arithmetic-2">
+        <div className="area-top"><span className="ic-tile"><svg className="ic ic-24" aria-hidden="true"><use href="#i-calculator" /></svg></span><span className="num">Step 2</span></div>
+        <h3>What the gap costs</h3>
+        <p className="t-card">Closing it with more software, or with someone&apos;s time every week. Both are real costs. Price whichever one you&apos;d actually choose.</p>
+       </article>
+       <article className="area" data-od-id="arithmetic-3">
+        <div className="area-top"><span className="ic-tile"><svg className="ic ic-24" aria-hidden="true"><use href="#i-refresh-cw" /></svg></span><span className="num">Step 3</span></div>
+        <h3>What changing to fit it costs</h3>
+        <p className="t-card">What you&apos;d have to rework about how the business runs to use the platform as designed. That number is usually the one nobody wrote down.</p>
+       </article>
+      </div>
+      <p className={'t-body ' + styles.arithNote} data-od-id="arithmetic-note"><b>Sometimes the answer is buy.</b> High coverage and a low cost to change how you work means buy it, clearly and quickly. This has to be able to come out that way, or it isn&apos;t a real test.</p>
      </div>
-    </div>
     </section>
-    <D17Motion />
-   </>
-  );
+
+    {/* This page's own How I help section (staging heading, which ProblemPageV2
+        renders as the fixed "What happens when you call"). */}
+    <section className={styles.custom + ' g-off'} data-od-id="how-i-help">
+     <div className="wrap how-grid">
+      <div>
+       <span className="eyebrow">How I help</span>
+       <h2 data-od-id="how-h2">Being upfront about where I stand.</h2>
+       <p className="t-lede">I build software too. Works started life plugging gaps nothing on the market covered, and it has grown into the ERP. So I am not a neutral bystander, and I will not pretend to be one.</p>
+       <p className="t-body">What I will do is put every option through the same coverage test, in writing, mine included. If an off-the-shelf platform covers what you need, that is what the report will say. A recommendation you can check against your own brief beats one you have to take on trust.</p>
+      </div>
+      <aside className="offer" data-od-id="offer">
+       <h3>The first call is free.</h3>
+       <p className="t-card">60 minutes. No sales pitch, just a direct conversation about your situation.</p>
+       <ul className="ticks">
+        <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>One day on site</span></li>
+        <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>Written report in 5 days</span></li>
+        <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>3× Clarity Guarantee</span></li>
+        <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>No vendor agenda</span></li>
+       </ul>
+       <Link className="btn btn--primary" href="/contact" data-od-id="offer-cta">Book a free call</Link>
+       <a className="alt" href={BOOKING_URL} target="_blank" rel="noopener noreferrer" data-od-id="offer-alt">Or book a call directly</a>
+      </aside>
+     </div>
+    </section>
+   </div>
+   <D17Motion />
+  </>
+ );
 }
