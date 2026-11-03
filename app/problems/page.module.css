@@ -1,0 +1,46 @@
+/* RS3 lane P (CR-WEB-084): the mockup's own stylesheet ("page layout only —
+   every pattern lives in site-v3.css") plus the artwork-piece frame rules the
+   site's sheets do not carry. The mockup's comment records that DO-ART-118 r02
+   "frame mirrors .a959"; the piece rules its stylesheet actually carries are
+   .a1034 (hero piece) and .a118 (the map plate), copied here per the lane
+   brief. Anchored on .root so these rules cannot reach any other route. */
+
+.root {
+ display: block;
+}
+
+/* DO-ART-1034 hero piece geometry (mirrors DO-ART-1028) */
+.root :global(.a1034 .d17-ph) { left: 28% }
+.root :global(.a1034 .d17-ph img) { --d17-grade: saturate(.7) contrast(1.06) brightness(.82); object-position: 50% 45% }
+.root :global(.a1034 .stage) { min-height: calc(500 * var(--u)) }
+.root :global(.a1034 .doc-f) { left: calc(8 * var(--u)); top: calc(20 * var(--u)); width: calc(390 * var(--u)); transform: rotate(-2.4deg) }
+.root :global(.a1034 .doc-m) { left: calc(396 * var(--u)); top: calc(206 * var(--u)); width: calc(292 * var(--u)); transform: rotate(3.2deg); z-index: 2 }
+.root :global(.a1034 .t5) { left: calc(40 * var(--u)); bottom: calc(10 * var(--u)) }
+@media (max-width:760px) {
+ .root :global(.a1034 .stage .d17-doc:nth-child(odd)) { transform: rotate(-1deg) }
+ .root :global(.a1034 .stage .d17-doc:nth-child(even)) { transform: rotate(1deg) }
+ .root :global(.a1034 .t5) { position: relative; left: auto; bottom: auto; align-self: flex-start; order: 3 }
+}
+
+/* DO-ART-118 r02 plate frame (mirrors .a959) — carried per the lane brief for
+   when the redrawn plate lands; the page keeps <Plate> DO-ART-118 rev 01. */
+.root :global(.a118) { --u: calc(100cqw / 1152); --pu: calc(100% / 1152); padding: calc(40 * var(--pu)) calc(40 * var(--pu)) calc(30 * var(--pu)) }
+.root :global(.a118 .v-tall) { display: none }
+@media (max-width:760px) {
+ .root :global(.a118) { padding: 22px 14px 20px }
+ .root :global(.a118 .v-wide) { display: none }
+ .root :global(.a118 .v-tall) { display: block }
+}
+
+/* the three-stop route on a phone */
+@media (max-width:1000px) {
+ .root :global(.route--3:not(.d17 *)) { grid-template-columns: 1fr }
+ .root :global(.route--3::before:not(.d17 *)) { right: auto }
+ .root :global(.route--3 .stop:not(.d17 *) .node) { grid-row: 1 / span 3; align-self: start }
+ .root :global(.route--3 .stop:not(.d17 *) > :not(.node)) { grid-column: 2 }
+}
+
+/* keep-reading links carry a title line and a description line */
+.root :global(.next-card li a) { padding: 10px 8px }
+.root :global(.next-card li a span b) { display: block; font-weight: var(--do-weight-semibold) }
+.root :global(.next-card li a span small) { display: block; margin-top: 2px; font-size: var(--do-text-sm); line-height: 1.45; color: var(--do-text-secondary) }
