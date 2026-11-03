@@ -138,7 +138,7 @@ export default function DataScatteredPage() {
        <p className="t-body">None of them are lying. They&apos;re just all out of date in a different
         way, which is a product data management problem.</p>
        <div className="btn-row">
-        <Link className="btn btn--primary" href="/contact" data-od-id="hero-cta">Book a free 60 minute call</Link>
+        <Link className="btn btn--primary" href="/contact" data-od-id="hero-cta">Talk about your situation</Link>
         <Link className="go" href="/clarity">See how the audit works <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
        </div>
       </div>
