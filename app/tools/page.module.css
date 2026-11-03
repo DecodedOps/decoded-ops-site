@@ -1,0 +1,12 @@
+/* RS3 lane R (CR-WEB-084) — the approved design's page-layout <style> block
+   for /tools, anchored on the page root class so nothing here can reach
+   another route. Every pattern it uses lives in site-v3.css and
+   d17-resources.css; the shared sheets themselves are untouched. */
+
+/* design page-layout block */
+.root :global(.hero-split .d17) { width: 100% }
+.root :global(.ledger-list h3 a) { color: inherit; text-decoration: none }
+.root :global(.ledger-list h3 a:hover) { text-decoration: underline; text-decoration-color: var(--do-sky-blue); text-underline-offset: 3px }
+.root :global(.ledger-list .go) { display: inline-flex; align-items: center; gap: 8px; margin-top: 12px; color: var(--do-off-white); font-weight: var(--do-weight-semibold); text-decoration: underline; text-decoration-color: var(--do-sky-blue); text-underline-offset: 3px }
+.root :global(.ledger-list .go .ic) { color: var(--do-sky-blue) }
+.root :global(.ledger-list .go:hover) { text-decoration-color: var(--do-sky-blue); text-decoration-thickness: 3px }

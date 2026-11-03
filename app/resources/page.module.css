@@ -1,0 +1,11 @@
+/* RS3 lane R (CR-WEB-084) — the approved design's page-layout <style> block
+   for /resources, anchored on the page root class so nothing here can reach
+   another route. Every pattern it uses lives in site-v3.css and
+   d17-resources.css; the shared sheets themselves are untouched. */
+
+/* design page-layout block */
+.root :global(.hero-split .h1-kw) { margin-bottom: 18px }
+.root :global(.hero-split .d17) { width: 100% }
+
+/* card grid: pin the read-more link to the bottom of stretched cards */
+.root :global(.areas .area .go) { margin-top: auto }
