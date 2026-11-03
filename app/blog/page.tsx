@@ -93,7 +93,7 @@ export default async function BlogPage() {
           <div className="hero-head">
             <div>
               <span className="eyebrow">Insights</span>
-              <h1 data-od-id="hero-h1">Things I&rsquo;ve learned the hard way</h1>
+              <h1 data-od-id="hero-h1">Things I&apos;ve learned the hard way</h1>
             </div>
             <div>
               <p className="t-lede">Plain-English writing on operations, technology, and systems integration for print, decoration, and embroidery business owners. No jargon. No vendor agenda.</p>
