@@ -1,12 +1,15 @@
 import type { Metadata } from 'next';
-import { ProblemPageDS } from '@/components/ProblemPageDS';
-import { NoOpsOwnerSchematic } from '@/components/schematics/problems/NoOpsOwnerSchematic';
 import { JsonLd } from '@/components/JsonLd';
-import { problemRouting } from '@/data/problem-routing';
+import { ProblemPageV2 } from '@/components/ProblemPageV2';
+import { VideoEmbed } from '@/components/VideoEmbed';
+import { VideoSchema } from '@/components/VideoSchema';
 import { problemVideos } from '@/data/problem-videos';
+import { problemRouting } from '@/data/problem-routing';
 import '@/app/d17-global.css';
 import '@/app/d17-problems.css';
+import '@/app/problems/problems-v2.css';
 import { D17Motion } from '@/components/D17Motion';
+import styles from './page.module.css';
 
 export const metadata: Metadata = {
  title: "Interim Operations Director, Decoration | Decoded Ops",
@@ -163,38 +166,82 @@ export default function NoOpsOwnerPage() {
  return (
   <>
    <JsonLd data={noOpsOwnerSchema} />
-   <ProblemPageDS
-   problem="No operations owner"
-   headline="Every ops decision ends up on your desk. ||Who is running the business day to day?||"
-   intro="In many growing businesses, nobody owns operations. The MD handles the big decisions, department heads handle their own areas, and everything in between falls through the cracks: the processes that cross teams, the systems that connect departments, the improvements nobody's responsible for. You don't need a full-time hire to fix that. A part-time operations lead, in effect an interim operations director, gives you the accountability and the thinking without the overhead."
-   heroGraphic={<NoOpsOwnerSchematic />}
-   symptoms={[
-    "Decisions that affect several departments get made by committee, or not at all",
-    "The same operational problems keep coming back with no permanent fix",
-    "You're the only person who understands the whole flow from order to invoice",
-    "There are good ideas for improvement but nobody has the time or remit to do them",
-    "Technology projects stall because there's no one to drive them",
-    "You're spending more time on day-to-day operations than on growing the business",
-    "New systems get bought but never properly bed in",
-   ]}
-   causes={[
-    { title: "Operations grew without anyone noticing", body: "When a business is small, everyone knows what everyone else is doing. As it grows, things get more complicated, but nobody is given ownership of the processes that cross departments. Without one person who owns the operational numbers, decisions get made on gut feel." },
-    { title: 'The owner is still the default ops person', body: "In many owner-run businesses, the owner grew up doing the operational work and understands it better than anyone. But they can't both do the work and step back to improve the system, and there's no one else to hand it to." },
-    { title: 'Operations is seen as admin, not leadership', body: "Operations sounds like paperwork and process, so it gets passed down, shared around, or left to whoever shouts loudest. In reality, it's where growth is either enabled or blocked." },
-    { title: 'No clear step from doing the work to leading it', body: "The person who knows the operations best is usually the one doing the work. Promoting them means losing their hands-on contribution, and many businesses can't afford that trade-off without a plan." },
-   ]}
-   howIHelp="I help you work out whether you need a dedicated operations person, a part-time operations lead, or a different structure altogether. I look at where your time goes, where the bottlenecks are, and what level of ownership your business can support right now. Then I give you a practical route forward, whether that's hiring, restructuring, or me stepping into a retained part-time role that gives you operational leadership without a full-time salary. If an interim operations director is the answer, the Retained service provides exactly that."
-  
-   slug="no-ops-owner"
-   targetService={problemRouting['no-ops-owner'].targetService}
-   relatedProblems={problemRouting['no-ops-owner'].relatedProblems}
-   relatedReading={problemRouting['no-ops-owner'].relatedReading}
-   relatedSectors={problemRouting['no-ops-owner'].relatedSectors}
-   relatedResources={problemRouting['no-ops-owner'].relatedResources}
-   video={problemVideos['no-ops-owner']}
-   heroArt={heroArt971}
-   inlineArt={inlineArt1011}
-  />
+   {problemVideos['no-ops-owner'] && (
+    <VideoSchema
+     name={problemVideos['no-ops-owner'].title}
+     description={problemVideos['no-ops-owner'].closeLine}
+     youtubeId={problemVideos['no-ops-owner'].youtubeId}
+     uploadDate={problemVideos['no-ops-owner'].uploadDate}
+     durationSec={problemVideos['no-ops-owner'].durationSec}
+    />
+   )}
+
+   <div className={styles.root}>
+    <ProblemPageV2
+     slug="no-ops-owner"
+     problem="No operations owner"
+     crumb="No operations owner"
+     h1Lead="Problem · interim operations director"
+     headline="Every ops decision ends up on your desk. ||Who is running the business day to day?||"
+     heroLede="In many growing businesses, nobody owns operations."
+     heroBody="The MD handles the big decisions, department heads handle their own areas, and everything in between falls through the cracks: the processes that cross teams, the systems that connect departments, the improvements nobody's responsible for. You don't need a full-time hire to fix that. A part-time operations lead, in effect an interim operations director, gives you the accountability and the thinking without the overhead."
+     heroArt={heroArt971}
+     symptomsEyebrow="The symptoms"
+     symptomsHeading="The signs."
+     symptomsLede=""
+     symptoms={[
+      'Decisions that affect several departments get made by committee, or not at all',
+      'The same operational problems keep coming back with no permanent fix',
+      "You're the only person who understands the whole flow from order to invoice",
+      "There are good ideas for improvement but nobody has the time or remit to do them",
+      "Technology projects stall because there's no one to drive them",
+      "You're spending more time on day-to-day operations than on growing the business",
+      'New systems get bought but never properly bed in',
+     ]}
+     symptomsCaption="Count the ones that apply. Each one is a decision with no owner."
+     photoBand={{
+      eyebrow: 'Where ownership runs out',
+      heading: 'Order in to invoice out, and nobody owns the whole run.',
+      lede: 'Three photographs from client sites. The office, the racking aisle and the packing station: each one has a department head, and the handoffs between them have nobody.',
+      photos: [
+       { odId: 'photo-g', no: 'DO-ART-979g', src: '/images/site/evidence/hero-office-paperwork-75fcd2.webp', alt: 'Paperwork on an office desk at a client site.', kicker: '', line: '' },
+       { odId: 'photo-f', no: 'DO-ART-979f', src: '/images/site/evidence/hero-racking-aisle-7d129e.webp', alt: 'A long racking aisle of boxed stock at a client site.', kicker: '', line: '' },
+       { odId: 'photo-n', no: 'DO-ART-979n', src: '/images/site/evidence/band-packing-station-7c4f80.webp', alt: 'A packing station with cartons, tape and a label printer at a client site.', kicker: '', line: '' },
+      ],
+     }}
+     causes={[
+      { icon: 'i-layers', title: 'Operations grew without anyone noticing', body: 'When a business is small, everyone knows what everyone else is doing. As it grows, things get more complicated, but nobody is given ownership of the processes that cross departments. Without one person who owns the operational numbers, decisions get made on gut feel.' },
+      { icon: 'i-file-warning', title: 'The owner is still the default ops person', body: "In many owner-run businesses, the owner grew up doing the operational work and understands it better than anyone. But they can't both do the work and step back to improve the system, and there's no one else to hand it to." },
+      { icon: 'i-git-branch', title: 'Operations is seen as admin, not leadership', body: "Operations sounds like paperwork and process, so it gets passed down, shared around, or left to whoever shouts loudest. In reality, it's where growth is either enabled or blocked." },
+      { icon: 'i-users', title: 'No clear step from doing the work to leading it', body: "The person who knows the operations best is usually the one doing the work. Promoting them means losing their hands-on contribution, and many businesses can't afford that trade-off without a plan." },
+     ]}
+     plate={{
+      eyebrow: 'Who owns it',
+      heading: 'A register, the options and a decision.',
+      lede: 'The work nobody owns today written down first, then the three honest options for owning it: a hire, a part-time operations lead or a different structure. The decision goes in the log with its reasons.',
+      art: inlineArt1011,
+     }}
+     howLede="I help you work out whether you need a dedicated operations person, a part-time operations lead, or a different structure altogether. I look at where your time goes, where the bottlenecks are, and what level of ownership your business can support right now."
+     howBody="Then I give you a practical route forward, whether that's hiring, restructuring, or me stepping into a retained part-time role that gives you operational leadership without a full-time salary. If an interim operations director is the answer, the Retained service provides exactly that."
+     howTone="off"
+     routing={problemRouting['no-ops-owner']}
+    />
+
+    {problemVideos['no-ops-owner'] && (
+     <section className={`${styles.video} g-off`} data-od-id="video-embed">
+      <div className="wrap">
+       <VideoEmbed
+        youtubeId={problemVideos['no-ops-owner'].youtubeId}
+        title={problemVideos['no-ops-owner'].title}
+        closeLine={problemVideos['no-ops-owner'].closeLine}
+        app={problemVideos['no-ops-owner'].app}
+        durationSec={problemVideos['no-ops-owner'].durationSec}
+        playlistUrl={problemVideos['no-ops-owner'].playlistUrl}
+       />
+      </div>
+     </section>
+    )}
+   </div>
    <D17Motion />
   </>
  );
