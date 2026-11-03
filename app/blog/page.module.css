@@ -1,0 +1,21 @@
+/* RS3 lane R (CR-WEB-084) — the mockup's page-layout <style> block for
+   /blog, plus the parts of the mockup's card design reachable from CSS on
+   the output of components/BlogList.tsx (BlogList itself is not editable —
+   the rest is recorded in the lane report). Every selector is anchored on
+   the page root class; nothing here can reach another route. */
+
+/* mockup page-layout block */
+.root :global(.hero .t-lede) { max-width: 60ch }
+.root :global(.next-grid .t-meta) { color: var(--do-text-secondary) }
+
+/* BlogList's card grid: the component's two columns become the mockup's
+   three-column post grid */
+.root :global(.post-list .grid) { grid-template-columns: repeat(3, 1fr) !important; gap: 20px !important }
+@media (max-width: 1000px) { .root :global(.post-list .grid) { grid-template-columns: repeat(2, 1fr) !important } }
+@media (max-width: 640px) { .root :global(.post-list .grid) { grid-template-columns: 1fr !important } }
+
+/* card titles at the mockup's .area h3 size (the component sets text-xl inline) */
+.root :global(.post-list h3) { font-size: var(--do-text-lg) !important; line-height: 1.3 !important }
+
+/* the sticky filter rail sits on the tinted band — blend it into the section */
+.root :global(.post-list div[role="group"]) { background: color-mix(in srgb, var(--do-prussian-blue) 5%, var(--do-off-white)) !important }
