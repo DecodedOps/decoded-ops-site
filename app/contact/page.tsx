@@ -2,6 +2,12 @@ import type { Metadata } from 'next';
 import { BreadcrumbSchema } from '@/components/BreadcrumbSchema';
 import { ContactClient } from './ContactClient';
 import { OG_IMAGE, OG_IMAGE_PATH } from '@/lib/seo';
+// site-v3.css carries every pattern the approved mockup uses (.hero-split, .h1-kw,
+// .form-card, .row-2, .route, .go, .ic). d17-global.css / d17-apps-cases.css are
+// deliberately NOT imported: this page's DO-ART-920 panel is styled by
+// d17-art.module.css (kept, per the lane brief) and d17-global.css declares a bare
+// global .lbl rule that would collide with the contact-link label class.
+import '@/app/design-system/site-v3.css';
 
 export const metadata: Metadata = {
   title: 'Book a Free Discovery Call with Craig | Decoded Ops',
