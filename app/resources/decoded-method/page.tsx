@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Download, MessageQuote, FileCheck, Users, RefreshCw, GitBranch, BadgeCheck } from 'lucide-react';
+import { Download, MessageSquareQuote, FileCheck, Users, RefreshCw, GitBranch, BadgeCheck } from 'lucide-react';
 import { BOOKING_URL } from '@/lib/constants';
 import { JsonLd } from '@/components/JsonLd';
 import { IconSprite } from '@/components/IconSprite';
@@ -53,7 +53,7 @@ const principles = [
   'ISO-ready, not ISO-burdened. Maps to ISO 9001 principles, without the certification weight.',
 ];
 
-const principleIcons = [MessageQuote, FileCheck, Users, RefreshCw, GitBranch, BadgeCheck];
+const principleIcons = [MessageSquareQuote, FileCheck, Users, RefreshCw, GitBranch, BadgeCheck];
 
 const processRegister = [
   { ref: 'DO-PR-001', process: 'Clarity Audit', status: 'active' },
