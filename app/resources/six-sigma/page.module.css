@@ -1,0 +1,9 @@
+/* RS2 lane R (CR-WEB-083) — page-layout patterns the shared sheets do not
+   carry yet, plus the mockup's own page-layout <style> block rules for this
+   page. Every selector is anchored on the page root class; nothing here can
+   reach another route. The shared sheets themselves are untouched. */
+
+/* mockup page-layout block */
+.root :global(.hero-split .d17) { width: 100% }
+.root :global(.hero-split .btn .ic) { margin-right: 6px; vertical-align: -4px }
+.root :global(.ledger-list .fig small) { display: block }

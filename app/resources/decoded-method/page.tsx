@@ -1,14 +1,16 @@
 import Link from 'next/link';
-import { ArrowRight, Download, Check, Languages, FileText, UserCheck, CalendarClock, PackageCheck, ShieldCheck } from 'lucide-react';
+import { Download, MessageSquareQuote, FileCheck, Users, RefreshCw, GitBranch, BadgeCheck } from 'lucide-react';
 import { BOOKING_URL } from '@/lib/constants';
 import { JsonLd } from '@/components/JsonLd';
-import { ThreeLayerSchematic } from '@/components/schematics/ThreeLayerSchematic';
-import { SinglePointSchematic } from '@/components/schematics/SinglePointSchematic';
+import { IconSprite } from '@/components/IconSprite';
 import { D17Motion } from '@/components/D17Motion';
 import '@/app/d17-global.css';
-import '@/app/d17-problems.css';
+import '@/app/d17-apps-cases.css';
 import '@/app/d17-resources.css';
+import '@/app/design-system/site-v3.css';
+import '@/app/resources/resources-live.css';
 import { OG_IMAGE, OG_IMAGE_PATH } from '@/lib/seo';
+import s from './page.module.css';
 
 const schema = {
   '@context': 'https://schema.org',
@@ -50,6 +52,8 @@ const principles = [
   'Delivery-linked. Every system handed over ships with its process pack. Handover is never verbal-only.',
   'ISO-ready, not ISO-burdened. Maps to ISO 9001 principles, without the certification weight.',
 ];
+
+const principleIcons = [MessageSquareQuote, FileCheck, Users, RefreshCw, GitBranch, BadgeCheck];
 
 const processRegister = [
   { ref: 'DO-PR-001', process: 'Clarity Audit', status: 'active' },
@@ -100,45 +104,29 @@ const layers = [
   },
 ];
 
-const statusStyle: Record<string, string> = {
-  active: 'bg-cerulean text-white',
-  draft: 'bg-sky-blue text-prussian-blue',
-  review: 'bg-amber text-prussian-blue',
-};
-
 export default function DecodedMethodPage() {
   return (
-    <>
+    <main className={s.root}>
+      <IconSprite />
       <JsonLd data={schema} />
 
-      <section className="g-off">
-        <div className="wrap rt-split">
+      <section className="g-off hero" data-od-id="hero">
+        <div className="wrap hero-split">
           <div>
-            <span className="eyebrow">Free playbook</span>
-            <h1>The Decoded Method</h1>
-            <p className="lede">
+            <h1 data-od-id="hero-h1"><span className="h1-kw">Free playbook &middot; business process review</span> The Decoded Method</h1>
+            <p className="t-lede">
               A three-layer system for documenting how your business actually runs, and the business process review that keeps it current. Plain English, one page per process, built to be handed over instead of held in one person&apos;s head.
             </p>
-            <div style={{ display: 'flex', gap: 16, marginTop: 24, flexWrap: 'wrap' }}>
-              <a href="/downloads/decoded-method.pdf" download className="btn btn--primary">
-                <Download size={18} /> Download the playbook
+            <p className="t-body">7-page PDF. No email required.</p>
+            <div className="btn-row">
+              <a className="btn btn--primary" href="/downloads/decoded-method.pdf" download data-od-id="hero-cta" style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+                <Download size={20} /> Download the playbook
               </a>
-              <Link href="/clarity" className="btn btn--outline">
-                See what Clarity covers
-              </Link>
+              <a className="go" href="#s1" data-new-copy>Read it here instead <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></a>
             </div>
-            <p style={{ fontSize: 'var(--do-text-sm)', color: 'var(--do-text-muted)', marginTop: 12 }}>7-page PDF. No email required.</p>
           </div>
 
-          <div style={{ position: 'relative', margin: '0 auto', width: '100%', maxWidth: 320 }}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/images/decoded-method-cover.webp" alt="The Decoded Method guide, cover" width={1075} height={1521} style={{ width: '100%', borderRadius: 'var(--do-radius-lg)', boxShadow: 'var(--do-shadow-xl)', transform: 'rotate(2.5deg)' }} />
-          </div>
-        </div>
-      </section>
-
-      <section className="g-navy">
-        <div className="wrap" dangerouslySetInnerHTML={{ __html: `
+          <div dangerouslySetInnerHTML={{ __html: `
       <figure class="d17 sx sx--solo a988" data-od-id="hero-art" data-motion data-no="DO-ART-988" data-rev="01" data-tx="photo"
               aria-label="Artwork DO-ART-988. The Decoded Method playbook, seven pages, three of them fanned over a graded photograph of a workbench. The cover. The three layers: process register, one-page SOPs, improvement log. And the self-assessment scorecard, scored as an example against the six principles: plain English, one page per process, owner on everything, reviewed regularly, delivery-linked, ISO-ready. The lowest score, owner on everything, is marked in amber. Handed over, not held in one head.">
         <div class="d17-ph"><img src="/images/d17/resources/gen-bench-flatlay-v2-79b455.webp" alt="" width="900" height="742"></div>
@@ -180,108 +168,65 @@ export default function DecodedMethodPage() {
           <span class="d17-mark">decodedops.co.uk · DO-ART-988 · Rev 01</span>
         </div>
       </figure>
-        ` }} />
-      </section>
-
-      <section className="g-off section--tight">
-        <div className="wrap" style={{ maxWidth: 720 }}>
-          <h2>Why most process documentation fails</h2>
-          <p style={{ color: 'color-mix(in srgb, var(--do-prussian-blue) 80%, transparent)' }}>
-            Most businesses keep their processes in one place: someone&apos;s head. It works, right up until that person is on holiday, off sick, or leaves. Then the process leaves with them, and everyone else is guessing.
-          </p>
-          <p style={{ color: 'color-mix(in srgb, var(--do-prussian-blue) 80%, transparent)' }}>
-            The usual fix is a giant quality manual. That fails for the opposite reason: it&apos;s too long to keep up to date, so it goes stale, and once it&apos;s stale nobody trusts it.
-          </p>
-          <p style={{ color: 'color-mix(in srgb, var(--do-prussian-blue) 80%, transparent)' }}>
-            The Decoded Method is the middle path. ISO 9001 principles without the ISO overhead. A continuous improvement habit without the ceremony. Lean enough to actually keep alive.
-          </p>
-          <div style={{ marginTop: 32, borderRadius: 'var(--do-radius-2xl)', overflow: 'hidden', border: '1px solid var(--do-border-subtle)' }}>
-            <SinglePointSchematic tone="light" />
-          </div>
+          ` }} />
         </div>
       </section>
 
-      <section className="g-off section--tight">
-        <div className="wrap">
-          <div style={{ maxWidth: 720 }}>
-            <h2>Three layers, each with a job</h2>
-            <p style={{ color: 'color-mix(in srgb, var(--do-prussian-blue) 72%, transparent)' }}>
+      <section className="g-white" data-od-id="article">
+        <div className="wrap post-grid">
+          <aside className="post-aside" data-od-id="article-aside">
+            <div>
+              <span className="toc-h">In this guide</span>
+              <ol className="toc">
+                <li><a href="#s1"><b>01</b><span>Why most process documentation fails</span></a></li>
+                <li><a href="#s2"><b>02</b><span>Three layers, each with a job</span></a></li>
+                <li><a href="#s3"><b>03</b><span>The register we run Decoded Ops on</span></a></li>
+              </ol>
+            </div>
+            <div className="byline" data-od-id="byline">
+              <img src="/images/d17/craig-blackman.webp" width={56} height={56} alt="Craig Blackman" />
+              <p><b>Craig Blackman</b><span>Twenty-five years inside decorated-goods businesses. Written from the work, not from a template.</span></p>
+            </div>
+
+          </aside>
+          <div className="prose" data-od-id="article-body">
+            <h2 id="s1">Why most process documentation fails</h2>
+            <p>
+              Most businesses keep their processes in one place: someone&apos;s head. It works, right up until that person is on holiday, off sick, or leaves. Then the process leaves with them, and everyone else is guessing.
+            </p>
+            <p>
+              The usual fix is a giant quality manual. That fails for the opposite reason: it&apos;s too long to keep up to date, so it goes stale, and once it&apos;s stale nobody trusts it.
+            </p>
+            <p>
+              The Decoded Method is the middle path. ISO 9001 principles without the ISO overhead. A continuous improvement habit without the ceremony. Lean enough to actually keep alive.
+            </p>
+            <h2 id="s2">Three layers, each with a job</h2>
+            <p>
               Together they make a system you can hand to a new starter and trust them to follow. Here is how the three layers connect.
             </p>
-          </div>
-
-          <div style={{ marginTop: 48, borderRadius: 'var(--do-radius-2xl)', overflow: 'hidden', border: '1px solid var(--do-border-subtle)' }}>
-            <ThreeLayerSchematic tone="dark" />
-          </div>
-
-          <div style={{ marginTop: 64, display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 40 }}>
             {layers.map((layer) => (
               <div key={layer.n}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                  <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 44, height: 44, borderRadius: 'var(--do-radius-xl)', background: 'var(--do-prussian-blue)', color: 'white', fontWeight: 800, boxShadow: `inset 4px 0 0 ${layer.accent}` }}>{layer.n}</span>
-                  <h3 style={{ fontSize: 'var(--do-text-xl)', fontWeight: 700, color: 'var(--do-text-primary)' }}>{layer.name}</h3>
-                </div>
-                <p style={{ fontSize: 'var(--do-text-sm)', color: 'color-mix(in srgb, var(--do-prussian-blue) 75%, transparent)', marginTop: 16 }}>{layer.blurb}</p>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginTop: 20 }}>
-                  {layer.fields.map(([k, v]) => (
-                    <div key={k} style={{ display: 'flex', gap: 10, fontSize: 'var(--do-text-sm)', color: 'color-mix(in srgb, var(--do-prussian-blue) 80%, transparent)' }}>
-                      <Check size={16} style={{ flexShrink: 0, marginTop: 2, color: 'var(--do-text-cerulean)' }} />
-                      <span><strong style={{ color: 'var(--do-text-primary)' }}>{k}</strong> - {v}</span>
-                    </div>
-                  ))}
-                </div>
+                <h3>{layer.name}</h3>
+                <p>{layer.blurb}</p>
+                {layer.fields.map(([k, v]) => (
+                  <p key={k}><strong>{k}</strong> - {v}</p>
+                ))}
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="g-tint">
-        <div className="wrap" style={{ maxWidth: 720 }}>
-          <h2>The six principles</h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 20, marginTop: 40 }}>
-            {principles.map((p, i) => {
-              const [head, ...rest] = p.split('. ');
-              const Icon = [Languages, FileText, UserCheck, CalendarClock, PackageCheck, ShieldCheck][i];
-              return (
-                <div key={i} style={{ padding: 24, borderRadius: 'var(--do-radius-xl)', background: 'white', borderLeft: '4px solid var(--do-cerulean)', border: '1px solid var(--do-border-subtle)', borderLeftWidth: 4, borderLeftColor: 'var(--do-cerulean)', display: 'flex', gap: 16 }}>
-                  <div style={{ flexShrink: 0, width: 44, height: 44, borderRadius: 'var(--do-radius-lg)', background: 'color-mix(in srgb, var(--do-cerulean) 10%, transparent)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <Icon size={20} style={{ color: 'var(--do-text-cerulean)' }} />
-                  </div>
-                  <div>
-                    <h3 style={{ fontWeight: 700, color: 'var(--do-text-primary)', margin: 0 }}>{head}.</h3>
-                    <p style={{ fontSize: 'var(--do-text-sm)', color: 'color-mix(in srgb, var(--do-prussian-blue) 72%, transparent)', marginTop: 6 }}>{rest.join('. ')}</p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      <section className="g-off section--tight">
-        <div className="wrap" style={{ maxWidth: 720 }}>
-          <h2>The register we run Decoded Ops on</h2>
-          <p style={{ color: 'color-mix(in srgb, var(--do-prussian-blue) 72%, transparent)', marginBottom: 40 }}>
-            Twelve processes, each owned, each with a status. The same artefact a Clarity engagement produces for a client, usually the first time they&apos;ve seen their whole operation on one page.
-          </p>
-          <div style={{ borderRadius: 'var(--do-radius-2xl)', overflow: 'hidden', border: '1px solid var(--do-border-subtle)' }}>
-            <table style={{ width: '100%', fontSize: 'var(--do-text-sm)', borderCollapse: 'collapse' }}>
+            <h2 id="s3">The register we run Decoded Ops on</h2>
+            <p>
+              Twelve processes, each owned, each with a status. The same artefact a Clarity engagement produces for a client, usually the first time they&apos;ve seen their whole operation on one page.
+            </p>
+            <table>
               <thead>
-                <tr style={{ background: 'var(--do-prussian-blue)', color: 'white' }}>
-                  <th style={{ textAlign: 'left', fontWeight: 600, padding: '14px 20px', width: 128 }}>Ref</th>
-                  <th style={{ textAlign: 'left', fontWeight: 600, padding: '14px 20px' }}>Process</th>
-                  <th style={{ textAlign: 'left', fontWeight: 600, padding: '14px 20px', width: 112 }}>Status</th>
-                </tr>
+                <tr><th>Ref</th><th>Process</th><th>Status</th></tr>
               </thead>
               <tbody>
-                {processRegister.map((row, i) => (
-                  <tr key={i} style={{ background: i % 2 ? 'var(--do-off-white)' : 'white' }}>
-                    <td style={{ padding: '12px 20px', fontWeight: 600, color: 'var(--do-text-primary)' }}>{row.ref}</td>
-                    <td style={{ padding: '12px 20px', color: 'color-mix(in srgb, var(--do-prussian-blue) 80%, transparent)' }}>{row.process}</td>
-                    <td style={{ padding: '12px 20px' }}>
-                      <span className={statusStyle[row.status]} style={{ padding: '4px 10px', borderRadius: 999, fontSize: 11, fontWeight: 600 }}>{row.status}</span>
-                    </td>
+                {processRegister.map((row) => (
+                  <tr key={row.ref}>
+                    <td>{row.ref}</td>
+                    <td>{row.process}</td>
+                    <td>{row.status}</td>
                   </tr>
                 ))}
               </tbody>
@@ -290,30 +235,49 @@ export default function DecodedMethodPage() {
         </div>
       </section>
 
-      <section className="g-off section--tight">
-        <div className="wrap" style={{ maxWidth: 720 }}>
-          <div className="card" style={{ background: 'color-mix(in srgb, var(--do-amber) 10%, transparent)', borderColor: 'color-mix(in srgb, var(--do-amber) 30%, transparent)' }}>
-            <h3>Get the whole playbook, free</h3>
-            <p style={{ color: 'color-mix(in srgb, var(--do-prussian-blue) 80%, transparent)' }}>
-              Seven pages: the three layers with worked examples, the six principles, and a self-assessment scorecard to see where your operation stands right now. No email required.
-            </p>
-            <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', marginBottom: 12 }}>
-              <a href="/downloads/decoded-method.pdf" download className="btn btn--primary">
-                <Download size={18} /> Download the playbook
-              </a>
-              <Link href="/contact" className="btn btn--outline">
-                Book a discovery call
-              </Link>
-            </div>
-            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" style={{ fontSize: 'var(--do-text-sm)', color: 'var(--do-text-cerulean)', fontWeight: 'var(--do-weight-medium)', display: 'inline-flex', alignItems: 'center', gap: 4 }}>Or book a call directly <ArrowRight size={14} /></a>
-            <p style={{ fontSize: 'var(--do-text-sm)', color: 'color-mix(in srgb, var(--do-prussian-blue) 72%, transparent)', marginTop: 20, marginBottom: 0 }}>
-              Want a business process review across your own operation? A Clarity engagement builds your Process Register with you, mapping what you do, who owns it, and where the gaps are. Retained clients get the Method as a living hub I host and keep current, not a document that goes stale.
-            </p>
+      <section className="g-tint" data-od-id="principles">
+        <div className="wrap">
+          <div className="sec-head">
+            <span className="eyebrow" data-new-copy>The principles</span>
+            <h2 data-od-id="principles-h2">The six principles</h2>
+          </div>
+          <div className="areas areas--3" data-od-id="principles-cards">
+            {principles.map((p, i) => {
+              const [head, ...rest] = p.split('. ');
+              const Icon = principleIcons[i];
+              return (
+                <article className="area" key={i} data-od-id={`principles-${i + 1}`}>
+                  <div className="area-top"><span className="ic-tile"><Icon className="ic ic-24" size={24} aria-hidden="true" /></span><span className="num">{String(i + 1).padStart(2, '0')}</span></div>
+                  <h3>{head}.</h3>
+                  <p className="t-card">{rest.join('. ')}</p>
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>
 
+      <section className="g-off closer" data-od-id="cta">
+        <div className="wrap closer-grid">
+          <div>
+            <span className="eyebrow" data-new-copy>Start with the register</span>
+            <h2 data-od-id="cta-h2">Get the whole playbook, free</h2>
+          </div>
+          <div>
+            <p className="lede">Seven pages: the three layers with worked examples, the six principles, and a self-assessment scorecard to see where your operation stands right now. No email required.</p>
+            <div className="btn-row">
+              <Link className="btn btn--primary" href="/contact" data-od-id="cta-primary">Book a free discovery call</Link>
+              <Link className="go" href="/clarity">See what Clarity covers <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+            </div>
+            {/* kept: the mockup's closer drops this copy from the old CTA card — it is SEO copy */}
+            <p className="t-card" style={{ marginTop: 24 }}>
+              Want a business process review across your own operation? A Clarity engagement builds your Process Register with you, mapping what you do, who owns it, and where the gaps are. Retained clients get the Method as a living hub I host and keep current, not a document that goes stale.
+            </p>
+            <p style={{ marginTop: 12 }}><a className="go" href={BOOKING_URL} target="_blank" rel="noopener noreferrer">Or book a call directly <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></a></p>
+          </div>
+        </div>
+      </section>
       <D17Motion />
-    </>
+    </main>
   );
 }

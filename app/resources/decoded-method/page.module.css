@@ -1,0 +1,44 @@
+/* RS2 lane R (CR-WEB-083) — page-layout patterns the shared sheets do not
+   carry yet: the resource-article-v1 grid (post-grid / post-aside / toc /
+   byline) plus the mockup's own page-layout <style> block for this page.
+   Every selector is anchored on the page root class; nothing here can reach
+   another route. The shared sheets themselves are untouched. */
+
+/* mockup page-layout block */
+.root :global(.hero-split .d17) { width: 100% }
+.root :global(.hero-split .btn .ic) { margin-right: 6px; vertical-align: -4px }
+.root :global(.prose table) { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: var(--do-text-sm); font-variant-numeric: tabular-nums }
+.root :global(.prose th) { text-align: left; padding: 10px 12px; background: color-mix(in srgb, var(--do-sky-blue) 18%, transparent); border-bottom: 2px solid var(--do-cerulean); font-weight: 600 }
+.root :global(.prose td) { padding: 10px 12px; border-bottom: 1px solid var(--do-border-subtle) }
+.root :global(.post-aside .go .ic) { margin-right: 4px }
+
+/* resource-article-v1 template */
+.root :global(.post-grid) { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: 56px; align-items: start; margin-top: 56px }
+@media (max-width: 960px) {
+  .root :global(.post-grid) { grid-template-columns: 1fr; gap: 36px; margin-top: 36px }
+}
+.root :global(.post-aside) { position: sticky; top: 96px; display: flex; flex-direction: column; gap: 30px }
+@media (max-width: 960px) {
+  .root :global(.post-aside) { position: static }
+}
+.root :global(.toc-h) { display: block; margin: 0 0 12px; font-family: var(--do-font-heading); font-size: var(--do-text-xs); font-weight: 600; letter-spacing: var(--do-tracking-wide); text-transform: uppercase; color: var(--do-text-muted) }
+.root :global(.toc) { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--do-border-subtle) }
+.root :global(.toc li) { border-bottom: 1px solid var(--do-border-subtle) }
+.root :global(.toc a) { display: grid; grid-template-columns: 26px 1fr; gap: 10px; align-items: baseline; padding: 10px 0; font-size: var(--do-text-sm); line-height: 1.45; color: var(--do-text-secondary); text-decoration: none }
+.root :global(.toc a:hover) { color: var(--do-text-primary); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--do-cerulean) }
+.root :global(.toc a b) { font-family: var(--do-font-mono); font-weight: 500; font-size: var(--do-text-xs); letter-spacing: 0.06em; color: var(--do-text-muted) }
+.root :global(.byline) { display: grid; grid-template-columns: 56px 1fr; gap: 14px; align-items: center; padding-top: 22px; border-top: 1px solid var(--do-border-subtle) }
+.root :global(.byline img) { width: 56px; height: 56px; border-radius: 50%; object-fit: cover }
+.root :global(.byline p) { margin: 0; font-size: var(--do-text-sm); line-height: 1.5 }
+.root :global(.byline b) { display: block; color: var(--do-text-primary) }
+.root :global(.byline span) { color: var(--do-text-secondary) }
+
+/* article body typography (globals.css .prose is only a width rule) */
+.root :global(.prose) { max-width: none; margin: 0 }
+.root :global(.prose h2) { margin: 44px 0 12px; font-family: var(--do-font-heading); font-size: var(--do-text-2xl); font-weight: 700; line-height: 1.25; letter-spacing: -0.01em; color: var(--do-text-primary); scroll-margin-top: 96px }
+.root :global(.prose h2:first-child) { margin-top: 0 }
+.root :global(.prose h3) { margin: 30px 0 10px; font-family: var(--do-font-heading); font-size: var(--do-text-xl); font-weight: 700; color: var(--do-text-primary) }
+.root :global(.prose p) { margin: 0 0 16px; font-size: 1.0625rem; line-height: 1.7; color: var(--do-text-primary) }
+.root :global(.prose p:last-child) { margin-bottom: 0 }
+.root :global(.prose a) { color: var(--do-text-primary); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--do-cerulean) }
+.root :global(.prose a:hover) { color: var(--do-orange) }

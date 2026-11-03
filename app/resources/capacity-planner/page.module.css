@@ -1,0 +1,29 @@
+/* RS2 lane R (CR-WEB-083) — page-layout patterns the shared sheets do not
+   carry yet, plus the mockup's own page-layout <style> block rules that apply
+   around the real calculator component (the mockup's form/feed markup is a
+   picture of CapacityPlannerCalculator and is not rebuilt here).
+   Every selector is anchored on the page root class; nothing here can reach
+   another route. The shared sheets themselves are untouched. */
+
+/* mockup page-layout block */
+.root :global(.hero-split .d17) { width: 100% }
+.root :global(.hero-split .btn .ic) { margin-right: 6px; vertical-align: -4px }
+.root :global(.route .stop .t-card) { font-size: var(--do-text-sm) }
+.root :global(.prose table) { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: var(--do-text-sm); font-variant-numeric: tabular-nums }
+.root :global(.prose th) { text-align: left; padding: 10px 12px; background: color-mix(in srgb, var(--do-sky-blue) 18%, transparent); border-bottom: 2px solid var(--do-cerulean); font-weight: 600 }
+.root :global(.prose td) { padding: 10px 12px; border-bottom: 1px solid var(--do-border-subtle) }
+
+/* the "why" two-column band (mockup sets this inline on the wrap) */
+.why { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; align-items: center }
+@media (max-width: 900px) {
+  .why { grid-template-columns: 1fr; gap: 32px }
+}
+
+/* article body typography (globals.css .prose is only a width rule) */
+.root :global(.prose) { max-width: none; margin: 0 }
+.root :global(.prose h2) { margin: 0 0 12px; font-family: var(--do-font-heading); font-size: var(--do-text-2xl); font-weight: 700; line-height: 1.25; letter-spacing: -0.01em; color: var(--do-text-primary); scroll-margin-top: 96px }
+.root :global(.prose h3) { margin: 30px 0 10px; font-family: var(--do-font-heading); font-size: var(--do-text-xl); font-weight: 700; color: var(--do-text-primary) }
+.root :global(.prose p) { margin: 0 0 16px; font-size: 1.0625rem; line-height: 1.7; color: var(--do-text-primary) }
+.root :global(.prose p:last-child) { margin-bottom: 0 }
+.root :global(.prose a) { color: var(--do-text-primary); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--do-cerulean) }
+.root :global(.prose a:hover) { color: var(--do-orange) }

@@ -1,12 +1,14 @@
 import Link from 'next/link';
-import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import { BOOKING_URL } from '@/lib/constants';
 import { JsonLd } from '@/components/JsonLd';
-import { Plate } from '@/components/Plate';
+import { IconSprite } from '@/components/IconSprite';
 import { D17Motion } from '@/components/D17Motion';
 import '@/app/d17-global.css';
-import '@/app/d17-problems.css';
+import '@/app/d17-apps-cases.css';
 import '@/app/d17-resources.css';
+import '@/app/design-system/site-v3.css';
+import '@/app/resources/resources-live.css';
+import s from './page.module.css';
 
 // Target keyword: "warning signs your business systems are failing" (secondary: "signs you need a technology audit")
 export const metadata = {
@@ -66,15 +68,20 @@ const signs = [
 
 export default function FiveWarningSignsPage() {
   return (
-    <main>
-      <section className="g-off">
-        <div className="wrap rt-split">
+    <main className={s.root}>
+      <IconSprite />
+      <section className="g-off hero" data-od-id="hero">
+        <div className="wrap hero-split">
           <div>
-            <span className="eyebrow">Free resource</span>
-            <h1>5 warning signs your systems are holding you back</h1>
-            <p className="lede">
+            <h1 data-od-id="hero-h1"><span className="h1-kw">Free resource &middot; manufacturing ERP software</span> 5 warning signs your systems are holding you back</h1>
+            <p className="t-lede">
               Real warning signs that your manufacturing ERP software or other systems are holding you back, from 25+ years running operations in print, embroidery, decoration, and similar product-based businesses, not vendor theory. If two or more of these sound familiar, it&apos;s worth a closer look.
             </p>
+            <p className="t-body"><strong>Five signs, one page each.</strong> Two or more sound familiar and the cost is already on your books.</p>
+            <div className="btn-row">
+              <a className="btn btn--outline" href="#s1" data-od-id="hero-cta">Read the five signs</a>
+              <Link className="go" href="/tools/ops-health-score" data-new-copy>Score your operation instead <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+            </div>
           </div>
 
           {/* D17 hero artwork DO-ART-982 */}
@@ -100,50 +107,61 @@ export default function FiveWarningSignsPage() {
         </div>
       </section>
 
-      <section className="g-off section--tight">
-        <div className="wrap" style={{ maxWidth: 720 }}>
+      <section className="g-white" data-od-id="article">
+        <div className="wrap post-grid">
+          <aside className="post-aside" data-od-id="article-aside">
+            <div>
+              <span className="toc-h">In this guide</span>
+              <ol className="toc">
+                <li><a href="#s1"><b>01</b><span>Nobody can tell you what it&apos;s actually costing you</span></a></li>
+                <li><a href="#s2"><b>02</b><span>Your business runs on what&apos;s in one or two people&apos;s heads</span></a></li>
+                <li><a href="#s3"><b>03</b><span>Everyone has their own workaround</span></a></li>
+                <li><a href="#s4"><b>04</b><span>Growth feels harder than it should</span></a></li>
+                <li><a href="#s5"><b>05</b><span>You bought your last system off the back of a demo</span></a></li>
+                <li><a href="#s6"><b>06</b><span>What I&apos;m doing about this right now</span></a></li>
+              </ol>
+            </div>
+            <div className="byline" data-od-id="byline">
+              <img src="/images/d17/craig-blackman.webp" width={56} height={56} alt="Craig Blackman" />
+              <p><b>Craig Blackman</b><span>Twenty-five years inside decorated-goods businesses. Written from the work, not from a template.</span></p>
+            </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 48, marginBottom: 64 }}>
+          </aside>
+          <div className="prose" data-od-id="article-body">
             {signs.map((sign, i) => (
               <div key={i}>
-                <h2>{sign.title}</h2>
-                <p style={{ color: 'color-mix(in srgb, var(--do-prussian-blue) 80%, transparent)' }}>{sign.body}</p>
+                <h2 id={`s${i + 1}`}>{sign.title}</h2>
+                <p>{sign.body}</p>
               </div>
             ))}
-          </div>
-
-          <div className="card" style={{ background: 'color-mix(in srgb, var(--do-cerulean) 10%, transparent)', borderColor: 'color-mix(in srgb, var(--do-cerulean) 25%, transparent)', marginBottom: 64 }}>
-            <h2>What I'm doing about this right now</h2>
-            <p style={{ color: 'color-mix(in srgb, var(--do-prussian-blue) 80%, transparent)', marginBottom: 0 }}>
-              These aren't hypothetical scenarios. I'm currently running Deliver engagements with clients tackling exactly this: building the data foundation and connector work before their ERP goes live, not after, and putting a Process Register in place so operational knowledge doesn't sit in one person's head. It's the same approach on every engagement, whatever the sector.
+            <h2 id="s6">What I&apos;m doing about this right now</h2>
+            <p>
+              These aren&apos;t hypothetical scenarios. I&apos;m currently running Deliver engagements with clients tackling exactly this: building the data foundation and connector work before their ERP goes live, not after, and putting a Process Register in place so operational knowledge doesn&apos;t sit in one person&apos;s head. It&apos;s the same approach on every engagement, whatever the sector.
             </p>
-          </div>
-
-          <div className="card" style={{ background: 'color-mix(in srgb, var(--do-amber) 10%, transparent)', borderColor: 'color-mix(in srgb, var(--do-amber) 30%, transparent)', marginBottom: 64 }}>
-            <div style={{ display: 'flex', gap: 16, alignItems: 'flex-start' }}>
-              <CheckCircle2 size={22} style={{ flexShrink: 0, marginTop: 4, color: 'var(--do-orange)' }} />
-              <p style={{ color: 'color-mix(in srgb, var(--do-prussian-blue) 80%, transparent)', marginBottom: 0 }}>
-                <strong style={{ color: 'var(--do-text-primary)' }}>The 3× Clarity Guarantee:</strong> if a Clarity Audit doesn't identify at least 3× the fee in recoverable cost or lost revenue, you get a full refund. No conditions. No questions.
-              </p>
-            </div>
-          </div>
-
-          <div className="g-tint" style={{ borderRadius: 'var(--do-radius-2xl)', padding: 32 }}>
+            <p><strong>The 3&times; Clarity Guarantee:</strong> if a Clarity Audit doesn&apos;t identify at least 3&times; the fee in recoverable cost or lost revenue, you get a full refund. No conditions. No questions.</p>
             <h3>Recognise two or more of these?</h3>
-            <p style={{ marginBottom: 24 }}>
+            <p>
               A Clarity Audit finds where the cost is hiding, quantifies it, and gives you a specific, costed plan to fix it, in plain English, with no vendor agenda.
             </p>
-            <div className="btn-row" style={{ margin: 0, marginBottom: 12 }}>
-              <Link href="/contact" className="btn btn--primary">
-                Book a free discovery call <ArrowRight size={18} />
-              </Link>
-              <Link href="/clarity" className="btn btn--outline">
-                See what a Clarity Audit covers
-              </Link>
-            </div>
-            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" style={{ fontSize: 'var(--do-text-sm)', color: 'var(--do-text-muted-on-dark)', fontWeight: 'var(--do-weight-medium)', display: 'inline-flex', alignItems: 'center', gap: 4 }}>Or book a call directly <ArrowRight size={14} /></a>
+            <p><Link href="/contact">Book a free discovery call</Link> <Link href="/clarity">See what a Clarity Audit covers</Link></p>
+            <p><a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">Or book a call directly</a></p>
           </div>
+        </div>
+      </section>
 
+      <section className="g-off closer" data-od-id="cta">
+        <div className="wrap closer-grid">
+          <div>
+            <span className="eyebrow" data-new-copy>Two or more?</span>
+            <h2 data-od-id="cta-h2" data-new-copy>Find out what it is actually costing you.</h2>
+          </div>
+          <div>
+            <p className="lede">A Clarity Audit finds where the cost is hiding, quantifies it, and gives you a specific plan for what to fix first. Covered by the 3&times; Clarity Guarantee.</p>
+            <div className="btn-row">
+              <Link className="btn btn--primary" href="/contact" data-od-id="cta-primary">Book a free discovery call</Link>
+              <Link className="go" href="/clarity">See what a Clarity Audit covers <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+            </div>
+          </div>
         </div>
       </section>
       <JsonLd data={schema} />

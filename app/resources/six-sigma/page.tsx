@@ -1,13 +1,16 @@
 import Link from 'next/link';
-import { ArrowRight, Download, AlertTriangle } from 'lucide-react';
+import { Download } from 'lucide-react';
 import { JsonLd } from '@/components/JsonLd';
-import { SixSigmaSchematic } from '@/components/schematics/SixSigmaSchematic';
+import { IconSprite } from '@/components/IconSprite';
 import { D17Motion } from '@/components/D17Motion';
 import { a986 } from '@/lib/d17-figures/a986';
 import '@/app/d17-global.css';
-import '@/app/d17-problems.css';
+import '@/app/d17-apps-cases.css';
 import '@/app/d17-resources.css';
+import '@/app/design-system/site-v3.css';
+import '@/app/resources/resources-live.css';
 import { OG_IMAGE, OG_IMAGE_PATH } from '@/lib/seo';
+import s from './page.module.css';
 
 const schema = {
   '@context': 'https://schema.org',
@@ -42,50 +45,36 @@ export const metadata = {
 };
 
 const sigmaLevels = [
-  { level: '3σ', title: 'Industry Baseline', body: 'Roughly 1 in 15 garments has a detectable defect. Misregistration, thread breaks, ink spread. Common when processes rely on operator feel over standard procedure.', yield: '93.3%', dpmo: '66,807', tone: 'base' },
-  { level: '4σ', title: 'Controlled', body: 'Around 6 defects per 1,000 garments. Equipment calibration is routine. Operators follow standardised settings for heat, pressure, dwell time, thread tension.', yield: '99.4%', dpmo: '6,210', tone: 'base' },
-  { level: '5σ', title: 'High Performance', body: 'Only 233 defects per million. Artwork approvals locked. Stitch density standardised by fabric type. Heat press profiles stored per substrate. Statistical sampling replaces end-of-run checking.', yield: '99.98%', dpmo: '233', tone: 'amber' },
-  { level: '6σ', title: 'World Class', body: 'Just 3.4 defects per million. Full process capability studies per decoration type. Real-time machine monitoring. Achievable in high-volume workwear and teamwear with the right infrastructure.', yield: '99.9997%', dpmo: '3.4', tone: 'orange' },
+  { level: '3σ', title: 'Industry Baseline', body: 'Roughly 1 in 15 garments has a detectable defect. Misregistration, thread breaks, ink spread. Common when processes rely on operator feel over standard procedure.', yield: '93.3%', dpmo: '66,807' },
+  { level: '4σ', title: 'Controlled', body: 'Around 6 defects per 1,000 garments. Equipment calibration is routine. Operators follow standardised settings for heat, pressure, dwell time, thread tension.', yield: '99.4%', dpmo: '6,210' },
+  { level: '5σ', title: 'High Performance', body: 'Only 233 defects per million. Artwork approvals locked. Stitch density standardised by fabric type. Heat press profiles stored per substrate. Statistical sampling replaces end-of-run checking.', yield: '99.98%', dpmo: '233' },
+  { level: '6σ', title: 'World Class', body: 'Just 3.4 defects per million. Full process capability studies per decoration type. Real-time machine monitoring. Achievable in high-volume workwear and teamwear with the right infrastructure.', yield: '99.9997%', dpmo: '3.4' },
 ];
-
-const badgeBg: Record<string, string> = { base: 'var(--do-sky-blue)', amber: 'var(--do-amber)', orange: 'var(--do-orange)' };
-const borderCol: Record<string, string> = { base: 'var(--do-sky-blue)', amber: 'var(--do-amber)', orange: 'var(--do-orange)' };
 
 export default function SixSigmaPage() {
   return (
-    <>
+    <main className={s.root}>
+      <IconSprite />
       <JsonLd data={schema} />
 
-      {/* HERO, dark ground */}
-      <section className="g-off">
-        <div className="wrap rt-split">
+      {/* HERO — hero-split: copy left, DO-ART-985 right */}
+      <section className="g-off hero" data-od-id="hero">
+        <div className="wrap hero-split">
           <div>
-            <span className="eyebrow">Free playbook · Garment decoration</span>
-            <h1>What 5 &amp; 6 Sigma mean for your print &amp; embroidery operation</h1>
-            <div className="hair" />
-            <p className="lede">
+            <h1 data-od-id="hero-h1"><span className="h1-kw">Free playbook &middot; six sigma for small business</span> What 5 &amp; 6 Sigma mean for your print &amp; embroidery operation</h1>
+            <p className="t-lede">
               Six sigma for small business is a measure of process quality. The higher the level, the fewer defects escape into finished goods. Here is what each level actually means on the shop floor, and why the gap is process, not machinery.
             </p>
+            <p className="t-body">7-page PDF &middot; no email required</p>
             <div className="btn-row">
-              <a href="/downloads/six-sigma.pdf" download className="btn btn--primary">
-                <Download size={18} /> Download the playbook
+              <a className="btn btn--primary" href="/downloads/six-sigma.pdf" download data-od-id="hero-cta" style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+                <Download size={20} /> Download the playbook
               </a>
-              <Link href="/clarity" className="btn btn--outline">
-                See what Clarity covers <ArrowRight size={18} />
-              </Link>
+              <a className="go" href="#scale" data-new-copy>See the scale <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></a>
             </div>
-            <p style={{ fontSize: 'var(--do-text-sm)', color: 'var(--do-text-muted-on-dark)' }}>7-page PDF · no email required</p>
           </div>
 
-          <div style={{ position: 'relative', margin: '0 auto', width: '100%', maxWidth: 320 }}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/images/six-sigma-cover.webp" alt="The 5 & 6 Sigma Decoration Playbook, cover" width={1075} height={1521} style={{ width: '100%', borderRadius: 'var(--do-radius-lg)', boxShadow: 'var(--do-shadow-xl)', transform: 'rotate(2.5deg)' }} />
-          </div>
-        </div>
-      </section>
-
-      <section className="g-navy">
-        <div className="wrap" dangerouslySetInnerHTML={{ __html: `
+          <div dangerouslySetInnerHTML={{ __html: `
       <figure class="d17 sx sx--solo a985" data-od-id="hero-art" data-motion data-no="DO-ART-985" data-rev="01" data-tx="photo"
               aria-label="Artwork DO-ART-985. The 5 and 6 Sigma decoration playbook over a graded photograph of an embroidery machine's thread spools: the cover, seven pages, and an open spread with the scale. Three sigma, industry baseline, 93.3 per cent yield, 66,807 defects per million. Four sigma, controlled, 99.4 per cent, 6,210. Five sigma, high performance, in amber, 99.98 per cent, 233. Six sigma, world class, 99.9997 per cent, 3.4. The gap is process, not machinery.">
         <div class="d17-ph"><img src="/images/d17/resources/thread-spools-a145a8.webp" alt="" width="900" height="873"></div>
@@ -117,89 +106,57 @@ export default function SixSigmaPage() {
           <span class="d17-mark">decodedops.co.uk · DO-ART-985 · Rev 01</span>
         </div>
       </figure>
-        ` }} />
+          ` }} />
+        </div>
       </section>
 
-      {/* WARNING BAND, the one accent strip */}
-      <div className="strip">
-        <div className="wrap" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10, textAlign: 'center' }}>
-          <AlertTriangle size={18} style={{ flexShrink: 0 }} />
-          <p>Most decoration businesses operate at 3 to 4 Sigma. Here is what that actually means.</p>
-        </div>
-      </div>
-
-      {/* SIGMA SCALE + LEVELS (light) */}
-      <section className="g-off section--tight">
+      {/* The scale */}
+      <section className="g-navy" id="scale" data-od-id="scale">
+        <div className="do-dot-grid" aria-hidden="true" style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }} />
         <div className="wrap">
-          <div style={{ maxWidth: '46ch' }}>
-            <span className="eyebrow">The scale</span>
-            <h2>From reactive to near-zero defect</h2>
-            <p className="lede">Each sigma level is a defect rate. Here is where the gap between 3 Sigma and 5 Sigma sits, and what it is worth.</p>
-          </div>
-
-          <div style={{ marginTop: 40, borderRadius: 'var(--do-radius-2xl)', overflow: 'hidden', boxShadow: 'var(--do-shadow-lg)' }}>
-            <SixSigmaSchematic tone="light" />
-          </div>
-
-          <div className="grid grid--2" style={{ marginTop: 8 }}>
+          <div className="route-head"><div><span className="eyebrow">The scale</span><h2 data-od-id="scale-h2">From reactive to near-zero defect</h2></div><p className="lede">Each sigma level is a defect rate. Here is where the gap between 3 Sigma and 5 Sigma sits, and what it is worth.</p></div>
+          <ol className="ledger-list" data-od-id="scale-ledger">
             {sigmaLevels.map((l) => (
-              <div key={l.level} className="card" style={{ borderLeft: `4px solid ${borderCol[l.tone]}`, display: 'flex', gap: 20, alignItems: 'flex-start' }}>
-                <div style={{ flexShrink: 0, width: 64, height: 56, borderRadius: 'var(--do-radius-lg)', display: 'flex', alignItems: 'center', justifyContent: 'center', background: badgeBg[l.tone] }}>
-                  <span style={{ fontSize: 'var(--do-text-xl)', fontWeight: 'var(--do-weight-extrabold)', color: 'var(--do-prussian-blue)' }}>{l.level}</span>
-                </div>
-                <div style={{ flex: 1 }}>
-                  <h3>{l.title}</h3>
-                  <p style={{ marginTop: 6, marginBottom: 0 }}>{l.body}</p>
-                </div>
-                <div style={{ textAlign: 'right', flexShrink: 0 }}>
-                  <div style={{ fontSize: 'var(--do-text-lg)', fontWeight: 'var(--do-weight-extrabold)', color: 'var(--do-text-primary)' }}>{l.yield}</div>
-                  <div style={{ fontSize: 10, textTransform: 'uppercase', letterSpacing: 'var(--do-tracking-wider)', color: 'var(--do-text-subtle)' }}>yield</div>
-                  <div style={{ marginTop: 4, fontSize: 'var(--do-text-xs)', fontWeight: 'var(--do-weight-semibold)', color: 'var(--do-text-cerulean)' }}>{l.dpmo} DPMO</div>
-                </div>
-              </div>
+              <li key={l.level} data-od-id={`level-${l.level.charAt(0)}`}>
+                {/* the mockup's ledger figures render empty — filled from the page's existing sigma data */}
+                <p className="fig">{l.yield}<small>yield &middot; {l.dpmo} DPMO</small></p>
+                <div><h3>{l.title}</h3><p className="t-card">{l.body}</p></div>
+                <span className="tag">{l.level}</span>
+              </li>
             ))}
+          </ol>
+          <p className="route-cap"><svg className="ic ic-16" aria-hidden="true"><use href="#i-check" /></svg>Most decoration businesses operate at 3 to 4 Sigma. Here is what that actually means.</p>
+        </div>
+      </section>
+
+      {/* The real gap */}
+      <section className="g-white" data-od-id="gap">
+        <div className="wrap">
+          <div className="sec-head"><span className="eyebrow">The real gap</span>
+            <h2 data-od-id="gap-h2">The gap is process, not machinery</h2>
+            <p className="lede">Moving from <strong>3 Sigma to 5 Sigma</strong> cuts your defect rate by <strong>99.6%</strong>. That is not a machine upgrade. It is a process redesign: standardised settings, documented procedures, and measured checkpoints are what separate the two. Not a newer heat press.</p>
+            <p>If your defect rate feels stuck, the fix usually is not new equipment. It is documenting and standardising what your best operator already does, which is six sigma for small business in practice. That is exactly what a Clarity engagement maps.</p>
+          </div>
+          <div dangerouslySetInnerHTML={{ __html: a986 }} />
+        </div>
+      </section>
+
+      <section className="g-off closer" data-od-id="cta">
+        <div className="wrap closer-grid">
+          <div>
+            <span className="eyebrow" data-new-copy>Where do you sit?</span>
+            <h2 data-od-id="cta-h2">See where your operation sits on the scale.</h2>
+          </div>
+          <div>
+            <p className="lede">A Clarity Audit maps your actual defect rate, finds the process gaps behind it, and gives you a costed plan to close them.</p>
+            <div className="btn-row">
+              <Link className="btn btn--primary" href="/contact" data-od-id="cta-primary">Book a free discovery call</Link>
+              <Link className="go" href="/clarity">See what Clarity covers <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+            </div>
           </div>
         </div>
       </section>
-
-      {/* THE REAL GAP (dark) */}
-      <section className="g-off section--tight">
-        <div className="wrap" style={{ maxWidth: 720 }}>
-          <span className="eyebrow">The real gap</span>
-          <h2>The gap is process, not machinery</h2>
-          <p className="lede">
-            Moving from <strong style={{ color: 'var(--do-amber)' }}>3 Sigma to 5 Sigma</strong> cuts your defect rate by <strong style={{ color: 'var(--do-amber)' }}>99.6%</strong>. That is not a machine upgrade. It is a process redesign: standardised settings, documented procedures, and measured checkpoints are what separate the two. Not a newer heat press.
-          </p>
-          <p className="lede">
-            If your defect rate feels stuck, the fix usually is not new equipment. It is documenting and standardising what your best operator already does, which is six sigma for small business in practice. That is exactly what a Clarity engagement maps.
-          </p>
-        </div>
-      </section>
-
-
-      {/* D17 INLINE · DO-ART-986 */}
-      <section className="g-navy">
-        <div className="wrap" dangerouslySetInnerHTML={{ __html: a986 }} />
-      </section>
-
-
-      {/* CTA STRIP (light) */}
-      <section className="g-white" style={{ textAlign: 'center' }}>
-        <div className="wrap" style={{ maxWidth: 760 }}>
-          <h2>See where your operation sits on the scale.</h2>
-          <p className="lede">A Clarity Audit maps your actual defect rate, finds the process gaps behind it, and gives you a costed plan to close them.</p>
-          <div className="btn-row">
-            <Link href="/contact" className="btn btn--primary">
-              Book a free discovery call <ArrowRight size={18} />
-            </Link>
-            <Link href="/clarity" className="btn btn--outline">
-              See what Clarity covers <ArrowRight size={18} />
-            </Link>
-          </div>
-        </div>
-      </section>
-
       <D17Motion />
-    </>
+    </main>
   );
 }

@@ -1,14 +1,17 @@
 import Link from 'next/link';
-import { ArrowRight, CheckCircle2, Download } from 'lucide-react';
+import { Download } from 'lucide-react';
 import { BOOKING_URL } from '@/lib/constants';
 import { JsonLd } from '@/components/JsonLd';
-import { Plate } from '@/components/Plate';
+import { IconSprite } from '@/components/IconSprite';
 import { D17Motion } from '@/components/D17Motion';
 import { DownloadOptIn } from '@/components/DownloadOptIn';
 import '@/app/d17-global.css';
-import '@/app/d17-problems.css';
+import '@/app/d17-apps-cases.css';
 import '@/app/d17-resources.css';
+import '@/app/design-system/site-v3.css';
+import '@/app/resources/resources-live.css';
 import { OG_IMAGE, OG_IMAGE_PATH } from '@/lib/seo';
+import s from './page.module.css';
 
 // Target keyword: "operational audit checklist" (secondary: "technology audit checklist small business")
 const schema = {
@@ -118,19 +121,33 @@ const checklist = [
   },
 ];
 
+const takeaways = [
+  "If you can't answer 5+ questions, you probably have a bigger operational problem than you realise.",
+  'The items about "manual work" and "re-keying" are where the money is hiding.',
+  "If your systems don't integrate, you are paying a significant amount in manual workarounds.",
+  'Inventory accuracy problems cost more than most businesses realise.',
+];
+
 export default function ChecklistPage() {
   return (
-    <>
+    <main className={s.root}>
+      <IconSprite />
       <JsonLd data={schema} />
-      {/* HERO — rt-split: copy left, DO-ART-983 right */}
-      <section className="g-off">
-        <div className="wrap rt-split">
+      {/* HERO — hero-split: copy left, DO-ART-983 right */}
+      <section className="g-off hero" data-od-id="hero">
+        <div className="wrap hero-split">
           <div>
-            <span className="eyebrow">Free resource</span>
-            <h1>Operational audit checklist</h1>
-            <p className="lede">
+            <h1 data-od-id="hero-h1"><span className="h1-kw">Free resource &middot; operations audit checklist</span> Operational audit checklist</h1>
+            <p className="t-lede">
               This operations audit checklist is 36 questions to evaluate your business, technology, and processes. Use this before you hire a consultant, or to understand what an audit actually covers.
             </p>
+            <p className="t-body"><strong>The operations audit checklist.</strong> Word document &middot; 5 pages &middot; 36 questions across 7 areas, with space for notes. No email needed.</p>
+            <div className="btn-row">
+              <a className="btn btn--primary" href="/downloads/decoded-ops-audit-checklist.docx" data-od-id="hero-cta" style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+                <Download size={20} /> Download the checklist (.docx)
+              </a>
+              <a className="go" href="#s1" data-new-copy>Read it here instead <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></a>
+            </div>
           </div>
           <div dangerouslySetInnerHTML={{ __html: `
 <figure class="d17 sx a983" data-od-id="hero-art" data-motion data-no="DO-ART-983" data-rev="01" data-tx="photo"
@@ -172,6 +189,8 @@ export default function ChecklistPage() {
         </div>
       </section>
 
+      {/* Lead capture — kept: the mockup pictures this form in the aside, but
+          DownloadOptIn renders its own full-width section and is never rebuilt */}
       <DownloadOptIn
         resource="audit-checklist"
         title="The operations audit checklist"
@@ -183,8 +202,10 @@ export default function ChecklistPage() {
       />
 
       {/* D17 inline artwork DO-ART-984 */}
-      <section className="g-navy">
+      <section className="g-navy route-sec" data-od-id="plate">
+        <div className="do-dot-grid" aria-hidden="true" style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }} />
         <div className="wrap">
+          <div className="route-head"><div><span className="eyebrow" data-new-copy>The structure</span><h2 data-od-id="plate-h2" data-new-copy>Six areas you can check today, and the one they feed.</h2></div><p className="lede" data-new-copy>Infrastructure, systems, eCommerce, processes, stock and costs can each be answered from what you know now. Growth and strategy can only be answered once the first six are honest.</p></div>
           <div dangerouslySetInnerHTML={{ __html: `
 <figure class="d17 sw a984" data-od-id="plate-structure" data-motion data-no="DO-ART-984" data-rev="01" data-tx="schematic"
         aria-label="Drawn plate DO-ART-984, the audit structure. Six areas you can check today: IT infrastructure and security, six questions; systems and software, five; eCommerce and digital sales, five; processes and operations, six; inventory and stock, five; costs and financial, five. All six feed the seventh, in amber: growth and strategic, four questions that only the first six can answer.">
@@ -239,108 +260,85 @@ export default function ChecklistPage() {
         </div>
       </section>
 
-      {/* CONTENT */}
-      <section className="g-off section--tight">
-        <div className="wrap" style={{ maxWidth: 720 }}>
-
-          {/* Intro */}
-          <div className="card" style={{ background: 'color-mix(in srgb, var(--do-cerulean) 10%, transparent)', borderColor: 'color-mix(in srgb, var(--do-cerulean) 25%, transparent)', marginBottom: 64 }}>
-            <h2>How to use this checklist</h2>
-            <p style={{ color: 'color-mix(in srgb, var(--do-prussian-blue) 80%, transparent)' }}>
-              Go through each section of the operations audit checklist and answer the questions honestly. You don't need to score yourself or mark items as "good" or "bad." The goal is to identify where you have gaps or uncertainties.
+      <section className="g-white" data-od-id="article">
+        <div className="wrap post-grid">
+          <aside className="post-aside" data-od-id="article-aside">
+            <div>
+              <span className="toc-h">In this guide</span>
+              <ol className="toc">
+                <li><a href="#s1"><b>01</b><span>How to use this checklist</span></a></li>
+                <li><a href="#s2"><b>02</b><span>IT Infrastructure &amp; Security</span></a></li>
+                <li><a href="#s3"><b>03</b><span>Systems &amp; Software</span></a></li>
+                <li><a href="#s4"><b>04</b><span>eCommerce &amp; Digital Sales</span></a></li>
+                <li><a href="#s5"><b>05</b><span>Processes &amp; Operations</span></a></li>
+                <li><a href="#s6"><b>06</b><span>Inventory &amp; Stock</span></a></li>
+                <li><a href="#s7"><b>07</b><span>Costs &amp; Financial</span></a></li>
+                <li><a href="#s8"><b>08</b><span>Growth &amp; Strategic</span></a></li>
+                <li><a href="#s9"><b>09</b><span>Key takeaways</span></a></li>
+              </ol>
+            </div>
+            <div className="byline" data-od-id="byline">
+              <img src="/images/d17/craig-blackman.webp" width={56} height={56} alt="Craig Blackman" />
+              <p><b>Craig Blackman</b><span>Twenty-five years inside decorated-goods businesses. Written from the work, not from a template.</span></p>
+            </div>
+          </aside>
+          <div className="prose" data-od-id="article-body">
+            <h2 id="s1">How to use this checklist</h2>
+            <p>
+              Go through each section of the operations audit checklist and answer the questions honestly. You don&apos;t need to score yourself or mark items as &quot;good&quot; or &quot;bad.&quot; The goal is to identify where you have gaps or uncertainties.
             </p>
-            <p style={{ color: 'color-mix(in srgb, var(--do-prussian-blue) 80%, transparent)', marginBottom: 0 }}>
-              The items you can't answer are the most valuable. They're where the hidden costs usually are.
+            <p>
+              The items you can&apos;t answer are the most valuable. They&apos;re where the hidden costs usually are.
             </p>
-          </div>
-
-          {/* Checklist */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 48 }}>
             {checklist.map((section, sectionIndex) => (
               <div key={sectionIndex}>
-                <h2 style={{ paddingBottom: 16, marginBottom: 24, borderBottom: '1px solid var(--do-border-subtle)' }}>
-                  {section.section}
-                </h2>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-                  {section.items.map((item, itemIndex) => (
-                    <div key={itemIndex} style={{ display: 'flex', gap: 16, alignItems: 'flex-start', padding: 16, borderRadius: 'var(--do-radius-lg)', background: 'var(--do-off-white)' }}>
-                      <div style={{ flexShrink: 0, marginTop: 4 }}>
-                        <div style={{ width: 20, height: 20, borderRadius: '50%', border: '2px solid var(--do-cerulean)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                          <div style={{ width: 8, height: 8, borderRadius: '50%', background: 'color-mix(in srgb, var(--do-cerulean) 30%, transparent)' }} />
-                        </div>
-                      </div>
-                      <p style={{ color: 'color-mix(in srgb, var(--do-prussian-blue) 80%, transparent)', marginBottom: 0 }}>
-                        {item}
-                      </p>
-                    </div>
-                  ))}
-                </div>
+                <h2 id={`s${sectionIndex + 2}`}>{section.section}</h2>
+                {section.items.map((item, itemIndex) => (
+                  <p key={itemIndex}>{item}</p>
+                ))}
               </div>
             ))}
-          </div>
-
-          {/* Key Takeaways */}
-          <div className="g-tint" style={{ marginTop: 64, borderRadius: 'var(--do-radius-2xl)', padding: 32 }}>
-            <h2>Key takeaways</h2>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-              <div style={{ display: 'flex', gap: 16, alignItems: 'flex-start' }}>
-                <CheckCircle2 size={20} style={{ flexShrink: 0, marginTop: 4, color: 'var(--do-text-cerulean)' }} />
-                <p style={{ marginBottom: 0 }}>
-                  If you can't answer 5+ questions, you probably have a bigger operational problem than you realise.
-                </p>
-              </div>
-              <div style={{ display: 'flex', gap: 16, alignItems: 'flex-start' }}>
-                <CheckCircle2 size={20} style={{ flexShrink: 0, marginTop: 4, color: 'var(--do-text-cerulean)' }} />
-                <p style={{ marginBottom: 0 }}>
-                  The items about "manual work" and "re-keying" are where the money is hiding.
-                </p>
-              </div>
-              <div style={{ display: 'flex', gap: 16, alignItems: 'flex-start' }}>
-                <CheckCircle2 size={20} style={{ flexShrink: 0, marginTop: 4, color: 'var(--do-text-cerulean)' }} />
-                <p style={{ marginBottom: 0 }}>
-                  If your systems don&apos;t integrate, you are paying a significant amount in manual workarounds.
-                </p>
-              </div>
-              <div style={{ display: 'flex', gap: 16, alignItems: 'flex-start' }}>
-                <CheckCircle2 size={20} style={{ flexShrink: 0, marginTop: 4, color: 'var(--do-text-cerulean)' }} />
-                <p style={{ marginBottom: 0 }}>
-                  Inventory accuracy problems cost more than most businesses realise.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <DownloadOptIn
-            resource="audit-checklist"
-            title="The operations audit checklist"
-            meta="Word document · 5 pages · 36 questions across 7 areas, with space for notes"
-            fileHref="/downloads/decoded-ops-audit-checklist.docx"
-            buttonLabel="Download the checklist"
-            coverTitle="Operations audit checklist"
-            thing="the checklist"
-            compact
-          />
-
-          {/* CTA */}
-          <div className="card" style={{ background: 'color-mix(in srgb, var(--do-amber) 10%, transparent)', borderColor: 'color-mix(in srgb, var(--do-amber) 30%, transparent)', marginTop: 64 }}>
-            <h3>Once you've worked through this checklist...</h3>
-            <p style={{ color: 'color-mix(in srgb, var(--do-prussian-blue) 80%, transparent)', marginBottom: 24 }}>
-              The real value is in seeing what you don't know. If there are gaps, an audit finds them, puts a number on them, and gives you a plan to fix them.
+            <h2 id="s9">Key takeaways</h2>
+            {takeaways.map((item, i) => (
+              <p key={i}>{item}</p>
+            ))}
+            {/* kept: the mockup pictures the compact download line here — this is the component */}
+            <DownloadOptIn
+              resource="audit-checklist"
+              title="The operations audit checklist"
+              meta="Word document · 5 pages · 36 questions across 7 areas, with space for notes"
+              fileHref="/downloads/decoded-ops-audit-checklist.docx"
+              buttonLabel="Download the checklist"
+              coverTitle="Operations audit checklist"
+              thing="the checklist"
+              compact
+            />
+            <h3>Once you&apos;ve worked through this checklist...</h3>
+            <p>
+              The real value is in seeing what you don&apos;t know. If there are gaps, an audit finds them, puts a number on them, and gives you a plan to fix them.
             </p>
-            <div className="btn-row" style={{ margin: 0, marginBottom: 12 }}>
-              <Link href="/contact" className="btn btn--primary">
-                Book a free discovery call <ArrowRight size={18} />
-              </Link>
-              <Link href="/clarity" className="btn btn--outline">
-                See what an audit covers
-              </Link>
-            </div>
-            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" style={{ fontSize: 'var(--do-text-sm)', color: 'var(--do-text-cerulean)', fontWeight: 'var(--do-weight-medium)', display: 'inline-flex', alignItems: 'center', gap: 4 }}>Or book a call directly <ArrowRight size={14} /></a>
+            <p><Link href="/contact">Book a free discovery call</Link> <Link href="/clarity">See what an audit covers</Link></p>
+            <p><a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">Or book a call directly</a></p>
           </div>
+        </div>
+      </section>
 
+      <section className="g-off closer" data-od-id="cta">
+        <div className="wrap closer-grid">
+          <div>
+            <span className="eyebrow" data-new-copy>Can&rsquo;t answer some of them?</span>
+            <h2 data-od-id="cta-h2" data-new-copy>The blanks are where the cost is.</h2>
+          </div>
+          <div>
+            <p className="lede" data-new-copy>A Clarity Audit answers the questions you can&rsquo;t, on site in a day, with the written report in five working days.</p>
+            <div className="btn-row">
+              <Link className="btn btn--primary" href="/contact" data-od-id="cta-primary">Book a free discovery call</Link>
+              <Link className="go" href="/clarity">See what an audit covers <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+            </div>
+          </div>
         </div>
       </section>
       <D17Motion />
-    </>
+    </main>
   );
 }
