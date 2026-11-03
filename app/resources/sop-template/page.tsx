@@ -1,13 +1,17 @@
 import Link from 'next/link';
-import { ArrowRight, CheckCircle2, Check } from 'lucide-react';
+import { Download } from 'lucide-react';
 import { BOOKING_URL } from '@/lib/constants';
 import { JsonLd } from '@/components/JsonLd';
+import { IconSprite } from '@/components/IconSprite';
 import { D17Motion } from '@/components/D17Motion';
 import { DownloadOptIn } from '@/components/DownloadOptIn';
 import '@/app/d17-global.css';
-import '@/app/d17-problems.css';
+import '@/app/d17-apps-cases.css';
 import '@/app/d17-resources.css';
+import '@/app/design-system/site-v3.css';
+import '@/app/resources/resources-live.css';
 import { OG_IMAGE, OG_IMAGE_PATH } from '@/lib/seo';
+import s from './page.module.css';
 
 const schema = {
   '@context': 'https://schema.org',
@@ -75,18 +79,25 @@ const templateContents = [
 
 export default function SopTemplatePage() {
   return (
-    <>
+    <main className={s.root}>
+      <IconSprite />
       <JsonLd data={schema} />
 
-      {/* HERO — rt-split: copy left, DO-ART-987 right */}
-      <section className="g-off">
-        <div className="wrap rt-split">
+      {/* HERO — hero-split: copy left, DO-ART-987 right */}
+      <section className="g-off hero" data-od-id="hero">
+        <div className="wrap hero-split">
           <div>
-            <span className="eyebrow">Free resource</span>
-            <h1>SOP template for decorated goods businesses</h1>
-            <p className="lede">
+            <h1 data-od-id="hero-h1"><span className="h1-kw">Free resource &middot; SOP template</span> SOP template for decorated goods businesses</h1>
+            <p className="t-lede">
               A free template and 7-step method for writing Standard Operating Procedures that your team can actually follow. Built for garment decoration, print, and embroidery businesses.
             </p>
+            <p className="t-body"><strong>The SOP template.</strong> Word document &middot; 11 pages &middot; Process Register, one-page SOP form, 6 worked examples, Improvement Log. No email needed.</p>
+            <div className="btn-row">
+              <a className="btn btn--primary" href="/downloads/decoded-ops-sop-template.docx" data-od-id="hero-cta" style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+                <Download size={20} /> Download the template (.docx)
+              </a>
+              <a className="go" href="#s1" data-new-copy>Read it here instead <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></a>
+            </div>
           </div>
           <div dangerouslySetInnerHTML={{ __html: `
 <figure class="d17 sx a987" data-od-id="hero-art" data-motion data-no="DO-ART-987" data-rev="01" data-tx="photo"
@@ -133,6 +144,8 @@ export default function SopTemplatePage() {
         </div>
       </section>
 
+      {/* Lead capture — kept: the mockup pictures this form in the aside, but
+          DownloadOptIn renders its own full-width section and is never rebuilt */}
       <DownloadOptIn
         resource="sop-template"
         title="The SOP template"
@@ -140,158 +153,144 @@ export default function SopTemplatePage() {
         fileHref="/downloads/decoded-ops-sop-template.docx"
       />
 
-      <section className="g-off section--tight">
-        <div className="wrap" style={{ maxWidth: 720 }}>
-
-          <div className="card" style={{ background: 'color-mix(in srgb, var(--do-cerulean) 10%, transparent)', borderColor: 'color-mix(in srgb, var(--do-cerulean) 25%, transparent)', marginBottom: 64 }}>
-            <h2>What the template includes</h2>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-              {templateContents.map((item, i) => (
-                <div key={i} style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
-                  <CheckCircle2 size={18} style={{ flexShrink: 0, marginTop: 4, color: 'var(--do-text-cerulean)' }} />
-                  <p style={{ color: 'color-mix(in srgb, var(--do-prussian-blue) 80%, transparent)', marginBottom: 0 }}>
-                    {item}
-                  </p>
-                </div>
-              ))}
+      <section className="g-white" data-od-id="article">
+        <div className="wrap post-grid">
+          <aside className="post-aside" data-od-id="article-aside">
+            <div>
+              <span className="toc-h">In this guide</span>
+              <ol className="toc">
+                <li><a href="#s1"><b>01</b><span>What the template includes</span></a></li>
+                <li><a href="#s2"><b>02</b><span>What an SOP actually is</span></a></li>
+                <li><a href="#s3"><b>03</b><span>Why decorated goods businesses specifically need SOPs</span></a></li>
+                <li><a href="#s4"><b>04</b><span>The three documents that matter</span></a></li>
+                <li><a href="#s5"><b>05</b><span>How to write an SOP: step by step</span></a></li>
+                <li><a href="#s6"><b>06</b><span>Why this matters more than ever</span></a></li>
+                <li><a href="#s7"><b>07</b><span>Key takeaways</span></a></li>
+              </ol>
             </div>
-            <p style={{ marginTop: 16, fontSize: 'var(--do-text-sm)', color: 'color-mix(in srgb, var(--do-prussian-blue) 72%, transparent)', marginBottom: 0 }}>
+            <div className="byline" data-od-id="byline">
+              <img src="/images/d17/craig-blackman.webp" width={56} height={56} alt="Craig Blackman" />
+              <p><b>Craig Blackman</b><span>Twenty-five years inside decorated-goods businesses. Written from the work, not from a template.</span></p>
+            </div>
+          </aside>
+          <div className="prose" data-od-id="article-body">
+            <h2 id="s1">What the template includes</h2>
+            {templateContents.map((item, i) => (
+              <p key={i}>{item}</p>
+            ))}
+            <p>
               The SOP template takes about 30 minutes to fill in for your first process. Subsequent processes take less time because you are reusing the structure.
             </p>
-          </div>
-
-          <div style={{ marginBottom: 64 }}>
-            <h2>What an SOP actually is</h2>
-            <p style={{ color: 'color-mix(in srgb, var(--do-prussian-blue) 80%, transparent)' }}>
+            <h2 id="s2">What an SOP actually is</h2>
+            <p>
               A Standard Operating Procedure is a written document that tells someone exactly how to do a specific task, in the right order, every time.
             </p>
-            <p style={{ color: 'color-mix(in srgb, var(--do-prussian-blue) 80%, transparent)' }}>
+            <p>
               Not a textbook definition, not a quality manual gathering dust on a shelf. A working document someone on your team can pick up and follow, even when the person who normally does the job is off sick.
             </p>
-            <p style={{ color: 'color-mix(in srgb, var(--do-prussian-blue) 80%, transparent)' }}>
+            <p>
               An SOP answers three questions: Who does this task? What do they need before they start? What do they do, step by step? If your SOP answers all three, it works.
             </p>
-          </div>
-
-          <div style={{ marginBottom: 64 }}>
-            <h2>Why decorated goods businesses specifically need SOPs</h2>
-            <p style={{ color: 'color-mix(in srgb, var(--do-prussian-blue) 80%, transparent)' }}>
+            <h2 id="s3">Why decorated goods businesses specifically need SOPs</h2>
+            <p>
               Every order in garment decoration, print, and embroidery is potentially different. The customer wants a specific garment, a specific decoration method, a specific placement, a specific thread colour, a specific delivery date. Production sits between order and despatch. That middle section is where things go wrong.
             </p>
-            <p style={{ color: 'color-mix(in srgb, var(--do-prussian-blue) 80%, transparent)' }}>
+            <p>
               Generic technology advice or off-the-shelf procedures do not help here because your operation is not generic. It is built around the specific combination of machines, materials, supplier relationships, and customer expectations that make your business work.
             </p>
-            <p style={{ color: 'color-mix(in srgb, var(--do-prussian-blue) 80%, transparent)' }}>
+            <p>
               I worked with a decorated goods business where the entire production schedule lived in the office manager&apos;s head. That person had been there eighteen years. When they went on holiday, production slowed noticeably. Nobody knew why. The knowledge was not documented anywhere. The cost of that single undocumented role showed up every time they took leave. The cost of documenting the key processes was about two days of my time.
             </p>
-          </div>
-
-          <div style={{ marginBottom: 64 }}>
-            <h2>The three documents that matter</h2>
-            <p style={{ color: 'color-mix(in srgb, var(--do-prussian-blue) 80%, transparent)', marginBottom: 24 }}>
+            <h2 id="s4">The three documents that matter</h2>
+            <p>
               An SOP does not exist in isolation. It is part of a three-layer system I call the Decoded Method. Every engagement I run builds this system.
             </p>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
-              {layers.map((layer) => (
-                <div key={layer.n} style={{ padding: 24, borderRadius: 'var(--do-radius-xl)', background: 'var(--do-off-white)', borderLeft: `4px solid ${layer.accent}` }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
-                    <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 32, height: 32, borderRadius: 'var(--do-radius-lg)', background: 'var(--do-prussian-blue)', color: 'white', fontSize: 'var(--do-text-sm)', fontWeight: 800 }}>{layer.n}</span>
-                    <h3 style={{ fontSize: 'var(--do-text-lg)', fontWeight: 700, color: 'var(--do-text-primary)', margin: 0 }}>{layer.name}</h3>
-                  </div>
-                  <p style={{ fontSize: 'var(--do-text-sm)', color: 'color-mix(in srgb, var(--do-prussian-blue) 75%, transparent)', marginBottom: 0 }}>{layer.blurb}</p>
-                </div>
-              ))}
-            </div>
-            <p style={{ color: 'color-mix(in srgb, var(--do-prussian-blue) 80%, transparent)', marginTop: 24 }}>
+            {layers.map((layer) => (
+              <div key={layer.n}>
+                <h3>{layer.name}</h3>
+                <p>{layer.blurb}</p>
+              </div>
+            ))}
+            <p>
               The order matters. You cannot write good SOPs until you know what processes you have. You cannot improve processes until they are documented. Document what exists, then improve it, then maintain it.
             </p>
-          </div>
-
-          <div style={{ marginBottom: 64 }}>
-            <h2>How to write an SOP: step by step</h2>
-            <p style={{ color: 'color-mix(in srgb, var(--do-prussian-blue) 80%, transparent)', marginBottom: 24 }}>
+            <h2 id="s5">How to write an SOP: step by step</h2>
+            <p>
               Here is the practical method I use with every client. It works for any process in a decorated goods business.
             </p>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
-              {steps.map((step) => (
-                <div key={step.n} style={{ display: 'flex', gap: 16, alignItems: 'flex-start' }}>
-                  <div style={{ flexShrink: 0, width: 36, height: 36, borderRadius: '50%', background: 'var(--do-cerulean)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 'var(--do-text-sm)' }}>{step.n}</div>
-                  <div>
-                    <h3 style={{ fontWeight: 700, color: 'var(--do-text-primary)', marginBottom: 4 }}>{step.title}</h3>
-                    <p style={{ fontSize: 'var(--do-text-sm)', color: 'color-mix(in srgb, var(--do-prussian-blue) 75%, transparent)', marginBottom: 0 }}>{step.body}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <DownloadOptIn
-            resource="sop-template"
-            title="The SOP template"
-            meta="Word document · 11 pages · Process Register, one-page SOP form, 6 worked examples, Improvement Log"
-            fileHref="/downloads/decoded-ops-sop-template.docx"
-            compact
-          />
-
-          <div style={{ marginBottom: 64 }}>
-            <h2>Why this matters more than ever</h2>
-            <p style={{ color: 'color-mix(in srgb, var(--do-prussian-blue) 80%, transparent)' }}>
+            {steps.map((step) => (
+              <div key={step.n}>
+                <h3>{step.title}</h3>
+                <p>{step.body}</p>
+              </div>
+            ))}
+            {/* kept: the mockup pictures the compact download line here — this is the component */}
+            <DownloadOptIn
+              resource="sop-template"
+              title="The SOP template"
+              meta="Word document · 11 pages · Process Register, one-page SOP form, 6 worked examples, Improvement Log"
+              fileHref="/downloads/decoded-ops-sop-template.docx"
+              compact
+            />
+            <h2 id="s6">Why this matters more than ever</h2>
+            <p>
               The businesses that will get the most value from AI, automation, and new systems in the next few years are the ones doing the boring stuff now. Documenting their processes. Cleaning their data. Connecting their systems.
             </p>
-            <p style={{ color: 'color-mix(in srgb, var(--do-prussian-blue) 80%, transparent)' }}>
+            <p>
               AI amplifies whatever is already there. Feed it undocumented processes held together by one or two people, and it just makes the chaos faster. Feed it documented, structured operations, and it makes those better and faster too.
             </p>
-          </div>
-
-          <div className="g-tint" style={{ borderRadius: 'var(--do-radius-2xl)', padding: 32, marginBottom: 64 }}>
-            <h2>Key takeaways</h2>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-              <div style={{ display: 'flex', gap: 16, alignItems: 'flex-start' }}>
-                <CheckCircle2 size={20} style={{ flexShrink: 0, marginTop: 4, color: 'var(--do-text-cerulean)' }} />
-                <p style={{ marginBottom: 0 }}>
-                  Start with the process that would cause the most damage if the person who does it was unavailable. That is where the risk is.
-                </p>
-              </div>
-              <div style={{ display: 'flex', gap: 16, alignItems: 'flex-start' }}>
-                <CheckCircle2 size={20} style={{ flexShrink: 0, marginTop: 4, color: 'var(--do-text-cerulean)' }} />
-                <p style={{ marginBottom: 0 }}>
-                  One page per process. If it needs more than a page, split it into two processes.
-                </p>
-              </div>
-              <div style={{ display: 'flex', gap: 16, alignItems: 'flex-start' }}>
-                <CheckCircle2 size={20} style={{ flexShrink: 0, marginTop: 4, color: 'var(--do-text-cerulean)' }} />
-                <p style={{ marginBottom: 0 }}>
-                  Test every SOP with someone who does not normally do the job. If they get stuck, the SOP is the problem, not the person.
-                </p>
-              </div>
-              <div style={{ display: 'flex', gap: 16, alignItems: 'flex-start' }}>
-                <CheckCircle2 size={20} style={{ flexShrink: 0, marginTop: 4, color: 'var(--do-text-cerulean)' }} />
-                <p style={{ marginBottom: 0 }}>
-                  Set a 6-month review cycle. An SOP that is not reviewed becomes outdated and ignored.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="card" style={{ background: 'color-mix(in srgb, var(--do-amber) 10%, transparent)', borderColor: 'color-mix(in srgb, var(--do-amber) 30%, transparent)' }}>
+            <h2 id="s7">Key takeaways</h2>
+            <p>
+              Start with the process that would cause the most damage if the person who does it was unavailable. That is where the risk is.
+            </p>
+            <p>
+              One page per process. If it needs more than a page, split it into two processes.
+            </p>
+            <p>
+              Test every SOP with someone who does not normally do the job. If they get stuck, the SOP is the problem, not the person.
+            </p>
+            <p>
+              Set a 6-month review cycle. An SOP that is not reviewed becomes outdated and ignored.
+            </p>
             <h3>Once you have your first SOPs written...</h3>
-            <p style={{ color: 'color-mix(in srgb, var(--do-prussian-blue) 80%, transparent)', marginBottom: 24 }}>
+            <p>
               The real value comes when every process in your business is documented, owned, and reviewed regularly. A Clarity engagement builds the full three-layer system with you, mapping what you do, who owns it, and where the gaps are.
             </p>
-            <div className="btn-row" style={{ margin: 0, marginBottom: 12 }}>
-              <Link href="/contact" className="btn btn--primary">
-                Book a free discovery call <ArrowRight size={18} />
-              </Link>
-              <Link href="/clarity" className="btn btn--outline">
-                See what Clarity covers
-              </Link>
-            </div>
-            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" style={{ fontSize: 'var(--do-text-sm)', color: 'var(--do-text-cerulean)', fontWeight: 'var(--do-weight-medium)', display: 'inline-flex', alignItems: 'center', gap: 4 }}>Or book a call directly <ArrowRight size={14} /></a>
+            <p><Link href="/contact">Book a free discovery call</Link> <Link href="/clarity">See what Clarity covers</Link></p>
+            <p><a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">Or book a call directly</a></p>
           </div>
+        </div>
+      </section>
 
+      <section className="g-white" data-od-id="seal">
+        <div className="wrap">
+          <div className="seal" data-od-id="seal-band">
+            <p className="seal-x">30</p>
+            <div>
+              <span className="seal-tag" data-new-copy>Decoded Ops &middot; SOP template &middot; the first one</span>
+              <h2 data-od-id="seal-h2" data-new-copy>Minutes for your first process.</h2>
+              <p data-new-copy>The template takes about 30 minutes to fill in for your first process, and less for every one after it. Start with the job that goes wrong most often.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="g-off closer" data-od-id="cta">
+        <div className="wrap closer-grid">
+          <div>
+            <span className="eyebrow" data-new-copy>Want it done with you?</span>
+            <h2 data-od-id="cta-h2" data-new-copy>Get the business onto the page.</h2>
+          </div>
+          <div>
+            <p className="lede" data-new-copy>A Clarity Audit maps which processes to write first and in what order, and the Process &amp; Quality System keeps them current.</p>
+            <div className="btn-row">
+              <Link className="btn btn--primary" href="/contact" data-od-id="cta-primary">Book a free discovery call</Link>
+              <Link className="go" href="/clarity">See what Clarity covers <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+            </div>
+          </div>
         </div>
       </section>
       <D17Motion />
-    </>
+    </main>
   );
 }
