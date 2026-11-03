@@ -3,6 +3,7 @@
 import { ArrowRight, Mail, Phone, Clock, MessageSquare, CheckCircle, AlertCircle, Loader, Calendar } from 'lucide-react';
 import { useState } from 'react';
 import { submitContactForm } from './actions';
+import { captureContext } from '@/lib/lead-context';
 import { BOOKING_URL } from '@/lib/constants';
 import { D17Motion } from '@/components/D17Motion';
 import d17 from '@/app/d17-art.module.css';
@@ -31,7 +32,7 @@ export function ContactClient() {
     e.preventDefault();
     setFormState({ status: 'loading' });
 
-    const result = await submitContactForm(formData);
+    const result = await submitContactForm({ ...formData, ...captureContext() });
 
     if (result.success) {
       if (typeof window !== 'undefined') {
