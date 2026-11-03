@@ -1,14 +1,18 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
+import { LayoutGrid, Timer, History, RefreshCw, FileWarning } from 'lucide-react';
 import { JsonLd } from '@/components/JsonLd';
+import { IconSprite } from '@/components/IconSprite';
 import { CapacityPlannerCalculator } from '@/components/calculators/CapacityPlannerCalculator';
 import { D17Motion } from '@/components/D17Motion';
 import { a993 } from '@/lib/d17-figures/a993';
 import { OG_IMAGE, OG_IMAGE_PATH } from '@/lib/seo';
 import '@/app/d17-global.css';
-import '@/app/d17-problems.css';
+import '@/app/d17-apps-cases.css';
 import '@/app/d17-resources.css';
+import '@/app/design-system/site-v3.css';
+import '@/app/resources/resources-live.css';
+import s from './page.module.css';
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -41,20 +45,32 @@ export const metadata: Metadata = {
   },
 };
 
+const inputs = [
+  { n: 'Input 1', t: 'How many machines', d: 'Every head, press, or station that does the work.', Icon: LayoutGrid, od: 'how-1' },
+  { n: 'Input 2', t: 'Hours per day', d: 'Production hours, not including breaks.', Icon: Timer, od: 'how-2' },
+  { n: 'Input 3', t: 'Days per week', d: 'Your working pattern.', Icon: History, od: 'how-3' },
+  { n: 'Input 4', t: 'Average job time', d: 'Setup through completion, per job.', Icon: RefreshCw, od: 'how-4' },
+  { n: 'Input 5', t: 'Downtime allowance', d: 'Changeovers, cleaning, minor breakdowns.', Icon: FileWarning, od: 'how-5', out: true },
+];
+
 export default function CapacityPlannerPage() {
   return (
-    <>
+    <main className={s.root}>
+      <IconSprite />
       <JsonLd data={jsonLd} />
 
-      {/* HERO — rt-split: copy left, DO-ART-992 right */}
-      <section className="g-off">
-        <div className="wrap rt-split">
+      {/* HERO — hero-split: copy left, DO-ART-992 right */}
+      <section className="g-off hero" data-od-id="hero">
+        <div className="wrap hero-split">
           <div>
-            <span className="eyebrow">Free tool &middot; Give first</span>
-            <h1>Capacity planning calculator</h1>
-            <p className="lede">
+            <h1 data-od-id="hero-h1"><span className="h1-kw">Free tool &middot; capacity planning calculator</span> Capacity planning calculator</h1>
+            <p className="t-lede">
               Work out how many jobs your machines can actually produce — not the theoretical maximum, but the real number after changeovers, breaks, and downtime eat into the day.
             </p>
+            <div className="btn-row">
+              <a className="btn btn--outline" href="#calc" data-od-id="hero-cta">Work out your capacity</a>
+              <Link className="go" href="/resources/seasonal-capacity" data-new-copy>Then plan the seasons <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+            </div>
           </div>
           <div dangerouslySetInnerHTML={{ __html: `
 <figure class="d17 sx px ph-fade a992" data-od-id="hero-art" data-motion data-no="DO-ART-992" data-rev="01" data-tx="screen"
@@ -90,87 +106,77 @@ export default function CapacityPlannerPage() {
         </div>
       </section>
 
-      {/* D17 inline artwork DO-ART-993 */}
-      <section className="g-navy">
+      {/* How it works — the five calculator inputs */}
+      <section className="g-navy route-sec" data-od-id="how">
+        <div className="do-dot-grid" aria-hidden="true" style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }} />
         <div className="wrap">
-          <div dangerouslySetInnerHTML={{ __html: a993 }} />
-        </div>
-      </section>
-
-      {/* How it works */}
-      <section className="g-navy">
-        <div className="wrap" style={{ maxWidth: 720 }}>
-          <span className="eyebrow">How it works</span>
-          <h2>Five inputs, one answer you can plan against.</h2>
-          <div className="hair" />
-          <p className="lede" style={{ marginTop: 16 }}>
-            Most decoration businesses guess their capacity or quote the number printed on the machine spec sheet. Neither accounts for changeovers, maintenance, or the gap between theoretical and actual throughput. This calculator builds your capacity figure from the ground up, using your real numbers.
-          </p>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 16, marginTop: 32 }}>
-            {[
-              { n: '01', t: 'How many machines', d: 'Every head, press, or station that does the work.' },
-              { n: '02', t: 'Hours per day', d: 'Production hours, not including breaks.' },
-              { n: '03', t: 'Days per week', d: 'Your working pattern.' },
-              { n: '04', t: 'Average job time', d: 'Setup through completion, per job.' },
-              { n: '05', t: 'Downtime allowance', d: 'Changeovers, cleaning, minor breakdowns.' },
-            ].map((s) => (
-              <div key={s.n} style={{ padding: 16, borderRadius: 'var(--do-radius-lg)', border: '1px solid rgba(142,202,230,.15)' }}>
-                <span style={{ fontSize: 'var(--do-text-xs)', fontWeight: 700, color: 'var(--do-text-cerulean)', letterSpacing: '0.06em' }}>{s.n}</span>
-                <h3 style={{ fontSize: 'var(--do-text-base)', margin: '6px 0 4px', color: 'var(--do-text-on-dark)' }}>{s.t}</h3>
-                <p style={{ fontSize: 'var(--do-text-sm)', color: 'color-mix(in srgb, var(--do-text-on-dark) 65%, transparent)', margin: 0 }}>{s.d}</p>
-              </div>
-            ))}
+          <div className="route-head">
+            <div>
+              <span className="eyebrow">How it works</span>
+              <h2 data-od-id="how-h2">Five inputs, one answer you can plan against.</h2>
+            </div>
+            <p className="lede">Most decoration businesses guess their capacity or quote the number printed on the machine spec sheet. Neither accounts for changeovers, maintenance, or the gap between theoretical and actual throughput. This calculator builds your capacity figure from the ground up, using your real numbers.</p>
           </div>
+          <ol className="route route--5" data-od-id="how-steps">
+            {inputs.map(({ n, t, d, Icon, od, out }) => (
+              <li key={n} className={out ? 'stop stop--out' : 'stop'} data-od-id={od}>
+                <span className="node"><Icon className="ic ic-24" size={24} aria-hidden="true" /></span>
+                <span className="t-meta">{n}</span><h3>{t}</h3>
+                <p className="t-card">{d}</p>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 
-      {/* Calculator */}
-      <section className="g-off">
-        <div className="wrap" style={{ maxWidth: 900 }}>
-          <CapacityPlannerCalculator />
+      {/* Calculator — the real component; the mockup's form/feed markup is a picture of it */}
+      <section className="g-white" id="calc" data-od-id="calc">
+        <div className="wrap">
+          <div className="route-head">
+            <div><span className="eyebrow" data-new-copy>Your setup</span><h2 data-od-id="calc-h2" data-new-copy>The honest number to plan against.</h2></div>
+            <p className="lede" data-new-copy>Change any input and the jobs per day, week and month update.</p>
+          </div>
+          <div style={{ marginTop: 36 }}>
+            <CapacityPlannerCalculator />
+          </div>
         </div>
       </section>
 
       {/* Why this matters */}
-      <section className="g-off" style={{ backgroundColor: '#F8F9FA' }}>
-        <div className="wrap" style={{ maxWidth: 720 }}>
-          <h2 style={{ fontFamily: 'var(--do-font-heading)', fontSize: 'var(--do-text-2xl)', fontWeight: 700, color: 'var(--do-text-primary)', marginBottom: 16 }}>
-            Why your real capacity is lower than you think
-          </h2>
-          <div style={{ fontFamily: 'var(--do-font-body)', color: 'var(--do-text-secondary)', fontSize: '17px', lineHeight: 1.7 }}>
-            <p style={{ marginBottom: 16 }}>
+      <section className="g-off" data-od-id="why">
+        <div className={`wrap ${s.why}`}>
+          <div className="prose">
+            <h2>Why your real capacity is lower than you think</h2>
+            <p>
               The spec sheet says your heat press runs 200 transfers an hour. That assumes one operator, one design, no changeovers, no breaks, and no downtime. In practice, changeovers eat into every job, operators need breaks, and presses need cleaning between runs. Enter your own downtime allowance in the calculator above to see what your real throughput looks like.
             </p>
-            <p style={{ marginBottom: 16 }}>
+            <p>
               That matters because quoting is based on capacity. If your quoted capacity is higher than your real capacity, you will either over-quote (and lose work) or under-quote (and be buried).
             </p>
-            <p style={{ marginBottom: 0 }}>
+            <p>
               This calculator gives you the honest number for capacity planning. Use it before you commit to a deadline or price a volume job.
             </p>
           </div>
+          <div dangerouslySetInnerHTML={{ __html: a993 }} />
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="g-off">
-        <div className="wrap" style={{ maxWidth: 720 }}>
-          <div style={{ background: 'color-mix(in srgb, var(--do-amber) 10%, transparent)', border: '1px solid color-mix(in srgb, var(--do-amber) 30%, transparent)', borderRadius: 'var(--do-radius-2xl)', padding: 32 }}>
-            <h3>Need to know what your capacity is actually worth?</h3>
-            <p style={{ color: 'var(--do-text-secondary)', marginBottom: 24 }}>
-              A Clarity Audit maps your real throughput, finds where capacity is lost to process gaps, and gives you a costed plan to reclaim it.
-            </p>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12 }}>
-              <Link href="/contact" className="btn btn--primary">
-                Book a free discovery call <ArrowRight size={18} />
-              </Link>
-              <Link href="/clarity" className="btn btn--outline">
-                See what Clarity covers
-              </Link>
+      <section className="g-off closer" data-od-id="cta">
+        <div className="wrap closer-grid">
+          <div>
+            <span className="eyebrow" data-new-copy>Capacity worth more than you think?</span>
+            <h2 data-od-id="cta-h2">Need to know what your capacity is actually worth?</h2>
+          </div>
+          <div>
+            <p className="lede">A Clarity Audit maps your real throughput, finds where capacity is lost to process gaps, and gives you a costed plan to reclaim it.</p>
+            <div className="btn-row">
+              <Link className="btn btn--primary" href="/contact" data-od-id="cta-primary">Book a free discovery call</Link>
+              <Link className="go" href="/clarity">See what Clarity covers <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
             </div>
           </div>
         </div>
       </section>
       <D17Motion />
-    </>
+    </main>
   );
 }
