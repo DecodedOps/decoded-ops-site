@@ -1,0 +1,29 @@
+/* RS2 P1 (CR-WEB-083): ProblemPageV2 renders the v2 shell as one block, so the
+   slot-less video section sits at its staging position (right after the
+   symptoms ledger) via flex order. */
+.flow {
+ display: flex;
+ flex-direction: column;
+}
+.flow > :global([data-od-id='hero']) { order: 10 }
+.flow > :global([data-od-id='symptoms']) { order: 20 }
+.flow > :global([data-od-id='video-embed']) { order: 25 }
+.flow > :global([data-od-id='photo-band']) { order: 30 }
+.flow > :global([data-od-id='fix']) { order: 40 }
+.flow > :global([data-od-id='plate']) { order: 50 }
+.flow > :global([data-od-id='how-i-help']) { order: 60 }
+.flow > :global([data-od-id='keep-reading']) { order: 70 }
+
+/* ProblemPageV2 renders its own causes and How I help sections with fixed
+   headings; this page keeps its staging fix section and staging How I help
+   heading, so the shell's copies are hidden (the page's own How I help is
+   marked .custom and keeps its slot). */
+.flow > :global([data-od-id='causes']) { display: none }
+.flow > :global([data-od-id='how-i-help']):not(.custom) { display: none }
+/* Marks the page's own section in the hide rule above. */
+.custom { }
+
+/* The 3 Nov mockups' photo band carries no captions; the shared component
+   always emits the elements. */
+.flow :global(.ev .k:empty),
+.flow :global(.ev .line:empty) { display: none }
