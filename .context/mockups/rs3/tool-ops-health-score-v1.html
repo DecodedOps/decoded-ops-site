@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Operations Audit, Free Ops Health Score | Decoded Ops (v1 mockup)</title>
+<meta name="description" content="This free operations audit rates your business across five dimensions: systems integration, process documentation, data quality, team capability and technology strategy. Get your score now.">
+<!-- v1 (14 Oct 2026) · release set 8 · /tools/ops-health-score. Working mockup: hero split (staging eyebrow, h1, lede verbatim) with DO-ART-997 as shipped on staging · the scorer as five ledger rows (labels and low/mid/high descriptors verbatim, 1 to 5 buttons, pre-set to the example in the drawing so the export shows a result) · the result as the proof panel: band label and description verbatim, total out of 25, dimension bars, focus first, Book a Clarity Audit and Try again as the tool has · the four bands as a navy ledger · closer. New shared blocks in site-v3.css: scorer, scale, scale-key. The optional lead-capture form after the result is not drawn; the note says it is optional. -->
+<link rel="stylesheet" href="../ds-marketing.css">
+<link rel="stylesheet" href="../assets/site/d17-global.css">
+<link rel="stylesheet" href="../assets/site/d17-apps-cases.css">
+<link rel="stylesheet" href="../assets/site/d17-resources.css">
+<link rel="stylesheet" href="../assets/site/site-v3.css">
+<style>
+/* page layout only · every pattern lives in site-v3.css and d17-resources.css */
+.hero-split .d17{ width:100% }
+.scorer .t-card b{ font-weight:var(--do-weight-semibold); color:var(--do-text-primary) }
+.scale-key{ margin-top:14px }
+.result .t-lede{ margin:14px 0 0 }
+.result .btn-row{ margin-top:22px; align-items:center; gap:14px 28px }
+.result h2{ max-width:16ch }
+.bars{ list-style:none; margin:14px 0 0; padding:0; display:grid; gap:10px }
+.bars li{ display:grid; grid-template-columns:minmax(0,1.2fr) 1fr 28px; gap:14px; align-items:center; font-size:var(--do-text-sm) }
+.bars li b{ text-align:right; font-family:var(--do-font-heading); font-size:var(--do-text-lg); font-variant-numeric:tabular-nums }
+.bars .meter{ height:10px }
+@media (max-width:900px){ .proof{ grid-template-columns:1fr } }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <!-- Lucide geometry, lucide-static v1.54.0 (ISC), embedded path-for-path -->
+  <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+  <symbol id="i-rotate-ccw" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" key="1357e3"/><path d="M3 3v5h5" key="1xhq8a"/></symbol>
+</svg>
+
+<header class="site-head site-head--paths" data-od-id="site-head">
+  <div class="wrap">
+    <a class="logo" href="/">Decoded<span>Ops</span></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">
+      <svg class="bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      <svg class="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <!-- nav mirrors the live components/Header.tsx (13 Oct 2026), plus Catalogue under Software I’ve already built -->
+    <nav class="site-nav" id="site-nav" aria-label="Primary">
+      <div class="path-group">
+        <button class="path-trigger" type="button" aria-expanded="false" aria-controls="path-wrong">
+          <span class="path-label">What’s going wrong</span>
+          <svg class="path-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="path-menu path-menu--mega" id="path-wrong">
+          <div class="path-col"><p class="path-head">Systems &amp; software</p>
+            <a href="/problems/systems-dont-talk">Nothing talks to anything else</a>
+            <a href="/problems/wrong-erp-software">We’re on the wrong software</a>
+            <a href="/problems/erp-implementation-failure">The new system rollout went wrong</a>
+            <a href="/problems/legacy-system">Our system is ancient</a>
+            <a href="/problems/ecommerce-not-connected">The website isn’t connected to the office</a>
+          </div>
+          <div class="path-col"><p class="path-head">Growth &amp; capacity</p>
+            <a href="/problems/slow-processes">Everything takes too long</a>
+            <a href="/problems/cant-scale-operations">We can’t take on more work</a>
+            <a href="/problems/bottleneck-growth">One person is the bottleneck</a>
+            <a href="/problems/seasonal-peaks">Busy season breaks us</a>
+          </div>
+          <div class="path-col"><p class="path-head">Data &amp; day to day</p>
+            <a href="/problems/spreadsheet-addiction">We run the place on spreadsheets</a>
+            <a href="/problems/manual-workarounds">Everyone has their own workaround</a>
+            <a href="/problems/data-scattered">The numbers never agree</a>
+            <a href="/problems/inventory-blind">We don’t know what stock we have</a>
+            <a href="/problems/ops-in-owners-head">It’s all in the owner’s head</a>
+          </div>
+          <div class="path-col"><p class="path-head">Risk &amp; what’s next</p>
+            <a href="/problems/no-ops-owner">Nobody owns operations</a>
+            <a href="/problems/disaster-recovery">If the server died tomorrow…</a>
+            <a href="/problems/ai-paralysis">Everyone says use AI, where do I start?</a>
+            <a href="/problems/buy-vs-build">Buy it or build it?</a>
+          </div>
+        </div>
+      </div>
+      <div class="path-group">
+        <button class="path-trigger" type="button" aria-expanded="false" aria-controls="path-help">
+          <span class="path-label">How I help</span>
+          <svg class="path-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="path-menu path-menu--mega" id="path-help">
+          <div class="path-col"><p class="path-head">The four steps</p>
+            <a href="/clarity">Clarity<small>A day on site, then a written plan &middot; most people start here</small></a>
+            <a href="/deliver">Deliver<small>I fix the two or three worst things</small></a>
+            <a href="/transform">Transform<small>Rebuild how the business runs</small></a>
+            <a href="/retained">Retained<small>A technology director, part time</small></a>
+          </div>
+          <div class="path-col"><p class="path-head">Software I’ve already built</p>
+            <a href="/apps/works">Works<small>The ERP for decorated goods</small></a>
+            <a href="/apps/proof">Proof<small>Versions, approvals and delivery</small></a>
+            <a href="/apps/commerce">Commerce<small>B2B ordering for your customers</small></a>
+            <a href="/apps/catalogue">Catalogue<small>Supplier feeds in, one clean catalogue, feeds out</small></a>
+            <a href="/apps">All apps<small>What’s ready to buy today</small></a>
+          </div>
+          <div class="path-col"><p class="path-head">How I work</p>
+            <a href="/resources/decoded-method">The Decoded Method</a>
+            <a href="/how-i-build">How I build software</a>
+            <a href="/pricing">Prices, in plain numbers</a>
+            <a href="/about">About Craig</a>
+          </div>
+        </div>
+      </div>
+      <div class="path-group">
+        <button class="path-trigger" type="button" aria-expanded="false" aria-controls="path-industry">
+          <span class="path-label">Your industry</span>
+          <svg class="path-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="path-menu path-menu--mega" id="path-industry">
+          <div class="path-col"><p class="path-head">Pick what you make</p>
+            <a href="/sectors/garment-decoration">Garment decoration</a>
+            <a href="/sectors/print-promotional">Print &amp; promotional</a>
+            <a href="/sectors/workwear">Workwear</a>
+            <a href="/sectors/teamwear-clubwear">Teamwear &amp; clubwear</a>
+            <a href="/sectors/schoolwear">Schoolwear</a>
+          </div>
+          <div class="path-col"><p class="path-head">More trades</p>
+            <a href="/sectors/signs-graphics">Signs &amp; graphics</a>
+            <a href="/sectors/awards-engraving">Awards &amp; engraving</a>
+            <a href="/sectors/labels-packaging">Labels &amp; packaging</a>
+            <a href="/sectors/promotional-merchandise">Promotional merchandise</a>
+          </div>
+        </div>
+      </div>
+      <div class="path-group">
+        <button class="path-trigger" type="button" aria-expanded="false" aria-controls="path-small">
+          <span class="path-label">Small business</span>
+          <svg class="path-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="path-menu path-menu--mega" id="path-small">
+          <div class="path-col"><p class="path-head">Small business services</p>
+            <a href="/small-business">Clarity Check<small>Fixed-price, done remotely &middot; £600</small></a>
+            <a href="/pricing">Everything else<small>Same services, same from-prices as everyone else</small></a>
+          </div>
+          <div class="path-col"><p class="path-head">Start free</p>
+            <a href="/tools/ops-health-score" aria-current="page">Ops health score</a>
+            <a href="/resources/audit-checklist">The audit checklist</a>
+            <a href="/small-business">Read the whole thing</a>
+          </div>
+        </div>
+      </div>
+      <div class="path-group">
+        <button class="path-trigger" type="button" aria-expanded="false" aria-controls="path-proof">
+          <span class="path-label">Proof &amp; free tools</span>
+          <svg class="path-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="path-menu path-menu--mega" id="path-proof">
+          <div class="path-col"><p class="path-head">Work I’ve done</p>
+            <a href="/case-studies/case-study-01">Case study 01</a>
+            <a href="/case-studies/case-study-02">Case study 02</a>
+            <a href="/case-studies/case-study-03">Case study 03</a>
+            <a href="/case-studies/eternal-fitness">Eternal Fitness</a>
+            <a href="/case-studies">All case studies</a>
+          </div>
+          <div class="path-col"><p class="path-head">Free calculators</p>
+            <a href="/tools/ops-health-score">Ops health score</a>
+            <a href="/tools/downtime-cost-calculator">What downtime costs you</a>
+            <a href="/tools/automation-roi-calculator">Is automation worth it?</a>
+            <a href="/tools/rto-calculator">How fast could you recover?</a>
+            <a href="/tools/should-i-replace-erp">Should I replace my ERP?</a>
+          </div>
+          <div class="path-col"><p class="path-head">Guides &amp; writing</p>
+            <a href="/resources/audit-checklist">The ops audit checklist</a>
+            <a href="/resources/5-warning-signs">5 signs your systems are failing</a>
+            <a href="/resources/sop-template">SOP template for decoration businesses</a>
+            <a href="/resources/erp-selection-playbook">ERP selection guide</a>
+            <a href="/resources/artwork-approval-playbook">Artwork approval playbook</a>
+            <a href="/resources/decoded-method">The Decoded Method</a>
+            <a href="/resources/six-sigma">Six Sigma, explained simply</a>
+            <a href="/process-quality-system">Building a quality system</a>
+            <a href="/blog">The blog</a>
+          </div>
+        </div>
+      </div>
+      <a class="nav-flat" href="/pricing">Pricing</a>
+      <a class="nav-flat" href="/clients/login">Client Login</a>
+      <a class="btn btn--primary nav-cta" href="/contact">Book a free call</a>
+    </nav>
+  </div>
+</header>
+
+<main id="content">
+<section class="g-off hero" data-od-id="hero">
+  <div class="wrap hero-split">
+    <div>
+      <span class="eyebrow">Free tool</span>
+      <h1 data-od-id="hero-h1">Ops health score</h1>
+      <p class="t-lede">A quick operations audit you can do yourself. Rate your business across five areas to see where you stand, and where to focus first.</p>
+      <p class="t-body" data-new-copy>Five areas, each rated one to five. Each row says what a low, middle and high score looks like, and the result shows on the page the moment the fifth answer goes in.</p>
+      <div class="btn-row"><a class="btn btn--outline" href="#score" data-od-id="hero-cta" data-new-copy>Rate the five areas</a><a class="go" href="/tools" data-new-copy>The other free calculators <svg class="ic ic-16" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></div>
+    </div>
+    <figure class="d17 sx px ph-fade a997" data-od-id="hero-visual" data-motion data-no="DO-ART-997" data-rev="01" data-tx="screen"
+        aria-label="Artwork DO-ART-997. The ops health score result screen over a graded photograph of a workbench, labelled Example. Five areas rated one to five: systems integration 2, process documentation 3, data quality 3, team and capability 4, technology strategy 1, in amber. Total 13 out of 25. Focus first on technology strategy. Five areas, and one place to start.">
+  <div class="d17-ph"><img src="/images/d17/gen-bench-flatlay-v2.webp" alt="" width="1024" height="1024"></div>
+  <div class="d17-scan" aria-hidden="true"></div>
+  <div class="sx-top d17-mono" aria-hidden="true"><span>Ops health score</span><span>Five areas</span></div>
+  <div class="body">
+    <div class="win" aria-hidden="true">
+      <div class="win-bar"><span class="dots"><i></i><i></i><i></i></span><span class="crumb"><span>Tools ›</span> Ops health</span><span class="pill">EXAMPLE</span></div>
+      <div class="win-flat">
+        <div class="hs-hd"><div><h5>Your ops health</h5><p class="s">Each area rated 1 to 5</p></div><p class="tot"><b>13</b><span>/ 25</span></p></div>
+        <div class="hs">
+          <div><span>Systems integration</span><em><i class="m-fill" style="width:40%;animation-delay:.1s"></i></em><b>2</b></div>
+          <div><span>Process documentation</span><em><i class="m-fill" style="width:60%;animation-delay:.25s"></i></em><b>3</b></div>
+          <div><span>Data quality</span><em><i class="m-fill" style="width:60%;animation-delay:.4s"></i></em><b>3</b></div>
+          <div><span>Team &amp; capability</span><em><i class="m-fill" style="width:80%;animation-delay:.55s"></i></em><b>4</b></div>
+          <div class="hot"><span>Technology strategy</span><em><i class="m-fill" style="width:20%;animation-delay:.8s"></i></em><b>1</b></div>
+        </div>
+        <div class="win-foot"><span>Focus first</span>Technology strategy</div>
+      </div>
+    </div>
+  </div>
+  <div class="sx-foot">
+    <div class="sx-bar" aria-hidden="true"></div>
+    <p class="sx-say">Five areas. <em>One place to start.</em></p>
+    <span class="d17-mark">decodedops.co.uk · DO-ART-997 · Rev 01</span>
+  </div>
+</figure>
+
+  </div>
+</section>
+
+<section class="g-white" id="score" data-od-id="scorer">
+  <div class="wrap">
+    <div class="route-head">
+      <div><span class="eyebrow" data-new-copy>The five areas</span><h2 data-od-id="scorer-h2" data-new-copy>Rate each area, one to five.</h2></div>
+      <p class="lede" data-new-copy>1 is critical, 5 is excellent. The rows are pre-set to the example from the drawing (2, 3, 3, 4, 1); change any of them and the result updates.</p>
+    </div>
+    <ol class="scorer" data-od-id="scorer-rows">
+      <li data-od-id="dim-integration">
+        <div>
+          <h3>Systems Integration</h3>
+          <p class="t-card"><b>Low (1&ndash;2):</b> Systems don’t talk to each other. Data is re-entered manually. <b>Mid (3):</b> Some systems connected. Gaps exist but are known. <b>High (4&ndash;5):</b> Systems integrated. Data flows automatically between platforms.</p>
+        </div>
+        <div class="scale" role="radiogroup" aria-label="Score for Systems Integration"><button type="button" data-dim="integration" data-v="1" aria-pressed="false" aria-label="Score 1 for Systems Integration">1</button><button type="button" data-dim="integration" data-v="2" aria-pressed="true" aria-label="Score 2 for Systems Integration">2</button><button type="button" data-dim="integration" data-v="3" aria-pressed="false" aria-label="Score 3 for Systems Integration">3</button><button type="button" data-dim="integration" data-v="4" aria-pressed="false" aria-label="Score 4 for Systems Integration">4</button><button type="button" data-dim="integration" data-v="5" aria-pressed="false" aria-label="Score 5 for Systems Integration">5</button></div>
+      </li>
+      <li data-od-id="dim-process">
+        <div>
+          <h3>Process Documentation</h3>
+          <p class="t-card"><b>Low (1&ndash;2):</b> No documented processes. Everyone does things differently. <b>Mid (3):</b> Key processes documented but not consistently followed. <b>High (4&ndash;5):</b> Processes documented, followed, and regularly reviewed.</p>
+        </div>
+        <div class="scale" role="radiogroup" aria-label="Score for Process Documentation"><button type="button" data-dim="process" data-v="1" aria-pressed="false" aria-label="Score 1 for Process Documentation">1</button><button type="button" data-dim="process" data-v="2" aria-pressed="false" aria-label="Score 2 for Process Documentation">2</button><button type="button" data-dim="process" data-v="3" aria-pressed="true" aria-label="Score 3 for Process Documentation">3</button><button type="button" data-dim="process" data-v="4" aria-pressed="false" aria-label="Score 4 for Process Documentation">4</button><button type="button" data-dim="process" data-v="5" aria-pressed="false" aria-label="Score 5 for Process Documentation">5</button></div>
+      </li>
+      <li data-od-id="dim-data">
+        <div>
+          <h3>Data Quality</h3>
+          <p class="t-card"><b>Low (1&ndash;2):</b> Data is inconsistent, duplicated, and incomplete. <b>Mid (3):</b> Most data is clean. Some areas need attention. <b>High (4&ndash;5):</b> Data is clean, consistent, and governed.</p>
+        </div>
+        <div class="scale" role="radiogroup" aria-label="Score for Data Quality"><button type="button" data-dim="data" data-v="1" aria-pressed="false" aria-label="Score 1 for Data Quality">1</button><button type="button" data-dim="data" data-v="2" aria-pressed="false" aria-label="Score 2 for Data Quality">2</button><button type="button" data-dim="data" data-v="3" aria-pressed="true" aria-label="Score 3 for Data Quality">3</button><button type="button" data-dim="data" data-v="4" aria-pressed="false" aria-label="Score 4 for Data Quality">4</button><button type="button" data-dim="data" data-v="5" aria-pressed="false" aria-label="Score 5 for Data Quality">5</button></div>
+      </li>
+      <li data-od-id="dim-team">
+        <div>
+          <h3>Team &amp; Capability</h3>
+          <p class="t-card"><b>Low (1&ndash;2):</b> No capacity or skills for technology improvement. <b>Mid (3):</b> Some capability exists. Training happens reactively. <b>High (4&ndash;5):</b> Team has skills and capacity. Technology adoption is part of the culture.</p>
+        </div>
+        <div class="scale" role="radiogroup" aria-label="Score for Team &amp; Capability"><button type="button" data-dim="team" data-v="1" aria-pressed="false" aria-label="Score 1 for Team &amp; Capability">1</button><button type="button" data-dim="team" data-v="2" aria-pressed="false" aria-label="Score 2 for Team &amp; Capability">2</button><button type="button" data-dim="team" data-v="3" aria-pressed="false" aria-label="Score 3 for Team &amp; Capability">3</button><button type="button" data-dim="team" data-v="4" aria-pressed="true" aria-label="Score 4 for Team &amp; Capability">4</button><button type="button" data-dim="team" data-v="5" aria-pressed="false" aria-label="Score 5 for Team &amp; Capability">5</button></div>
+      </li>
+      <li data-od-id="dim-strategy">
+        <div>
+          <h3>Technology Strategy</h3>
+          <p class="t-card"><b>Low (1&ndash;2):</b> No roadmap. Systems bought reactively. <b>Mid (3):</b> Informal roadmap exists. Some planning in place. <b>High (4&ndash;5):</b> Clear technology roadmap aligned to business goals.</p>
+        </div>
+        <div class="scale" role="radiogroup" aria-label="Score for Technology Strategy"><button type="button" data-dim="strategy" data-v="1" aria-pressed="true" aria-label="Score 1 for Technology Strategy">1</button><button type="button" data-dim="strategy" data-v="2" aria-pressed="false" aria-label="Score 2 for Technology Strategy">2</button><button type="button" data-dim="strategy" data-v="3" aria-pressed="false" aria-label="Score 3 for Technology Strategy">3</button><button type="button" data-dim="strategy" data-v="4" aria-pressed="false" aria-label="Score 4 for Technology Strategy">4</button><button type="button" data-dim="strategy" data-v="5" aria-pressed="false" aria-label="Score 5 for Technology Strategy">5</button></div>
+      </li>
+    </ol>
+    <p class="scale-key" aria-hidden="true" style="margin-left:auto"><span>1 Critical</span><span>3 Acceptable</span><span>5 Excellent</span></p>
+
+    <div class="wrap proof result" style="padding-inline:0" data-od-id="result">
+      <div>
+        <span class="eyebrow" data-new-copy>Your result</span>
+        <h2 data-od-id="result-h2"><span data-out="label">Fragile: Some Areas Need Work</span></h2>
+        <p class="t-lede" data-out="desc">You have some strengths, but there are clear gaps that will become more expensive as you grow. The weakest dimensions are your biggest risk: fixing them now is cheaper than waiting.</p>
+        <div class="btn-row"><a class="btn btn--primary" href="/contact" data-od-id="result-cta">Book a Clarity Audit</a><button type="button" class="go" data-reset style="background:none;border:0;padding:0;cursor:pointer"><svg class="ic ic-16" aria-hidden="true"><use href="#i-rotate-ccw"/></svg> Try again</button></div>
+        <p class="note" data-new-copy>The score is yours to keep. Leaving your details afterwards is optional.</p>
+      </div>
+      <div class="feed" data-od-id="result-feed">
+        <p class="feed-k d17-mono">Ops health score &middot; <span data-out="tag">example</span></p>
+        <p class="feed-big"><b><span data-out="total">13</span>/25</b>across five areas</p>
+        <div class="feed-rule"></div>
+        <p class="feed-k d17-mono">Dimension scores</p>
+        <ul class="bars" data-od-id="result-bars">
+          <li><span>Systems Integration</span><span class="meter"><span data-bar="integration" style="width:40%"></span></span><b data-val="integration">2</b></li>
+          <li><span>Process Documentation</span><span class="meter"><span data-bar="process" style="width:60%"></span></span><b data-val="process">3</b></li>
+          <li><span>Data Quality</span><span class="meter"><span data-bar="data" style="width:60%"></span></span><b data-val="data">3</b></li>
+          <li><span>Team &amp; Capability</span><span class="meter"><span data-bar="team" style="width:80%"></span></span><b data-val="team">4</b></li>
+          <li><span>Technology Strategy</span><span class="meter"><span data-bar="strategy" style="width:20%"></span></span><b data-val="strategy">1</b></li>
+        </ul>
+        <div class="feed-rule"></div>
+        <p class="feed-k d17-mono">Focus first &middot; <span data-out="focus">Technology Strategy</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="g-navy" data-od-id="bands">
+  <div class="do-dot-grid" aria-hidden="true" style="position:absolute; inset:0; pointer-events:none"></div>
+  <div class="wrap">
+    <div class="route-head">
+      <div><span class="eyebrow" data-new-copy>What the score means</span><h2 data-od-id="bands-h2" data-new-copy>Four bands, and what each one usually needs.</h2></div>
+      <p class="lede" data-new-copy>The total out of 25 puts you in one of four bands. The description is the same one the tool shows with your result.</p>
+    </div>
+    <ol class="ledger-list" data-od-id="band-ledger">
+      <li data-od-id="band-1"><p class="fig">5&ndash;10<small>out of 25</small></p><div><h3>Critical: Needs Immediate Attention</h3><p class="t-card">Your operations are under significant strain. Disconnected systems, undocumented processes, and low team capability are creating hidden costs every day. A Clarity Audit, the full operations audit, will give you a prioritised roadmap to address the biggest gaps first.</p></div><span class="tag">Critical</span></li>
+      <li data-od-id="band-2"><p class="fig">11&ndash;15<small>out of 25</small></p><div><h3>Fragile: Some Areas Need Work</h3><p class="t-card">You have some strengths, but there are clear gaps that will become more expensive as you grow. The weakest dimensions are your biggest risk: fixing them now is cheaper than waiting.</p></div><span class="tag">Fragile</span></li>
+      <li data-od-id="band-3"><p class="fig">16&ndash;20<small>out of 25</small></p><div><h3>Stable: Room to Improve</h3><p class="t-card">Your operations are in reasonable shape. Targeted improvements in your weaker areas will reduce cost and increase resilience. You are well positioned to evaluate new technology investments.</p></div><span class="tag">Stable</span></li>
+      <li data-od-id="band-4"><p class="fig">21&ndash;25<small>out of 25</small></p><div><h3>Strong: Well Run Operation</h3><p class="t-card">Your operations are well managed across all dimensions. You are in a strong position to scale, adopt new technology, and focus on strategic growth rather than firefighting.</p></div><span class="tag">Strong</span></li>
+    </ol>
+  </div>
+</section>
+
+<section class="g-off closer" data-od-id="cta">
+  <div class="wrap closer-grid">
+    <div>
+      <span class="eyebrow" data-new-copy>Start here</span>
+      <h2 data-od-id="cta-h2" data-new-copy>A score is where the conversation starts.</h2>
+    </div>
+    <div>
+      <p class="lede" data-new-copy>Bring the result to a free discovery call and we work out whether the weakest area is a process problem, a data problem or a platform problem, and what fixing it involves.</p>
+      <div class="btn-row">
+        <a class="btn btn--primary" href="/contact" data-od-id="cta-primary" data-new-copy>Book a free discovery call</a>
+        <a class="go" href="/tools" data-new-copy>The other free calculators <svg class="ic ic-16" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+(function(){
+  var bands=[{"max": 10, "label": "Critical: Needs Immediate Attention", "desc": "Your operations are under significant strain. Disconnected systems, undocumented processes, and low team capability are creating hidden costs every day. A Clarity Audit, the full operations audit, will give you a prioritised roadmap to address the biggest gaps first."}, {"max": 15, "label": "Fragile: Some Areas Need Work", "desc": "You have some strengths, but there are clear gaps that will become more expensive as you grow. The weakest dimensions are your biggest risk: fixing them now is cheaper than waiting."}, {"max": 20, "label": "Stable: Room to Improve", "desc": "Your operations are in reasonable shape. Targeted improvements in your weaker areas will reduce cost and increase resilience. You are well positioned to evaluate new technology investments."}, {"max": 25, "label": "Strong: Well Run Operation", "desc": "Your operations are well managed across all dimensions. You are in a strong position to scale, adopt new technology, and focus on strategic growth rather than firefighting."}];
+  var labels={"integration": "Systems Integration", "process": "Process Documentation", "data": "Data Quality", "team": "Team & Capability", "strategy": "Technology Strategy"};
+  var v={"integration": 2, "process": 3, "data": 3, "team": 4, "strategy": 1}; var touched=false;
+  function out(k,t){ document.querySelectorAll('[data-out="'+k+'"]').forEach(function(e){ e.textContent=t; }); }
+  function render(){
+    var total=0, low=null;
+    Object.keys(v).forEach(function(k){ total+=v[k]; if(low===null||v[k]<v[low]) low=k;
+      var b=document.querySelector('[data-bar="'+k+'"]'); if(b) b.style.width=(v[k]*20)+'%';
+      var n=document.querySelector('[data-val="'+k+'"]'); if(n) n.textContent=v[k]; });
+    var band=bands.filter(function(b){ return total<=b.max; })[0];
+    out('total',total); out('label',band.label); out('desc',band.desc); out('focus',labels[low]); out('tag',touched?'your answers':'example');
+    document.querySelectorAll('.scale button').forEach(function(b){ b.setAttribute('aria-pressed', String(v[b.dataset.dim]==+b.dataset.v)); });
+  }
+  document.querySelectorAll('.scale button').forEach(function(b){ b.addEventListener('click',function(){ v[b.dataset.dim]=+b.dataset.v; touched=true; render(); }); });
+  var r=document.querySelector('[data-reset]'); if(r) r.addEventListener('click',function(){ v={"integration": 2, "process": 3, "data": 3, "team": 4, "strategy": 1}; touched=false; render(); });
+  render();
+})();
+</script>
+</main>
+
+<footer data-od-id="footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="logo" href="/">Decoded<span>Ops</span></a>
+        <p class="blurb">Independent technology and operations consultancy for the decorated-goods sector. No vendor agenda.</p>
+        <div class="foot-contact">
+          <a href="mailto:craig@decodedops.co.uk">craig@decodedops.co.uk</a>
+          <a href="tel:+447735620603">07735 620603</a>
+          <a class="btn btn--outline foot-cta" href="/contact">Book a free 60-min call</a>
+        </div>
+        <p class="foot-loc">Based in Worthing, West Sussex &middot; working across the UK</p>
+      </div>
+      <!-- footer links mirror the live components/Footer.tsx (13 Oct 2026), plus Catalogue under Apps -->
+      <div><h4>Work with me</h4><a href="/clarity">Clarity Audit</a><a href="/deliver">Deliver</a><a href="/transform">Transform</a><a href="/retained">Retained</a><a href="/small-business">Small business suite</a><a href="/how-i-build">How I build software</a></div>
+      <div><h4>Apps</h4><a href="/apps/works">Works</a><a href="/apps/proof">Proof</a><a href="/apps/commerce">Commerce</a><a href="/apps/catalogue">Catalogue</a><a href="/apps">All apps</a></div>
+      <div><h4>Company</h4><a href="/about">About</a><a href="/case-studies">Case studies</a><a href="/pricing">Pricing</a><a href="/contact">Contact</a></div>
+    </div>
+    <div class="foot-find">
+      <div class="foot-find-row">
+        <span class="foot-find-lbl">Sectors</span>
+        <span class="foot-chips">
+          <a href="/sectors/garment-decoration">Garment decoration</a><a href="/sectors/workwear">Workwear</a><a href="/sectors/teamwear-clubwear">Teamwear</a><a href="/sectors/schoolwear">Schoolwear</a><a href="/sectors/promotional-merchandise">Promo</a><a href="/sectors/print-promotional">Print</a><a href="/sectors/signs-graphics">Signage</a><a href="/sectors/awards-engraving">Awards</a><a href="/sectors/labels-packaging">Labels &amp; packaging</a>
+        </span>
+      </div>
+      <div class="foot-find-row">
+        <span class="foot-find-lbl">Problems</span>
+        <span class="foot-chips">
+          <a href="/problems/erp-implementation-failure">ERP failure</a><a href="/problems/systems-dont-talk">Systems don’t talk</a><a href="/problems/data-scattered">Data scattered</a><a href="/problems/spreadsheet-addiction">Spreadsheet addiction</a><a href="/problems/buy-vs-build">Buy vs build</a><a href="/problems/no-ops-owner">No ops owner</a><a href="/problems/ai-paralysis">AI paralysis</a>
+          <a class="foot-all" href="/problems">All problems <svg class="ic ic-16" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+        </span>
+      </div>
+      <div class="foot-find-row">
+        <span class="foot-find-lbl">Guides</span>
+        <span class="foot-chips">
+          <a href="/resources/decoded-method">The Decoded Method</a><a href="/resources/audit-checklist">Audit checklist</a><a href="/resources/5-warning-signs">5 warning signs</a><a href="/resources/six-sigma">Six Sigma explained</a><a href="/tools">Free calculators</a>
+          <a class="foot-all" href="/resources">All resources <svg class="ic ic-16" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+        </span>
+      </div>
+      <div class="foot-find-row">
+        <span class="foot-find-lbl">Locations</span>
+        <span class="foot-chips">
+          <a href="/locations/sussex-surrey">Sussex &amp; Surrey</a><a href="/locations/manchester">Manchester</a><a href="/locations/tech-audit">Technology audit, UK-wide</a>
+        </span>
+      </div>
+    </div>
+    <div class="foot-bottom"><span>&copy; 2026 Decoded Ops</span><span class="foot-legal"><a href="/clients/login">Client login</a><a href="/privacy">Privacy</a><a href="/cookies">Cookies</a></span></div>
+  </div>
+</footer>
+<script>
+(function(){ if(!('IntersectionObserver' in window)) return; if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var mo=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('play'); mo.unobserve(e.target); } }); },{threshold:.35});
+  document.querySelectorAll('.d17[data-motion]').forEach(function(el){ mo.observe(el); }); })();
+</script>
+</body>
+</html>
