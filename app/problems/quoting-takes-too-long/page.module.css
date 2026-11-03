@@ -1,0 +1,59 @@
+/* Page-local layout for /problems/quoting-takes-too-long (RS2 P2, CR-WEB-083).
+   The shared ProblemPageV2 fragment renders the family sections; this file
+   orders them alongside the questions block the shared layout has no slot
+   for. Every global selector is anchored on .root. */
+
+.root {
+  display: flex;
+  flex-direction: column;
+}
+
+.video { order: 5; }
+.questions { order: 6; }
+
+/* Section order follows the 3 Nov design. */
+.root :global(section[data-od-id='hero']) { order: 1; }
+.root :global(section[data-od-id='symptoms']) { order: 2; }
+.root :global(section[data-od-id='photo-band']) { order: 3; }
+.root :global(section[data-od-id='causes']) { order: 4; }
+.root :global(section[data-od-id='how-i-help']) { order: 7; }
+.root :global(section[data-od-id='keep-reading']) { order: 8; }
+
+/* The design has no artwork plate on this page; the shared slot renders
+   empty and is hidden. */
+.root :global(section[data-od-id='plate']) { display: none; }
+
+/* The design's photo figures carry no caption line, and this page has no
+   symptoms lede; hide the empty elements the shared layout still renders. */
+.root :global(.ev .k:empty),
+.root :global(.ev .line:empty),
+.root :global(.sym-head .sec-lede:empty) { display: none; }
+
+/* FAQ block, as drawn in the 3 Nov design. */
+.faq {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 56px;
+  margin-top: 32px;
+}
+
+.faqItem {
+  padding: 22px 0;
+  border-top: 1px solid var(--do-border-subtle);
+}
+
+.faqItem h3 {
+  margin: 0 0 8px;
+  font-size: var(--do-text-lg);
+  line-height: 1.3;
+  color: var(--do-text-primary);
+}
+
+.faqItem p {
+  font-size: var(--do-text-base);
+  max-width: 58ch;
+}
+
+@media (max-width: 800px) {
+  .faq { grid-template-columns: 1fr; }
+}

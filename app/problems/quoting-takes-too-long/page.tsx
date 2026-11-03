@@ -1,12 +1,15 @@
 import type { Metadata } from 'next';
-import { ProblemPageDS } from '@/components/ProblemPageDS';
 import { JsonLd } from '@/components/JsonLd';
-import { problemRouting } from '@/data/problem-routing';
+import { ProblemPageV2 } from '@/components/ProblemPageV2';
+import { VideoEmbed } from '@/components/VideoEmbed';
+import { VideoSchema } from '@/components/VideoSchema';
 import { problemVideos } from '@/data/problem-videos';
+import { problemRouting } from '@/data/problem-routing';
 import '@/app/d17-global.css';
 import '@/app/d17-problems.css';
-import '@/app/d17-resources.css';
+import '@/app/problems/problems-v2.css';
 import { D17Motion } from '@/components/D17Motion';
+import styles from './page.module.css';
 
 export const metadata: Metadata = {
  title: 'Quoting Software for Printers: Fix Slow Quotes | Decoded Ops',
@@ -99,53 +102,94 @@ export default function QuotingTakesTooLongPage() {
  return (
   <>
    <JsonLd data={quotingSchema} />
-   <ProblemPageDS
-   problem="Slow, inconsistent quoting"
-   headline="Every quote gets rebuilt from scratch. ||And margin leaks out of each one.||"
-   intro="Quoting decorated goods should be quick, and it's where a lot of print and embroidery businesses lose margin without noticing. The garment, the positions, the setup charge, the quantity and the turnaround all get worked out again by hand, so the price depends on who's quoting and how busy they are. You end up with slow answers, prices that don't match from one customer to the next, and a quote to order conversion rate you can't explain."
-   symptoms={[
-    "Quotes are built in a spreadsheet by one person, and only they know how it works",
-    "Setup charges and screen setup get forgotten on repeat orders",
-    "Quantity breaks are applied differently depending on who's quoting",
-    "Customer-supplied garments get priced as if you'd supplied them, with no handling charge",
-    "There's no record of why a price was given, so nobody can defend it when the customer pushes back",
-    "Slow turnaround loses jobs to whoever answers first, and you can't see what your quote to order conversion is",
-   ]}
-   causes={[
-    { title: 'Every quote starts from a blank sheet', body: "Each job gets priced from scratch or from a copy of an old quote. Garment, positions, stitch count, colours and quantity are all worked out again by hand, which is slow and gives a different answer each time." },
-    { title: 'The pricing rules live in someone\'s head', body: "Per-position pricing, the digitising charge, the minimum order quantity and the rush or express surcharge are all rules. Rules that aren't written down get applied differently by everyone who quotes." },
-    { title: 'The costs behind the price are out of date', body: "Blank prices, thread, ink and labour move, and the quote sheet doesn't. Margin leaks quietly on jobs that looked fine when the price went out." },
-    { title: 'Quotes and orders live in different places', body: "The quote sits in an email or a spreadsheet and the order sits in the system, with nothing linking the two. You can't see which quotes turned into orders, or why the others didn't." },
-   ]}
-   howIHelp="I start by sitting with whoever does the quoting and watching a few real quotes get built, from the enquiry to the price going out. I write down every rule being applied, including the ones nobody's ever said out loud, and check them against your actual costs so you can see where margin is leaking and which jobs are being under-priced. Then you get a plain list of what to fix: a rate card everyone quotes from, setup and digitising charges that always get added, and a way to record why each price was given. Some of that is a tidy-up of what you already have, and some of it may need a quoting tool built around how you price. I'll tell you which. It all starts with a Clarity Audit."
+   {problemVideos['quoting-takes-too-long'] && (
+    <VideoSchema
+     name={problemVideos['quoting-takes-too-long'].title}
+     description={problemVideos['quoting-takes-too-long'].closeLine}
+     youtubeId={problemVideos['quoting-takes-too-long'].youtubeId}
+     uploadDate={problemVideos['quoting-takes-too-long'].uploadDate}
+     durationSec={problemVideos['quoting-takes-too-long'].durationSec}
+    />
+   )}
 
-   slug="quoting-takes-too-long"
-   targetService={problemRouting['quoting-takes-too-long'].targetService}
-   relatedProblems={problemRouting['quoting-takes-too-long'].relatedProblems}
-   relatedReading={problemRouting['quoting-takes-too-long'].relatedReading}
-   relatedSectors={problemRouting['quoting-takes-too-long'].relatedSectors}
-   relatedResources={problemRouting['quoting-takes-too-long'].relatedResources}
-   video={problemVideos['quoting-takes-too-long']}
-   heroArt={heroArt1014}
-   beforeRelated={
-    <section className="g-tint">
+   <div className={styles.root}>
+    <ProblemPageV2
+     slug="quoting-takes-too-long"
+     problem="Slow, inconsistent quoting"
+     crumb="Slow, inconsistent quoting"
+     h1Lead="Problem · quoting software"
+     headline="Every quote gets rebuilt from scratch. ||And margin leaks out of each one.||"
+     heroLede="Quoting decorated goods should be quick, and it's where a lot of print and embroidery businesses lose margin without noticing."
+     heroBody="The garment, the positions, the setup charge, the quantity and the turnaround all get worked out again by hand, so the price depends on who's quoting and how busy they are. You end up with slow answers, prices that don't match from one customer to the next, and a quote to order conversion rate you can't explain."
+     heroArt={heroArt1014}
+     symptomsEyebrow="The symptoms"
+     symptomsHeading="The signs."
+     symptomsLede=""
+     symptoms={[
+      'Quotes are built in a spreadsheet by one person, and only they know how it works',
+      'Setup charges and screen setup get forgotten on repeat orders',
+      "Quantity breaks are applied differently depending on who's quoting",
+      "Customer-supplied garments get priced as if you'd supplied them, with no handling charge",
+      "There's no record of why a price was given, so nobody can defend it when the customer pushes back",
+      "Slow turnaround loses jobs to whoever answers first, and you can't see what your quote to order conversion is",
+     ]}
+     symptomsCaption="Count the ones that apply. Each one is margin left on the table."
+     photoBand={{
+      eyebrow: 'Where a quote gets built',
+      heading: 'Job sheets, carousels and a desk full of paper.',
+      lede: 'Three photographs from client sites. The job sheet, the carousel the job runs on and the paperwork on the desk: everything a quote has to price, gathered again for every enquiry.',
+      photos: [
+       { odId: 'photo-k', no: 'DO-ART-979k', src: '/images/site/evidence/plate-job-sheets-63dd9c.webp', alt: 'Paper job sheets laid out on a workbench at a client site.', kicker: '', line: '' },
+       { odId: 'photo-o', no: 'DO-ART-979o', src: '/images/site/evidence/band-screenprint-carousel-f0dce0.webp', alt: 'A screen print carousel mid-run at a client site.', kicker: '', line: '' },
+       { odId: 'photo-g', no: 'DO-ART-979g', src: '/images/site/evidence/hero-office-paperwork-75fcd2.webp', alt: 'Paperwork on an office desk at a client site.', kicker: '', line: '' },
+      ],
+     }}
+     causes={[
+      { icon: 'i-timer', title: 'Every quote starts from a blank sheet', body: 'Each job gets priced from scratch or from a copy of an old quote. Garment, positions, stitch count, colours and quantity are all worked out again by hand, which is slow and gives a different answer each time.' },
+      { icon: 'i-calculator', title: "The pricing rules live in someone's head", body: "Per-position pricing, the digitising charge, the minimum order quantity and the rush or express surcharge are all rules. Rules that aren't written down get applied differently by everyone who quotes." },
+      { icon: 'i-file-warning', title: 'The costs behind the price are out of date', body: 'Blank prices, thread, ink and labour move, and the quote sheet doesn\'t. Margin leaks quietly on jobs that looked fine when the price went out.' },
+      { icon: 'i-git-branch', title: 'Quotes and orders live in different places', body: "The quote sits in an email or a spreadsheet and the order sits in the system, with nothing linking the two. You can't see which quotes turned into orders, or why the others didn't." },
+     ]}
+     plate={{ art: '' }}
+     howLede="I start by sitting with whoever does the quoting and watching a few real quotes get built, from the enquiry to the price going out. I write down every rule being applied, including the ones nobody's ever said out loud, and check them against your actual costs so you can see where margin is leaking and which jobs are being under-priced."
+     howBody="Then you get a plain list of what to fix: a rate card everyone quotes from, setup and digitising charges that always get added, and a way to record why each price was given. Some of that is a tidy-up of what you already have, and some of it may need a quoting tool built around how you price. I'll tell you which. It all starts with a Clarity Audit."
+     howTone="off"
+     routing={problemRouting['quoting-takes-too-long']}
+    />
+
+    {problemVideos['quoting-takes-too-long'] && (
+     <section className={`${styles.video} g-off`} data-od-id="video-embed">
+      <div className="wrap">
+       <VideoEmbed
+        youtubeId={problemVideos['quoting-takes-too-long'].youtubeId}
+        title={problemVideos['quoting-takes-too-long'].title}
+        closeLine={problemVideos['quoting-takes-too-long'].closeLine}
+        app={problemVideos['quoting-takes-too-long'].app}
+        durationSec={problemVideos['quoting-takes-too-long'].durationSec}
+        playlistUrl={problemVideos['quoting-takes-too-long'].playlistUrl}
+       />
+      </div>
+     </section>
+    )}
+
+    {/* The shared layout has no questions section, so it is rendered here. */}
+    <section className={`${styles.questions} g-white`} data-od-id="questions">
      <div className="wrap">
-      <span className="eyebrow">Common questions</span>
-      <h2>Quoting questions I get asked</h2>
-      <div className="hair" />
-      <div className="grid grid--2">
+      <div className="sec-head">
+       <span className="eyebrow">Common questions</span>
+       <h2 data-od-id="questions-h2">Quoting questions I get asked</h2>
+      </div>
+      <div className={styles.faq} data-od-id="questions-list">
        {faqs.map((f, i) => (
-        <article className="card" key={f.q}>
-         <span className="kicker">{String(i + 1).padStart(2, '0')}</span>
+        <div className={styles.faqItem} key={f.q} data-od-id={`questions-${i + 1}`}>
          <h3>{f.q}</h3>
-         <p>{f.a}</p>
-        </article>
+         <p className="t-card">{f.a}</p>
+        </div>
        ))}
       </div>
      </div>
     </section>
-   }
-  />
+   </div>
    <D17Motion />
   </>
  );
