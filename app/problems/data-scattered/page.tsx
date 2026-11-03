@@ -130,7 +130,7 @@ export default function DataScatteredPage() {
     <section className="g-off p-hero" data-od-id="hero">
      <div className="wrap p-hero-grid">
       <div>
-       <span className="eyebrow">The problem</span>
+       <span className="eyebrow">The numbers never agree</span>
        <h1 data-od-id="hero-h1">Your supplier data is in six places, <em>and none of them agree.</em></h1>
        <p className="t-lede">Ask what stock you actually hold of a specific SKU and you&apos;ll get six
         different answers, depending who you ask and which spreadsheet, feed, or screen they&apos;re
@@ -150,7 +150,7 @@ export default function DataScatteredPage() {
     <section className="g-navy sym-sec" data-od-id="symptoms">
      <div className="wrap sym-grid">
       <div className="sym-head">
-       <span className="eyebrow">The signs</span>
+       <span className="eyebrow">The symptoms</span>
        <h2 data-od-id="symptoms-h2">Six places, six different answers.</h2>
        <p className="sec-lede" data-od-id="symptoms-lede">Every one of these is trying to describe the
         same catalogue. None of them talk to each other, so none of them are right for long.</p>
@@ -208,7 +208,7 @@ export default function DataScatteredPage() {
     <section className="g-tint" data-od-id="causes">
      <div className="wrap">
       <div className="sec-head">
-       <span className="eyebrow">Why this happens</span>
+       <span className="eyebrow">Why it happens</span>
        <h2 data-od-id="causes-h2">The data was never supposed to have one home.</h2>
        <p className="sec-lede">Four decisions, each sensible on its own, that leave the same product
         with six descriptions.</p>
