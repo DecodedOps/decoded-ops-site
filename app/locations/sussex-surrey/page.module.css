@@ -1,0 +1,11 @@
+/* RS2 lane L (CR-WEB-083) — page layout only, from the 3 Nov mockup's
+   <style> block (.context/mockups/rs2/locations-sussex-surrey-v1.html).
+   Every pattern lives in site-v3.css and the d17 sheets; only the rules the
+   mockup keeps page-local are here. Anchored on .root — no bare globals. */
+
+.root :global(.route .stop .t-card) { font-size: var(--do-text-sm) }
+.root :global(.route--6 .stop .t-card) { font-size: var(--do-text-sm) }
+.root :global(.split-6 .chips) { margin-top: 20px }
+.root :global(.split-6 .outcomes li:first-child) { border-top: 0; padding-top: 0 }
+.root :global(.split-6 .outcomes li:last-child) { border-bottom: 0; padding-bottom: 0 }
+.root :global(.split-6 .area) { padding: 22px 26px }
