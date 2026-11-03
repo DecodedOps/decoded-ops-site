@@ -32,10 +32,12 @@
  .root :global(.a118 .v-tall) { display: block }
 }
 
-/* the three-stop route on a phone */
+/* the three-stop route on a phone. The mockup's `.route--3::before:not(.d17 *)`
+   rule is invalid CSS (a pseudo-element cannot be followed by :not) and is
+   dropped — site-v3's mobile `.route--3:not(.d17 *)::before` already carries
+   its `right: auto`. */
 @media (max-width:1000px) {
  .root :global(.route--3:not(.d17 *)) { grid-template-columns: 1fr }
- .root :global(.route--3::before:not(.d17 *)) { right: auto }
  .root :global(.route--3 .stop:not(.d17 *) .node) { grid-row: 1 / span 3; align-self: start }
  .root :global(.route--3 .stop:not(.d17 *) > :not(.node)) { grid-column: 2 }
 }
