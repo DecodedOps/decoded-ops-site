@@ -1,9 +1,11 @@
 import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
 import { D17Motion } from '@/components/D17Motion';
 import { JsonLd } from '@/components/JsonLd';
+import { IconSprite } from '@/components/IconSprite';
 import '@/app/d17-global.css';
 import '@/app/d17-apps-cases.css';
+import '@/app/design-system/site-v3.css';
+import s from './page.module.css';
 import { OG_IMAGE, OG_IMAGE_PATH } from '@/lib/seo';
 
 export const metadata = {
@@ -48,43 +50,20 @@ const schema = {
 export default function CaseStudy02Page() {
   return (
     <>
-      <style>{`
-        .hero-center{ text-align:center; max-width:760px; margin-inline:auto }
-        .hero-center h1{ max-width:none; margin-inline:auto }
-        .hero-center .lede{ margin:18px auto 0 }
-        .hero-center .eyebrow{ margin-inline:auto }
-        .stat .stat-num{ font-family:var(--do-font-heading); font-weight:800;
-          font-size:clamp(2.2rem,4vw,3.2rem); line-height:1; letter-spacing:-.03em;
-          color:var(--do-amber); font-variant-numeric:tabular-nums }
-        .stat .stat-label{ margin:10px 0 0; color:var(--do-text-muted-on-dark); font-size:.9375rem;
-          max-width:26ch }
-        .prose{ max-width:72ch; margin-inline:auto }
-        .prose h2{ font-size:var(--do-text-xl); margin:36px 0 14px }
-        .prose h2:first-child{ margin-top:0 }
-        .prose p{ color:var(--do-text-secondary); line-height:var(--do-leading-relaxed); margin-bottom:14px }
-        .progress-note{ background:color-mix(in srgb, var(--do-amber) 10%, transparent);
-          border:1px solid color-mix(in srgb, var(--do-amber) 30%, transparent);
-          border-radius:var(--do-radius-2xl); padding:24px 28px; margin-top:36px }
-        .progress-note h3{ font-size:var(--do-text-base); margin-bottom:8px }
-        .progress-note p{ margin:0; color:var(--do-text-secondary); font-size:var(--do-text-sm) }
-        .cta-strip{ text-align:center }
-        .cta-strip h2{ max-width:none; margin-inline:auto }
-        .cta-strip .lede{ margin:18px auto 32px; max-width:52ch }
-        .hero-cta{ display:flex; gap:12px; flex-wrap:wrap; justify-content:center }
-      `}</style>
-      <main>
-        <JsonLd data={schema} />
+      <JsonLd data={schema} />
+      <IconSprite />
+
+      <div className={s.root}>
+      <main id="content">
 
         {/* 1. HERO + DO-ART-953 */}
-        <section className="g-off">
-          <div className="wrap hero-center">
-            <span className="eyebrow">Client work · branded apparel &amp; decoration</span>
-            <h1>The diagnostic came before the decision.</h1>
-            <p className="lede">
+        <section className="g-off hero" data-od-id="hero">
+          <div className="wrap">
+            <span className="eyebrow">Client work &middot; branded apparel &amp; decoration</span>
+            <h1 data-od-id="hero-title">The diagnostic came before the decision.</h1>
+            <p className="t-lede" style={{ marginTop: 20 }}>
               A teamwear and schoolwear business selling decorated and plain stock across a lot of suppliers, on an eCommerce platform that needed to show live stock accurately. This is what I did as their small business technology consultant.
             </p>
-          </div>
-          <div className="wrap" style={{ marginTop: 'clamp(24px, 3vw, 48px)' }}>
             <div dangerouslySetInnerHTML={{ __html: `
 <figure class="d17 sw a953" data-od-id="hero-visual" data-motion data-no="DO-ART-953" data-rev="01" data-tx="photo"
         aria-label="Artwork DO-ART-953. A graded photograph of folded shirts in a warehouse, with a phone showing a batch pick: six orders, each line with its bin location, one line being picked now. Pinned tags: 100% of stock has a bin location; 952 products live on their website; 17 supplier feeds automated. The eCommerce platform stayed. Decoded Works does the parts it was never going to do.">
@@ -116,12 +95,12 @@ export default function CaseStudy02Page() {
         </section>
 
         {/* 2. MEASURE · DO-ART-954 */}
-        <section className="g-tint">
+        <section className="g-tint" data-od-id="measure">
           <div className="wrap">
-            <span className="eyebrow">Measure · DO-ART-954</span>
-            <h2>Before and after, paired line for line.</h2>
-            <div className="hair"></div>
-            <p className="lede" style={{ marginTop: 16 }}>Case study 02, real production numbers. 17 supplier feeds, automated.</p>
+            <div className="route-head">
+              <div><span className="eyebrow">Measure &middot; DO-ART-954</span><h2 data-od-id="measure-h2">Before and after, paired line for line.</h2></div>
+              <p className="lede">Case study 02, real production numbers. 17 supplier feeds, automated.</p>
+            </div>
 
             <div dangerouslySetInnerHTML={{ __html: `
 <figure class="d17 sw sw-doc a954" data-od-id="plate-measure" data-motion data-no="DO-ART-954" data-rev="01" data-tx="photo"
@@ -161,8 +140,10 @@ export default function CaseStudy02Page() {
           </div>
         </section>
 
-        {/* 3. THE NUMBERS */}
-        <section className="g-navy">
+        {/* 3. THE NUMBERS — kept from the current page; the mockup drops this
+            stat grid (its note: the same figures already sit in DO-ART-954).
+            Kept per the release-set rule on dropped sections carrying copy. */}
+        <section className="g-navy" data-od-id="numbers">
           <div className="wrap">
             <span className="eyebrow eyebrow--amber">The numbers</span>
             <h2 style={{ marginTop: 14 }}>Not projected. Not modelled. What&apos;s actually in the system.</h2>
@@ -202,48 +183,75 @@ export default function CaseStudy02Page() {
         </section>
 
         {/* 4. THE STORY */}
-        <section className="g-white">
-          <div className="wrap prose">
-            <h2>The situation before</h2>
-            <p>
-              Stock and supplier feeds took a lot of manual admin, pulling people away from running the business.
-            </p>
-
-            <h2>What was done</h2>
-            <p>
-              The eCommerce platform stayed, because it was the right tool for selling. Works was built alongside it to do the parts the platform was never going to do: supplier feeds kept current, decorated and plain stock tracked separately, warehouse work (bins, barcode scanning, batch picking on a phone), and new products and variants published to the website automatically.
-            </p>
-            <p>
-              The website integration has been running in production since July. Supplier automation and warehouse tooling are still growing. Next up is measuring the real hours saved to replace the projection.
-            </p>
-
-            <div className="progress-note">
-              <h3>What&apos;s still in progress</h3>
-              <p>
-                Works keeps expanding. Warehouse floor tooling and further supplier automation are active, ongoing work, not a finished job being presented as complete.
-              </p>
+        <section className="g-white story" data-od-id="story">
+          <div className="wrap split-6" style={{ marginTop: 0 }}>
+            <div>
+              <span className="eyebrow">The story</span>
+              <h2 data-od-id="before-h2">The situation before</h2>
+              <p className="t-lede">Stock and supplier feeds took a lot of manual admin, pulling people away from running the business.</p>
+            </div>
+            <div>
+              <h3 data-od-id="done-h3">What was done</h3>
+              <p className="t-body" style={{ marginTop: 0 }}>The eCommerce platform stayed, because it was the right tool for selling. Works was built alongside it to do the parts the platform was never going to do: supplier feeds kept current, decorated and plain stock tracked separately, warehouse work (bins, barcode scanning, batch picking on a phone), and new products and variants published to the website automatically.</p>
+              <p className="t-body">The website integration has been running in production since July. Supplier automation and warehouse tooling are still growing. Next up is measuring the real hours saved to replace the projection.</p>
+              <h3 data-od-id="progress-h3">What&apos;s still in progress</h3>
+              <p className="t-body" style={{ marginTop: 0 }}>Works keeps expanding. Warehouse floor tooling and further supplier automation are active, ongoing work, not a finished job being presented as complete.</p>
             </div>
           </div>
         </section>
 
-        {/* 5. CTA STRIP */}
-        <section className="g-off cta-strip">
-          <div className="wrap" style={{ maxWidth: 760 }}>
-            <h2>See how Works does this.</h2>
-            <p className="lede">
-              This is a Systems (rung 2) example. If you want a small business technology consultant to find out what your own operation needs, book a Clarity Audit.
-            </p>
-            <div className="hero-cta">
-              <Link href="/contact" className="btn btn--primary">
-                Book a free discovery call <ArrowRight size={18} />
-              </Link>
-              <Link href="/apps/works" className="btn btn-ghost btn-arrow">
-                See Works
-              </Link>
+        {/* 5. THE SYSTEM IT RUNS ON — new in the mockup (heading and lede are its new copy).
+            NB: the tote-scan shot references DO-ART-1019k, which is not present under
+            public/ — see the lane report. */}
+        <section className="g-navy" data-od-id="screens">
+          <div className="wrap">
+            <div className="route-head">
+              <div><span className="eyebrow">The system it runs on</span><h2 data-od-id="screens-h2">The warehouse, run from Decoded Works.</h2></div>
+              <p className="lede">The pick queue and the tote scan station, as the product shows them. These two screens run on sample data, not this client&apos;s figures; the figures above are the client&apos;s own.</p>
+            </div>
+            <div className="shots-2" data-od-id="screens-pair">
+              <figure className="shot" data-od-id="shot-pick-queue"><img src="/images/site/screens/works/do-art-1019c-works-pick-queue.webp" width={1600} height={1000} alt="Decoded Works pick queue, sample data." loading="lazy" /><figcaption><b>Pick queue</b><span>Works &middot; sample data</span></figcaption></figure>
+              <figure className="shot" data-od-id="shot-tote-scan"><img src="/images/site/screens/works/do-art-1019k-works-tote-scan.webp" width={1600} height={1000} alt="Decoded Works tote scan station, sample data." loading="lazy" /><figcaption><b>Tote scan</b><span>Works &middot; sample data</span></figcaption></figure>
+            </div>
+            <div className="t-links"><Link className="go" href="/apps/works">See Works <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link></div>
+          </div>
+        </section>
+
+        {/* 6. KEEP READING — new in the mockup (the current page has no related block) */}
+        <section className="g-tint next" data-od-id="keep-reading">
+          <div className="wrap">
+            <span className="eyebrow">Relevant sectors and problems</span>
+            <div className="next-grid next-grid--3">
+              <div className="next-card" data-od-id="next-teamwear"><span className="t-meta">Sector</span><h3>Teamwear &amp; clubwear</h3>
+                <p className="t-card">Club and squad ordering, decorated and plain stock side by side, and supplier feeds that change every season.</p>
+                <Link className="go" href="/sectors/teamwear-clubwear">See the teamwear page <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link></div>
+              <div className="next-card" data-od-id="next-schoolwear"><span className="t-meta">Sector</span><h3>Schoolwear</h3>
+                <p className="t-card">The same stock and supplier problem, with a back-to-school peak that decides the year.</p>
+                <Link className="go" href="/sectors/schoolwear">See the schoolwear page <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link></div>
+              <div className="next-card" data-od-id="next-ecommerce"><span className="t-meta">Problem</span><h3>eCommerce not connected</h3>
+                <p className="t-card">A website that can&apos;t show live stock, because it doesn&apos;t read from the warehouse.</p>
+                <Link className="go" href="/problems/ecommerce-not-connected">Read about disconnected eCommerce <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link></div>
             </div>
           </div>
         </section>
+
+        {/* 7. CLOSER */}
+        <section className="g-off closer" data-od-id="cta">
+          <div className="wrap closer-grid">
+            <div><h2 data-od-id="cta-h2">See how Works does this</h2></div>
+            <div>
+              <p className="lede">This is a Systems (rung 2) example. If you want a small business technology consultant to find out what your own operation needs, book a Clarity Audit.</p>
+              <div className="btn-row">
+                <Link className="btn btn--primary" href="/contact" data-od-id="cta-primary">Book a free discovery call</Link>
+                <Link className="go" href="/apps/works">See Works <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+              </div>
+            </div>
+          </div>
+        </section>
+
       </main>
+      </div>
+
       <D17Motion />
     </>
   );
