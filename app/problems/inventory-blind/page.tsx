@@ -7,9 +7,11 @@ import { VideoEmbed } from '@/components/VideoEmbed';
 import { VideoSchema } from '@/components/VideoSchema';
 import { problemVideos } from '@/data/problem-videos';
 import { problemRouting } from '@/data/problem-routing';
+import { BOOKING_URL } from '@/lib/constants';
 import { a943 } from '@/lib/d17-figures/a943';
 import '@/app/d17-global.css';
 import '@/app/d17-problems.css';
+import '@/app/d17-apps-cases.css';
 import '@/app/problems/problems-v2.css';
 import { D17Motion } from '@/components/D17Motion';
 import styles from './page.module.css';
@@ -117,7 +119,8 @@ export default function InventoryBlindPage() {
    </svg>
 
    <div className={styles.root}>
-    <ProblemPageV2
+    <div className={styles.shared}>
+     <ProblemPageV2
      slug="inventory-blind"
      problem="Inventory blind"
      crumb="Inventory blind"
@@ -161,6 +164,7 @@ export default function InventoryBlindPage() {
      howTone="off"
      routing={problemRouting['inventory-blind']}
     />
+    </div>
 
     {problemVideos['inventory-blind'] && (
      <section className={styles.video} data-od-id="video-embed">
@@ -207,6 +211,32 @@ export default function InventoryBlindPage() {
          as it changes, not reconciled once a week.</p>
        </article>
       </div>
+     </div>
+    </section>
+
+    {/* How I help: the shared layout hardcodes its own heading, so this page's
+        section is rendered here with the current wording. */}
+    <section className={`${styles.how} g-off`} data-od-id="how-i-help">
+     <div className="wrap how-grid">
+      <div>
+       <span className="eyebrow">How I help</span>
+       <h2 data-od-id="how-h2">Stock you can order against, not stock you have to double-check.</h2>
+       <p className="t-lede">I map where your stock picture actually breaks down: which feeds, which manual steps,
+        which system nobody quite trusts. Then I build the Works layer that fixes it.</p>
+       <p className="t-body"><b>No more guesswork stock checks before a big order.</b> The number on screen becomes
+        the number worth ordering against.</p>
+      </div>
+      <aside className="offer" data-od-id="offer">
+       <h3>The first call is free.</h3>
+       <p className="t-card">60 minutes. No sales pitch, just a direct conversation about your situation.</p>
+       <ul className="ticks">
+        {['One day on site', 'Written report in 5 days', '3× Clarity Guarantee', 'No vendor agenda'].map(item => (
+         <li key={item}><Icon id="i-check" size={20} /><span>{item}</span></li>
+        ))}
+       </ul>
+       <Link className="btn btn--primary" href="/contact" data-od-id="offer-cta">Book a free call</Link>
+       <a className="alt" href={BOOKING_URL} target="_blank" rel="noopener noreferrer" data-od-id="offer-alt">Or book a call directly</a>
+      </aside>
      </div>
     </section>
 
