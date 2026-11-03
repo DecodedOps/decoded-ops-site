@@ -15,7 +15,6 @@ export const metadata: Metadata = {
   description: 'As an operations management consultant for print and embroidery, I start with what your current process actually costs, then fix the parts that matter.',
   alternates: { canonical: '/sectors/operations-consultant-print-embroidery' },
   openGraph: {
-    type: 'website',
     title: 'Operations Management Consultant, Print | Decoded Ops',
     description: 'As an operations management consultant for print and embroidery, I start with what your current process actually costs, then fix the parts that matter.',
     url: 'https://decodedops.co.uk/sectors/operations-consultant-print-embroidery',
