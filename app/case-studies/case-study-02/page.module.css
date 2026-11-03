@@ -1,9 +1,9 @@
-/* RS3 lane C (CR-WEB-084) — page layout only, from the 3 Nov mockup's
-   <style> block (.context/mockups/rs3/case-study-02-v2.html).
+/* RS3 lane C (CR-WEB-084) — page layout only, from the 3 Nov v2 plate's
+   <style> block (case-study-02-v2.html in the approved RS3 design set).
    Every pattern lives in site-v3.css and the d17 sheets; only the rules the
-   mockup keeps page-local are here. Anchored on .root — no bare globals.
+   plate keeps page-local are here. Anchored on .root — no bare globals.
    The .stat rules carry over from the page's old inline <style> because the
-   "The numbers" stat grid is kept (the mockup drops it — see the lane report);
+   "The numbers" stat grid is kept (the v2 plate drops it — see the lane report);
    without them the kept section would lose its type treatment. */
 
 .root :global(.story h3) { margin: 0 0 10px }

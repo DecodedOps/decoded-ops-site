@@ -52,7 +52,7 @@ export default function CaseStudy03Page() {
       <JsonLd data={schema} />
       <IconSprite />
       {/* i-workflow is missing from components/IconSprite.tsx (components/ is
-          untouchable for this lane), so the mockup's symbol is defined here. */}
+          untouchable for this lane), so the design's symbol is defined here. */}
       <svg width="0" height="0" style={{ position: 'absolute' }} aria-hidden="true">
         <symbol id="i-workflow" viewBox="0 0 24 24"><rect width="8" height="8" x="3" y="3" rx="2" /><path d="M7 11v4a2 2 0 0 0 2 2h4" /><rect width="8" height="8" x="13" y="13" rx="2" /></symbol>
       </svg>
@@ -167,7 +167,7 @@ export default function CaseStudy03Page() {
           </div>
         </section>
 
-        {/* 3. WHAT THE ENGAGEMENT COVERS — the three covers cards become the mockup's route */}
+        {/* 3. WHAT THE ENGAGEMENT COVERS — the three covers cards become the v2 plate's route */}
         <section className="g-white" data-od-id="engagement">
           <div className="wrap">
             <div className="route-head">

@@ -1,7 +1,7 @@
-/* RS3 lane C (CR-WEB-084) — page layout only, from the 3 Nov mockup's
-   <style> block (.context/mockups/rs3/case-studies-index-v2.html).
+/* RS3 lane C (CR-WEB-084) — page layout only, from the 3 Nov v2 plate's
+   <style> block (case-studies-index-v2.html in the approved RS3 design set).
    Every pattern lives in site-v3.css and the d17 sheets; only the rules the
-   mockup keeps page-local are here. Anchored on .root — no bare globals. */
+   plate keeps page-local are here. Anchored on .root — no bare globals. */
 
 .root :global(.hero .t-lede) { max-width: 64ch }
 

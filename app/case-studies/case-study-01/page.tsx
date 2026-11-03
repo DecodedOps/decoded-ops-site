@@ -183,7 +183,7 @@ export default function CaseStudy01Page() {
           </div>
         </section>
 
-        {/* 3. THE NUMBERS — kept from the current page; the mockup drops this
+        {/* 3. THE NUMBERS — kept from the current page; the v2 plate drops this
             stat grid (its note: the same six figures already sit in DO-ART-951).
             Kept per the release-set rule on dropped sections carrying copy. */}
         <section className="g-navy" data-od-id="numbers">
@@ -249,7 +249,7 @@ export default function CaseStudy01Page() {
           </div>
         </section>
 
-        {/* 5. THE SYSTEM IT RUNS ON — new in the mockup (heading and lede are its new copy) */}
+        {/* 5. THE SYSTEM IT RUNS ON — new in the v2 plate (heading and lede are its new copy) */}
         <section className="g-navy" data-od-id="screens">
           <div className="wrap">
             <div className="route-head">

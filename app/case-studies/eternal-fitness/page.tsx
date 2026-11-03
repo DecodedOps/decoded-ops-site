@@ -53,7 +53,7 @@ export default function EternalFitnessCaseStudyPage() {
       <JsonLd data={schema} />
       <IconSprite />
       {/* i-layout-template is missing from components/IconSprite.tsx (components/
-          is untouchable for this lane), so the mockup's symbol is defined here. */}
+          is untouchable for this lane), so the design's symbol is defined here. */}
       <svg width="0" height="0" style={{ position: 'absolute' }} aria-hidden="true">
         <symbol id="i-layout-template" viewBox="0 0 24 24"><rect width="18" height="7" x="3" y="3" rx="1" /><rect width="9" height="7" x="3" y="14" rx="1" /><rect width="5" height="7" x="16" y="14" rx="1" /></symbol>
       </svg>
@@ -118,7 +118,7 @@ export default function EternalFitnessCaseStudyPage() {
           </div>
         </section>
 
-        {/* 3. WHAT I'M BUILDING — the four lines become the mockup's icon cards */}
+        {/* 3. WHAT I'M BUILDING — the four lines become the v2 plate's icon cards */}
         <section className="g-off" data-od-id="building">
           <div className="wrap">
             <div className="route-head">
@@ -243,7 +243,7 @@ export default function EternalFitnessCaseStudyPage() {
           </div>
         </section>
 
-        {/* 7. CLOSER — the mockup drops the third exit ("Or book a call directly"); see the lane report */}
+        {/* 7. CLOSER — the v2 plate drops the third exit ("Or book a call directly"); see the lane report */}
         <section className="g-off closer" data-od-id="cta">
           <div className="wrap closer-grid">
             <div><h2 data-od-id="cta-h2">Building something similar?</h2></div>

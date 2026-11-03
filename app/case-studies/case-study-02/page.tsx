@@ -140,7 +140,7 @@ export default function CaseStudy02Page() {
           </div>
         </section>
 
-        {/* 3. THE NUMBERS — kept from the current page; the mockup drops this
+        {/* 3. THE NUMBERS — kept from the current page; the v2 plate drops this
             stat grid (its note: the same figures already sit in DO-ART-954).
             Kept per the release-set rule on dropped sections carrying copy. */}
         <section className="g-navy" data-od-id="numbers">
@@ -200,7 +200,7 @@ export default function CaseStudy02Page() {
           </div>
         </section>
 
-        {/* 5. THE SYSTEM IT RUNS ON — new in the mockup (heading and lede are its new copy).
+        {/* 5. THE SYSTEM IT RUNS ON — new in the v2 plate (heading and lede are its new copy).
             NB: the tote-scan shot references DO-ART-1019k, which is not present under
             public/ — see the lane report. */}
         <section className="g-navy" data-od-id="screens">
@@ -217,7 +217,7 @@ export default function CaseStudy02Page() {
           </div>
         </section>
 
-        {/* 6. KEEP READING — new in the mockup (the current page has no related block) */}
+        {/* 6. KEEP READING — new in the v2 plate (the current page has no related block) */}
         <section className="g-tint next" data-od-id="keep-reading">
           <div className="wrap">
             <span className="eyebrow">Relevant sectors and problems</span>
