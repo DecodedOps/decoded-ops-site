@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ERP for Manufacturing, Should You Replace It · Decoded Ops (v1 mockup)</title>
+<meta name="description" content="Not sure if your ERP for manufacturing needs replacing, upgrading or extending. Answer eight questions and get a clear recommendation, free, no signup.">
+<!-- v1 (3 Nov 2026) · release set 11 · /tools/should-i-replace-erp on the approved tool template (tool-ops-health-score-v1, set 8). Staging copy, inputs, defaults and formulas verbatim (rendered from origin/HEAD); new copy carries data-new-copy. Results update live, as on staging. DO-ART-999 (the scorecard answered as an example) as the hero piece; the eight weighted questions, scoring and bands as coded. FLAG: on staging all three result bands carry the same description (the SEO sentence); the mockup proposes one line per band, marked data-new-copy, for Craig to approve or replace. -->
+<link rel="stylesheet" href="../ds-marketing.css">
+<link rel="stylesheet" href="../assets/site/d17-global.css">
+<link rel="stylesheet" href="../assets/site/d17-apps-cases.css">
+<link rel="stylesheet" href="../assets/site/d17-resources.css">
+<link rel="stylesheet" href="../assets/site/site-v3.css">
+<link rel="stylesheet" href="../assets/site/d17-resources-live.css">
+<style>
+/* page layout only · every pattern lives in site-v3.css and the d17 sheets */
+.hero-split .d17{ width:100% }
+.hero-split .btn .ic{ margin-right:6px; vertical-align:-4px }
+.route .stop .t-card{ font-size:var(--do-text-sm) }
+.areas--2 .area .t-card{ max-width:none }
+.prose table{ width:100%; border-collapse:collapse; margin:20px 0; font-size:var(--do-text-sm); font-variant-numeric:tabular-nums }
+.prose th{ text-align:left; padding:10px 12px; background:color-mix(in srgb, var(--do-sky-blue) 18%, transparent); border-bottom:2px solid var(--do-cerulean); font-weight:600 }
+.prose td{ padding:10px 12px; border-bottom:1px solid var(--do-border-subtle) }
+.calc{ display:grid; grid-template-columns:minmax(0,5fr) minmax(0,7fr); gap:32px; align-items:start; margin-top:36px }
+.calc .form-card{ display:grid; gap:18px }
+.calc .field .hint{ margin:6px 0 0; font-size:var(--do-text-xs); color:var(--do-text-muted) }
+.calc .field .unit{ display:flex; align-items:center; gap:10px } .calc .field .unit span{ font-size:var(--do-text-sm); color:var(--do-text-muted); white-space:nowrap }
+.calc .feed{ position:sticky; top:96px }
+.stats{ list-style:none; margin:14px 0 0; padding:0; display:grid; gap:0 }
+.stats li{ display:flex; justify-content:space-between; gap:16px; align-items:baseline; padding:12px 0; border-top:1px solid color-mix(in srgb, var(--do-sky-blue) 22%, transparent); font-size:var(--do-text-sm) }
+.stats li b{ font-family:var(--do-font-heading); font-size:var(--do-text-xl); font-variant-numeric:tabular-nums; text-align:right }
+.stats li b.am{ color:var(--do-amber) } .stats li b.mu{ font-family:var(--do-font-body); font-size:var(--do-text-sm); font-weight:500; opacity:.75 }
+.result-cta{ display:flex; flex-wrap:wrap; gap:14px 24px; align-items:center; margin-top:22px }
+.result-cta .go{ color:var(--do-off-white) } .result-cta .go .ic{ color:var(--do-sky-blue) }
+.capture{ margin-top:24px; border-top:1px solid color-mix(in srgb, var(--do-sky-blue) 22%, transparent); padding-top:18px }
+.capture summary{ cursor:pointer; font-weight:600; min-height:44px; display:flex; align-items:center; gap:8px }
+.capture summary:focus-visible{ outline:2px solid var(--do-sky-blue); outline-offset:3px; border-radius:var(--do-radius-sm) }
+.capture form{ display:grid; gap:10px; margin-top:10px } .capture input{ width:100%; box-sizing:border-box; padding:10px 12px; font:inherit; font-size:var(--do-text-sm); border-radius:var(--do-radius-md); border:1px solid color-mix(in srgb, var(--do-sky-blue) 40%, transparent); background:color-mix(in srgb, var(--do-off-white) 6%, transparent); color:var(--do-off-white) }
+.capture input::placeholder{ color:color-mix(in srgb, var(--do-off-white) 55%, transparent) }
+.capture input:focus-visible{ outline:2px solid var(--do-sky-blue); outline-offset:1px }
+.capture p{ margin:0; font-size:var(--do-text-sm); color:color-mix(in srgb, var(--do-off-white) 80%, transparent) }
+.meter.warn > span{ background:var(--do-orange) } .meter.mid > span{ background:var(--do-amber) } .meter.low > span{ background:var(--do-sky-blue) }
+.months{ list-style:none; margin:12px 0 0; padding:0; display:grid; gap:6px }
+.months li{ display:grid; grid-template-columns:34px 1fr 44px; gap:10px; align-items:center; font-size:var(--do-text-xs) }
+.months .trk{ position:relative; height:10px; border-radius:var(--do-radius-full); background:color-mix(in srgb, var(--do-sky-blue) 14%, transparent) }
+.months .trk > span{ position:absolute; inset:0 auto 0 0; border-radius:inherit; background:var(--do-cerulean) } .months .trk > span.over{ background:var(--do-orange) }
+.months .trk > i{ position:absolute; top:-3px; bottom:-3px; width:2px; background:var(--do-sky-blue) }
+.months b{ text-align:right; font-variant-numeric:tabular-nums } .months b.over{ color:var(--do-orange) }
+.sliders{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px 18px }
+.sliders label{ display:grid; grid-template-columns:34px 1fr 42px; gap:8px; align-items:center; font-size:var(--do-text-sm) }
+.sliders input[type=range]{ width:100%; accent-color:var(--do-cerulean) } .sliders output{ text-align:right; font-variant-numeric:tabular-nums }
+.linkbtn{ background:none; border:0; padding:0; font:inherit; font-size:var(--do-text-sm); color:var(--do-text-primary); text-decoration:underline; text-decoration-color:var(--do-cerulean); cursor:pointer; min-height:44px }
+.linkbtn:focus-visible{ outline:2px solid var(--do-cerulean); outline-offset:2px }
+.wiz{ max-width:720px; margin:36px auto 0 }
+.wiz .bar{ height:8px; border-radius:var(--do-radius-full); background:color-mix(in srgb, var(--do-sky-blue) 25%, transparent); overflow:hidden; margin-top:8px } .wiz .bar > span{ display:block; height:100%; background:var(--do-cerulean); transition:width var(--do-duration-normal) var(--do-ease-default) }
+.wiz .prog{ display:flex; justify-content:space-between; font-size:var(--do-text-sm); color:var(--do-text-muted) }
+.wiz .qcard{ margin-top:22px; padding:32px }
+.wiz .qcard h2{ font-size:var(--do-text-2xl); max-width:none }
+.wiz .yn{ display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:24px } .wiz .yn .btn{ min-height:52px; justify-content:center }
+.wiz .back{ margin-top:14px }
+.verdict{ text-align:left }
+.answers{ margin-top:16px } .answers summary{ cursor:pointer; min-height:44px; display:flex; align-items:center; font-weight:600 }
+.answers ol{ margin:8px 0 0; padding-left:20px; display:grid; gap:6px; font-size:var(--do-text-sm) } .answers b{ display:inline-block; min-width:30px }
+@media (max-width:900px){ .calc{ grid-template-columns:1fr } .calc .feed{ position:static } .sliders{ grid-template-columns:1fr } }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <!-- Lucide geometry, lucide-static v1.54.0 (ISC), embedded path-for-path -->
+  <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+  <symbol id="i-rotate-ccw" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" key="1357e3"/><path d="M3 3v5h5" key="1xhq8a"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/></symbol>
+</svg>
+
+<header class="site-head site-head--paths" data-od-id="site-head">
+  <div class="wrap">
+    <a class="logo" href="/">Decoded<span>Ops</span></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">
+      <svg class="bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      <svg class="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <!-- nav mirrors the live components/Header.tsx (13 Oct 2026), plus Catalogue under Software I’ve already built -->
+    <nav class="site-nav" id="site-nav" aria-label="Primary">
+      <div class="path-group">
+        <button class="path-trigger" type="button" aria-expanded="false" aria-controls="path-wrong">
+          <span class="path-label">What’s going wrong</span>
+          <svg class="path-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="path-menu path-menu--mega" id="path-wrong">
+          <div class="path-col"><p class="path-head">Systems &amp; software</p>
+            <a href="/problems/systems-dont-talk">Nothing talks to anything else</a>
+            <a href="/problems/wrong-erp-software">We’re on the wrong software</a>
+            <a href="/problems/erp-implementation-failure">The new system rollout went wrong</a>
+            <a href="/problems/legacy-system">Our system is ancient</a>
+            <a href="/problems/ecommerce-not-connected">The website isn’t connected to the office</a>
+          </div>
+          <div class="path-col"><p class="path-head">Growth &amp; capacity</p>
+            <a href="/problems/slow-processes">Everything takes too long</a>
+            <a href="/problems/cant-scale-operations">We can’t take on more work</a>
+            <a href="/problems/bottleneck-growth">One person is the bottleneck</a>
+            <a href="/problems/seasonal-peaks">Busy season breaks us</a>
+          </div>
+          <div class="path-col"><p class="path-head">Data &amp; day to day</p>
+            <a href="/problems/spreadsheet-addiction">We run the place on spreadsheets</a>
+            <a href="/problems/manual-workarounds">Everyone has their own workaround</a>
+            <a href="/problems/data-scattered">The numbers never agree</a>
+            <a href="/problems/inventory-blind">We don’t know what stock we have</a>
+            <a href="/problems/ops-in-owners-head">It’s all in the owner’s head</a>
+          </div>
+          <div class="path-col"><p class="path-head">Risk &amp; what’s next</p>
+            <a href="/problems/no-ops-owner">Nobody owns operations</a>
+            <a href="/problems/disaster-recovery">If the server died tomorrow…</a>
+            <a href="/problems/ai-paralysis">Everyone says use AI, where do I start?</a>
+            <a href="/problems/buy-vs-build">Buy it or build it?</a>
+          </div>
+        </div>
+      </div>
+      <div class="path-group">
+        <button class="path-trigger" type="button" aria-expanded="false" aria-controls="path-help">
+          <span class="path-label">How I help</span>
+          <svg class="path-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="path-menu path-menu--mega" id="path-help">
+          <div class="path-col"><p class="path-head">The four steps</p>
+            <a href="/clarity">Clarity<small>A day on site, then a written plan &middot; most people start here</small></a>
+            <a href="/deliver">Deliver<small>I fix the two or three worst things</small></a>
+            <a href="/transform">Transform<small>Rebuild how the business runs</small></a>
+            <a href="/retained">Retained<small>A technology director, part time</small></a>
+          </div>
+          <div class="path-col"><p class="path-head">Software I’ve already built</p>
+            <a href="/apps/works">Works<small>The ERP for decorated goods</small></a>
+            <a href="/apps/proof">Proof<small>Versions, approvals and delivery</small></a>
+            <a href="/apps/commerce">Commerce<small>B2B ordering for your customers</small></a>
+            <a href="/apps/catalogue">Catalogue<small>Supplier feeds in, one clean catalogue, feeds out</small></a>
+            <a href="/apps">All apps<small>What’s ready to buy today</small></a>
+          </div>
+          <div class="path-col"><p class="path-head">How I work</p>
+            <a href="/resources/decoded-method">The Decoded Method</a>
+            <a href="/how-i-build">How I build software</a>
+            <a href="/pricing">Prices, in plain numbers</a>
+            <a href="/about">About Craig</a>
+          </div>
+        </div>
+      </div>
+      <div class="path-group">
+        <button class="path-trigger" type="button" aria-expanded="false" aria-controls="path-industry">
+          <span class="path-label">Your industry</span>
+          <svg class="path-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="path-menu path-menu--mega" id="path-industry">
+          <div class="path-col"><p class="path-head">Pick what you make</p>
+            <a href="/sectors/garment-decoration">Garment decoration</a>
+            <a href="/sectors/print-promotional">Print &amp; promotional</a>
+            <a href="/sectors/workwear">Workwear</a>
+            <a href="/sectors/teamwear-clubwear">Teamwear &amp; clubwear</a>
+            <a href="/sectors/schoolwear">Schoolwear</a>
+          </div>
+          <div class="path-col"><p class="path-head">More trades</p>
+            <a href="/sectors/signs-graphics">Signs &amp; graphics</a>
+            <a href="/sectors/awards-engraving">Awards &amp; engraving</a>
+            <a href="/sectors/labels-packaging">Labels &amp; packaging</a>
+            <a href="/sectors/promotional-merchandise">Promotional merchandise</a>
+          </div>
+        </div>
+      </div>
+      <div class="path-group">
+        <button class="path-trigger" type="button" aria-expanded="false" aria-controls="path-small">
+          <span class="path-label">Small business</span>
+          <svg class="path-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="path-menu path-menu--mega" id="path-small">
+          <div class="path-col"><p class="path-head">Small business services</p>
+            <a href="/small-business">Clarity Check<small>Fixed-price, done remotely &middot; £600</small></a>
+            <a href="/pricing">Everything else<small>Same services, same from-prices as everyone else</small></a>
+          </div>
+          <div class="path-col"><p class="path-head">Start free</p>
+            <a href="/tools/ops-health-score" aria-current="page">Ops health score</a>
+            <a href="/resources/audit-checklist">The audit checklist</a>
+            <a href="/small-business">Read the whole thing</a>
+          </div>
+        </div>
+      </div>
+      <div class="path-group">
+        <button class="path-trigger" type="button" aria-expanded="false" aria-controls="path-proof">
+          <span class="path-label">Proof &amp; free tools</span>
+          <svg class="path-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="path-menu path-menu--mega" id="path-proof">
+          <div class="path-col"><p class="path-head">Work I’ve done</p>
+            <a href="/case-studies/case-study-01">Case study 01</a>
+            <a href="/case-studies/case-study-02">Case study 02</a>
+            <a href="/case-studies/case-study-03">Case study 03</a>
+            <a href="/case-studies/eternal-fitness">Eternal Fitness</a>
+            <a href="/case-studies">All case studies</a>
+          </div>
+          <div class="path-col"><p class="path-head">Free calculators</p>
+            <a href="/tools/ops-health-score">Ops health score</a>
+            <a href="/tools/downtime-cost-calculator">What downtime costs you</a>
+            <a href="/tools/automation-roi-calculator">Is automation worth it?</a>
+            <a href="/tools/rto-calculator">How fast could you recover?</a>
+            <a href="/tools/should-i-replace-erp">Should I replace my ERP?</a>
+          </div>
+          <div class="path-col"><p class="path-head">Guides &amp; writing</p>
+            <a href="/resources/audit-checklist">The ops audit checklist</a>
+            <a href="/resources/5-warning-signs">5 signs your systems are failing</a>
+            <a href="/resources/sop-template">SOP template for decoration businesses</a>
+            <a href="/resources/erp-selection-playbook">ERP selection guide</a>
+            <a href="/resources/artwork-approval-playbook">Artwork approval playbook</a>
+            <a href="/resources/decoded-method">The Decoded Method</a>
+            <a href="/resources/six-sigma">Six Sigma, explained simply</a>
+            <a href="/process-quality-system">Building a quality system</a>
+            <a href="/blog">The blog</a>
+          </div>
+        </div>
+      </div>
+      <a class="nav-flat" href="/pricing">Pricing</a>
+      <a class="nav-flat" href="/clients/login">Client Login</a>
+      <a class="btn btn--primary nav-cta" href="/contact">Book a free call</a>
+    </nav>
+  </div>
+</header>
+
+<main id="content">
+<section class="g-off hero" data-od-id="hero">
+  <div class="wrap hero-split">
+    <div>
+      <span class="eyebrow">Free tool</span>
+      <h1 data-od-id="hero-h1">Should I replace my ERP?</h1>
+      <p class="t-lede">Eight yes/no questions to help you decide whether to fix your current ERP for manufacturing or plan an exit.</p>
+      <p class="t-body">About two minutes. Nothing is stored unless you choose to send it.</p>
+      <div class="btn-row"><a class="btn btn--outline" href="#wizard" data-od-id="hero-cta">Start the eight questions</a><a class="go" href="/resources/erp-selection-playbook" data-new-copy>Read the ERP selection playbook <svg class="ic ic-16" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></div>
+    </div>
+<figure class="d17 sx a999" data-od-id="hero-art" data-motion="true" data-no="DO-ART-999" data-rev="01" data-tx="photo" aria-label="Artwork DO-ART-999. The should I replace my ERP scorecard over a graded photograph of a despatch box, answered as an example. Question 1: is your current system unable to handle your core business processes without significant workarounds? Yes. Questions 2 to 8 answered: no, no, yes, no, no, no, no. Two of eight yes. The verdict stamp: example, fixable. Fix it, or plan an exit: eight questions decide which."><div class="d17-ph"><img src="../assets/site/d17/resources/prod-mailer-259a39.webp" alt="" width="900" height="600"/></div><div class="d17-scan" aria-hidden="true"></div><div class="sx-top d17-mono" aria-hidden="true"><span>Should I replace my ERP?</span><span>Eight questions</span></div><div class="stage" aria-hidden="true"><div class="d17-doc doc-qz m-drop" style="animation-delay:.05s"><span class="tab">EXAMPLE</span><span class="ref">Decision scorecard · yes or no</span><h4>Fix it, or plan an exit?</h4><div class="qz"><div class="q1"><span class="n">Q1</span><span class="t">Is your current system unable to handle your core business processes without significant workarounds?</span><em class="yes m-pop" style="animation-delay:.4s">Yes</em></div><div><span class="n">Q2</span><span class="ln"></span><em class="m-pop" style="animation-delay:.5s">No</em></div><div><span class="n">Q3</span><span class="ln" style="width:70%"></span><em class="m-pop" style="animation-delay:.6s">No</em></div><div><span class="n">Q4</span><span class="ln" style="width:84%"></span><em class="yes m-pop" style="animation-delay:.7s">Yes</em></div><div><span class="n">Q5</span><span class="ln" style="width:62%"></span><em class="m-pop" style="animation-delay:.8s">No</em></div><div><span class="n">Q6</span><span class="ln" style="width:76%"></span><em class="m-pop" style="animation-delay:.9s">No</em></div><div><span class="n">Q7</span><span class="ln" style="width:68%"></span><em class="m-pop" style="animation-delay:1s">No</em></div><div><span class="n">Q8</span><span class="ln" style="width:80%"></span><em class="m-pop" style="animation-delay:1.1s">No</em></div></div><div class="tally"><span>Yes</span><b>2 of 8</b></div></div><div class="rt-stamp st-999 m-pop" style="animation-delay:1.4s">Fixable<small>Example verdict</small></div></div><div class="sx-foot"><div class="sx-bar" aria-hidden="true"></div><p class="sx-say">Fix it, or plan an exit. <em>Eight questions decide which.</em></p><span class="d17-mark">decodedops.co.uk · DO-ART-999 · Rev 01</span></div></figure>
+  </div>
+</section>
+
+<section class="g-white" id="wizard" data-od-id="wizard">
+  <div class="wrap">
+    <div class="route-head">
+      <div><span class="eyebrow" data-new-copy>Eight questions</span><h2 data-od-id="wizard-h2" data-new-copy>Fix it, or plan the exit?</h2></div>
+      <p class="lede" data-new-copy>Answer honestly. Some questions count double, and the result tells you which way the evidence points.</p>
+    </div>
+    <div class="wiz" data-wiz>
+      <div data-step>
+        <div class="prog"><span data-out="qn">Question 1 of 8</span><span data-out="pc">0%</span></div>
+        <div class="bar"><span data-out-w style="width:0%"></span></div>
+        <div class="form-card qcard" data-od-id="question-card">
+          <span class="eyebrow" data-out="qk">Question 1</span>
+          <h2 data-out="qt">Is your current system unable to handle your core business processes without significant workarounds?</h2>
+          <div class="yn"><button type="button" class="btn btn--outline" data-a="yes">Yes</button><button type="button" class="btn btn--outline" data-a="no">No</button></div>
+          <button type="button" class="linkbtn back" data-back hidden>Back to the previous question</button>
+        </div>
+      </div>
+      <div class="feed verdict" data-result hidden aria-live="polite" data-od-id="wizard-result">
+        <p class="feed-k d17-mono">Your result</p>
+        <p class="feed-big"><b data-out="score">0/13</b><span data-out="label">Stay and Optimise</span></p>
+        <p data-new-copy data-out="desc" style="margin:12px 0 0; max-width:52ch; color:color-mix(in srgb, var(--do-off-white) 85%, transparent)"></p>
+        <div class="result-cta"><a class="btn btn--primary" href="/contact" data-out="act">Book a Clarity Audit</a><button type="button" class="go linkbtn" style="color:var(--do-off-white)" data-reset><svg class="ic ic-16" aria-hidden="true"><use href="#i-rotate-ccw"/></svg> Try again</button></div>
+        <details class="answers"><summary>View your answers</summary><ol data-out-list></ol></details>
+        <details class="capture" data-od-id="capture">
+          <summary><svg class="ic ic-16" aria-hidden="true"><use href="#i-send"/></svg> Want to go deeper?</summary>
+          <p>Drop your details and I’ll follow up with tailored recommendations for your next steps.</p>
+          <form data-tool="should-i-replace-erp" onsubmit="event.preventDefault(); this.innerHTML='<p><b>Got it.</b> I’ve got your results and I’ll be in touch. If you’d rather talk sooner, <a href=&quot;https://bookings.cloud.microsoft/bookwithme/user/cd8e6071c12d43198fdd3d4b5a1f0c6e%40decodedops.co.uk/meetingtype/P0WZOGSVokOqOnMRxyU1eg2?anonymous&amp;ismsaljsauthenabled&quot;>book a call</a>.</p>';">
+            <input type="text" autocomplete="name" placeholder="Your name" aria-label="Name" required>
+            <input type="email" autocomplete="email" placeholder="you@company.com" aria-label="Email" required>
+            <input type="text" autocomplete="organization" placeholder="Your company (optional)" aria-label="Company">
+            <button class="btn btn--outline" type="submit">Get in touch</button>
+          </form>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="g-off closer" data-od-id="cta">
+  <div class="wrap closer-grid">
+    <div>
+      <span class="eyebrow" data-new-copy>Either way</span>
+      <h2 data-od-id="cta-h2" data-new-copy>Write the brief before anyone demos anything.</h2>
+    </div>
+    <div>
+      <p class="lede" data-new-copy>Whether you fix it or replace it, a Clarity Audit gives you the written brief to judge every option against, mine included.</p>
+      <div class="btn-row">
+        <a class="btn btn--primary" href="/contact" data-od-id="cta-primary">Book a free discovery call</a>
+        <a class="go" href="/problems/wrong-erp-software">On the wrong software? <svg class="ic ic-16" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var Q=[["Is your current system unable to handle your core business processes without significant workarounds?",2],["Have you had to build extensive customisations or manual processes to make the system work?",2],["Does your team actively avoid using the system, preferring spreadsheets instead?",2],["Is the cost of maintaining the current system increasing year on year?",1],["Is your vendor no longer investing in the platform or roadmap?",2],["Are you missing out on capabilities your competitors have (eCommerce, mobile, integrations)?",1],["Has the implementation stalled, failed, or been abandoned?",2],["Has your business model changed significantly since you bought the system?",1]], R=[{"min":0,"max":3,"label":"Stay and Optimise","action":"Book a Clarity Audit","desc":"The system is probably not the problem. Fix the processes and the setup around it before you spend money replacing it."},{"min":4,"max":7,"label":"Proceed with Caution","action":"Do an Audit First","desc":"Some of this is the system and some is how it is used. Find out which before you commit to anything."},{"min":8,"max":13,"label":"Plan Your Exit","action":"Start Planning","desc":"The case for moving is strong. Plan the exit properly: brief first, data clean, every option scored the same way."}], a=[], i=0, w=document.querySelector('[data-wiz]');
+  function $(s){ return w.querySelector(s); }
+  function show(){ var done=a.filter(function(x){ return x; }).length;
+    if(i>=Q.length){ var s=0; a.forEach(function(x,k){ if(x==='yes') s+=Q[k][1]; }); var r=R.filter(function(b){ return s>=b.min&&s<=b.max; })[0]||R[R.length-1];
+      $('[data-step]').hidden=true; $('[data-result]').hidden=false; $('[data-out=score]').textContent=s+'/13'; $('[data-out=label]').textContent=r.label; $('[data-out=desc]').textContent=r.desc; $('[data-out=act]').textContent=r.action;
+      $('[data-out-list]').innerHTML=Q.map(function(q,k){ return '<li><b>'+(a[k]==='yes'?'Yes':'No')+'</b> '+q[0]+'</li>'; }).join(''); return; }
+    $('[data-step]').hidden=false; $('[data-result]').hidden=true;
+    $('[data-out=qn]').textContent='Question '+(i+1)+' of 8'; $('[data-out=pc]').textContent=Math.round(done/8*100)+'%'; $('[data-out-w]').style.width=(done/8*100)+'%';
+    $('[data-out=qk]').textContent='Question '+(i+1); $('[data-out=qt]').textContent=Q[i][0]; $('[data-back]').hidden=i===0; }
+  w.querySelectorAll('[data-a]').forEach(function(b){ b.addEventListener('click',function(){ a[i]=b.dataset.a; i++; show(); }); });
+  $('[data-back]').addEventListener('click',function(){ i=Math.max(0,i-1); show(); });
+  $('[data-reset]').addEventListener('click',function(){ a=[]; i=0; show(); });
+  show();
+})();
+</script>
+</main>
+
+<footer data-od-id="footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="logo" href="/">Decoded<span>Ops</span></a>
+        <p class="blurb">Independent technology and operations consultancy for the decorated-goods sector. No vendor agenda.</p>
+        <div class="foot-contact">
+          <a href="mailto:craig@decodedops.co.uk">craig@decodedops.co.uk</a>
+          <a href="tel:+447735620603">07735 620603</a>
+          <a class="btn btn--outline foot-cta" href="/contact">Book a free 60-min call</a>
+        </div>
+        <p class="foot-loc">Based in Worthing, West Sussex &middot; working across the UK</p>
+      </div>
+      <!-- footer links mirror the live components/Footer.tsx (13 Oct 2026), plus Catalogue under Apps -->
+      <div><h4>Work with me</h4><a href="/clarity">Clarity Audit</a><a href="/deliver">Deliver</a><a href="/transform">Transform</a><a href="/retained">Retained</a><a href="/small-business">Small business suite</a><a href="/how-i-build">How I build software</a></div>
+      <div><h4>Apps</h4><a href="/apps/works">Works</a><a href="/apps/proof">Proof</a><a href="/apps/commerce">Commerce</a><a href="/apps/catalogue">Catalogue</a><a href="/apps">All apps</a></div>
+      <div><h4>Company</h4><a href="/about">About</a><a href="/case-studies">Case studies</a><a href="/pricing">Pricing</a><a href="/contact">Contact</a></div>
+    </div>
+    <div class="foot-find">
+      <div class="foot-find-row">
+        <span class="foot-find-lbl">Sectors</span>
+        <span class="foot-chips">
+          <a href="/sectors/garment-decoration">Garment decoration</a><a href="/sectors/workwear">Workwear</a><a href="/sectors/teamwear-clubwear">Teamwear</a><a href="/sectors/schoolwear">Schoolwear</a><a href="/sectors/promotional-merchandise">Promo</a><a href="/sectors/print-promotional">Print</a><a href="/sectors/signs-graphics">Signage</a><a href="/sectors/awards-engraving">Awards</a><a href="/sectors/labels-packaging">Labels &amp; packaging</a>
+        </span>
+      </div>
+      <div class="foot-find-row">
+        <span class="foot-find-lbl">Problems</span>
+        <span class="foot-chips">
+          <a href="/problems/erp-implementation-failure">ERP failure</a><a href="/problems/systems-dont-talk">Systems don’t talk</a><a href="/problems/data-scattered">Data scattered</a><a href="/problems/spreadsheet-addiction">Spreadsheet addiction</a><a href="/problems/buy-vs-build">Buy vs build</a><a href="/problems/no-ops-owner">No ops owner</a><a href="/problems/ai-paralysis">AI paralysis</a>
+          <a class="foot-all" href="/problems">All problems <svg class="ic ic-16" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+        </span>
+      </div>
+      <div class="foot-find-row">
+        <span class="foot-find-lbl">Guides</span>
+        <span class="foot-chips">
+          <a href="/resources/decoded-method">The Decoded Method</a><a href="/resources/audit-checklist">Audit checklist</a><a href="/resources/5-warning-signs">5 warning signs</a><a href="/resources/six-sigma">Six Sigma explained</a><a href="/tools">Free calculators</a>
+          <a class="foot-all" href="/resources">All resources <svg class="ic ic-16" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+        </span>
+      </div>
+      <div class="foot-find-row">
+        <span class="foot-find-lbl">Locations</span>
+        <span class="foot-chips">
+          <a href="/locations/sussex-surrey">Sussex &amp; Surrey</a><a href="/locations/manchester">Manchester</a><a href="/locations/tech-audit">Technology audit, UK-wide</a>
+        </span>
+      </div>
+    </div>
+    <div class="foot-bottom"><span>&copy; 2026 Decoded Ops</span><span class="foot-legal"><a href="/clients/login">Client login</a><a href="/privacy">Privacy</a><a href="/cookies">Cookies</a></span></div>
+  </div>
+</footer>
+<script>
+(function(){ if(!('IntersectionObserver' in window)) return; if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var mo=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('play'); mo.unobserve(e.target); } }); },{threshold:.35});
+  document.querySelectorAll('.d17[data-motion]').forEach(function(el){ mo.observe(el); }); })();
+</script>
+</body>
+</html>

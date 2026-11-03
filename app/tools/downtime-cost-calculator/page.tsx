@@ -4,7 +4,10 @@ import { DowntimeCostCalculator } from '@/components/calculators/DowntimeCostCal
 import { D17Motion } from '@/components/D17Motion';
 import '@/app/d17-global.css';
 import '@/app/d17-problems.css';
+import '@/app/d17-apps-cases.css';
 import '@/app/d17-resources.css';
+import '@/app/design-system/site-v3.css';
+import '@/app/resources/resources-live.css';
 import { OG_IMAGE, OG_IMAGE_PATH } from '@/lib/seo';
 
 const jsonLd = {
@@ -44,16 +47,21 @@ export default function DowntimeCostCalculatorPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      {/* Hero — rt-split: copy left, DO-ART-996 right */}
-      <section className="g-off">
-        <div className="wrap rt-split">
+      {/* Hero — hero-split: copy left, DO-ART-996 right */}
+      <section className="g-off hero" data-od-id="hero">
+        <div className="wrap hero-split">
           <div>
             <span className="eyebrow">Free tool</span>
-            <h1>Downtime cost calculator</h1>
-            <p className="lede">
+            <h1 data-od-id="hero-h1">Downtime cost calculator</h1>
+            <p className="t-lede">
               Enter your numbers to see exactly what system outages cost you each year in
               staff time and lost revenue.
             </p>
+            <p className="t-body">Five numbers. Lost revenue is optional, and the result updates as you type.</p>
+            <div className="btn-row">
+              <a className="btn btn--outline" href="#calc" data-od-id="hero-cta">Enter your numbers</a>
+              <a className="go" href="/tools">The other free calculators <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></a>
+            </div>
           </div>
 
           {/* D17 hero art · DO-ART-996 */}
@@ -83,12 +91,10 @@ export default function DowntimeCostCalculatorPage() {
       </section>
 
       {/* Why this is hard to answer */}
-      <section className="py-12 lg:py-16 bg-white">
-        <div className="max-w-3xl mx-auto px-6 lg:px-8">
-          <h2 className="font-[family-name:var(--font-outfit)] text-2xl lg:text-3xl font-bold text-prussian-blue mb-5">
-            Most calculators ask you for a number nobody has
-          </h2>
-          <div className="font-[family-name:var(--font-dm-sans)] text-[#33475b] space-y-4 text-[17px] leading-relaxed">
+      <section className="g-white" data-od-id="intro">
+        <div className="wrap">
+          <div className="prose" style={{ maxWidth: '72ch' }}>
+            <h2>Most calculators ask you for a number nobody has</h2>
             <p>
               They want your lost revenue per hour. Almost nobody can state that, so the field gets
               left at zero and the answer comes out meaninglessly low.
@@ -107,20 +113,27 @@ export default function DowntimeCostCalculatorPage() {
         </div>
       </section>
 
-      {/* Calculator */}
-      <section className="g-off">
-        <div className="wrap" style={{ maxWidth: 900 }}>
-          <DowntimeCostCalculator />
+      {/* Calculator — the component is untouched; the section is the mockup's */}
+      <section className="g-white" id="calc" data-od-id="calc">
+        <div className="wrap">
+          <div className="route-head">
+            <div>
+              <span className="eyebrow">Your numbers</span>
+              <h2 data-od-id="calc-h2">What an outage costs you in a year.</h2>
+            </div>
+            <p className="lede">Who stops, what they cost, how often it happens and for how long.</p>
+          </div>
+          <div style={{ marginTop: 36 }}>
+            <DowntimeCostCalculator />
+          </div>
         </div>
       </section>
 
-      {/* What the number means */}
-      <section className="py-12 lg:py-20 bg-white">
-        <div className="max-w-3xl mx-auto px-6 lg:px-8">
-          <h2 className="font-[family-name:var(--font-outfit)] text-2xl lg:text-3xl font-bold text-prussian-blue mb-5">
-            What to do with the recovery rate
-          </h2>
-          <div className="font-[family-name:var(--font-dm-sans)] text-[#33475b] space-y-4 text-[17px] leading-relaxed">
+      {/* What the number means + sector framing */}
+      <section className="g-off" data-od-id="after">
+        <div className="wrap">
+          <div className="prose" style={{ maxWidth: '72ch' }}>
+            <h2>What to do with the recovery rate</h2>
             <p>
               The recovery rate is the more useful of the two numbers, and most businesses have
               never calculated it. It tells you what each productive hour has to earn towards your
@@ -142,17 +155,7 @@ export default function DowntimeCostCalculatorPage() {
               is the most common way to arrive at a rate that looks fine and does not cover the
               business.
             </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Sector framing */}
-      <section className="py-12 lg:py-16" style={{ backgroundColor: '#F8F9FA' }}>
-        <div className="max-w-3xl mx-auto px-6 lg:px-8">
-          <h2 className="font-[family-name:var(--font-outfit)] text-2xl lg:text-3xl font-bold text-prussian-blue mb-5">
-            Why downtime costs more in decoration than most places
-          </h2>
-          <div className="font-[family-name:var(--font-dm-sans)] text-[#33475b] space-y-4 text-[17px] leading-relaxed">
+            <h2>Why downtime costs more in decoration than most places</h2>
             <p>
               The deadline does not move. A distributor can ship a day late and apologise. You
               cannot. The match is Saturday, the event is Friday, and a box of shirts nobody wore is
@@ -173,31 +176,24 @@ export default function DowntimeCostCalculatorPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-14 lg:py-20" style={{ backgroundColor: '#023047' }}>
-        <div className="max-w-3xl mx-auto px-6 lg:px-8">
-          <h2 className="font-[family-name:var(--font-outfit)] text-2xl lg:text-3xl font-bold text-white mb-4">
-            If the number was higher than you expected
-          </h2>
-          <p className="font-[family-name:var(--font-dm-sans)] text-white/80 text-[17px] leading-relaxed mb-8">
-            That is the finding, and it is usually a process and systems problem rather than an IT
-            spending problem. A Clarity Audit is a full day on site working through where the hours
-            and the money are actually going, with everything it costs you in writing within five
-            working days.
-          </p>
-          <div className="flex flex-wrap gap-4">
-            <Link
-              href="/contact"
-              className="inline-block px-7 py-3.5 rounded-lg font-semibold bg-amber text-prussian-blue font-[family-name:var(--font-dm-sans)]"
-            >
-              Book a free 60 minute call
-            </Link>
-            <Link
-              href="/clarity"
-              className="inline-block px-7 py-3.5 rounded-lg font-semibold border-2 border-white/30 text-white font-[family-name:var(--font-dm-sans)]"
-            >
-              See how a Clarity Audit works
-            </Link>
+      {/* Closer */}
+      <section className="g-off closer" data-od-id="cta">
+        <div className="wrap closer-grid">
+          <div>
+            <span className="eyebrow">Higher than you expected?</span>
+            <h2 data-od-id="cta-h2">If the number was higher than you expected</h2>
+          </div>
+          <div>
+            <p className="lede">
+              That is the finding, and it is usually a process and systems problem rather than an IT
+              spending problem. A Clarity Audit is a full day on site working through where the hours
+              and the money are actually going, with everything it costs you in writing within five
+              working days.
+            </p>
+            <div className="btn-row">
+              <Link className="btn btn--primary" href="/contact" data-od-id="cta-primary">Book a free 60 minute call</Link>
+              <Link className="go" href="/clarity">See how a Clarity Audit works <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+            </div>
           </div>
         </div>
       </section>

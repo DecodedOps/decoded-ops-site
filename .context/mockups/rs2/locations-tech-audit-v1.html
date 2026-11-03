@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Technology Audit, Independent & UK-Wide · Decoded Ops (v1 mockup)</title>
+<meta name="description" content="My technology audit is independent, with no vendor agenda, for print, embroidery and workwear businesses anywhere in the UK. See what a day on site covers.">
+<!-- v1 (3 Nov 2026) · release set 11 · /locations/tech-audit on the approved location template (locations-manchester-v1, set 8). Staging copy verbatim (rendered from origin/HEAD); new copy carries data-new-copy. Staging has no artwork: new hero piece DO-ART-1037 (the audit day and the report over a client-site paperwork photo, DO-ART-979g), on the DO-ART-1035 recipe. Registered in the artwork register. -->
+<link rel="stylesheet" href="../ds-marketing.css">
+<link rel="stylesheet" href="../assets/site/d17-global.css">
+<link rel="stylesheet" href="../assets/site/d17-apps-cases.css">
+<link rel="stylesheet" href="../assets/site/site-v3.css">
+<style>
+/* page layout only · every pattern lives in site-v3.css and the d17 sheets */
+.hero-split .d17{ width:100% }
+.hero-split .btn .ic{ margin-right:6px; vertical-align:-4px }
+.route .stop .t-card{ font-size:var(--do-text-sm) }
+.areas--2 .area .t-card{ max-width:none }
+.prose table{ width:100%; border-collapse:collapse; margin:20px 0; font-size:var(--do-text-sm); font-variant-numeric:tabular-nums }
+.prose th{ text-align:left; padding:10px 12px; background:color-mix(in srgb, var(--do-sky-blue) 18%, transparent); border-bottom:2px solid var(--do-cerulean); font-weight:600 }
+.prose td{ padding:10px 12px; border-bottom:1px solid var(--do-border-subtle) }
+
+/* page layout only · every pattern lives in site-v3.css · DO-ART-1035 hero piece geometry mirrors 1028 */
+.split-6 .chips{ margin-top:20px }
+.split-6 .outcomes li:first-child{ border-top:0; padding-top:0 }
+.split-6 .outcomes li:last-child{ border-bottom:0; padding-bottom:0 }
+.split-6 .area{ padding:22px 26px }
+.route--6 .stop .t-card{ font-size:var(--do-text-sm) }
+
+.a1037 .d17-ph{ left:28% }
+.a1037 .d17-ph img{ --d17-grade:saturate(.7) contrast(1.06) brightness(.82); object-position:50% 50% }
+.a1037 .stage{ min-height:calc(500 * var(--u)) }
+.a1037 .doc-f{ left:calc(8 * var(--u)); top:calc(20 * var(--u)); width:calc(390 * var(--u)); transform:rotate(-2.4deg) }
+.a1037 .doc-m{ left:calc(396 * var(--u)); top:calc(206 * var(--u)); width:calc(292 * var(--u)); transform:rotate(3.2deg); z-index:2 }
+.a1037 .t5{ left:calc(40 * var(--u)); bottom:calc(10 * var(--u)) }
+@media (max-width:760px){ .a1037 .stage .d17-doc:nth-child(odd){ transform:rotate(-1deg) } .a1037 .stage .d17-doc:nth-child(even){ transform:rotate(1deg) } .a1037 .t5{ position:relative; left:auto; bottom:auto; align-self:flex-start; order:3 } }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <!-- Lucide geometry, lucide-static v1.54.0 (ISC), embedded path-for-path -->
+  <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+  <symbol id="i-badge-check" viewBox="0 0 24 24"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m16 9-5.5 5.5L8 12"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-file-check" viewBox="0 0 24 24"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="m9 15 2 2 4-4"/></symbol>
+  <symbol id="i-file-warning" viewBox="0 0 24 24"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M12 9v4"/><path d="M12 17h.01"/></symbol>
+  <symbol id="i-layout-grid" viewBox="0 0 24 24"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></symbol>
+  <symbol id="i-map-pin" viewBox="0 0 24 24"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></symbol>
+  <symbol id="i-trending-up" viewBox="0 0 24 24"><path d="M16 7h6v6"/><path d="m22 7-8.5 8.5-5-5L2 17"/></symbol>
+  <symbol id="i-unplug" viewBox="0 0 24 24"><path d="m19 5 3-3"/><path d="m2 22 3-3"/><path d="M6.3 20.3a2.4 2.4 0 0 0 3.4 0L12 18l-6-6-2.3 2.3a2.4 2.4 0 0 0 0 3.4Z"/><path d="M7.5 13.5 10 11"/><path d="M10.5 16.5 13 14"/><path d="m12 6 6 6 2.3-2.3a2.4 2.4 0 0 0 0-3.4l-2.6-2.6a2.4 2.4 0 0 0-3.4 0Z"/></symbol>
+</svg>
+
+<header class="site-head site-head--paths" data-od-id="site-head">
+  <div class="wrap">
+    <a class="logo" href="/">Decoded<span>Ops</span></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">
+      <svg class="bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      <svg class="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <!-- nav mirrors the live components/Header.tsx (13 Oct 2026), plus Catalogue under Software I’ve already built -->
+    <nav class="site-nav" id="site-nav" aria-label="Primary">
+      <div class="path-group">
+        <button class="path-trigger" type="button" aria-expanded="false" aria-controls="path-wrong">
+          <span class="path-label">What’s going wrong</span>
+          <svg class="path-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="path-menu path-menu--mega" id="path-wrong">
+          <div class="path-col"><p class="path-head">Systems &amp; software</p>
+            <a href="/problems/systems-dont-talk">Nothing talks to anything else</a>
+            <a href="/problems/wrong-erp-software">We’re on the wrong software</a>
+            <a href="/problems/erp-implementation-failure">The new system rollout went wrong</a>
+            <a href="/problems/legacy-system">Our system is ancient</a>
+            <a href="/problems/ecommerce-not-connected">The website isn’t connected to the office</a>
+          </div>
+          <div class="path-col"><p class="path-head">Growth &amp; capacity</p>
+            <a href="/problems/slow-processes">Everything takes too long</a>
+            <a href="/problems/cant-scale-operations">We can’t take on more work</a>
+            <a href="/problems/bottleneck-growth">One person is the bottleneck</a>
+            <a href="/problems/seasonal-peaks">Busy season breaks us</a>
+          </div>
+          <div class="path-col"><p class="path-head">Data &amp; day to day</p>
+            <a href="/problems/spreadsheet-addiction">We run the place on spreadsheets</a>
+            <a href="/problems/manual-workarounds">Everyone has their own workaround</a>
+            <a href="/problems/data-scattered">The numbers never agree</a>
+            <a href="/problems/inventory-blind">We don’t know what stock we have</a>
+            <a href="/problems/ops-in-owners-head">It’s all in the owner’s head</a>
+          </div>
+          <div class="path-col"><p class="path-head">Risk &amp; what’s next</p>
+            <a href="/problems/no-ops-owner">Nobody owns operations</a>
+            <a href="/problems/disaster-recovery">If the server died tomorrow…</a>
+            <a href="/problems/ai-paralysis">Everyone says use AI, where do I start?</a>
+            <a href="/problems/buy-vs-build">Buy it or build it?</a>
+          </div>
+        </div>
+      </div>
+      <div class="path-group">
+        <button class="path-trigger" type="button" aria-expanded="false" aria-controls="path-help">
+          <span class="path-label">How I help</span>
+          <svg class="path-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="path-menu path-menu--mega" id="path-help">
+          <div class="path-col"><p class="path-head">The four steps</p>
+            <a href="/clarity">Clarity<small>A day on site, then a written plan &middot; most people start here</small></a>
+            <a href="/deliver">Deliver<small>I fix the two or three worst things</small></a>
+            <a href="/transform">Transform<small>Rebuild how the business runs</small></a>
+            <a href="/retained">Retained<small>A technology director, part time</small></a>
+          </div>
+          <div class="path-col"><p class="path-head">Software I’ve already built</p>
+            <a href="/apps/works">Works<small>The ERP for decorated goods</small></a>
+            <a href="/apps/proof">Proof<small>Versions, approvals and delivery</small></a>
+            <a href="/apps/commerce">Commerce<small>B2B ordering for your customers</small></a>
+            <a href="/apps/catalogue">Catalogue<small>Supplier feeds in, one clean catalogue, feeds out</small></a>
+            <a href="/apps">All apps<small>What’s ready to buy today</small></a>
+          </div>
+          <div class="path-col"><p class="path-head">How I work</p>
+            <a href="/resources/decoded-method">The Decoded Method</a>
+            <a href="/how-i-build">How I build software</a>
+            <a href="/pricing">Prices, in plain numbers</a>
+            <a href="/about">About Craig</a>
+          </div>
+        </div>
+      </div>
+      <div class="path-group">
+        <button class="path-trigger" type="button" aria-expanded="false" aria-controls="path-industry">
+          <span class="path-label">Your industry</span>
+          <svg class="path-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="path-menu path-menu--mega" id="path-industry">
+          <div class="path-col"><p class="path-head">Pick what you make</p>
+            <a href="/sectors/garment-decoration">Garment decoration</a>
+            <a href="/sectors/print-promotional">Print &amp; promotional</a>
+            <a href="/sectors/workwear">Workwear</a>
+            <a href="/sectors/teamwear-clubwear">Teamwear &amp; clubwear</a>
+            <a href="/sectors/schoolwear">Schoolwear</a>
+          </div>
+          <div class="path-col"><p class="path-head">More trades</p>
+            <a href="/sectors/signs-graphics">Signs &amp; graphics</a>
+            <a href="/sectors/awards-engraving">Awards &amp; engraving</a>
+            <a href="/sectors/labels-packaging">Labels &amp; packaging</a>
+            <a href="/sectors/promotional-merchandise">Promotional merchandise</a>
+          </div>
+        </div>
+      </div>
+      <div class="path-group">
+        <button class="path-trigger" type="button" aria-expanded="false" aria-controls="path-small">
+          <span class="path-label">Small business</span>
+          <svg class="path-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="path-menu path-menu--mega" id="path-small">
+          <div class="path-col"><p class="path-head">Small business services</p>
+            <a href="/small-business">Clarity Check<small>Fixed-price, done remotely &middot; £600</small></a>
+            <a href="/pricing">Everything else<small>Same services, same from-prices as everyone else</small></a>
+          </div>
+          <div class="path-col"><p class="path-head">Start free</p>
+            <a href="/tools/ops-health-score">Ops health score</a>
+            <a href="/resources/audit-checklist">The audit checklist</a>
+            <a href="/small-business">Read the whole thing</a>
+          </div>
+        </div>
+      </div>
+      <div class="path-group">
+        <button class="path-trigger" type="button" aria-expanded="false" aria-controls="path-proof">
+          <span class="path-label">Proof &amp; free tools</span>
+          <svg class="path-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="path-menu path-menu--mega" id="path-proof">
+          <div class="path-col"><p class="path-head">Work I’ve done</p>
+            <a href="/case-studies/case-study-01">Case study 01</a>
+            <a href="/case-studies/case-study-02">Case study 02</a>
+            <a href="/case-studies/case-study-03">Case study 03</a>
+            <a href="/case-studies/eternal-fitness">Eternal Fitness</a>
+            <a href="/case-studies">All case studies</a>
+          </div>
+          <div class="path-col"><p class="path-head">Free calculators</p>
+            <a href="/tools/ops-health-score">Ops health score</a>
+            <a href="/tools/downtime-cost-calculator">What downtime costs you</a>
+            <a href="/tools/automation-roi-calculator">Is automation worth it?</a>
+            <a href="/tools/rto-calculator">How fast could you recover?</a>
+            <a href="/tools/should-i-replace-erp">Should I replace my ERP?</a>
+          </div>
+          <div class="path-col"><p class="path-head">Guides &amp; writing</p>
+            <a href="/resources/audit-checklist">The ops audit checklist</a>
+            <a href="/resources/5-warning-signs">5 signs your systems are failing</a>
+            <a href="/resources/sop-template">SOP template for decoration businesses</a>
+            <a href="/resources/erp-selection-playbook">ERP selection guide</a>
+            <a href="/resources/artwork-approval-playbook">Artwork approval playbook</a>
+            <a href="/resources/decoded-method">The Decoded Method</a>
+            <a href="/resources/six-sigma">Six Sigma, explained simply</a>
+            <a href="/process-quality-system">Building a quality system</a>
+            <a href="/blog">The blog</a>
+          </div>
+        </div>
+      </div>
+      <a class="nav-flat" href="/pricing">Pricing</a>
+      <a class="nav-flat" href="/clients/login">Client Login</a>
+      <a class="btn btn--primary nav-cta" href="/contact">Book a free call</a>
+    </nav>
+  </div>
+</header>
+
+<main id="content">
+<section class="g-off hero" data-od-id="hero">
+  <div class="wrap">
+    <div class="hero-head">
+      <div>
+        <span class="eyebrow">Technology audit · UK-wide</span>
+        <h1 data-od-id="hero-h1">Independent technology audit, <em>anywhere in the UK</em></h1>
+      </div>
+      <div>
+        <p class="t-lede">An independent audit that tells you exactly what your systems are costing you, and what to do about it. Priced to your scope, confirmed before you commit.</p>
+        <div class="btn-row"><a class="btn btn--primary" href="/contact" data-od-id="hero-cta">Book a free call</a><a class="go" href="/clarity">See what the Clarity Audit covers <svg class="ic ic-16" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></div>
+      </div>
+    </div>
+    <!-- DO-ART-1037 r01 · technology audit hero · the audit day and the report, over paperwork at a client site (DO-ART-979g). Geometry mirrors 1035. -->
+    <figure class="d17 sw sw-doc a1037" data-od-id="hero-visual" data-motion data-no="DO-ART-1037" data-rev="01" data-tx="photo"
+      aria-label="Artwork DO-ART-1037. Two documents over a graded photograph of paperwork on an office desk at a client site. The first, the audit day: one structured day on site, every system mapped, every manual handoff written down, the three to five changes that recover the most. The second, the report: written within five working days, specific and costed, with independent vendor recommendations and the 3× Clarity Guarantee. A tag reads: UK-wide, on site where the work needs it.">
+      <div class="d17-ph"><img src="../assets/site/evidence/hero-office-paperwork-75fcd2.webp" width="1600" height="900" alt=""></div>
+      <div class="d17-scan" aria-hidden="true"></div>
+      <figcaption class="sw-cap">
+        <div class="k d17-mono" data-new-copy>Technology audit <span>&middot; UK-wide</span></div>
+        <div class="bar" aria-hidden="true"></div>
+        <h3 data-new-copy>One day on site. A written report within five.</h3>
+        <p data-new-copy>Every system mapped, every workaround written down, and the changes worth making, costed.</p>
+        <span class="d17-mark">decodedops.co.uk &middot; DO-ART-1037 &middot; Rev 01</span>
+      </figcaption>
+      <div class="stage" aria-hidden="true">
+        <div class="d17-doc doc-f m-drop" style="animation-delay:.1s"><span class="tab">THE DAY</span>
+          <span class="ref">On site</span>
+          <h4>How the audit day runs</h4>
+          <p class="sub">talking to the people doing the work, not just managing it</p>
+          <ol class="chg">
+            <li>Every system, what it costs<span class="st-chip">Mapped</span></li>
+            <li>Every workaround<span class="st-chip st-chip--a">Written down</span></li>
+            <li>The changes that recover most<span class="st-chip">Costed</span></li>
+          </ol>
+          <div class="doc-foot">This is almost always where the cost is hiding</div></div>
+        <div class="d17-doc doc-m m-drop" style="animation-delay:.45s"><span class="tab">THE REPORT</span>
+          <span class="ref">Within five working days</span>
+          <h4>Specific and costed</h4>
+          <ol class="chg">
+            <li>Vendor recommendations<span class="st-chip">Independent</span></li>
+            <li>3&times; Clarity Guarantee<span class="st-chip st-chip--o">Or refund</span></li>
+          </ol>
+          <div class="doc-foot">Priced to your scope, confirmed before you commit</div></div>
+        <div class="sx-tag t5 m-pop" style="animation-delay:1.9s"><small>Where I work</small>UK-wide, on site where the work needs it</div>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<section class="g-tint" data-od-id="pains">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Where the cost hides</span>
+      <h2 data-od-id="pains-h2">The problems that tend to appear</h2>
+      <p class="lede">These are the patterns I see most often in technology audit engagements. They look different in every business, but the underlying structure is almost always the same.</p>
+    </div>
+    <div class="areas areas--4" data-od-id="pains-cards">
+      <article class="area" data-od-id="pains-1">
+        <div class="area-top"><span class="ic-tile"><svg class="ic ic-24" aria-hidden="true"><use href="#i-unplug"/></svg></span><span class="num">01</span></div>
+        <h3>Your systems don't talk to each other</h3>
+        <p class="t-card">Data moves manually between platforms. Orders get processed twice. Stock figures don't match. Every disconnection costs time and creates errors, and most businesses have stopped noticing how much it costs.</p>
+      </article>
+      <article class="area" data-od-id="pains-2">
+        <div class="area-top"><span class="ic-tile"><svg class="ic ic-24" aria-hidden="true"><use href="#i-search"/></svg></span><span class="num">02</span></div>
+        <h3>You know costs are higher than they should be, but can't see where</h3>
+        <p class="t-card">The cost is there, in headcount, rework, and customer service time, but no one has mapped where it actually comes from. The Clarity Audit finds it and costs it accurately.</p>
+      </article>
+      <article class="area" data-od-id="pains-3">
+        <div class="area-top"><span class="ic-tile"><svg class="ic ic-24" aria-hidden="true"><use href="#i-trending-up"/></svg></span><span class="num">03</span></div>
+        <h3>Ready to scale, but the operations aren't</h3>
+        <p class="t-card">Revenue could grow faster. The constraint is operational: systems, process, and people doing jobs that should be automated. Finding the bottleneck is the first step to removing it.</p>
+      </article>
+      <article class="area" data-od-id="pains-4">
+        <div class="area-top"><span class="ic-tile"><svg class="ic ic-24" aria-hidden="true"><use href="#i-file-warning"/></svg></span><span class="num">04</span></div>
+        <h3>Decisions being made on incomplete information</h3>
+        <p class="t-card">Reports take hours to produce. Numbers don't tie up. Decisions get made on gut feel because the data isn't trustworthy. This is almost always a systems problem, not a people problem.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="g-navy route-sec" data-od-id="help">
+  <div class="do-dot-grid" aria-hidden="true" style="position:absolute; inset:0; pointer-events:none"></div>
+  <div class="wrap">
+    <div class="route-head">
+      <div>
+        <span class="eyebrow">How the audit works</span>
+        <h2 data-od-id="help-h2">One day on site. A written report within five.</h2>
+      </div>
+      <p class="lede">No frameworks. No generic recommendations. A structured, independent process that produces specific answers for this business.</p>
+    </div>
+    <ol class="route route--6" data-od-id="help-steps">
+      <li class="stop" data-od-id="help-1">
+        <span class="node"><svg class="ic ic-24" aria-hidden="true"><use href="#i-map-pin"/></svg></span>
+        <span class="t-meta">01</span><h3 data-new-copy>The day on site</h3>
+        <p class="t-card">One structured day on site, talking to the people doing the work, not just the people managing it</p>
+      </li>
+      <li class="stop" data-od-id="help-2">
+        <span class="node"><svg class="ic ic-24" aria-hidden="true"><use href="#i-layout-grid"/></svg></span>
+        <span class="t-meta">02</span><h3 data-new-copy>Map every system</h3>
+        <p class="t-card">Map every system you're running, what it costs, and what it's actually being used for versus what it was bought to do</p>
+      </li>
+      <li class="stop" data-od-id="help-3">
+        <span class="node"><svg class="ic ic-24" aria-hidden="true"><use href="#i-file-warning"/></svg></span>
+        <span class="t-meta">03</span><h3 data-new-copy>Document the workarounds</h3>
+        <p class="t-card">Document every manual handoff and workaround. This is almost always where the cost is hiding</p>
+      </li>
+      <li class="stop" data-od-id="help-4">
+        <span class="node"><svg class="ic ic-24" aria-hidden="true"><use href="#i-search"/></svg></span>
+        <span class="t-meta">04</span><h3 data-new-copy>Find the three to five</h3>
+        <p class="t-card">Identify the three to five changes that would recover the most cost or release the most revenue</p>
+      </li>
+      <li class="stop" data-od-id="help-5">
+        <span class="node"><svg class="ic ic-24" aria-hidden="true"><use href="#i-file-check"/></svg></span>
+        <span class="t-meta">05</span><h3 data-new-copy>The written report</h3>
+        <p class="t-card">Write a report within five working days: specific, costed, with independent vendor recommendations</p>
+      </li>
+      <li class="stop stop--out" data-od-id="help-6">
+        <span class="node"><svg class="ic ic-24" aria-hidden="true"><use href="#i-badge-check"/></svg></span>
+        <span class="t-meta">06</span><h3 data-new-copy>The 3× guarantee</h3>
+        <p class="t-card">Back it with the 3× Clarity Guarantee: if the audit doesn't identify at least 3× the fee in recoverable cost or lost revenue, you get a full refund, no conditions</p>
+      </li>
+    </ol>
+    <p class="route-cap" data-new-copy><svg class="ic ic-16" aria-hidden="true"><use href="#i-check"/></svg>UK-wide, on-site where the work needs it. No vendor relationships or commission.</p>
+  </div>
+</section>
+
+<section class="g-white" data-od-id="seal">
+  <div class="wrap">
+    <div class="seal" data-od-id="seal-band">
+      <p class="seal-x">3&times;</p>
+      <div>
+        <span class="seal-tag" data-new-copy>Decoded Ops &middot; the audit &middot; the guarantee</span>
+        <h2 data-od-id="seal-h2" data-new-copy>If I don’t find 3&times; the fee, you get a full refund.</h2>
+        <p data-new-copy>In recoverable cost or lost revenue, with no conditions. No vendor relationships or commission, and worked at every level, warehouse floor to boardroom.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="g-off closer" data-od-id="cta">
+  <div class="wrap closer-grid">
+    <div>
+      <span class="eyebrow">Where I work</span>
+      <h2 data-od-id="cta-h2">On site across the UK</h2>
+    </div>
+    <div>
+      <p class="lede">Based in Worthing, West Sussex. On-site where the work needs it, anywhere in the UK.</p>
+      <div class="btn-row">
+        <a class="btn btn--primary" href="/contact" data-od-id="cta-primary">Book a free call</a>
+        <a class="go" href="/locations/sussex-surrey">Sussex &amp; Surrey <svg class="ic ic-16" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+</main>
+
+<footer data-od-id="footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="logo" href="/">Decoded<span>Ops</span></a>
+        <p class="blurb">Independent technology and operations consultancy for the decorated-goods sector. No vendor agenda.</p>
+        <div class="foot-contact">
+          <a href="mailto:craig@decodedops.co.uk">craig@decodedops.co.uk</a>
+          <a href="tel:+447735620603">07735 620603</a>
+          <a class="btn btn--outline foot-cta" href="/contact">Book a free 60-min call</a>
+        </div>
+        <p class="foot-loc">Based in Worthing, West Sussex &middot; working across the UK</p>
+      </div>
+      <!-- footer links mirror the live components/Footer.tsx (13 Oct 2026), plus Catalogue under Apps -->
+      <div><h4>Work with me</h4><a href="/clarity">Clarity Audit</a><a href="/deliver">Deliver</a><a href="/transform">Transform</a><a href="/retained">Retained</a><a href="/small-business">Small business suite</a><a href="/how-i-build">How I build software</a></div>
+      <div><h4>Apps</h4><a href="/apps/works">Works</a><a href="/apps/proof">Proof</a><a href="/apps/commerce">Commerce</a><a href="/apps/catalogue">Catalogue</a><a href="/apps">All apps</a></div>
+      <div><h4>Company</h4><a href="/about">About</a><a href="/case-studies">Case studies</a><a href="/pricing">Pricing</a><a href="/contact">Contact</a></div>
+    </div>
+    <div class="foot-find">
+      <div class="foot-find-row">
+        <span class="foot-find-lbl">Sectors</span>
+        <span class="foot-chips">
+          <a href="/sectors/garment-decoration">Garment decoration</a><a href="/sectors/workwear">Workwear</a><a href="/sectors/teamwear-clubwear">Teamwear</a><a href="/sectors/schoolwear">Schoolwear</a><a href="/sectors/promotional-merchandise">Promo</a><a href="/sectors/print-promotional">Print</a><a href="/sectors/signs-graphics">Signage</a><a href="/sectors/awards-engraving">Awards</a><a href="/sectors/labels-packaging">Labels &amp; packaging</a>
+        </span>
+      </div>
+      <div class="foot-find-row">
+        <span class="foot-find-lbl">Problems</span>
+        <span class="foot-chips">
+          <a href="/problems/erp-implementation-failure">ERP failure</a><a href="/problems/systems-dont-talk">Systems don’t talk</a><a href="/problems/data-scattered">Data scattered</a><a href="/problems/spreadsheet-addiction">Spreadsheet addiction</a><a href="/problems/buy-vs-build">Buy vs build</a><a href="/problems/no-ops-owner">No ops owner</a><a href="/problems/ai-paralysis">AI paralysis</a>
+          <a class="foot-all" href="/problems">All problems <svg class="ic ic-16" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+        </span>
+      </div>
+      <div class="foot-find-row">
+        <span class="foot-find-lbl">Guides</span>
+        <span class="foot-chips">
+          <a href="/resources/decoded-method">The Decoded Method</a><a href="/resources/audit-checklist">Audit checklist</a><a href="/resources/5-warning-signs">5 warning signs</a><a href="/resources/six-sigma">Six Sigma explained</a><a href="/tools">Free calculators</a>
+          <a class="foot-all" href="/resources">All resources <svg class="ic ic-16" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+        </span>
+      </div>
+      <div class="foot-find-row">
+        <span class="foot-find-lbl">Locations</span>
+        <span class="foot-chips">
+          <a href="/locations/sussex-surrey">Sussex &amp; Surrey</a><a href="/locations/manchester">Manchester</a><a href="/locations/tech-audit">Technology audit, UK-wide</a>
+        </span>
+      </div>
+    </div>
+    <div class="foot-bottom"><span>&copy; 2026 Decoded Ops</span><span class="foot-legal"><a href="/clients/login">Client login</a><a href="/privacy">Privacy</a><a href="/cookies">Cookies</a></span></div>
+  </div>
+</footer>
+<script>
+(function(){ if(!('IntersectionObserver' in window)) return; if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var mo=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('play'); mo.unobserve(e.target); } }); },{threshold:.35});
+  document.querySelectorAll('.d17[data-motion]').forEach(function(el){ mo.observe(el); }); })();
+</script>
+</body>
+</html>
