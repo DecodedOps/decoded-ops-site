@@ -5,9 +5,12 @@ import { BreadcrumbSchema } from '@/components/BreadcrumbSchema';
 import { VideoEmbed } from '@/components/VideoEmbed';
 import { VideoSchema } from '@/components/VideoSchema';
 import { problemVideos } from '@/data/problem-videos';
+import { BOOKING_URL } from '@/lib/constants';
 import '@/app/d17-global.css';
 import '@/app/d17-problems.css';
+import '@/app/design-system/site-v3.css';
 import { D17Motion } from '@/components/D17Motion';
+import styles from './page.module.css';
 
 export const metadata: Metadata = {
  title: 'Inventory Management Software, Small Firms | Decoded Ops',
@@ -62,43 +65,24 @@ const legacySystemSchema = {
  ],
 };
 
-export default function LegacySystemPage() {
- return (
-  <>
-   <JsonLd data={legacySystemSchema} />
-   <BreadcrumbSchema items={[
-    { name: 'Home', url: 'https://decodedops.co.uk/' },
-    { name: 'Problems', url: 'https://decodedops.co.uk/problems' },
-    { name: 'Legacy system', url: 'https://decodedops.co.uk/problems/legacy-system' },
-   ]} />
-   {problemVideos['legacy-system'] && (
-    <VideoSchema
-     name={problemVideos['legacy-system'].title}
-     description={problemVideos['legacy-system'].closeLine}
-     youtubeId={problemVideos['legacy-system'].youtubeId}
-     uploadDate={problemVideos['legacy-system'].uploadDate}
-     durationSec={problemVideos['legacy-system'].durationSec}
-    />
-   )}
+/* Icons the mockup's layer cards, ticked offer and links use. The shared
+   components/ProblemIconSprite.tsx lacks i-arrow-right, i-check, i-layers,
+   i-server and i-shopping-cart and components are out of bounds for this lane,
+   so the symbols are defined locally (the mockup's Lucide paths). */
+const iconSprite = `<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></symbol>
+  <symbol id="i-server" viewBox="0 0 24 24"><rect width="20" height="8" x="2" y="2" rx="2" ry="2"/><rect width="20" height="8" x="2" y="14" rx="2" ry="2"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/></symbol>
+  <symbol id="i-shopping-cart" viewBox="0 0 24 24"><path d="m2.05 2.05 1.099-.028a1 1 0 0 1 1.008.815l2.69 14.347A1 1 0 0 0 7.83 18H18"/><path d="M4.563 5h16.435a1 1 0 0 1 .981 1.204l-1.026 6.226A2 2 0 0 1 18.962 14H6.25"/><circle cx="18" cy="20" r="2"/><circle cx="8" cy="20" r="2"/></symbol>
+</svg>`;
 
-   {/* ── 1 · HERO ──────────────────────────────────────────────────────── */}
-   <section className="g-off">
-    <div className="wrap hero-split">
-     <div>
-      <span className="eyebrow">The problem</span>
-      <h1>The platform you bought ten years ago wasn&apos;t built for decoration.</h1>
-      <p className="lede">Generic ERP systems and most inventory management software for small businesses are built
-       for businesses that buy and sell the same thing they hold in the warehouse. Decoration doesn&apos;t work like that. A blank
-       garment becomes a different, finished product the moment it&apos;s printed or embroidered, and
-       most platforms have no clean way to model that.</p>
-      <div className="hero-cta">
-       <Link className="btn btn--primary" href="/contact">Book a free 60 minute call</Link>
-      </div>
-     </div>
-     <div dangerouslySetInnerHTML={{ __html: `
+/* Staging artwork DO-ART-969 (the item maintenance printout), kept and patched
+   to the mockup's evidence photo path. */
+const heroArt969 = `
 <figure class="d17 sx a969" data-od-id="hero-evidence" data-motion data-no="DO-ART-969" data-rev="01" data-tx="photo"
         aria-label="Artwork DO-ART-969. A tractor-feed printout of an old item maintenance screen over a photograph of an embroidery machine. It holds an item code, a description, a supplier and a unit of sale, but decoration method and artwork reference both read field not available, and a finished item made from a blank reads not supported. A sticky note says: decoration, see the spreadsheet on the studio PC. Built to buy and sell, not to decorate.">
-  <div class="d17-ph"><img src="/images/d17/problems/hero-embroidery-heads-b5b1fb.webp" alt="" width="1600" height="900" style="object-position:70% 50%"></div>
+  <div class="d17-ph"><img src="/images/site/evidence/hero-embroidery-heads-b5b1fb.webp" alt="" width="1600" height="900" style="object-position:70% 50%"></div>
   <div class="d17-scan" aria-hidden="true"></div>
   <div class="sx-top d17-mono" aria-hidden="true"><span>Legacy platform</span><span>Bought ten years ago</span></div>
   <div class="stage" aria-hidden="true">
@@ -121,78 +105,11 @@ export default function LegacySystemPage() {
     <p class="sx-say">Built to buy and sell. <em>Not to decorate.</em></p>
     <span class="d17-mark">decodedops.co.uk · DO-ART-969 · Rev 01</span>
   </div>
-</figure>` }} />
-    </div>
-   </section>
+</figure>`;
 
-   {/* ── 2 · SYMPTOMS ──────────────────────────────────────────────────── */}
-   <section className="g-tint">
-    <div className="wrap">
-     <span className="eyebrow">The signs</span>
-     <h2>Seven signs the platform wasn&apos;t built for this.</h2>
-      <p className="lede" style={{ marginTop: 16 }}>If you recognise three or more of these, the system is the cause. The inventory software was never designed for decoration, so your team works around it every day.</p>
-
-     <ul className="symptoms">
-      <li>Decoration BOMs are tracked in a spreadsheet because the platform can&apos;t model them</li>
-      <li>Blank and finished stock get confused, or tracked as if they&apos;re the same item</li>
-      <li>Supplier artwork lives in email threads, not attached to the order it belongs to</li>
-      <li>Print, embroidery, heat-press: every method needs its own workaround</li>
-      <li>The vendor&apos;s support team asks what &ldquo;decoration BOM&rdquo; even means</li>
-      <li>Customisation costs have exceeded what the licence was supposed to save you</li>
-      <li>You&apos;ve quietly accepted this is &ldquo;just how the software is&rdquo; rather than fixable</li>
-     </ul>
-    </div>
-   </section>
-
-   {problemVideos['legacy-system'] && (
-    <section className="g-off" data-od-id="video-embed">
-     <div className="wrap">
-      <VideoEmbed
-       youtubeId={problemVideos['legacy-system'].youtubeId}
-       title={problemVideos['legacy-system'].title}
-       closeLine={problemVideos['legacy-system'].closeLine}
-       app={problemVideos['legacy-system'].app}
-       durationSec={problemVideos['legacy-system'].durationSec}
-       playlistUrl={problemVideos['legacy-system'].playlistUrl}
-      />
-     </div>
-    </section>
-   )}
-
-   {/* ── 3 · THE LAYER STACK · archetype 4 ───────────────────────────────── */}
-   <section className="g-white">
-    <div className="wrap">
-     <span className="eyebrow">The fix</span>
-     <h2>Keep the platform. Add the layer it&apos;s missing.</h2>
-     <p className="lede" style={{ marginTop: 16 }}>Ripping out an ERP you&apos;ve already paid for and trained
-      staff on is rarely the right answer. Read bottom-up: the platform stays exactly where it
-      is, and the missing layer sits on top of it, not instead of it.</p>
-
-     <div className="layer-stack">
-      <div className="layer-tier layer-tier--base">
-       <div><h3>Your platform, unchanged</h3><p>Whichever one you run stays as the system of
-        record for orders and accounts</p></div>
-       <span className="no">Layer 1</span>
-      </div>
-      <div className="layer-tier layer-tier--mid">
-       <div><h3>Decoded Works</h3><p>Decoration BOMs, blank-to-finished mapping, and
-        supplier artwork, modelled properly for the first time</p></div>
-       <span className="no">Layer 2</span>
-      </div>
-      <div className="layer-tier layer-tier--top">
-       <div><h3>Website, marketplaces, trade portal</h3><p>Every channel reading the same
-        decoration-aware catalogue, instead of a generic one</p></div>
-       <span className="no">Layer 3</span>
-      </div>
-     </div>
-    </div>
-   </section>
-
-   {/* ── INLINE ARTWORK · DO-ART-719 ──────────────────────────────────── */}
-   <section className="g-navy">
-    <div className="wrap">
-     <span className="eyebrow">The missing layer · DO-ART-719</span>
-     <div dangerouslySetInnerHTML={{ __html: `
+/* Staging artwork DO-ART-719 rev 03 (three ways to fill the gap), kept as
+   staged — the mockup carries the same figure. */
+const plateArt719 = `
 <figure class="d17 sw a719" data-od-id="plate-gap" data-motion data-no="DO-ART-719" data-rev="03" data-tx="schematic"
         aria-label="Drawn plate DO-ART-719, three ways to fill the gap. The platform you already run, generic and never designed for print and embroidery, holds orders, stock, customers, products, accounts, suppliers, purchasing and reports, with custom development bolted on to make it fit. Decoration and artwork sit in a hatched gap it was not built for. Three ways out of the gap: one, use what's already there, sometimes we can do something with what's already there; two, add a layer on top, sometimes it needs an extra layer on top; three, in amber, use something already built, because there wasn't anything on the market designed to do that job.">
   <div class="q-grid" aria-hidden="true"></div>
@@ -286,39 +203,249 @@ export default function LegacySystemPage() {
     <text class="t" x="184" y="1226" style="font-size:24px;fill:#8ECAE6">market designed to do that job.</text>
   </svg>
   <div class="foot"><span class="k d17-mono">Inside the operation · the gap</span><span class="d17-mark">decodedops.co.uk · DO-ART-719 · Rev 03</span></div>
-</figure>` }} />
-    </div>
-   </section>
+</figure>`;
 
-   {/* ── 4 · HOW I HELP ─────────────────────────────────────────────────── */}
-   <section className="g-navy">
-    <div className="wrap">
-     <span className="eyebrow eyebrow--amber">How I help</span>
-     <h2>No rip-and-replace. Just the layer that was missing.</h2>
+export default function LegacySystemPage() {
+ return (
+  <>
+   <JsonLd data={legacySystemSchema} />
+   <BreadcrumbSchema items={[
+    { name: 'Home', url: 'https://decodedops.co.uk/' },
+    { name: 'Problems', url: 'https://decodedops.co.uk/problems' },
+    { name: 'Legacy system', url: 'https://decodedops.co.uk/problems/legacy-system' },
+   ]} />
+   {problemVideos['legacy-system'] && (
+    <VideoSchema
+     name={problemVideos['legacy-system'].title}
+     description={problemVideos['legacy-system'].closeLine}
+     youtubeId={problemVideos['legacy-system'].youtubeId}
+     uploadDate={problemVideos['legacy-system'].uploadDate}
+     durationSec={problemVideos['legacy-system'].durationSec}
+    />
+   )}
+   <div className={styles.root}>
+    <div dangerouslySetInnerHTML={{ __html: iconSprite }} />
 
-     <div className="answer">
-      <p>I don&apos;t start by asking which new platform to buy. I start with what your current
-       platform already does well, then build the layer that fills the gap: decoration BOMs,
-       artwork, blank-to-finished stock. <b>Without touching what already works.</b></p>
-      <p>A Clarity Audit tells you honestly whether that&apos;s a small layer, a bigger one, or
-       whether the platform genuinely needs to change. Rarely the last one.</p>
+    {/* ── 01 · HERO ─────────────────────────────────────────────────────── */}
+    <section className="g-off p-hero" data-od-id="hero">
+     <div className="wrap p-hero-grid">
+      <div>
+       <span className="eyebrow">Our system is ancient</span>
+       <h1 data-od-id="hero-h1">The platform you bought ten years ago <em>wasn&apos;t built for decoration.</em></h1>
+       <p className="t-lede">Generic ERP systems and most inventory management software for small
+        businesses are built for businesses that buy and sell the same thing they hold in the
+        warehouse. Decoration doesn&apos;t work like that.</p>
+       <p className="t-body">A blank garment becomes a different, finished product the moment it&apos;s
+        printed or embroidered, and most platforms have no clean way to model that.</p>
+       <div className="btn-row">
+        <Link className="btn btn--primary" href="/contact" data-od-id="hero-cta">Talk about your situation</Link>
+        <Link className="go" href="/clarity">See how the audit works <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+       </div>
+      </div>
+      <div data-od-id="hero-visual" dangerouslySetInnerHTML={{ __html: heroArt969 }} />
      </div>
-    </div>
-   </section>
-
-   {/* ── 5 · CTA STRIP ──────────────────────────────────────────────────── */}
-   <section className="g-white cta-strip">
-    <div className="wrap" style={{ maxWidth: 760 }}>
-     <h2>Find out what layer your platform is actually missing.</h2>
-     <p className="lede">A Clarity Audit scopes the gap and prices the fix, before anything gets
-      ripped out.</p>
-     <div className="hero-cta">
-      <Link className="btn btn--primary" href="/contact">Book a free 60 minute call</Link>
-      <Link className="btn-ghost btn-arrow" href="/apps/works">See Works</Link>
-     </div>
-    </div>
     </section>
-    <D17Motion />
-   </>
-  );
+
+    {/* ── 02 · THE SEVEN SIGNS · navy ledger ────────────────────────────── */}
+    <section className="g-navy sym-sec" data-od-id="symptoms">
+     <div className="wrap sym-grid">
+      <div className="sym-head">
+       <span className="eyebrow">The symptoms</span>
+       <h2 data-od-id="symptoms-h2">Seven signs the platform wasn&apos;t built for this.</h2>
+       <p className="sec-lede" data-od-id="symptoms-lede">If you recognise three or more of these,
+        the system is the cause. The inventory software was never designed for decoration, so your
+        team works around it every day.</p>
+      </div>
+      <div>
+       <ol className="sym" data-od-id="symptoms-ledger">
+        <li><span className="n">01</span><p>Decoration BOMs are tracked in a spreadsheet because the platform can&apos;t model them</p></li>
+        <li><span className="n">02</span><p>Blank and finished stock get confused, or tracked as if they&apos;re the same item</p></li>
+        <li><span className="n">03</span><p>Supplier artwork lives in email threads, not attached to the order it belongs to</p></li>
+        <li><span className="n">04</span><p>Print, embroidery, heat-press: every method needs its own workaround</p></li>
+        <li><span className="n">05</span><p>The vendor&apos;s support team asks what &ldquo;decoration BOM&rdquo; even means</p></li>
+        <li><span className="n">06</span><p>Customisation costs have exceeded what the licence was supposed to save you</p></li>
+        <li><span className="n">07</span><p>You&apos;ve quietly accepted this is &ldquo;just how the software is&rdquo; rather than fixable</p></li>
+       </ol>
+       <p className="route-cap" data-od-id="symptoms-cap"><svg className="ic ic-16" aria-hidden="true"><use href="#i-check" /></svg>Count the ones that apply. Each one is a field the platform never had.</p>
+      </div>
+     </div>
+    </section>
+
+    {problemVideos['legacy-system'] && (
+     <section className="g-off" data-od-id="video-embed">
+      <div className="wrap">
+       <VideoEmbed
+        youtubeId={problemVideos['legacy-system'].youtubeId}
+        title={problemVideos['legacy-system'].title}
+        closeLine={problemVideos['legacy-system'].closeLine}
+        app={problemVideos['legacy-system'].app}
+        durationSec={problemVideos['legacy-system'].durationSec}
+        playlistUrl={problemVideos['legacy-system'].playlistUrl}
+       />
+      </div>
+     </section>
+    )}
+
+    {/* ── 02a · PHOTO BAND · where the platform runs out ────────────────── */}
+    <section className="g-white" data-od-id="photo-band">
+     <div className="wrap">
+      <div className="ev-head">
+       <div><span className="eyebrow">Where the platform runs out</span><h2 data-od-id="photo-band-h2">Built to buy and sell. Not to decorate.</h2></div>
+       <p className="lede">Three of my own photographs from client visits this year. Threaded heads,
+        the garment shelf and a mixed stockroom: the blank-to-finished step that a generic platform
+        has no field for.</p>
+      </div>
+      <div className="ev-grid" data-od-id="photo-band-photos">
+       <figure className="d17 ev" data-od-id="photo-e" data-no="DO-ART-979e" data-rev="01" data-tx="photo">
+        <div className="d17-ph"><img src="/images/site/evidence/hero-embroidery-heads-b5b1fb.webp" width="1600" height="900" loading="lazy" alt="Embroidery machine heads at a client site." /></div>
+        <div className="d17-scan" aria-hidden="true"></div>
+        <p className="k d17-mono">The floor &middot; 2026</p>
+        <p className="line">Machine heads, threaded up</p>
+        <span className="d17-mark">decodedops.co.uk &middot; DO-ART-979e &middot; Rev 01</span>
+       </figure>
+       <figure className="d17 ev" data-od-id="photo-j" data-no="DO-ART-979j" data-rev="01" data-tx="photo">
+        <div className="d17-ph"><img src="/images/site/evidence/card-garment-shelf-724253.webp" width="1600" height="900" loading="lazy" alt="Folded garments on a stock shelf at a client site." /></div>
+        <div className="d17-scan" aria-hidden="true"></div>
+        <p className="k d17-mono">Stock &middot; June 2026</p>
+        <p className="line">The shelf the SOP describes</p>
+        <span className="d17-mark">decodedops.co.uk &middot; DO-ART-979j &middot; Rev 01</span>
+       </figure>
+       <figure className="d17 ev" data-od-id="photo-c" data-no="DO-ART-979c" data-rev="01" data-tx="photo">
+        <div className="d17-ph"><img src="/images/site/evidence/hero-stockroom-mixed-fa24e6.webp" width="1600" height="900" loading="lazy" alt="A mixed stockroom with shelved garments and boxed goods at a client site." /></div>
+        <div className="d17-scan" aria-hidden="true"></div>
+        <p className="k d17-mono">The stockroom &middot; 2026</p>
+        <p className="line">A mixed stockroom</p>
+        <span className="d17-mark">decodedops.co.uk &middot; DO-ART-979c &middot; Rev 01</span>
+       </figure>
+      </div>
+     </div>
+    </section>
+
+    {/* ── 03 · THE FIX · the three layers as one card grid ──────────────── */}
+    <section className="g-tint" data-od-id="fix">
+     <div className="wrap">
+      <div className="sec-head">
+       <span className="eyebrow">The fix</span>
+       <h2 data-od-id="fix-h2">Keep the platform. Add the layer it&apos;s missing.</h2>
+       <p className="sec-lede">Ripping out an ERP you&apos;ve already paid for and trained staff on
+        is rarely the right answer. Read bottom-up: the platform stays exactly where it is, and the
+        missing layer sits on top of it, not instead of it.</p>
+      </div>
+      <div className="areas" data-od-id="layer-cards">
+       <article className="area" data-od-id="layer-1">
+        <div className="area-top"><span className="ic-tile"><svg className="ic ic-24" aria-hidden="true"><use href="#i-server" /></svg></span><span className="num">Layer 1</span></div>
+        <h3>Your platform, unchanged</h3>
+        <p className="t-card">Whichever one you run stays as the system of record for orders and accounts</p>
+       </article>
+       <article className="area" data-od-id="layer-2">
+        <div className="area-top"><span className="ic-tile"><svg className="ic ic-24" aria-hidden="true"><use href="#i-layers" /></svg></span><span className="num">Layer 2</span></div>
+        <h3>Decoded Works</h3>
+        <p className="t-card">Decoration BOMs, blank-to-finished mapping, and supplier artwork, modelled properly for the first time</p>
+       </article>
+       <article className="area" data-od-id="layer-3">
+        <div className="area-top"><span className="ic-tile"><svg className="ic ic-24" aria-hidden="true"><use href="#i-shopping-cart" /></svg></span><span className="num">Layer 3</span></div>
+        <h3>Website, marketplaces, trade portal</h3>
+        <p className="t-card">Every channel reading the same decoration-aware catalogue, instead of a generic one</p>
+       </article>
+      </div>
+     </div>
+    </section>
+
+    {/* ── 04 · PLATE · DO-ART-719 ──────────────────────────────────────── */}
+    <section className="g-navy plate-sec" data-od-id="plate">
+     <div className="wrap">
+      <div className="plate-head">
+       <div><span className="eyebrow">The missing layer</span><h2 data-od-id="plate-h2">The gap the platform was never built for.</h2></div>
+       <p className="lede">The platform you already run holds orders, stock, customers and accounts.
+        Decoration and artwork sit in a gap it was not built for. There are three ways out of it, and
+        only one of them is a new system.</p>
+      </div>
+      <div dangerouslySetInnerHTML={{ __html: plateArt719 }} />
+     </div>
+    </section>
+
+    {/* ── 05 · HOW I HELP ──────────────────────────────────────────────── */}
+    <section className="g-off" data-od-id="how-i-help">
+     <div className="wrap how-grid">
+      <div>
+       <span className="eyebrow">How I help</span>
+       <h2 data-od-id="how-h2">No rip-and-replace. Just the layer that was missing.</h2>
+       <p className="t-lede">I don&apos;t start by asking which new platform to buy. I start with
+        what your current platform already does well, then build the layer that fills the gap:
+        decoration BOMs, artwork, blank-to-finished stock. Without touching what already works.</p>
+       <p className="t-body">A Clarity Audit tells you honestly whether that&apos;s a small layer, a
+        bigger one, or whether the platform genuinely needs to change. Rarely the last one.</p>
+      </div>
+      <aside className="offer" data-od-id="offer">
+       <h3>The first call is free.</h3>
+       <p className="t-card">60 minutes. No sales pitch, just a direct conversation about your situation.</p>
+       <ul className="ticks">
+        <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>One day on site</span></li>
+        <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>Written report in 5 days</span></li>
+        <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>3&times; Clarity Guarantee</span></li>
+        <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>No vendor agenda</span></li>
+       </ul>
+       <Link className="btn btn--primary" href="/contact" data-od-id="offer-cta">Book a free call</Link>
+       <Link className="alt" href={BOOKING_URL} data-od-id="offer-alt">Or book a call directly</Link>
+      </aside>
+     </div>
+    </section>
+
+    {/* ── 06 · KEEP READING ────────────────────────────────────────────── */}
+    <section className="g-tint next" data-od-id="keep-reading">
+     <div className="wrap">
+      <span className="eyebrow">Keep reading</span>
+      <div className="next-grid">
+       <div className="next-card next-card--service" data-od-id="next-service">
+        <span className="t-meta">Get this fixed</span>
+        <h3>Decoded Works</h3>
+        <p className="t-card">The decoration layer: BOMs, blank-to-finished mapping and supplier artwork, run alongside the platform you already own or as the system itself.</p>
+        <Link className="go" href="/apps/works">See how it works <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+       </div>
+       <div className="next-card" data-od-id="next-problems">
+        <span className="t-meta">Related problems</span>
+        <h3>You might also have</h3>
+        <ul className="t-card">
+         <li><Link href="/problems/wrong-erp-software"><svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg><span>We&apos;re on the wrong software</span></Link></li>
+         <li><Link href="/problems/systems-dont-talk"><svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg><span>Nothing talks to anything else</span></Link></li>
+         <li><Link href="/problems/inventory-blind"><svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg><span>We don&apos;t know what stock we have</span></Link></li>
+        </ul>
+       </div>
+       <div className="next-card" data-od-id="next-reading">
+        <span className="t-meta">Further reading</span>
+        <h3>From the blog and the toolkit</h3>
+        <ul className="t-card">
+         <li><Link href="/resources/erp-selection-playbook"><svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg><span>The ERP selection playbook</span></Link></li>
+         <li><Link href="/blog/the-hidden-cost-of-running-legacy-systems"><svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg><span>The hidden cost of running legacy systems</span></Link></li>
+        </ul>
+       </div>
+       <div className="next-card" data-od-id="next-sectors">
+        <span className="t-meta">Sectors where this shows up</span>
+        <h3>Common in</h3>
+        <ul className="t-card">
+         <li><Link href="/sectors/garment-decoration"><svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg><span>Garment decoration</span></Link></li>
+         <li><Link href="/sectors/workwear"><svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg><span>Workwear</span></Link></li>
+         <li><Link href="/sectors/print-promotional"><svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg><span>Print &amp; promotional</span></Link></li>
+        </ul>
+       </div>
+      </div>
+     </div>
+    </section>
+
+    {/* ── CTA STRIP · kept from staging although the mockup drops it ────── */}
+    <section className="g-white cta-strip">
+     <div className="wrap" style={{ maxWidth: 760 }}>
+      <h2>Find out what layer your platform is actually missing.</h2>
+      <p className="lede">A Clarity Audit scopes the gap and prices the fix, before anything gets
+       ripped out.</p>
+      <div className="hero-cta">
+       <Link className="btn btn--primary" href="/contact">Book a free 60 minute call</Link>
+       <Link className="btn-ghost btn-arrow" href="/apps/works">See Works</Link>
+      </div>
+     </div>
+    </section>
+   </div>
+   <D17Motion />
+  </>
+ );
 }

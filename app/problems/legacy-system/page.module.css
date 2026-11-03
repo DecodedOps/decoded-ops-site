@@ -1,0 +1,72 @@
+/* RS3 lane P (CR-WEB-084): the mockup's inline styles that the shared sheets do
+   not carry. The v5 problem patterns live in app/problems/problems-v2.css, which
+   this bespoke page does not import, so the ones this page uses are reproduced
+   here from the approved mockup. Anchored on .root so these rules cannot reach
+   any other route. */
+
+.root {
+ display: block;
+}
+
+/* R1 type contract */
+.root :global(p) { text-wrap: pretty }
+
+/* 01 — hero */
+.root :global(.p-hero) { padding: 72px 0 88px }
+.root :global(.p-hero-grid) { display: grid; grid-template-columns: minmax(0,6fr) minmax(0,6fr); gap: 56px; align-items: center }
+@media (max-width:960px) {
+ .root :global(.p-hero-grid) { grid-template-columns: 1fr; gap: 34px }
+}
+.root :global(.p-hero h1) { margin-bottom: 0 }
+.root :global(.p-hero h1 em) { font-style: normal; color: inherit; box-shadow: inset 0 -.16em 0 color-mix(in srgb, var(--do-sky-blue) 60%, transparent); -webkit-box-decoration-break: clone; box-decoration-break: clone }
+.root :global(.p-hero .t-lede) { margin: 24px 0 0; color: var(--do-text-primary) }
+.root :global(.p-hero .t-body) { margin: 16px 0 0; max-width: 60ch }
+.root :global(.p-hero .btn-row) { margin: 30px 0 0; align-items: center; gap: 14px 28px }
+
+/* 02 — symptoms: a ledger, not a grid of cards */
+.root :global(.sym-sec) { padding: 88px 0 }
+.root :global(.sym-grid) { display: grid; grid-template-columns: minmax(0,5fr) minmax(0,7fr); gap: 64px; align-items: start }
+.root :global(.sym-head) { position: sticky; top: 104px }
+.root :global(.sym-head h2) { max-width: 16ch }
+.root :global(.sym-head .sec-lede) { color: color-mix(in srgb, var(--do-off-white) 80%, transparent) }
+.root :global(.sym) { list-style: none; margin: 0; padding: 0; counter-reset: s }
+.root :global(.sym li) { display: grid; grid-template-columns: 56px minmax(0,1fr); gap: 20px; align-items: baseline; padding: 22px 0; border-top: 1px solid var(--do-border-dark) }
+.root :global(.sym li:last-child) { border-bottom: 1px solid var(--do-border-dark) }
+.root :global(.sym .n) { font-family: var(--do-font-mono); font-size: var(--do-text-xs); letter-spacing: var(--do-tracking-wider); color: var(--do-sky-blue) }
+.root :global(.sym p) { margin: 0; font-size: var(--do-text-lg); line-height: 1.45; color: var(--do-off-white); max-width: 52ch }
+@media (max-width:900px) {
+ .root :global(.sym-grid) { grid-template-columns: 1fr; gap: 30px }
+ .root :global(.sym-head) { position: static }
+ .root :global(.sym li) { grid-template-columns: 40px 1fr; gap: 14px; padding: 18px 0 }
+}
+.root :global(.sec-lede) { margin: 20px 0 0; font-size: var(--do-text-lg); line-height: 1.55; max-width: 44ch }
+
+/* 03 — the fix: the three layers as one card grid */
+.root :global(.area h3) { margin-top: 2px }
+
+/* 04 — plate section with its own heading */
+.root :global(.plate-sec .plate-head) { display: grid; grid-template-columns: minmax(0,7fr) minmax(0,5fr); gap: 48px; align-items: end; margin-bottom: 8px }
+.root :global(.plate-sec .plate-head h2) { max-width: 20ch }
+.root :global(.plate-sec .plate-head .lede) { margin: 0 }
+@media (max-width:900px) {
+ .root :global(.plate-sec .plate-head) { grid-template-columns: 1fr; gap: 16px; align-items: start }
+}
+.root :global(.plate-sec .sw) { margin-top: 36px }
+
+/* 05 — how I help: lede on the left, the offer as a ticked list on the right */
+.root :global(.how-grid) { display: grid; grid-template-columns: minmax(0,6fr) minmax(0,5fr); gap: 64px; align-items: start }
+@media (max-width:900px) {
+ .root :global(.how-grid) { grid-template-columns: 1fr; gap: 32px }
+}
+.root :global(.how-grid h2) { max-width: 16ch }
+.root :global(.how-grid .t-lede) { margin: 22px 0 0; max-width: 54ch }
+.root :global(.how-grid .t-body) { margin: 16px 0 0; max-width: 54ch }
+.root :global(.offer) { background: var(--do-surface-raised); border: 1px solid var(--do-border-subtle); border-radius: var(--do-radius-2xl); padding: 30px 30px 28px }
+.root :global(.offer h3) { margin: 0 0 6px; font-size: var(--do-text-xl); line-height: 1.25 }
+.root :global(.offer .t-card) { max-width: 44ch }
+.root :global(.offer .btn) { width: 100% }
+.root :global(.offer .alt) { display: block; margin-top: 14px; font-size: var(--do-text-sm); color: var(--do-text-secondary); text-decoration: underline; text-underline-offset: 4px; text-decoration-color: var(--do-cerulean); text-decoration-thickness: 2px }
+.root :global(.offer .alt:hover) { text-decoration-color: var(--do-prussian-blue) }
+.root :global(.ticks) { list-style: none; margin: 20px 0 26px; padding: 0; border-top: 1px solid var(--do-border-subtle) }
+.root :global(.ticks li) { display: flex; gap: 12px; align-items: flex-start; padding: 13px 2px; border-bottom: 1px solid var(--do-border-subtle); font-size: var(--do-text-base); line-height: 1.5; color: var(--do-text-primary) }
+.root :global(.ticks .ic) { color: var(--do-prussian-blue); margin-top: 3px }
