@@ -1,0 +1,7 @@
+/* RS3 lane C (CR-WEB-084) — page layout only, from the 3 Nov v2 plate's
+   <style> block (case-study-eternal-fitness-v2.html in the approved RS3 design set).
+   Every pattern lives in site-v3.css and the d17 sheets; only the rules the
+   plate keeps page-local are here. Anchored on .root — no bare globals. */
+
+.root :global(.hero .t-lede) { max-width: 64ch }
+.root :global(.hero .disclose) { max-width: 64ch; margin: 12px 0 0; font-size: var(--do-text-sm); color: var(--do-text-secondary); font-style: italic }

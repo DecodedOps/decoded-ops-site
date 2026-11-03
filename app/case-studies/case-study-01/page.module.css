@@ -1,0 +1,17 @@
+/* RS3 lane C (CR-WEB-084) — page layout only, from the 3 Nov v2 plate's
+   <style> block (case-study-01-v2.html in the approved RS3 design set).
+   Every pattern lives in site-v3.css and the d17 sheets; only the rules the
+   plate keeps page-local are here. Anchored on .root — no bare globals.
+   The .stat rules carry over from the page's old inline <style> because the
+   "The numbers" stat grid is kept (the v2 plate drops it — see the lane report);
+   without them the kept section would lose its type treatment. */
+
+.root :global(.story .t-body + h3) { margin-top: 28px }
+.root :global(.story h3) { margin: 0 0 10px }
+
+.root :global(.stat .stat-num) {
+  font-family: var(--do-font-heading); font-weight: 800;
+  font-size: clamp(2.2rem, 4vw, 3.2rem); line-height: 1; letter-spacing: -.03em;
+  color: var(--do-amber); font-variant-numeric: tabular-nums;
+}
+.root :global(.stat .stat-label) { margin: 10px 0 0; color: var(--do-text-muted-on-dark); font-size: .9375rem; max-width: 24ch }

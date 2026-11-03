@@ -1,9 +1,11 @@
 import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
 import { D17Motion } from '@/components/D17Motion';
 import { JsonLd } from '@/components/JsonLd';
+import { IconSprite } from '@/components/IconSprite';
 import '@/app/d17-global.css';
 import '@/app/d17-apps-cases.css';
+import '@/app/design-system/site-v3.css';
+import s from './page.module.css';
 import { OG_IMAGE, OG_IMAGE_PATH } from '@/lib/seo';
 
 export const metadata = {
@@ -48,43 +50,23 @@ const schema = {
 export default function CaseStudy01Page() {
   return (
     <>
-      <style>{`
-        .hero-split{ display:grid; grid-template-columns:1.1fr .9fr; gap:48px; align-items:center }
-        @media(max-width:980px){ .hero-split{ grid-template-columns:1fr; gap:32px } }
-        .hero-split .lede{ margin:18px 0 0 }
-        .hero-cta{ display:flex; gap:12px; flex-wrap:wrap; margin-top:28px }
-        .stat .stat-num{ font-family:var(--do-font-heading); font-weight:800;
-          font-size:clamp(2.2rem,4vw,3.2rem); line-height:1; letter-spacing:-.03em;
-          color:var(--do-amber); font-variant-numeric:tabular-nums }
-        .stat .stat-label{ margin:10px 0 0; color:var(--do-text-muted-on-dark); font-size:.9375rem;
-          max-width:24ch }
-        .prose{ max-width:72ch; margin-inline:auto }
-        .prose h2{ font-size:var(--do-text-xl); margin:36px 0 14px }
-        .prose h2:first-child{ margin-top:0 }
-        .prose p{ color:var(--do-text-secondary); line-height:var(--do-leading-relaxed); margin-bottom:14px }
-        .progress-note{ background:color-mix(in srgb, var(--do-amber) 10%, transparent);
-          border:1px solid color-mix(in srgb, var(--do-amber) 30%, transparent);
-          border-radius:var(--do-radius-2xl); padding:24px 28px; margin-top:36px }
-        .progress-note h3{ font-size:var(--do-text-base); margin-bottom:8px }
-        .progress-note p{ margin:0; color:var(--do-text-secondary); font-size:var(--do-text-sm) }
-        .cta-strip{ text-align:center }
-        .cta-strip h2{ max-width:none; margin-inline:auto }
-        .cta-strip .lede{ margin:18px auto 32px; max-width:52ch }
-      `}</style>
-      <main>
-        <JsonLd data={schema} />
+      <JsonLd data={schema} />
+      <IconSprite />
+
+      <div className={s.root}>
+      <main id="content">
 
         {/* 1. HERO + DO-ART-952 */}
-        <section className="g-off">
+        <section className="g-off hero" data-od-id="hero">
           <div className="wrap hero-split">
             <div>
-              <span className="eyebrow">Client work · heating spares &amp; eCommerce</span>
-              <h1>The ERP changed. The data work carried on.</h1>
-              <p className="lede">Hanicks sells heating spares. It isn&apos;t decorated goods, but it&apos;s the same
+              <span className="eyebrow">Client work &middot; heating spares &amp; eCommerce</span>
+              <h1 data-od-id="hero-title">The ERP changed. The data work carried on.</h1>
+              <p className="t-lede" style={{ marginTop: 20 }}>Hanicks sells heating spares. It isn&apos;t decorated goods, but it&apos;s the same
                 problem underneath: a big catalogue arriving from lots of suppliers in different formats,
                 which has to be clean and current on every channel it sells through. This is an ERP implementation that took a different route.</p>
-              <div className="hero-cta" style={{ justifyContent: 'flex-start' }}>
-                <Link className="btn btn--primary" href="/contact">Book a free discovery call <ArrowRight size={16} aria-hidden="true" /></Link>
+              <div className="btn-row">
+                <Link className="btn btn--primary" href="/contact" data-od-id="hero-cta">Book a free discovery call</Link>
               </div>
             </div>
             <div dangerouslySetInnerHTML={{ __html: `
@@ -158,12 +140,12 @@ export default function CaseStudy01Page() {
         </section>
 
         {/* 2. MEASURE · DO-ART-951 */}
-        <section className="g-tint">
+        <section className="g-tint" data-od-id="measure">
           <div className="wrap">
-            <span className="eyebrow">Measure · DO-ART-951</span>
-            <h2>Not projected. Not modelled. What&apos;s actually in the system.</h2>
-            <div className="hair"></div>
-            <p className="lede" style={{ marginTop: 16 }}>Catalogue figures from the live system, September 2026.</p>
+            <div className="route-head">
+              <div><span className="eyebrow">Measure &middot; DO-ART-951</span><h2 data-od-id="measure-h2">Not projected. Not modelled. What&apos;s actually in the system.</h2></div>
+              <p className="lede">Catalogue figures from the live system, September 2026.</p>
+            </div>
 
             <div dangerouslySetInnerHTML={{ __html: `
 <figure class="d17 sw a951" data-od-id="plate-measure" data-motion data-no="DO-ART-951" data-rev="01" data-tx="photo"
@@ -201,8 +183,10 @@ export default function CaseStudy01Page() {
           </div>
         </section>
 
-        {/* 3. THE NUMBERS */}
-        <section className="g-navy">
+        {/* 3. THE NUMBERS — kept from the current page; the v2 plate drops this
+            stat grid (its note: the same six figures already sit in DO-ART-951).
+            Kept per the release-set rule on dropped sections carrying copy. */}
+        <section className="g-navy" data-od-id="numbers">
           <div className="wrap">
             <span className="eyebrow eyebrow--amber">The numbers</span>
             <h2 style={{ marginTop: 14 }}>Not projected. Not modelled. What&apos;s actually in the system.</h2>
@@ -242,77 +226,79 @@ export default function CaseStudy01Page() {
         </section>
 
         {/* 4. THE STORY */}
-        <section className="g-white">
-          <div className="wrap prose">
-            <h2>The situation before</h2>
-            <p>
-              Product data was spread across supplier feeds with no consistent SKU, and no reliable way of knowing what was actually in stock or where it was. The business needed a proper ERP, but going into an ERP implementation with messy data would have meant paying to migrate the mess.
-            </p>
-
-            <h2>What was done</h2>
-            <p>
-              The work started with the data, not the platform. I built what is now Decoded Works to bring in every supplier catalogue, match it against what Hanicks actually sells, and keep it clean and current across their channels.
-            </p>
-            <p>
-              The off-the-shelf ERP they&apos;d originally chosen stalled on its own terms, nothing to do with the data work, which kept running throughout. So rather than start again with another off-the-shelf system, Decoded Works became the ERP. Their marketplace listings on Amazon, eBay and OnBuy are now linked to it, and a new website is being built on top of the same data.
-            </p>
-
-            <div className="progress-note">
-              <h3>What&apos;s still in progress</h3>
-              <p>
-                The catalogue is still being worked through. Unmatched products sit on a visible list rather than being hidden, and the warehouse is being binned and labelled as we go. The new website goes live later this year.
-              </p>
+        <section className="g-white story" data-od-id="story">
+          <div className="wrap split-6" style={{ marginTop: 0 }}>
+            <div>
+              <span className="eyebrow">The story</span>
+              <h2 data-od-id="before-h2">The situation before</h2>
+              <p className="t-lede">Product data was spread across supplier feeds with no consistent SKU, and no reliable way of knowing what was actually in stock or where it was.</p>
+              <p className="t-body">The business needed a proper ERP, but going into an ERP implementation with messy data would have meant paying to migrate the mess.</p>
+            </div>
+            <div>
+              <h3 data-od-id="done-h3">What was done</h3>
+              <p className="t-body" style={{ marginTop: 0 }}>The work started with the data, not the platform. I built what is now Decoded Works to bring in every supplier catalogue, match it against what Hanicks actually sells, and keep it clean and current across their channels.</p>
+              <p className="t-body">The off-the-shelf ERP they&apos;d originally chosen stalled on its own terms, nothing to do with the data work, which kept running throughout. So rather than start again with another off-the-shelf system, Decoded Works became the ERP. Their marketplace listings on Amazon, eBay and OnBuy are now linked to it, and a new website is being built on top of the same data.</p>
+              <h3 data-od-id="progress-h3">What&apos;s still in progress</h3>
+              <ul className="ticks">
+                <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>The catalogue is still being worked through.</span></li>
+                <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>Unmatched products sit on a visible list rather than being hidden.</span></li>
+                <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>The warehouse is being binned and labelled as we go.</span></li>
+                <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>The new website goes live later this year.</span></li>
+              </ul>
             </div>
           </div>
         </section>
 
-        {/* 5. RELATED */}
-        <section className="g-tint">
-          <div className="wrap" style={{ maxWidth: 900 }}>
-            <span className="eyebrow">Related</span>
-            <h2>Relevant sectors and problems</h2>
-            <div className="hair" />
-            <div className="grid grid--3" style={{ marginTop: 24 }}>
-              <article className="card">
-                <span className="kicker">Sector</span>
-                <h3>Labels &amp; packaging</h3>
-                <p>Supplier feed ingestion and catalogue maintenance across channels: the same data challenge this case study addresses.</p>
-                <Link href="/sectors/labels-packaging" className="btn btn--outline" style={{ marginTop: 12 }}>See the labels &amp; packaging page</Link>
-              </article>
-              <article className="card">
-                <span className="kicker">Sector</span>
-                <h3>Workwear</h3>
-                <p>B2B ordering, supplier data, and decoration workflows that need the same kind of system integration.</p>
-                <Link href="/sectors/workwear" className="btn btn--outline" style={{ marginTop: 12 }}>See the workwear page</Link>
-              </article>
-              <article className="card">
-                <span className="kicker">Problem</span>
-                <h3>Inventory blind spots</h3>
-                <p>No real visibility of stock across channels: the problem Works solved for this client.</p>
-                <Link href="/problems/inventory-blind" className="btn btn--outline" style={{ marginTop: 12 }}>Read about inventory blindness</Link>
-              </article>
+        {/* 5. THE SYSTEM IT RUNS ON — new in the v2 plate (heading and lede are its new copy) */}
+        <section className="g-navy" data-od-id="screens">
+          <div className="wrap">
+            <div className="route-head">
+              <div><span className="eyebrow">The system it runs on</span><h2 data-od-id="screens-h2">Decoded Works, the ERP the data work became.</h2></div>
+              <p className="lede">Supplier coverage and goods-in, as the product shows them. These two screens run on sample data, not this client&apos;s figures; the figures above are the client&apos;s own.</p>
+            </div>
+            <div className="shots-2" data-od-id="screens-pair">
+              <figure className="shot" data-od-id="shot-coverage"><img src="/images/site/screens/works/do-art-1019l-works-supplier-coverage.webp" width={1600} height={1000} alt="Decoded Works supplier coverage report, sample data." loading="lazy" /><figcaption><b>Supplier coverage</b><span>Works &middot; sample data</span></figcaption></figure>
+              <figure className="shot" data-od-id="shot-goods-in"><img src="/images/site/screens/works/do-art-1019d-works-goods-in.webp" width={1600} height={1000} alt="Decoded Works book in delivery screen, sample data." loading="lazy" /><figcaption><b>Book in delivery</b><span>Works &middot; sample data</span></figcaption></figure>
+            </div>
+            <div className="t-links"><Link className="go" href="/apps/works">See Works <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link></div>
+          </div>
+        </section>
+
+        {/* 6. KEEP READING */}
+        <section className="g-tint next" data-od-id="keep-reading">
+          <div className="wrap">
+            <span className="eyebrow">Relevant sectors and problems</span>
+            <div className="next-grid next-grid--3">
+              <div className="next-card" data-od-id="next-labels"><span className="t-meta">Sector</span><h3>Labels &amp; packaging</h3>
+                <p className="t-card">Supplier feed ingestion and catalogue maintenance across channels: the same data challenge this case study addresses.</p>
+                <Link className="go" href="/sectors/labels-packaging">See the labels &amp; packaging page <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link></div>
+              <div className="next-card" data-od-id="next-workwear"><span className="t-meta">Sector</span><h3>Workwear</h3>
+                <p className="t-card">B2B ordering, supplier data, and decoration workflows that need the same kind of system integration.</p>
+                <Link className="go" href="/sectors/workwear">See the workwear page <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link></div>
+              <div className="next-card" data-od-id="next-inventory"><span className="t-meta">Problem</span><h3>Inventory blind spots</h3>
+                <p className="t-card">No real visibility of stock across channels: the problem Works solved for this client.</p>
+                <Link className="go" href="/problems/inventory-blind">Read about inventory blindness <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link></div>
             </div>
           </div>
         </section>
 
-        {/* 6. CTA STRIP */}
-        <section className="g-off cta-strip">
-          <div className="wrap" style={{ maxWidth: 760 }}>
-            <h2>See how Works does this.</h2>
-            <p className="lede">
-              This is a Systems (rung 2) example. To find out what your own data looks like, book a Clarity Audit.
-            </p>
-            <div className="hero-cta">
-              <Link href="/contact" className="btn btn--primary">
-                Book a free discovery call <ArrowRight size={18} />
-              </Link>
-              <Link href="/apps/works" className="btn btn-ghost btn-arrow">
-                See Works
-              </Link>
+        {/* 7. CLOSER */}
+        <section className="g-off closer" data-od-id="cta">
+          <div className="wrap closer-grid">
+            <div><h2 data-od-id="cta-h2">See how Works does this</h2></div>
+            <div>
+              <p className="lede">This is a Systems (rung 2) example. To find out what your own data looks like, book a Clarity Audit.</p>
+              <div className="btn-row">
+                <Link className="btn btn--primary" href="/contact" data-od-id="cta-primary">Book a free discovery call</Link>
+                <Link className="go" href="/apps/works">See Works <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+              </div>
             </div>
           </div>
         </section>
+
       </main>
+      </div>
+
       <D17Motion />
     </>
   );

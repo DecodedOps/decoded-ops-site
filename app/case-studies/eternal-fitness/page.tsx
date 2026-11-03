@@ -1,10 +1,11 @@
 import Link from 'next/link';
-import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import { D17Motion } from '@/components/D17Motion';
-import { BOOKING_URL } from '@/lib/constants';
 import { JsonLd } from '@/components/JsonLd';
+import { IconSprite } from '@/components/IconSprite';
 import '@/app/d17-global.css';
 import '@/app/d17-apps-cases.css';
+import '@/app/design-system/site-v3.css';
+import s from './page.module.css';
 import { OG_IMAGE, OG_IMAGE_PATH } from '@/lib/seo';
 
 export const metadata = {
@@ -49,48 +50,26 @@ const schema = {
 export default function EternalFitnessCaseStudyPage() {
   return (
     <>
-      <style>{`
-        .hero-center{ text-align:center; max-width:760px; margin-inline:auto }
-        .hero-center h1{ max-width:none; margin-inline:auto }
-        .hero-center .lede{ margin:18px auto 0 }
-        .hero-center .eyebrow{ margin-inline:auto }
-        .prose{ max-width:72ch; margin-inline:auto }
-        .prose h2{ font-size:var(--do-text-xl); margin:36px 0 14px }
-        .prose h2:first-child{ margin-top:0 }
-        .prose p{ color:var(--do-text-secondary); line-height:var(--do-leading-relaxed); margin-bottom:14px }
-        /* BUG-WEB-046: grid items default to min-width:auto, so the nowrap .btn
-           inside each related card stretched the 1fr track past the column at 390px. */
-        .grid--3 > *{ min-width:0 }
-        .grid .card .btn{ white-space:normal; text-align:center }
-        .progress-note{ background:color-mix(in srgb, var(--do-amber) 10%, transparent);
-          border:1px solid color-mix(in srgb, var(--do-amber) 30%, transparent);
-          border-radius:var(--do-radius-2xl); padding:24px 28px; margin-top:36px }
-        .progress-note h3{ font-size:var(--do-text-base); margin-bottom:8px }
-        .progress-note p{ margin:0; color:var(--do-text-secondary); font-size:var(--do-text-sm) }
-        .callout{ padding:32px; border-radius:var(--do-radius-2xl); background:color-mix(in srgb, var(--do-cerulean) 10%, transparent);
-          border:1px solid color-mix(in srgb, var(--do-cerulean) 25%, transparent); margin-bottom:32px }
-        .callout h3{ font-size:var(--do-text-base); margin-bottom:8px }
-        .cta-strip{ text-align:center }
-        .cta-strip h2{ max-width:none; margin-inline:auto }
-        .cta-strip .lede{ margin:18px auto 32px; max-width:52ch }
-        .hero-cta{ display:flex; gap:12px; flex-wrap:wrap; justify-content:center }
-      `}</style>
-      <main>
-        <JsonLd data={schema} />
+      <JsonLd data={schema} />
+      <IconSprite />
+      {/* i-layout-template is missing from components/IconSprite.tsx (components/
+          is untouchable for this lane), so the design's symbol is defined here. */}
+      <svg width="0" height="0" style={{ position: 'absolute' }} aria-hidden="true">
+        <symbol id="i-layout-template" viewBox="0 0 24 24"><rect width="18" height="7" x="3" y="3" rx="1" /><rect width="9" height="7" x="3" y="14" rx="1" /><rect width="5" height="7" x="16" y="14" rx="1" /></symbol>
+      </svg>
+
+      <main id="content">
 
         {/* 1. HERO + DO-ART-957 */}
-        <section className="g-off">
-          <div className="wrap hero-center">
-            <span className="eyebrow">In Build · Health &amp; Fitness</span>
-            <h1>Eternal Fitness: technical lead for a clinical-population training studio</h1>
-            <p className="lede">
+        <section className="g-off hero" data-od-id="hero">
+          <div className="wrap">
+            <h1 data-od-id="hero-title"><span className="h1-kw" data-new-copy>In build &middot; Eternal Fitness</span> Technical lead for a clinical-population training studio.</h1>
+            <p className="t-lede" style={{ marginTop: 20 }}>
               Eternal Fitness is a private, 1-to-1 personal training studio. Most of its clients manage health conditions, rather than general weight loss. I&apos;m technical lead on the website rebuild and the AI training tool behind it, working alongside Esther Fair, the studio&apos;s Level 4 PT and clinical lead.
             </p>
-            <p style={{ fontSize: 'var(--do-text-sm)', color: 'color-mix(in srgb, var(--do-prussian-blue) 72%, transparent)', fontStyle: 'italic', marginTop: '12px' }}>
+            <p className="disclose">
               Esther is my wife, named plainly. This is paid client work, not a favour or free build. She pays for it the same as anyone else. Which meant there was nowhere to hide if it did not work.
             </p>
-          </div>
-          <div className="wrap" style={{ marginTop: 'clamp(24px, 3vw, 48px)' }}>
             <div dangerouslySetInnerHTML={{ __html: `
 <figure class="d17 sw a957" data-od-id="exhibit" data-motion data-no="DO-ART-957" data-rev="01" data-tx="photo"
         aria-label="Product screen DO-ART-957. The training plan tool. On the left, the constraints it drafts against: the confirmed studio equipment list and the client's condition and notes. In the middle, a drafted session plan, marked draft. On the right, the review gate: nothing reaches the client until the Level 4 PT and clinical lead reviews and approves it, with approve and request changes. The plan the AI tool drafts, and the one person who can sign it off.">
@@ -125,30 +104,47 @@ export default function EternalFitnessCaseStudyPage() {
           </div>
         </section>
 
-        {/* 2. STORY */}
-        <section className="g-white">
-          <div className="wrap prose">
-            <h2>The problem</h2>
-            <p>
-              A studio working with clinical populations needs a site and tools that take that seriously: no generic fitness-marketing language, no before-and-after framing. Training plans for clients managing health conditions can&apos;t be templated the usual way either. Each plan is built around confirmed studio equipment and that client&apos;s specific situation, with Esther approving every plan and every piece of client-facing content.
-            </p>
-
-            <h2>What I&apos;m building</h2>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '32px' }}>
-              {[
-                'A full site rebuild with clinical framing, not fitness-marketing convention: no before-and-after, no crush-it language',
-                'A training plan tool that generates session plans against a confirmed equipment list and each client\'s condition. Esther reviews and approves every output',
-                'Brand and tooling consistency across the site and the training plan output, so the two don\'t drift apart over time',
-                'A technical foundation Esther can rely on without needing to manage it herself. She owns the clinical and brand decisions, I own the build',
-              ].map((item, i) => (
-                <div key={i} style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
-                  <CheckCircle2 size={20} style={{ flexShrink: 0, marginTop: 1, color: 'var(--do-text-cerulean)' }} />
-                  <p>{item}</p>
-                </div>
-              ))}
+        {/* 2. THE PROBLEM */}
+        <section className="g-white" data-od-id="problem">
+          <div className="wrap split-6" style={{ marginTop: 0 }}>
+            <div>
+              <span className="eyebrow">Clinical populations</span>
+              <h2 data-od-id="problem-h2">The problem</h2>
+            </div>
+            <div>
+              <p className="t-lede" style={{ margin: 0 }}>A studio working with clinical populations needs a site and tools that take that seriously: no generic fitness-marketing language, no before-and-after framing.</p>
+              <p className="t-body">Training plans for clients managing health conditions can&apos;t be templated the usual way either. Each plan is built around confirmed studio equipment and that client&apos;s specific situation, with Esther approving every plan and every piece of client-facing content.</p>
             </div>
           </div>
+        </section>
+
+        {/* 3. WHAT I'M BUILDING — the four lines become the v2 plate's icon cards */}
+        <section className="g-off" data-od-id="building">
           <div className="wrap">
+            <div className="route-head">
+              <div><span className="eyebrow">Four parts</span><h2 data-od-id="building-h2">What I&apos;m building</h2></div>
+              <p className="lede">The AI training tool speeds up building a first draft against real constraints. It doesn&apos;t decide what&apos;s safe for a client managing a health condition. Esther does.</p>
+            </div>
+            <div className="areas areas--4" data-od-id="building-cards">
+              <article className="area" data-od-id="build-site"><div className="area-top"><span className="ic-tile"><svg className="ic ic-24" aria-hidden="true"><use href="#i-layout-template" /></svg></span><span className="num">01</span></div>
+                <h3>The site</h3><p className="t-card">A full site rebuild with clinical framing, not fitness-marketing convention: no before-and-after, no crush-it language.</p></article>
+              <article className="area" data-od-id="build-tool"><div className="area-top"><span className="ic-tile"><svg className="ic ic-24" aria-hidden="true"><use href="#i-clipboard-check" /></svg></span><span className="num">02</span></div>
+                <h3>The training plan tool</h3><p className="t-card">A training plan tool that generates session plans against a confirmed equipment list and each client&apos;s condition. Esther reviews and approves every output.</p></article>
+              <article className="area" data-od-id="build-consistency"><div className="area-top"><span className="ic-tile"><svg className="ic ic-24" aria-hidden="true"><use href="#i-layers" /></svg></span><span className="num">03</span></div>
+                <h3>One brand, both places</h3><p className="t-card">Brand and tooling consistency across the site and the training plan output, so the two don&apos;t drift apart over time.</p></article>
+              <article className="area" data-od-id="build-foundation"><div className="area-top"><span className="ic-tile"><svg className="ic ic-24" aria-hidden="true"><use href="#i-server" /></svg></span><span className="num">04</span></div>
+                <h3>A foundation she doesn&apos;t manage</h3><p className="t-card">A technical foundation Esther can rely on without needing to manage it herself. She owns the clinical and brand decisions, I own the build.</p></article>
+            </div>
+          </div>
+        </section>
+
+        {/* 4. THE PRINCIPLE + DO-ART-958 */}
+        <section className="g-navy" data-od-id="principle">
+          <div className="wrap">
+            <div className="route-head">
+              <div><span className="eyebrow">Why the AI tool doesn&apos;t replace the trainer</span><h2 data-od-id="principle-h2">The tool handles the groundwork. The expert makes the call.</h2></div>
+              <p className="lede">That&apos;s the same principle behind every AI-adjacent piece of work I do: the tool handles the groundwork, the person with the actual expertise makes the call.</p>
+            </div>
             <div dangerouslySetInnerHTML={{ __html: `
 <figure class="d17 sw a958" data-od-id="plate-principle" data-motion data-no="DO-ART-958" data-rev="01" data-tx="schematic"
         aria-label="Drawn plate DO-ART-958. The tool handles the groundwork, the person with the expertise makes the call. Constraints go in: the confirmed studio equipment and the client's condition. The tool drafts a session plan in seconds. The draft stops at a review gate held by the Level 4 PT and clinical lead, who approves it or sends it back for changes. Only an approved plan reaches the client.">
@@ -212,69 +208,57 @@ export default function EternalFitnessCaseStudyPage() {
   <div class="foot"><span class="k d17-mono">The tool does the groundwork · the expert makes the call</span><span class="d17-mark">decodedops.co.uk · DO-ART-958 · Rev 01</span></div>
 </figure>` }} />
           </div>
-          <div className="wrap prose">
-            <div className="callout">
-              <h3>Why the AI tool doesn&apos;t replace the trainer</h3>
-              <p>
-                The AI training tool speeds up building a first draft against real constraints. It doesn&apos;t decide what&apos;s safe for a client managing a health condition. Esther does. That&apos;s the same principle behind every AI-adjacent piece of work I do: the tool handles the groundwork, the person with the actual expertise makes the call.
-              </p>
-            </div>
-
-            <h2>Status</h2>
-            <p style={{ marginBottom: '32px' }}>
-              In build. Site rebuild and training plan tool are both in progress, working toward a scheduled launch.
-            </p>
-          </div>
         </section>
 
-        {/* RELATED */}
-        <section className="g-tint">
-          <div className="wrap" style={{ maxWidth: 900 }}>
-            <span className="eyebrow">Related</span>
-            <h2>Relevant problems and sectors</h2>
-            <div className="hair" />
-            <div className="grid grid--3" style={{ marginTop: 24 }}>
-              <article className="card">
-                <span className="kicker">Problem</span>
-                <h3>Buy vs build</h3>
-                <p>Choosing between off-the-shelf and custom, the decision behind this build.</p>
-                <Link href="/problems/buy-vs-build" className="btn btn--outline" style={{ marginTop: 12 }}>Read about buy vs build</Link>
-              </article>
-              <article className="card">
-                <span className="kicker">Sector</span>
-                <h3>Signs &amp; graphics</h3>
-                <p>Short-run, personalised production with custom tooling, similar operational patterns.</p>
-                <Link href="/sectors/signs-graphics" className="btn btn--outline" style={{ marginTop: 12 }}>See the signs &amp; graphics page</Link>
-              </article>
-              <article className="card">
-                <span className="kicker">Sector</span>
-                <h3>Awards &amp; engraving</h3>
-                <p>Mixed-method, personalised production with artwork approval loops.</p>
-                <Link href="/sectors/awards-engraving" className="btn btn--outline" style={{ marginTop: 12 }}>See the awards &amp; engraving page</Link>
-              </article>
+        {/* 5. STATUS */}
+        <section className="g-white" data-od-id="status">
+          <div className="wrap split-6" style={{ marginTop: 0 }}>
+            <div><span className="eyebrow">Status</span><h2 data-od-id="status-h2">In build.</h2></div>
+            <div>
+              <p className="t-lede" style={{ margin: 0 }}>Site rebuild and training plan tool are both in progress, working toward a scheduled launch.</p>
+              <ul className="ticks">
+                <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>Site rebuild: in progress</span></li>
+                <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>Training plan tool: in progress</span></li>
+                <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>Too new to measure, so no figures yet</span></li>
+              </ul>
             </div>
           </div>
         </section>
 
-        {/* CTA STRIP */}
-        <section className="g-navy cta-strip">
-          <div className="wrap" style={{ maxWidth: 760 }}>
-            <h2>Building something similar?</h2>
-            <p className="lede">
-              If you need a technical lead who&apos;ll build the tool without pretending it replaces the expert, get in touch.
-            </p>
-            <div className="hero-cta">
-              <Link href="/contact" className="btn btn--primary">
-                Book a free discovery call <ArrowRight size={18} />
-              </Link>
-              <Link href="/case-studies" className="btn btn--outline">
-                See other client work
-              </Link>
+        {/* 6. KEEP READING */}
+        <section className="g-tint next" data-od-id="keep-reading">
+          <div className="wrap">
+            <span className="eyebrow">Relevant problems and sectors</span>
+            <div className="next-grid next-grid--3">
+              <div className="next-card" data-od-id="next-buy-build"><span className="t-meta">Problem</span><h3>Buy vs build</h3>
+                <p className="t-card">Choosing between off-the-shelf and custom, the decision behind this build.</p>
+                <Link className="go" href="/problems/buy-vs-build">Read about buy vs build <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link></div>
+              <div className="next-card" data-od-id="next-signs"><span className="t-meta">Sector</span><h3>Signs &amp; graphics</h3>
+                <p className="t-card">Short-run, personalised production with custom tooling, similar operational patterns.</p>
+                <Link className="go" href="/sectors/signs-graphics">See the signs &amp; graphics page <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link></div>
+              <div className="next-card" data-od-id="next-awards"><span className="t-meta">Sector</span><h3>Awards &amp; engraving</h3>
+                <p className="t-card">Mixed-method, personalised production with artwork approval loops.</p>
+                <Link className="go" href="/sectors/awards-engraving">See the awards &amp; engraving page <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link></div>
             </div>
-            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" style={{ fontSize: 'var(--do-text-sm)', color: 'var(--do-text-muted-on-dark)', fontWeight: 500, display: 'inline-flex', alignItems: 'center', gap: '4px', textDecoration: 'none' }}>Or book a call directly <ArrowRight size={14} /></a>
           </div>
         </section>
+
+        {/* 7. CLOSER — the v2 plate drops the third exit ("Or book a call directly"); see the lane report */}
+        <section className="g-off closer" data-od-id="cta">
+          <div className="wrap closer-grid">
+            <div><h2 data-od-id="cta-h2">Building something similar?</h2></div>
+            <div>
+              <p className="lede">If you need a technical lead who&apos;ll build the tool without pretending it replaces the expert, get in touch.</p>
+              <div className="btn-row">
+                <Link className="btn btn--primary" href="/contact" data-od-id="cta-primary">Book a free discovery call</Link>
+                <Link className="go" href="/case-studies">See other client work <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+              </div>
+            </div>
+          </div>
+        </section>
+
       </main>
+
       <D17Motion />
     </>
   );

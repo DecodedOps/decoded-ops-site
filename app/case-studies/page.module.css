@@ -1,0 +1,16 @@
+/* RS3 lane C (CR-WEB-084) — page layout only, from the 3 Nov v2 plate's
+   <style> block (case-studies-index-v2.html in the approved RS3 design set).
+   Every pattern lives in site-v3.css and the d17 sheets; only the rules the
+   plate keeps page-local are here. Anchored on .root — no bare globals. */
+
+.root :global(.hero .t-lede) { max-width: 64ch }
+
+.root :global(.cases) { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin-top: 44px }
+
+@media (max-width: 860px) {
+  .root :global(.cases) { grid-template-columns: 1fr }
+}
+
+.root :global(.cases .area .chd) { margin: -26px -26px 18px; border-radius: var(--do-radius-2xl) var(--do-radius-2xl) 0 0 }
+
+.root :global(.cases .figline) { margin: 14px 0 18px; padding-top: 12px; border-top: 1px solid var(--do-border-subtle); font-size: var(--do-text-xs); font-weight: 700; color: var(--do-text-primary) }
