@@ -2,12 +2,15 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { ArrowRight, RotateCcw } from 'lucide-react';
+import { RotateCcw } from 'lucide-react';
 import { ToolLeadCapture } from '@/components/ToolLeadCapture';
 import { D17Motion } from '@/components/D17Motion';
 import '@/app/d17-global.css';
 import '@/app/d17-problems.css';
+import '@/app/d17-apps-cases.css';
 import '@/app/d17-resources.css';
+import '@/app/design-system/site-v3.css';
+import '@/app/resources/resources-live.css';
 
 
 const questions = [
@@ -22,9 +25,9 @@ const questions = [
 ];
 
 const results = [
-  { min: 0, max: 3, label: 'Stay and Optimise', color: '#219EBC', description: 'Not sure if you should replace your ERP for manufacturing, upgrade it, or extend it? Answer 8 questions and get a clear recommendation, plus what an honest assessment would cost.', action: 'Book a Clarity Audit' },
-  { min: 4, max: 7, label: 'Proceed with Caution', color: '#FFB703', description: 'Not sure if you should replace your ERP for manufacturing, upgrade it, or extend it? Answer 8 questions and get a clear recommendation, plus what an honest assessment would cost.', action: 'Do an Audit First' },
-  { min: 8, max: 13, label: 'Plan Your Exit', color: '#FB8500', description: 'Not sure if you should replace your ERP for manufacturing, upgrade it, or extend it? Answer 8 questions and get a clear recommendation, plus what an honest assessment would cost.', action: 'Start Planning' },
+  { min: 0, max: 3, label: 'Stay and Optimise', color: '#219EBC', description: 'The system is probably not the problem. Fix the processes and the setup around it before you spend money replacing it.', action: 'Book a Clarity Audit' },
+  { min: 4, max: 7, label: 'Proceed with Caution', color: '#FFB703', description: 'Some of this is the system and some is how it is used. Find out which before you commit to anything.', action: 'Do an Audit First' },
+  { min: 8, max: 13, label: 'Plan Your Exit', color: '#FB8500', description: 'The case for moving is strong. Plan the exit properly: brief first, data clean, every option scored the same way.', action: 'Start Planning' },
 ];
 
 type Answer = 'yes' | 'no' | null;
@@ -58,12 +61,18 @@ export default function ShouldIReplaceErpPage() {
 
   return (
     <main>
-      <section className="g-off">
-        <div className="wrap rt-split">
+      {/* Hero — hero-split: copy left, DO-ART-999 right */}
+      <section className="g-off hero" data-od-id="hero">
+        <div className="wrap hero-split">
           <div>
             <span className="eyebrow">Free tool</span>
-            <h1>Should I replace my ERP?</h1>
-            <p className="lede">Eight yes/no questions to help you decide whether to fix your current ERP for manufacturing or plan an exit.</p>
+            <h1 data-od-id="hero-h1">Should I replace my ERP?</h1>
+            <p className="t-lede">Eight yes/no questions to help you decide whether to fix your current ERP for manufacturing or plan an exit.</p>
+            <p className="t-body">About two minutes. Nothing is stored unless you choose to send it.</p>
+            <div className="btn-row">
+              <a className="btn btn--outline" href="#wizard" data-od-id="hero-cta">Start the eight questions</a>
+              <Link className="go" href="/resources/erp-selection-playbook">Read the ERP selection playbook <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+            </div>
           </div>
 
           {/* D17 hero art · DO-ART-999 */}
@@ -100,76 +109,103 @@ export default function ShouldIReplaceErpPage() {
         </div>
       </section>
 
-      <section className="g-off">
-        <div className="wrap" style={{ maxWidth: 720 }}>
-          {!showResults ? (
+      {/* Wizard — questions and scoring unchanged; the markup is the mockup's */}
+      <section className="g-white" id="wizard" data-od-id="wizard">
+        <div className="wrap">
+          <div className="route-head">
             <div>
-              {/* Progress */}
-              <div style={{ marginBottom: 32 }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 'var(--do-text-sm)', color: 'var(--do-text-subtle)', marginBottom: 8 }}>
+              <span className="eyebrow">Eight questions</span>
+              <h2 data-od-id="wizard-h2">Fix it, or plan the exit?</h2>
+            </div>
+            <p className="lede">Answer honestly. Some questions count double, and the result tells you which way the evidence points.</p>
+          </div>
+          <div style={{ maxWidth: 720, margin: '36px auto 0' }}>
+            {!showResults ? (
+              <div>
+                {/* Progress */}
+                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 'var(--do-text-sm)', color: 'var(--do-text-muted)' }}>
                   <span>Question {currentQ + 1} of {questions.length}</span>
                   <span>{Math.round((answeredCount / questions.length) * 100)}%</span>
                 </div>
-                <div style={{ height: 8, borderRadius: 'var(--do-radius-full)', background: 'color-mix(in srgb, var(--do-sky-blue) 30%, transparent)', overflow: 'hidden' }}>
-                  <div style={{ height: '100%', borderRadius: 'var(--do-radius-full)', transition: 'all var(--do-duration-normal)', width: `${(answeredCount / questions.length) * 100}%`, background: 'var(--do-cerulean)' }} />
+                <div style={{ height: 8, borderRadius: 'var(--do-radius-full)', background: 'color-mix(in srgb, var(--do-sky-blue) 25%, transparent)', overflow: 'hidden', marginTop: 8 }}>
+                  <div style={{ height: '100%', borderRadius: 'var(--do-radius-full)', transition: 'width var(--do-duration-normal) var(--do-ease-default)', width: `${(answeredCount / questions.length) * 100}%`, background: 'var(--do-cerulean)' }} />
                 </div>
-              </div>
 
-              {/* Question card */}
-              <div className="card">
-                <div style={{ fontSize: 'var(--do-text-xs)', fontWeight: 'var(--do-weight-semibold)', color: 'var(--do-text-cerulean)', textTransform: 'uppercase', letterSpacing: 'var(--do-tracking-wider)', marginBottom: 16 }}>Question {currentQ + 1}</div>
-                <h2 style={{ marginBottom: 32 }}>{questions[currentQ].text}</h2>
-                <div style={{ display: 'flex', gap: 16 }}>
-                  <button onClick={() => handleAnswer('yes')} className="btn" style={{ flex: 1, background: 'var(--do-prussian-blue)', color: 'var(--do-text-on-dark)' }}>Yes</button>
-                  <button onClick={() => handleAnswer('no')} className="btn btn--outline" style={{ flex: 1, borderColor: 'var(--do-prussian-blue)', color: 'var(--do-text-primary)' }}>No</button>
+                {/* Question card */}
+                <div className="form-card" style={{ marginTop: 22 }}>
+                  <span className="eyebrow">Question {currentQ + 1}</span>
+                  <h2 style={{ fontSize: 'var(--do-text-2xl)', maxWidth: 'none' }}>{questions[currentQ].text}</h2>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14, marginTop: 24 }}>
+                    <button type="button" onClick={() => handleAnswer('yes')} className="btn btn--outline" style={{ minHeight: 52 }}>Yes</button>
+                    <button type="button" onClick={() => handleAnswer('no')} className="btn btn--outline" style={{ minHeight: 52 }}>No</button>
+                  </div>
+                  {currentQ > 0 && (
+                    <button
+                      type="button"
+                      onClick={() => setCurrentQ(Math.max(0, currentQ - 1))}
+                      style={{ marginTop: 14, background: 'none', border: 0, padding: 0, font: 'inherit', fontSize: 'var(--do-text-sm)', color: 'var(--do-text-primary)', textDecoration: 'underline', textDecorationColor: 'var(--do-cerulean)', cursor: 'pointer', minHeight: 44 }}
+                    >
+                      Back to the previous question
+                    </button>
+                  )}
                 </div>
               </div>
-            </div>
-          ) : (
-            <div>
-              {/* Results */}
-              <div className="card" style={{ textAlign: 'center', marginBottom: 32 }}>
-                <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '6px 14px', borderRadius: 'var(--do-radius-full)', marginBottom: 24, backgroundColor: `${result.color}20`, border: `1px solid ${result.color}40` }}>
-                  <span style={{ fontSize: 'var(--do-text-xs)', fontWeight: 'var(--do-weight-semibold)', textTransform: 'uppercase', color: result.color }}>{result.label}</span>
-                </div>
-                <div style={{ fontSize: 'var(--do-text-5xl)', fontFamily: 'var(--do-font-heading)', fontWeight: 'var(--do-weight-bold)', marginBottom: 16, color: result.color }}>{score}/{questions.reduce((s, q) => s + q.weight, 0)}</div>
-                <p className="lede" style={{ margin: '0 auto 32px', maxWidth: '38ch', color: 'color-mix(in srgb, var(--do-prussian-blue) 74%, transparent)' }}>{result.description}</p>
-                <div className="btn-row" style={{ justifyContent: 'center', margin: 0 }}>
+            ) : (
+              <div className="feed" data-od-id="wizard-result" aria-live="polite" style={{ textAlign: 'left' }}>
+                <p className="feed-k d17-mono">Your result</p>
+                <p className="feed-big"><b>{score}/{questions.reduce((s, q) => s + q.weight, 0)}</b><span>{result.label}</span></p>
+                <p style={{ margin: '12px 0 0', maxWidth: '52ch', color: 'color-mix(in srgb, var(--do-off-white) 85%, transparent)' }}>{result.description}</p>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '14px 24px', alignItems: 'center', marginTop: 22 }}>
                   <Link href="/contact" className="btn btn--primary">
-                    {result.action} <ArrowRight size={18} />
+                    {result.action}
                   </Link>
-                  <button onClick={reset} className="btn btn--outline">
-                    <RotateCcw size={16} /> Try again
+                  <button
+                    type="button"
+                    onClick={reset}
+                    style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'none', border: 0, padding: 0, font: 'inherit', fontSize: 'var(--do-text-sm)', fontWeight: 'var(--do-weight-semibold)', color: 'var(--do-off-white)', textDecoration: 'underline', textDecorationColor: 'var(--do-sky-blue)', textDecorationThickness: '2px', textUnderlineOffset: 5, cursor: 'pointer', minHeight: 44 }}
+                  >
+                    <RotateCcw size={16} style={{ color: 'var(--do-sky-blue)' }} /> Try again
                   </button>
                 </div>
-              </div>
 
-              <ToolLeadCapture
-                tool="should-i-replace-erp"
-                resultSummary={`${score}/${questions.reduce((s, q) => s + q.weight, 0)} — ${result.label}`}
-                answers={Object.fromEntries(answers.map((a, i) => [`q${i + 1}`, a]))}
-              />
+                <details style={{ marginTop: 16 }}>
+                  <summary style={{ cursor: 'pointer', minHeight: 44, display: 'flex', alignItems: 'center', fontWeight: 600 }}>View your answers</summary>
+                  <ol style={{ margin: '8px 0 0', paddingLeft: 20, display: 'grid', gap: 6, fontSize: 'var(--do-text-sm)' }}>
+                    {questions.map((q, i) => (
+                      <li key={q.id}>
+                        <b style={{ display: 'inline-block', minWidth: 30 }}>{answers[i] === 'yes' ? 'Yes' : 'No'}</b> {q.text}
+                      </li>
+                    ))}
+                  </ol>
+                </details>
 
-              <p style={{ marginTop: 24, fontSize: 'var(--do-text-sm)', textAlign: 'center' }}>
-                <Link href="/resources/erp-selection-playbook" style={{ color: 'var(--do-text-cerulean)', fontWeight: 'var(--do-weight-medium)' }}>
-                  Read the ERP selection playbook <ArrowRight size={14} style={{ display: 'inline', verticalAlign: 'middle' }} />
-                </Link>
-              </p>
-
-              {/* Answer summary */}
-              <details className="card">
-                <summary style={{ fontSize: 'var(--do-text-sm)', fontWeight: 'var(--do-weight-semibold)', cursor: 'pointer' }}>View your answers</summary>
-                <div style={{ marginTop: 16, display: 'flex', flexDirection: 'column', gap: 8 }}>
-                  {questions.map((q, i) => (
-                    <div key={q.id} style={{ display: 'flex', alignItems: 'flex-start', gap: 12, fontSize: 'var(--do-text-sm)' }}>
-                      <span style={{ marginTop: 2, fontWeight: 'var(--do-weight-bold)', color: answers[i] === 'yes' ? 'var(--do-orange)' : 'var(--do-cerulean)' }}>{answers[i] === 'yes' ? 'Yes' : 'No'}</span>
-                      <span style={{ color: 'color-mix(in srgb, var(--do-prussian-blue) 72%, transparent)' }}>{q.text}</span>
-                    </div>
-                  ))}
+                <div style={{ marginTop: 24 }}>
+                  <ToolLeadCapture
+                    tool="should-i-replace-erp"
+                    resultSummary={`${score}/${questions.reduce((s, q) => s + q.weight, 0)} — ${result.label}`}
+                    answers={Object.fromEntries(answers.map((a, i) => [`q${i + 1}`, a]))}
+                  />
                 </div>
-              </details>
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* Closer */}
+      <section className="g-off closer" data-od-id="cta">
+        <div className="wrap closer-grid">
+          <div>
+            <span className="eyebrow">Either way</span>
+            <h2 data-od-id="cta-h2">Write the brief before anyone demos anything.</h2>
+          </div>
+          <div>
+            <p className="lede">Whether you fix it or replace it, a Clarity Audit gives you the written brief to judge every option against, mine included.</p>
+            <div className="btn-row">
+              <Link className="btn btn--primary" href="/contact" data-od-id="cta-primary">Book a free discovery call</Link>
+              <Link className="go" href="/problems/wrong-erp-software">On the wrong software? <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
             </div>
-          )}
+          </div>
         </div>
       </section>
       <D17Motion />
