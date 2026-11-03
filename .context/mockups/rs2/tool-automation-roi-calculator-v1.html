@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Automation ROI Calculator, Free Tool · Decoded Ops (v1 mockup)</title>
+<meta name="description" content="My free automation ROI calculator shows when automating a manual process pays for itself, plus what the three-year return looks like for your business.">
+<!-- v1 (3 Nov 2026) · release set 11 · /tools/automation-roi-calculator on the approved tool template (tool-ops-health-score-v1, set 8). Staging copy, inputs, defaults and formulas verbatim (rendered from origin/HEAD); new copy carries data-new-copy. Results update live, as on staging. DO-ART-995 as the hero piece. Staging’s year table is the three-row ledger in the result panel. -->
+<link rel="stylesheet" href="../ds-marketing.css">
+<link rel="stylesheet" href="../assets/site/d17-global.css">
+<link rel="stylesheet" href="../assets/site/d17-apps-cases.css">
+<link rel="stylesheet" href="../assets/site/d17-resources.css">
+<link rel="stylesheet" href="../assets/site/site-v3.css">
+<link rel="stylesheet" href="../assets/site/d17-resources-live.css">
+<style>
+/* page layout only · every pattern lives in site-v3.css and the d17 sheets */
+.hero-split .d17{ width:100% }
+.hero-split .btn .ic{ margin-right:6px; vertical-align:-4px }
+.route .stop .t-card{ font-size:var(--do-text-sm) }
+.areas--2 .area .t-card{ max-width:none }
+.prose table{ width:100%; border-collapse:collapse; margin:20px 0; font-size:var(--do-text-sm); font-variant-numeric:tabular-nums }
+.prose th{ text-align:left; padding:10px 12px; background:color-mix(in srgb, var(--do-sky-blue) 18%, transparent); border-bottom:2px solid var(--do-cerulean); font-weight:600 }
+.prose td{ padding:10px 12px; border-bottom:1px solid var(--do-border-subtle) }
+.calc{ display:grid; grid-template-columns:minmax(0,5fr) minmax(0,7fr); gap:32px; align-items:start; margin-top:36px }
+.calc .form-card{ display:grid; gap:18px }
+.calc .field .hint{ margin:6px 0 0; font-size:var(--do-text-xs); color:var(--do-text-muted) }
+.calc .field .unit{ display:flex; align-items:center; gap:10px } .calc .field .unit span{ font-size:var(--do-text-sm); color:var(--do-text-muted); white-space:nowrap }
+.calc .feed{ position:sticky; top:96px }
+.stats{ list-style:none; margin:14px 0 0; padding:0; display:grid; gap:0 }
+.stats li{ display:flex; justify-content:space-between; gap:16px; align-items:baseline; padding:12px 0; border-top:1px solid color-mix(in srgb, var(--do-sky-blue) 22%, transparent); font-size:var(--do-text-sm) }
+.stats li b{ font-family:var(--do-font-heading); font-size:var(--do-text-xl); font-variant-numeric:tabular-nums; text-align:right }
+.stats li b.am{ color:var(--do-amber) } .stats li b.mu{ font-family:var(--do-font-body); font-size:var(--do-text-sm); font-weight:500; opacity:.75 }
+.result-cta{ display:flex; flex-wrap:wrap; gap:14px 24px; align-items:center; margin-top:22px }
+.result-cta .go{ color:var(--do-off-white) } .result-cta .go .ic{ color:var(--do-sky-blue) }
+.capture{ margin-top:24px; border-top:1px solid color-mix(in srgb, var(--do-sky-blue) 22%, transparent); padding-top:18px }
+.capture summary{ cursor:pointer; font-weight:600; min-height:44px; display:flex; align-items:center; gap:8px }
+.capture summary:focus-visible{ outline:2px solid var(--do-sky-blue); outline-offset:3px; border-radius:var(--do-radius-sm) }
+.capture form{ display:grid; gap:10px; margin-top:10px } .capture input{ width:100%; box-sizing:border-box; padding:10px 12px; font:inherit; font-size:var(--do-text-sm); border-radius:var(--do-radius-md); border:1px solid color-mix(in srgb, var(--do-sky-blue) 40%, transparent); background:color-mix(in srgb, var(--do-off-white) 6%, transparent); color:var(--do-off-white) }
+.capture input::placeholder{ color:color-mix(in srgb, var(--do-off-white) 55%, transparent) }
+.capture input:focus-visible{ outline:2px solid var(--do-sky-blue); outline-offset:1px }
+.capture p{ margin:0; font-size:var(--do-text-sm); color:color-mix(in srgb, var(--do-off-white) 80%, transparent) }
+.meter.warn > span{ background:var(--do-orange) } .meter.mid > span{ background:var(--do-amber) } .meter.low > span{ background:var(--do-sky-blue) }
+.months{ list-style:none; margin:12px 0 0; padding:0; display:grid; gap:6px }
+.months li{ display:grid; grid-template-columns:34px 1fr 44px; gap:10px; align-items:center; font-size:var(--do-text-xs) }
+.months .trk{ position:relative; height:10px; border-radius:var(--do-radius-full); background:color-mix(in srgb, var(--do-sky-blue) 14%, transparent) }
+.months .trk > span{ position:absolute; inset:0 auto 0 0; border-radius:inherit; background:var(--do-cerulean) } .months .trk > span.over{ background:var(--do-orange) }
+.months .trk > i{ position:absolute; top:-3px; bottom:-3px; width:2px; background:var(--do-sky-blue) }
+.months b{ text-align:right; font-variant-numeric:tabular-nums } .months b.over{ color:var(--do-orange) }
+.sliders{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px 18px }
+.sliders label{ display:grid; grid-template-columns:34px 1fr 42px; gap:8px; align-items:center; font-size:var(--do-text-sm) }
+.sliders input[type=range]{ width:100%; accent-color:var(--do-cerulean) } .sliders output{ text-align:right; font-variant-numeric:tabular-nums }
+.linkbtn{ background:none; border:0; padding:0; font:inherit; font-size:var(--do-text-sm); color:var(--do-text-primary); text-decoration:underline; text-decoration-color:var(--do-cerulean); cursor:pointer; min-height:44px }
+.linkbtn:focus-visible{ outline:2px solid var(--do-cerulean); outline-offset:2px }
+.wiz{ max-width:720px; margin:36px auto 0 }
+.wiz .bar{ height:8px; border-radius:var(--do-radius-full); background:color-mix(in srgb, var(--do-sky-blue) 25%, transparent); overflow:hidden; margin-top:8px } .wiz .bar > span{ display:block; height:100%; background:var(--do-cerulean); transition:width var(--do-duration-normal) var(--do-ease-default) }
+.wiz .prog{ display:flex; justify-content:space-between; font-size:var(--do-text-sm); color:var(--do-text-muted) }
+.wiz .qcard{ margin-top:22px; padding:32px }
+.wiz .qcard h2{ font-size:var(--do-text-2xl); max-width:none }
+.wiz .yn{ display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:24px } .wiz .yn .btn{ min-height:52px; justify-content:center }
+.wiz .back{ margin-top:14px }
+.verdict{ text-align:left }
+.answers{ margin-top:16px } .answers summary{ cursor:pointer; min-height:44px; display:flex; align-items:center; font-weight:600 }
+.answers ol{ margin:8px 0 0; padding-left:20px; display:grid; gap:6px; font-size:var(--do-text-sm) } .answers b{ display:inline-block; min-width:30px }
+@media (max-width:900px){ .calc{ grid-template-columns:1fr } .calc .feed{ position:static } .sliders{ grid-template-columns:1fr } }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <!-- Lucide geometry, lucide-static v1.54.0 (ISC), embedded path-for-path -->
+  <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/></symbol>
+</svg>
+
+<header class="site-head site-head--paths" data-od-id="site-head">
+  <div class="wrap">
+    <a class="logo" href="/">Decoded<span>Ops</span></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">
+      <svg class="bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      <svg class="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <!-- nav mirrors the live components/Header.tsx (13 Oct 2026), plus Catalogue under Software I’ve already built -->
+    <nav class="site-nav" id="site-nav" aria-label="Primary">
+      <div class="path-group">
+        <button class="path-trigger" type="button" aria-expanded="false" aria-controls="path-wrong">
+          <span class="path-label">What’s going wrong</span>
+          <svg class="path-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="path-menu path-menu--mega" id="path-wrong">
+          <div class="path-col"><p class="path-head">Systems &amp; software</p>
+            <a href="/problems/systems-dont-talk">Nothing talks to anything else</a>
+            <a href="/problems/wrong-erp-software">We’re on the wrong software</a>
+            <a href="/problems/erp-implementation-failure">The new system rollout went wrong</a>
+            <a href="/problems/legacy-system">Our system is ancient</a>
+            <a href="/problems/ecommerce-not-connected">The website isn’t connected to the office</a>
+          </div>
+          <div class="path-col"><p class="path-head">Growth &amp; capacity</p>
+            <a href="/problems/slow-processes">Everything takes too long</a>
+            <a href="/problems/cant-scale-operations">We can’t take on more work</a>
+            <a href="/problems/bottleneck-growth">One person is the bottleneck</a>
+            <a href="/problems/seasonal-peaks">Busy season breaks us</a>
+          </div>
+          <div class="path-col"><p class="path-head">Data &amp; day to day</p>
+            <a href="/problems/spreadsheet-addiction">We run the place on spreadsheets</a>
+            <a href="/problems/manual-workarounds">Everyone has their own workaround</a>
+            <a href="/problems/data-scattered">The numbers never agree</a>
+            <a href="/problems/inventory-blind">We don’t know what stock we have</a>
+            <a href="/problems/ops-in-owners-head">It’s all in the owner’s head</a>
+          </div>
+          <div class="path-col"><p class="path-head">Risk &amp; what’s next</p>
+            <a href="/problems/no-ops-owner">Nobody owns operations</a>
+            <a href="/problems/disaster-recovery">If the server died tomorrow…</a>
+            <a href="/problems/ai-paralysis">Everyone says use AI, where do I start?</a>
+            <a href="/problems/buy-vs-build">Buy it or build it?</a>
+          </div>
+        </div>
+      </div>
+      <div class="path-group">
+        <button class="path-trigger" type="button" aria-expanded="false" aria-controls="path-help">
+          <span class="path-label">How I help</span>
+          <svg class="path-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="path-menu path-menu--mega" id="path-help">
+          <div class="path-col"><p class="path-head">The four steps</p>
+            <a href="/clarity">Clarity<small>A day on site, then a written plan &middot; most people start here</small></a>
+            <a href="/deliver">Deliver<small>I fix the two or three worst things</small></a>
+            <a href="/transform">Transform<small>Rebuild how the business runs</small></a>
+            <a href="/retained">Retained<small>A technology director, part time</small></a>
+          </div>
+          <div class="path-col"><p class="path-head">Software I’ve already built</p>
+            <a href="/apps/works">Works<small>The ERP for decorated goods</small></a>
+            <a href="/apps/proof">Proof<small>Versions, approvals and delivery</small></a>
+            <a href="/apps/commerce">Commerce<small>B2B ordering for your customers</small></a>
+            <a href="/apps/catalogue">Catalogue<small>Supplier feeds in, one clean catalogue, feeds out</small></a>
+            <a href="/apps">All apps<small>What’s ready to buy today</small></a>
+          </div>
+          <div class="path-col"><p class="path-head">How I work</p>
+            <a href="/resources/decoded-method">The Decoded Method</a>
+            <a href="/how-i-build">How I build software</a>
+            <a href="/pricing">Prices, in plain numbers</a>
+            <a href="/about">About Craig</a>
+          </div>
+        </div>
+      </div>
+      <div class="path-group">
+        <button class="path-trigger" type="button" aria-expanded="false" aria-controls="path-industry">
+          <span class="path-label">Your industry</span>
+          <svg class="path-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="path-menu path-menu--mega" id="path-industry">
+          <div class="path-col"><p class="path-head">Pick what you make</p>
+            <a href="/sectors/garment-decoration">Garment decoration</a>
+            <a href="/sectors/print-promotional">Print &amp; promotional</a>
+            <a href="/sectors/workwear">Workwear</a>
+            <a href="/sectors/teamwear-clubwear">Teamwear &amp; clubwear</a>
+            <a href="/sectors/schoolwear">Schoolwear</a>
+          </div>
+          <div class="path-col"><p class="path-head">More trades</p>
+            <a href="/sectors/signs-graphics">Signs &amp; graphics</a>
+            <a href="/sectors/awards-engraving">Awards &amp; engraving</a>
+            <a href="/sectors/labels-packaging">Labels &amp; packaging</a>
+            <a href="/sectors/promotional-merchandise">Promotional merchandise</a>
+          </div>
+        </div>
+      </div>
+      <div class="path-group">
+        <button class="path-trigger" type="button" aria-expanded="false" aria-controls="path-small">
+          <span class="path-label">Small business</span>
+          <svg class="path-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="path-menu path-menu--mega" id="path-small">
+          <div class="path-col"><p class="path-head">Small business services</p>
+            <a href="/small-business">Clarity Check<small>Fixed-price, done remotely &middot; £600</small></a>
+            <a href="/pricing">Everything else<small>Same services, same from-prices as everyone else</small></a>
+          </div>
+          <div class="path-col"><p class="path-head">Start free</p>
+            <a href="/tools/ops-health-score" aria-current="page">Ops health score</a>
+            <a href="/resources/audit-checklist">The audit checklist</a>
+            <a href="/small-business">Read the whole thing</a>
+          </div>
+        </div>
+      </div>
+      <div class="path-group">
+        <button class="path-trigger" type="button" aria-expanded="false" aria-controls="path-proof">
+          <span class="path-label">Proof &amp; free tools</span>
+          <svg class="path-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="path-menu path-menu--mega" id="path-proof">
+          <div class="path-col"><p class="path-head">Work I’ve done</p>
+            <a href="/case-studies/case-study-01">Case study 01</a>
+            <a href="/case-studies/case-study-02">Case study 02</a>
+            <a href="/case-studies/case-study-03">Case study 03</a>
+            <a href="/case-studies/eternal-fitness">Eternal Fitness</a>
+            <a href="/case-studies">All case studies</a>
+          </div>
+          <div class="path-col"><p class="path-head">Free calculators</p>
+            <a href="/tools/ops-health-score">Ops health score</a>
+            <a href="/tools/downtime-cost-calculator">What downtime costs you</a>
+            <a href="/tools/automation-roi-calculator">Is automation worth it?</a>
+            <a href="/tools/rto-calculator">How fast could you recover?</a>
+            <a href="/tools/should-i-replace-erp">Should I replace my ERP?</a>
+          </div>
+          <div class="path-col"><p class="path-head">Guides &amp; writing</p>
+            <a href="/resources/audit-checklist">The ops audit checklist</a>
+            <a href="/resources/5-warning-signs">5 signs your systems are failing</a>
+            <a href="/resources/sop-template">SOP template for decoration businesses</a>
+            <a href="/resources/erp-selection-playbook">ERP selection guide</a>
+            <a href="/resources/artwork-approval-playbook">Artwork approval playbook</a>
+            <a href="/resources/decoded-method">The Decoded Method</a>
+            <a href="/resources/six-sigma">Six Sigma, explained simply</a>
+            <a href="/process-quality-system">Building a quality system</a>
+            <a href="/blog">The blog</a>
+          </div>
+        </div>
+      </div>
+      <a class="nav-flat" href="/pricing">Pricing</a>
+      <a class="nav-flat" href="/clients/login">Client Login</a>
+      <a class="btn btn--primary nav-cta" href="/contact">Book a free call</a>
+    </nav>
+  </div>
+</header>
+
+<main id="content">
+<section class="g-off hero" data-od-id="hero">
+  <div class="wrap hero-split">
+    <div>
+      <span class="eyebrow">Free tool</span>
+      <h1 data-od-id="hero-h1">Automation ROI calculator</h1>
+      <p class="t-lede">Enter your manual process details to see exactly when automation pays for itself and what it returns over 3 years.</p>
+      <p class="t-body">Five numbers about one manual task. The result updates as you type.</p>
+      <div class="btn-row"><a class="btn btn--outline" href="#calc" data-od-id="hero-cta">Enter your numbers</a><a class="go" href="/tools" data-new-copy>The other free calculators <svg class="ic ic-16" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></div>
+    </div>
+<figure class="d17 sx px ph-fade a995" data-od-id="hero-art" data-motion="true" data-no="DO-ART-995" data-rev="01" data-tx="screen" aria-label="Artwork DO-ART-995. The automation ROI calculator&#x27;s result screen over a graded photograph of thread spools, labelled Example and worked from the default inputs: five hours a week, two staff, eighteen pounds an hour, five thousand pounds set-up and one hundred a month to maintain. Year one: manual cost £9,360, automated £6,200, saving £3,160. Years two and three: saving £8,160 each. Break-even at 8 months; a 3-year return of 227 per cent. The cumulative line crosses zero at month eight."><div class="d17-ph"><img src="../assets/site/d17/resources/thread-spools-ba5d03.webp" alt="" width="900" height="600"/></div><div class="d17-scan" aria-hidden="true"></div><div class="sx-top d17-mono" aria-hidden="true"><span>Automation ROI</span><span>Three years</span></div><div class="body"><div class="win" aria-hidden="true"><div class="win-bar"><span class="dots"><i></i><i></i><i></i></span><span class="crumb"><span>Tools ›</span> Automation ROI</span><span class="pill">EXAMPLE</span></div><div class="win-flat"><h5>When does it pay for itself?</h5><p class="s">5 h a week · 2 staff · £18 an hour · £5,000 set-up</p><table class="tbl"><thead><tr><th>Year</th><th class="num">Manual</th><th class="num">Automated</th><th class="num">Saving</th></tr></thead><tbody><tr class="m-rise" style="animation-delay:.1s"><td>Year 1</td><td class="num">£9,360</td><td class="num">£6,200</td><td class="num">£3,160</td></tr><tr class="m-rise" style="animation-delay:.2s"><td>Year 2</td><td class="num">£9,360</td><td class="num">£1,200</td><td class="num">£8,160</td></tr><tr class="m-rise" style="animation-delay:.3s"><td>Year 3</td><td class="num">£9,360</td><td class="num">£1,200</td><td class="num">£8,160</td></tr></tbody></table><div class="pb"><svg viewBox="0 0 360 110" preserveAspectRatio="none"><path class="z" d="M0 62 H360"></path><path class="c m-draw" pathLength="1" d="M0 104 L80 62 L360 8"></path><circle class="m-pop" style="animation-delay:1.6s" cx="80" cy="62" r="6"></circle></svg><span class="lb" style="left:22%">Break-even · month 8</span></div><div class="win-foot"><span>3-year return</span><b class="big">227%</b></div></div></div></div><div class="sx-foot"><div class="sx-bar" aria-hidden="true"></div><p class="sx-say">Paid back in eight months. <em>Then it keeps paying.</em></p><span class="d17-mark">decodedops.co.uk · DO-ART-995 · Rev 01</span></div></figure>
+  </div>
+</section>
+
+<section class="g-white" id="calc" data-od-id="calc">
+  <div class="wrap">
+    <div class="route-head">
+      <div><span class="eyebrow" data-new-copy>One manual task</span><h2 data-od-id="calc-h2" data-new-copy>When automation pays for itself.</h2></div>
+      <p class="lede" data-new-copy>The hours a task takes, who does it, what they cost, and what the automation costs to set up and keep running.</p>
+    </div>
+    <div class="calc">
+      <form class="form-card" data-calc onsubmit="return false" data-od-id="calc-inputs">
+        <h3>Your Numbers</h3>
+        <div class="field" data-od-id="in-hoursPerWeek">
+          <label for="in-hoursPerWeek">Hours per week on this manual task</label>
+          <div class="unit"><input id="in-hoursPerWeek" name="hoursPerWeek" type="number" inputmode="decimal" value="5" min="0"><span>hours/week</span></div>
+        </div>
+        <div class="field" data-od-id="in-staffCount">
+          <label for="in-staffCount">Number of staff doing it</label>
+          <div class="unit"><input id="in-staffCount" name="staffCount" type="number" inputmode="decimal" value="2" min="0"><span>people</span></div>
+        </div>
+        <div class="field" data-od-id="in-hourlyRate">
+          <label for="in-hourlyRate">Average hourly rate (£)</label>
+          <div class="unit"><input id="in-hourlyRate" name="hourlyRate" type="number" inputmode="decimal" value="18" min="0"><span>£/hour</span></div>
+        </div>
+        <div class="field" data-od-id="in-setupCost">
+          <label for="in-setupCost">One-off automation setup cost (£)</label>
+          <div class="unit"><input id="in-setupCost" name="setupCost" type="number" inputmode="decimal" value="5000" min="0"><span>£</span></div>
+          <p class="hint">Include all implementation and integration costs</p>
+        </div>
+        <div class="field" data-od-id="in-monthlyMaintenance">
+          <label for="in-monthlyMaintenance">Monthly automation maintenance cost (£)</label>
+          <div class="unit"><input id="in-monthlyMaintenance" name="monthlyMaintenance" type="number" inputmode="decimal" value="100" min="0"><span>£/month</span></div>
+        </div>
+
+      </form>
+      <div class="feed" data-od-id="calc-result" aria-live="polite">
+        <p class="feed-k d17-mono">Automation ROI Analysis</p>
+        <p class="feed-big"><b data-out="roi">51%</b>3-year ROI</p>
+        <div class="feed-rule"></div>
+        <ul class="stats"><li><span>Break-even</span><b data-out="be">9 months</b></li>
+          <li><span>Year 1 · manual <span data-out="m1">£9,360</span> · auto <span data-out="a1">£6,200</span></span><b data-out="s1">£3,160</b></li>
+          <li><span>Year 2 · manual <span data-out="m2">£9,360</span> · auto <span data-out="a2">£1,200</span></span><b data-out="s2">£8,160</b></li>
+          <li><span>Year 3 · manual <span data-out="m3">£9,360</span> · auto <span data-out="a3">£1,200</span></span><b data-out="s3">£8,160</b></li></ul>
+        <div class="result-cta"><a class="btn btn--primary" href="/contact" data-od-id="result-cta">Let’s automate this together</a><a class="go" href="https://bookings.cloud.microsoft/bookwithme/user/cd8e6071c12d43198fdd3d4b5a1f0c6e%40decodedops.co.uk/meetingtype/P0WZOGSVokOqOnMRxyU1eg2?anonymous&amp;ismsaljsauthenabled">Or book a call directly <svg class="ic ic-16" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></div>
+        <details class="capture" data-od-id="capture">
+          <summary><svg class="ic ic-16" aria-hidden="true"><use href="#i-send"/></svg> Want to go deeper?</summary>
+          <p>Drop your details and I’ll follow up with tailored recommendations for your next steps.</p>
+          <form data-tool="automation-roi-calculator" onsubmit="event.preventDefault(); this.innerHTML='<p><b>Got it.</b> I’ve got your results and I’ll be in touch. If you’d rather talk sooner, <a href=&quot;https://bookings.cloud.microsoft/bookwithme/user/cd8e6071c12d43198fdd3d4b5a1f0c6e%40decodedops.co.uk/meetingtype/P0WZOGSVokOqOnMRxyU1eg2?anonymous&amp;ismsaljsauthenabled&quot;>book a call</a>.</p>';">
+            <input type="text" autocomplete="name" placeholder="Your name" aria-label="Name" required>
+            <input type="email" autocomplete="email" placeholder="you@company.com" aria-label="Email" required>
+            <input type="text" autocomplete="organization" placeholder="Your company (optional)" aria-label="Company">
+            <button class="btn btn--outline" type="submit">Get in touch</button>
+          </form>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="g-off closer" data-od-id="cta">
+  <div class="wrap closer-grid">
+    <div>
+      <span class="eyebrow" data-new-copy>Not sure which task to start with?</span>
+      <h2 data-od-id="cta-h2" data-new-copy>Find the manual work worth automating first.</h2>
+    </div>
+    <div>
+      <p class="lede" data-new-copy>A Clarity Audit lists every task your team does by hand, prices each one, and puts them in the order that pays back fastest.</p>
+      <div class="btn-row">
+        <a class="btn btn--primary" href="/contact" data-od-id="cta-primary">Book a free discovery call</a>
+        <a class="go" href="/problems/manual-workarounds">Manual workarounds <svg class="ic ic-16" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var f=document.querySelector('[data-calc]'); if(!f) return;
+  var gbp=function(n){ return '£'+Math.round(n).toLocaleString('en-GB'); };
+  function val(){ var v={}; f.querySelectorAll('input[type=number]').forEach(function(i){ v[i.name]=Number(i.value)||0; }); return v; }
+  function out(k,t,cls){ document.querySelectorAll('[data-out="'+k+'"]').forEach(function(e){ e.textContent=t; if(cls!==undefined) e.className=cls; }); }
+  function bar(k,w,cls){ document.querySelectorAll('[data-bar="'+k+'"]').forEach(function(e){ e.style.width=Math.max(0,Math.min(100,w))+'%'; if(cls!==undefined) e.parentNode.className='meter '+cls; }); }
+  function render(){ var v=val(); var man=v.hoursPerWeek*52*v.staffCount*v.hourlyRate, a1=v.setupCost+v.monthlyMaintenance*12, a2=v.monthlyMaintenance*12, tm=man*3, ta=a1+a2*2;
+    var roi=ta===0?-100:Math.round((tm-ta)/ta*100); roi=Math.max(-100,roi); var ms=man/12-v.monthlyMaintenance, be=ms>0?Math.ceil(v.setupCost/ms):null;
+    out('roi',roi+'%'); out('be',be===null?'Not achievable':be+' months', be===null?'mu':'');
+    [[1,a1],[2,a2],[3,a2]].forEach(function(r){ out('m'+r[0],gbp(man)); out('a'+r[0],gbp(r[1])); out('s'+r[0],gbp(man-r[1]), man-r[1]>0?'am':''); }); }
+  f.addEventListener('input',render); window.__calc=render; render();
+})();
+</script>
+</main>
+
+<footer data-od-id="footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="logo" href="/">Decoded<span>Ops</span></a>
+        <p class="blurb">Independent technology and operations consultancy for the decorated-goods sector. No vendor agenda.</p>
+        <div class="foot-contact">
+          <a href="mailto:craig@decodedops.co.uk">craig@decodedops.co.uk</a>
+          <a href="tel:+447735620603">07735 620603</a>
+          <a class="btn btn--outline foot-cta" href="/contact">Book a free 60-min call</a>
+        </div>
+        <p class="foot-loc">Based in Worthing, West Sussex &middot; working across the UK</p>
+      </div>
+      <!-- footer links mirror the live components/Footer.tsx (13 Oct 2026), plus Catalogue under Apps -->
+      <div><h4>Work with me</h4><a href="/clarity">Clarity Audit</a><a href="/deliver">Deliver</a><a href="/transform">Transform</a><a href="/retained">Retained</a><a href="/small-business">Small business suite</a><a href="/how-i-build">How I build software</a></div>
+      <div><h4>Apps</h4><a href="/apps/works">Works</a><a href="/apps/proof">Proof</a><a href="/apps/commerce">Commerce</a><a href="/apps/catalogue">Catalogue</a><a href="/apps">All apps</a></div>
+      <div><h4>Company</h4><a href="/about">About</a><a href="/case-studies">Case studies</a><a href="/pricing">Pricing</a><a href="/contact">Contact</a></div>
+    </div>
+    <div class="foot-find">
+      <div class="foot-find-row">
+        <span class="foot-find-lbl">Sectors</span>
+        <span class="foot-chips">
+          <a href="/sectors/garment-decoration">Garment decoration</a><a href="/sectors/workwear">Workwear</a><a href="/sectors/teamwear-clubwear">Teamwear</a><a href="/sectors/schoolwear">Schoolwear</a><a href="/sectors/promotional-merchandise">Promo</a><a href="/sectors/print-promotional">Print</a><a href="/sectors/signs-graphics">Signage</a><a href="/sectors/awards-engraving">Awards</a><a href="/sectors/labels-packaging">Labels &amp; packaging</a>
+        </span>
+      </div>
+      <div class="foot-find-row">
+        <span class="foot-find-lbl">Problems</span>
+        <span class="foot-chips">
+          <a href="/problems/erp-implementation-failure">ERP failure</a><a href="/problems/systems-dont-talk">Systems don’t talk</a><a href="/problems/data-scattered">Data scattered</a><a href="/problems/spreadsheet-addiction">Spreadsheet addiction</a><a href="/problems/buy-vs-build">Buy vs build</a><a href="/problems/no-ops-owner">No ops owner</a><a href="/problems/ai-paralysis">AI paralysis</a>
+          <a class="foot-all" href="/problems">All problems <svg class="ic ic-16" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+        </span>
+      </div>
+      <div class="foot-find-row">
+        <span class="foot-find-lbl">Guides</span>
+        <span class="foot-chips">
+          <a href="/resources/decoded-method">The Decoded Method</a><a href="/resources/audit-checklist">Audit checklist</a><a href="/resources/5-warning-signs">5 warning signs</a><a href="/resources/six-sigma">Six Sigma explained</a><a href="/tools">Free calculators</a>
+          <a class="foot-all" href="/resources">All resources <svg class="ic ic-16" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+        </span>
+      </div>
+      <div class="foot-find-row">
+        <span class="foot-find-lbl">Locations</span>
+        <span class="foot-chips">
+          <a href="/locations/sussex-surrey">Sussex &amp; Surrey</a><a href="/locations/manchester">Manchester</a><a href="/locations/tech-audit">Technology audit, UK-wide</a>
+        </span>
+      </div>
+    </div>
+    <div class="foot-bottom"><span>&copy; 2026 Decoded Ops</span><span class="foot-legal"><a href="/clients/login">Client login</a><a href="/privacy">Privacy</a><a href="/cookies">Cookies</a></span></div>
+  </div>
+</footer>
+<script>
+(function(){ if(!('IntersectionObserver' in window)) return; if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var mo=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('play'); mo.unobserve(e.target); } }); },{threshold:.35});
+  document.querySelectorAll('.d17[data-motion]').forEach(function(el){ mo.observe(el); }); })();
+</script>
+</body>
+</html>
