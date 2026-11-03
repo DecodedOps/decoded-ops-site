@@ -186,14 +186,14 @@ export default function ProblemsIndexPage() {
           {/* items */}
           <g className="sk-fade sk-s4" fontFamily="var(--do-font-body)" fontSize="17" fill="color-mix(in srgb, var(--do-off-white) 80%, transparent)">
            <text x="86" y="366">Data scattered</text>
-           <text x="86" y="410">Systems don't talk</text>
+           <text x="86" y="410">Systems don&apos;t talk</text>
            <text x="86" y="454">Inventory blind</text>
            <text x="86" y="498">Spreadsheet addiction</text>
            <text x="86" y="542">eCommerce not connected</text>
 
            <text x="471" y="366">Manual workarounds</text>
            <text x="471" y="410">Slow processes</text>
-           <text x="471" y="454">Can't scale operations</text>
+           <text x="471" y="454">Can&apos;t scale operations</text>
            <text x="471" y="498">Seasonal peaks</text>
 
            <text x="856" y="366">Wrong ERP software</text>
@@ -202,7 +202,7 @@ export default function ProblemsIndexPage() {
            <text x="856" y="498">Buy vs build</text>
            <text x="856" y="542">Disaster recovery</text>
 
-           <text x="1241" y="366">Ops in the owner's head</text>
+           <text x="1241" y="366">Ops in the owner&apos;s head</text>
            <text x="1241" y="410">No ops owner</text>
            <text x="1241" y="454">Growth bottleneck</text>
            <text x="1241" y="498">AI paralysis</text>
