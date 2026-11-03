@@ -1,16 +1,19 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { JsonLd } from '@/components/JsonLd';
-import { BreadcrumbSchema } from '@/components/BreadcrumbSchema';
+import { ProblemPageV2 } from '@/components/ProblemPageV2';
 import { VideoEmbed } from '@/components/VideoEmbed';
 import { VideoSchema } from '@/components/VideoSchema';
 import { problemVideos } from '@/data/problem-videos';
 import { problemRouting } from '@/data/problem-routing';
+import { BOOKING_URL } from '@/lib/constants';
 import '@/app/d17-global.css';
 import '@/app/d17-problems.css';
 import '@/app/d17-resources.css';
+import '@/app/problems/problems-v2.css';
 import { a997Solo } from '@/lib/d17-figures/a997';
 import { D17Motion } from '@/components/D17Motion';
+import styles from './page.module.css';
 
 export const metadata: Metadata = {
  title: 'AI Readiness Assessment for Decoration | Decoded Ops',
@@ -28,15 +31,6 @@ export const metadata: Metadata = {
   description: 'My AI readiness assessment is honest about what needs to be in place before AI can deliver value for a print or embroidery business, and what to fix first.',
  },
 };
-
-const tier = {
- display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 20,
- padding: '22px 26px', borderRadius: 'var(--do-radius-xl)',
-} as const;
-
-const tierHeading = { margin: '0 0 4px', fontFamily: 'var(--do-font-heading)', fontWeight: 700, fontSize: 'var(--do-text-xl)' } as const;
-const tierBody = { margin: 0, fontSize: 'var(--do-text-sm)', opacity: 0.85 } as const;
-const tierNo = { flex: '0 0 auto', fontSize: 'var(--do-text-xs)', letterSpacing: 'var(--do-tracking-wider)', textTransform: 'uppercase' as const, opacity: 0.6 } as const;
 
 const aiParalysisSchema = {
  '@context': 'https://schema.org',
@@ -79,43 +73,27 @@ const aiParalysisSchema = {
  ],
 };
 
-export default function AiParalysisPage() {
- const route = problemRouting['ai-paralysis'];
- return (
-  <>
-   <JsonLd data={aiParalysisSchema} />
-   <BreadcrumbSchema items={[
-    { name: 'Home', url: 'https://decodedops.co.uk/' },
-    { name: 'Problems', url: 'https://decodedops.co.uk/problems' },
-    { name: 'AI paralysis', url: 'https://decodedops.co.uk/problems/ai-paralysis' },
-   ]} />
-   {problemVideos['ai-paralysis'] && (
-    <VideoSchema
-     name={problemVideos['ai-paralysis'].title}
-     description={problemVideos['ai-paralysis'].closeLine}
-     youtubeId={problemVideos['ai-paralysis'].youtubeId}
-     uploadDate={problemVideos['ai-paralysis'].uploadDate}
-     durationSec={problemVideos['ai-paralysis'].durationSec}
-    />
-   )}
+/* The 3 Nov mockup's plate is a navy split: this page's right-order argument
+   beside DO-ART-997. Carried through ProblemPageV2's plate art slot, with the
+   mockup's .plate-split block as module styles. */
+const plateArt = `<div class="${styles.plateSplit}">
+ <div>
+  <span class="eyebrow">The right order</span>
+  <h2 data-od-id="plate-h2">You can't automate what hasn't been documented.</h2>
+  <p class="lede">AI is the top layer. It rests on everything underneath it. Most businesses are being sold the top layer while the bottom two are still missing, which is why the results disappoint and the cynicism deepens.</p>
+  <a class="text-link" href="/tools/ops-health-score">Score your own operation in five minutes <svg class="ic ic-16" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+  <ol class="sym plate-layers" data-od-id="plate-layers">
+   <li><span class="n">LAYER 1</span><p><b>Clean, consistent data.</b> Everything above rests on this.</p></li>
+   <li><span class="n">LAYER 2</span><p><b>Documented process.</b> Written down, repeatable, the same on Tuesday.</p></li>
+   <li><span class="n">LAYER 3</span><p><b>Connected systems.</b> Orders, production and despatch actually talking.</p></li>
+   <li><span class="n">LAYER 4</span><p><b>AI.</b> Where everyone is being told to start.</p></li>
+  </ol>
+  <p class="t-body plate-note">AI works best when applied to well-defined, well-documented processes with clean data. If orders, production and despatch are running on spreadsheets and manual workarounds, <b>AI will amplify the chaos rather than reduce it.</b></p>
+ </div>
+ <div>${a997Solo.replace('data-od-id="hero-art"', 'data-od-id="plate-assessment"')}</div>
+</div>`;
 
-   {/* ── 1 · HERO ──────────────────────────────────────────────────────── */}
-   <section className="g-off">
-    <div className="wrap hero-split">
-     <div>
-      <span className="eyebrow">The problem</span>
-      <h1>You don&apos;t need AI. You need your data in one place.</h1>
-      <p className="lede">Every software vendor is adding AI features. Every conference talk is about
-       AI. But when you ask what AI actually means for a print, embroidery or decoration
-       business, the answers are vague, generic, or non-existent. The real barrier to AI adoption
-       in this sector isn&apos;t the technology. It&apos;s that nobody&apos;s supplier data is clean enough to
-       feed into anything, which is what an AI readiness assessment checks first.</p>
-      <div className="hero-cta">
-       <Link className="btn btn--primary" href="/contact">Get an honest assessment</Link>
-      </div>
-     </div>
-     <div dangerouslySetInnerHTML={{ __html: `
-<figure class="d17 sx px ph-fade a960" data-od-id="hero-evidence" data-motion data-no="DO-ART-960" data-rev="01" data-tx="screen"
+const heroArt960 = `<figure class="d17 sx px ph-fade a960" data-od-id="hero-evidence" data-motion data-no="DO-ART-960" data-rev="01" data-tx="screen"
         aria-label="Artwork DO-ART-960. An AI assistant window over a dimmed photograph. Someone asks which best-selling polos are about to run out. The assistant answers that it found the same polo in three places with three different stock figures, supplier feed 40, spreadsheet 12, ERP 0, and cannot say which one is right. The AI is only as good as the data underneath it.">
   <div class="d17-ph"><img src="/images/d17/problems/cat-signage-58e48c.webp" alt="" width="900" height="600"></div>
   <div class="d17-scan" aria-hidden="true"></div>
@@ -140,223 +118,135 @@ export default function AiParalysisPage() {
     <p class="sx-say">The AI is only as good as <em>the data underneath it.</em></p>
     <span class="d17-mark">decodedops.co.uk · DO-ART-960 · Rev 01</span>
   </div>
-</figure>` }} />
-    </div>
-   </section>
+</figure>`;
 
-   {/* ── 2 · SYMPTOMS ──────────────────────────────────────────────────── */}
-   <section className="g-tint">
-    <div className="wrap">
-     <span className="eyebrow">The signs</span>
-     <h2>Seven versions of the same stuck.</h2>
-     <p className="lede" style={{ marginTop: 16 }}>If you recognise three or more of these, the problem
-      isn&apos;t that you&apos;re behind. It&apos;s that nobody has given you a straight answer.</p>
-
-     <ul className="symptoms">
-      <li>You feel pressure to &ldquo;have an AI strategy&rdquo; but don&apos;t know where to start</li>
-      <li>Vendors are selling AI features you didn&apos;t ask for and can&apos;t see the value of</li>
-      <li>You&apos;ve been told AI will transform your business, but nobody can say how</li>
-      <li>You&apos;re worried about being left behind but don&apos;t want to invest in hype</li>
-      <li>Your team are experimenting with ChatGPT but there&apos;s no coherent approach</li>
-      <li>You suspect AI could help somewhere, but you don&apos;t know where</li>
-      <li>Every article you read contradicts the last one</li>
-     </ul>
-    </div>
-   </section>
-
+export default function AiParalysisPage() {
+ return (
+  <>
+   <JsonLd data={aiParalysisSchema} />
    {problemVideos['ai-paralysis'] && (
-    <section className="g-off" data-od-id="video-embed">
-     <div className="wrap">
-      <VideoEmbed
-       youtubeId={problemVideos['ai-paralysis'].youtubeId}
-       title={problemVideos['ai-paralysis'].title}
-       closeLine={problemVideos['ai-paralysis'].closeLine}
-       app={problemVideos['ai-paralysis'].app}
-       durationSec={problemVideos['ai-paralysis'].durationSec}
-       playlistUrl={problemVideos['ai-paralysis'].playlistUrl}
-      />
-     </div>
-    </section>
+    <VideoSchema
+     name={problemVideos['ai-paralysis'].title}
+     description={problemVideos['ai-paralysis'].closeLine}
+     youtubeId={problemVideos['ai-paralysis'].youtubeId}
+     uploadDate={problemVideos['ai-paralysis'].uploadDate}
+     durationSec={problemVideos['ai-paralysis'].durationSec}
+    />
    )}
-
-   {/* ── 3 · THE RIGHT ORDER ────────────────────────────────────────────── */}
-   <section className="g-white">
-    <div className="wrap">
-     <span className="eyebrow">The right order</span>
-     <h2>You can&apos;t automate what hasn&apos;t been documented.</h2>
-     <p className="lede" style={{ marginTop: 16 }}>AI is the top layer. It rests on everything underneath
-      it. Most businesses are being sold the top layer while the bottom two are still missing,
-      which is why the results disappoint and the cynicism deepens.</p>
-
-     <div style={{ display: 'flex', flexDirection: 'column-reverse', gap: 14, marginTop: 36, maxWidth: 820 }}>
-      <div style={{ ...tier, border: '1px solid color-mix(in srgb, var(--do-amber) 45%, transparent)', background: 'color-mix(in srgb, var(--do-amber) 14%, transparent)' }}>
-       <div>
-        <h3 style={tierHeading}>Clean, consistent data</h3>
-        <p style={tierBody}>Everything above rests on this</p>
-       </div>
-       <span style={tierNo}>Layer 1</span>
-      </div>
-      <div style={{ ...tier, border: '1px solid color-mix(in srgb, var(--do-sky-blue) 30%, transparent)', background: 'var(--do-surface-raised)' }}>
-       <div>
-        <h3 style={tierHeading}>Documented process</h3>
-        <p style={tierBody}>Written down, repeatable, the same on Tuesday</p>
-       </div>
-       <span style={tierNo}>Layer 2</span>
-      </div>
-      <div style={{ ...tier, border: '1px solid color-mix(in srgb, var(--do-sky-blue) 30%, transparent)', background: 'var(--do-surface-raised)' }}>
-       <div>
-        <h3 style={tierHeading}>Connected systems</h3>
-        <p style={tierBody}>Orders, production and despatch actually talking</p>
-       </div>
-       <span style={tierNo}>Layer 3</span>
-      </div>
-      <div style={{ ...tier, border: '1px solid color-mix(in srgb, var(--do-amber) 45%, transparent)', background: 'color-mix(in srgb, var(--do-amber) 14%, transparent)' }}>
-       <div>
-        <h3 style={tierHeading}>AI</h3>
-        <p style={tierBody}>Where everyone is being told to start</p>
-       </div>
-       <span style={tierNo}>Layer 4</span>
-      </div>
-     </div>
-
-     <p className="lede" style={{ marginTop: 30 }}>AI works best when applied to well-defined,
-      well-documented processes with clean data. If orders, production and despatch are running on
-      spreadsheets and manual workarounds, <b>AI will amplify the chaos rather than reduce it.</b></p>
-    </div>
-   </section>
-
-   {/* ── INLINE ARTWORK · DO-ART-997 ──────────────────────────────────── */}
-   <section className="g-navy">
-    <div className="wrap">
-     <span className="eyebrow">The assessment · DO-ART-997</span>
-     <div dangerouslySetInnerHTML={{ __html: a997Solo }} />
-    </div>
-   </section>
-
-   {/* ── 4 · CAUSES ────────────────────────────────────────────────────── */}
-   <section className="g-off">
-    <div className="wrap">
-     <span className="eyebrow">Why this happens</span>
-     <h2>Four reasons the question stays unanswered.</h2>
-
-     <div className="grid grid--2" style={{ marginTop: 34 }}>
-      <article className="card cause">
-       <span className="n">01</span>
-       <h3>AI is being sold as magic, not as a tool</h3>
-       <p>The AI narrative in the technology industry is built on transformational stories that
-        rarely translate to operational reality. A business that prints and despatches physical
-        products needs practical answers, not visionary promises.</p>
-      </article>
-      <article className="card cause">
-       <span className="n">02</span>
-       <h3>No process foundation to apply AI to</h3>
-       <p>Most businesses in this sector have undocumented processes, inconsistent data, and
-        systems that don&apos;t talk to each other. An AI readiness assessment tells you whether your
-        data and processes are ready, or whether foundational fixes come first.</p>
-      </article>
-      <article className="card cause">
-       <span className="n">03</span>
-       <h3>The wrong question is being asked</h3>
-       <p>&ldquo;How do we adopt AI?&rdquo; is the wrong question. The right one is &ldquo;what specific operational
-        problems do we have that AI might help solve?&rdquo; Without that reframing, AI adoption becomes
-        a solution in search of a problem.</p>
-      </article>
-      <article className="card cause">
-       <span className="n">04</span>
-       <h3>Fear of missing out is driving decisions</h3>
-       <p>The fear that competitors will adopt AI and pull ahead creates pressure to do something,
-        anything. That pressure leads to buying AI tools without a clear use case, which wastes
-        investment and reinforces the cynicism that stopped the business engaging in the first
-        place.</p>
-      </article>
-     </div>
-    </div>
-   </section>
-
-   {/* ── 5 · HOW I HELP ─────────────────────────────────────────────────── */}
-   <section className="g-navy">
-    <div className="wrap">
-     <span className="eyebrow eyebrow--amber">How I help</span>
-     <h2>An honest answer, with no vendor agenda.</h2>
-
-     <div className="answer">
-      <p>I give you an honest, grounded assessment of where AI can actually help your business
-       right now. <b>I&apos;m not here to sell you an AI tool.</b></p>
-      <p>I look at your current processes, your data quality, your technology stack and your team&apos;s
-       capability, and I tell you what needs to be in place before AI can deliver value, where the
-       real opportunities are in your specific operation, and what&apos;s noise you can safely ignore.</p>
-     </div>
-    </div>
-    </section>
-
-    {/* ── RELATED LINKS ──────────────────────────────────────────────── */}
-    {(route.relatedProblems.length > 0 || route.relatedSectors.length > 0 || route.relatedResources.length > 0) && (
-     <section className="g-off">
+   <div className={styles.flow}>
+    <ProblemPageV2
+     slug="ai-paralysis"
+     problem="AI paralysis"
+     crumb="AI paralysis"
+     h1Lead="Problem · AI readiness assessment"
+     headline="You don't need AI. You need your data in one place."
+     heroLede="Every software vendor is adding AI features. Every conference talk is about AI. But when you ask what AI actually means for a print, embroidery or decoration business, the answers are vague, generic, or non-existent."
+     heroBody="The real barrier to AI adoption in this sector isn't the technology. It's that nobody's supplier data is clean enough to feed into anything, which is what an AI readiness assessment checks first."
+     heroArt={heroArt960}
+     symptomsEyebrow="The signs"
+     symptomsHeading="Seven versions of the same stuck."
+     symptomsLede="If you recognise three or more of these, the problem isn't that you're behind. It's that nobody has given you a straight answer."
+     symptoms={[
+      "You feel pressure to “have an AI strategy” but don't know where to start",
+      "Vendors are selling AI features you didn't ask for and can't see the value of",
+      "You've been told AI will transform your business, but nobody can say how",
+      "You're worried about being left behind but don't want to invest in hype",
+      "Your team are experimenting with ChatGPT but there's no coherent approach",
+      "You suspect AI could help somewhere, but you don't know where",
+      "Every article you read contradicts the last one",
+     ]}
+     symptomsCaption="Count the ones that apply. None of them is a reason to buy an AI tool."
+     photoBand={{
+      eyebrow: 'Where the data actually lives',
+      heading: 'Paper, job sheets and a warehouse floor.',
+      lede: 'Three photographs from client sites. The paperwork on the desk, the job sheets on the bench and the stock on the floor: the data any AI would have to read, before anyone has put it in one place.',
+      photos: [
+       { odId: 'photo-g', no: 'DO-ART-979g', src: '/images/site/evidence/hero-office-paperwork-75fcd2.webp', alt: 'Paperwork on an office desk at a client site.', kicker: '', line: '' },
+       { odId: 'photo-k', no: 'DO-ART-979k', src: '/images/site/evidence/plate-job-sheets-63dd9c.webp', alt: 'Paper job sheets laid out on a workbench at a client site.', kicker: '', line: '' },
+       { odId: 'photo-h', no: 'DO-ART-979h', src: '/images/site/evidence/card-warehouse-floor-f1d62c.webp', alt: 'A warehouse floor at a client site.', kicker: '', line: '' },
+      ],
+     }}
+     causes={[]}
+     plate={{ art: plateArt }}
+     howLede=""
+     howBody=""
+     howTone="off"
+     routing={problemRouting['ai-paralysis']}
+    />
+    {problemVideos['ai-paralysis'] && (
+     <section className="g-off" data-od-id="video-embed">
       <div className="wrap">
-       <div className="grid grid--3">
-        {route.relatedProblems.length > 0 && (
-         <article className="card">
-          <span className="kicker">Related problems</span>
-          <h3>You might also have</h3>
-          <ul style={{ margin: 0, padding: 0, listStyle: 'none' }}>
-           {route.relatedProblems.map(p => (
-            <li key={p.href} style={{ marginBottom: 10 }}>
-             <Link href={p.href} className="underline" style={{ fontSize: 'var(--do-text-sm)', color: 'var(--do-text-primary)' }}>
-              {p.label}
-             </Link>
-            </li>
-           ))}
-          </ul>
-         </article>
-        )}
-        {route.relatedSectors.length > 0 && (
-         <article className="card">
-          <span className="kicker">Related sectors</span>
-          <h3>Adjacent trades</h3>
-          <ul style={{ margin: 0, padding: 0, listStyle: 'none' }}>
-           {route.relatedSectors.map(s => (
-            <li key={s.href} style={{ marginBottom: 10 }}>
-             <Link href={s.href} className="underline" style={{ fontSize: 'var(--do-text-sm)', color: 'var(--do-text-primary)' }}>
-              {s.label}
-             </Link>
-            </li>
-           ))}
-          </ul>
-         </article>
-        )}
-        {route.relatedResources.length > 0 && (
-         <article className="card">
-          <span className="kicker">Useful next steps</span>
-          <h3>Resources</h3>
-          <ul style={{ margin: 0, padding: 0, listStyle: 'none' }}>
-           {route.relatedResources.map(r => (
-            <li key={r.href} style={{ marginBottom: 10 }}>
-             <Link href={r.href} className="underline" style={{ fontSize: 'var(--do-text-sm)', color: 'var(--do-text-primary)' }}>
-              {r.label}
-             </Link>
-            </li>
-           ))}
-          </ul>
-         </article>
-        )}
-       </div>
+       <VideoEmbed
+        youtubeId={problemVideos['ai-paralysis'].youtubeId}
+        title={problemVideos['ai-paralysis'].title}
+        closeLine={problemVideos['ai-paralysis'].closeLine}
+        app={problemVideos['ai-paralysis'].app}
+        durationSec={problemVideos['ai-paralysis'].durationSec}
+        playlistUrl={problemVideos['ai-paralysis'].playlistUrl}
+       />
       </div>
      </section>
     )}
 
-    {/* ── 6 · CTA STRIP ──────────────────────────────────────────────────── */}
-   <section className="g-white cta-strip">
-    <div className="wrap" style={{ maxWidth: 760 }}>
-     <h2>Find out what AI could actually do for you.</h2>
-     <p className="lede">Sixty minutes, free, no obligation. If the honest answer is &ldquo;not yet&rdquo;, I&apos;ll
-      tell you that, and tell you what to fix instead.</p>
-     <div className="hero-cta">
-      <Link className="btn btn--primary" href="/contact">Book a discovery call</Link>
-      <Link className="btn btn-ghost btn-arrow" href="/clarity">See how a Clarity Audit works</Link>
+    {/* This page's own causes section (the mockup's heading is staging copy that
+        ProblemPageV2's fixed causes heading cannot render). */}
+    <section className={styles.custom + ' g-tint'} data-od-id="causes">
+     <div className="wrap">
+      <div className="sec-head">
+       <span className="eyebrow">Why this happens</span>
+       <h2 data-od-id="causes-h2">Four reasons the question stays unanswered.</h2>
+      </div>
+      <div className="areas areas--2" data-od-id="causes-cards">
+       <article className="area" data-od-id="causes-1">
+        <div className="area-top"><span className="ic-tile"><svg className="ic ic-24" aria-hidden="true"><use href="#i-sparkles" /></svg></span><span className="num">01</span></div>
+        <h3>AI is being sold as magic, not as a tool</h3>
+        <p className="t-card">The AI narrative in the technology industry is built on transformational stories that rarely translate to operational reality. A business that prints and despatches physical products needs practical answers, not visionary promises.</p>
+       </article>
+       <article className="area" data-od-id="causes-2">
+        <div className="area-top"><span className="ic-tile"><svg className="ic ic-24" aria-hidden="true"><use href="#i-file-warning" /></svg></span><span className="num">02</span></div>
+        <h3>No process foundation to apply AI to</h3>
+        <p className="t-card">Most businesses in this sector have undocumented processes, inconsistent data, and systems that don&apos;t talk to each other. An AI readiness assessment tells you whether your data and processes are ready, or whether foundational fixes come first.</p>
+       </article>
+       <article className="area" data-od-id="causes-3">
+        <div className="area-top"><span className="ic-tile"><svg className="ic ic-24" aria-hidden="true"><use href="#i-search" /></svg></span><span className="num">03</span></div>
+        <h3>The wrong question is being asked</h3>
+        <p className="t-card">“How do we adopt AI?” is the wrong question. The right one is “what specific operational problems do we have that AI might help solve?” Without that reframing, AI adoption becomes a solution in search of a problem.</p>
+       </article>
+       <article className="area" data-od-id="causes-4">
+        <div className="area-top"><span className="ic-tile"><svg className="ic ic-24" aria-hidden="true"><use href="#i-trending-up" /></svg></span><span className="num">04</span></div>
+        <h3>Fear of missing out is driving decisions</h3>
+        <p className="t-card">The fear that competitors will adopt AI and pull ahead creates pressure to do something, anything. That pressure leads to buying AI tools without a clear use case, which wastes investment and reinforces the cynicism that stopped the business engaging in the first place.</p>
+       </article>
+      </div>
      </div>
-    </div>
     </section>
-    <D17Motion />
-   </>
-  );
+
+    {/* This page's own How I help section (staging heading, which ProblemPageV2
+        renders as the fixed "What happens when you call"). */}
+    <section className={styles.custom + ' g-off'} data-od-id="how-i-help">
+     <div className="wrap how-grid">
+      <div>
+       <span className="eyebrow">How I help</span>
+       <h2 data-od-id="how-h2">An honest answer, with no vendor agenda.</h2>
+       <p className="t-lede">I give you an honest, grounded assessment of where AI can actually help your business right now. <b>I&apos;m not here to sell you an AI tool.</b></p>
+       <p className="t-body">I look at your current processes, your data quality, your technology stack and your team&apos;s capability, and I tell you what needs to be in place before AI can deliver value, where the real opportunities are in your specific operation, and what&apos;s noise you can safely ignore.</p>
+      </div>
+      <aside className="offer" data-od-id="offer">
+       <h3>The first call is free.</h3>
+       <p className="t-card">60 minutes. No sales pitch, just a direct conversation about your situation.</p>
+       <ul className="ticks">
+        <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>One day on site</span></li>
+        <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>Written report in 5 days</span></li>
+        <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>3× Clarity Guarantee</span></li>
+        <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>No vendor agenda</span></li>
+       </ul>
+       <Link className="btn btn--primary" href="/contact" data-od-id="offer-cta">Book a free call</Link>
+       <a className="alt" href={BOOKING_URL} target="_blank" rel="noopener noreferrer" data-od-id="offer-alt">Or book a call directly</a>
+      </aside>
+     </div>
+    </section>
+   </div>
+   <D17Motion />
+  </>
+ );
 }

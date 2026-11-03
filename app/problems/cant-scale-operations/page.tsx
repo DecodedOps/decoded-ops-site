@@ -1,14 +1,17 @@
 import type { Metadata } from 'next';
-import { ProblemPageDS } from '@/components/ProblemPageDS';
-import { CantScaleSchematic } from '@/components/schematics/problems/CantScaleSchematic';
 import { JsonLd } from '@/components/JsonLd';
+import { ProblemPageV2 } from '@/components/ProblemPageV2';
+import { VideoEmbed } from '@/components/VideoEmbed';
+import { VideoSchema } from '@/components/VideoSchema';
 import { problemRouting } from '@/data/problem-routing';
 import { problemVideos } from '@/data/problem-videos';
 import '@/app/d17-global.css';
 import '@/app/d17-problems.css';
 import '@/app/d17-resources.css';
+import '@/app/problems/problems-v2.css';
 import { D17Motion } from '@/components/D17Motion';
 import { a993 } from '@/lib/d17-figures/a993';
+import styles from './page.module.css';
 
 export const metadata: Metadata = {
  title: "Scaling a Business When Operations Won't | Decoded Ops",
@@ -101,14 +104,7 @@ const cantScaleSchema = {
  ],
 };
 
-const scalingSteps = [
- { label: 'Small team', sub: 'Informal', },
- { label: 'Growing', sub: 'Stretched', alert: true },
- { label: 'Scaling', sub: 'Breaking', alert: true },
- { label: 'Foundation', sub: 'Built right' },
-];
-
-const heroArt963 = `<figure class="d17 sx px a963" data-od-id="hero-evidence" data-motion data-no="DO-ART-963" data-rev="01" data-tx="schematic"
+const heroArt963 =`<figure class="d17 sx px a963" data-od-id="hero-evidence" data-motion data-no="DO-ART-963" data-rev="01" data-tx="schematic"
         aria-label="Drawn plate DO-ART-963. Five stations on one line, order in, artwork, production, despatch and invoice. Above each, a stack of jobs waiting. A dashed rule marks what the process was built for. Production, where everything flows through one or two people, has the tallest stack and spills over the rule in amber. More orders, same process: the queue lands on one or two people.">
   <div class="q-grid" aria-hidden="true"></div>
   <div class="sx-top d17-mono" aria-hidden="true"><span>Can't scale</span><span>Volume is where the cracks show</span></div>
@@ -162,51 +158,80 @@ export default function CantScaleOperationsPage() {
  return (
   <>
    <JsonLd data={cantScaleSchema} />
-   <ProblemPageDS
-    problem="Operations that can't keep up with growth"
-    headline="Your business is growing. ||Your operations aren't scaling with it.||"
-    intro="More orders. More staff. More pressure. But not more profit, and not more confidence that tomorrow will be better than today. That's an operations problem. Your systems and processes were built for half your current size, and now they're becoming the ceiling on your growth. I help businesses like yours build the operational foundations for scaling a business without the chaos."
-    heroGraphic={<CantScaleSchematic />}
-    symptoms={[
-     "You're taking on more work but making less profit per order",
-     "Your senior people spend their days on admin that should sit further down the team",
-     "Quality is inconsistent. It depends who did the job, not what the process says.",
-     "Everything flows through one or two people, and if they're off, everything slows",
-     "You've hired more staff but it hasn't made anything faster",
-     "Month-end is a nightmare because nobody trusts the numbers",
-     "You know something's wrong but can't pin down exactly where",
-     "A new contract sounds exciting but you're not sure your operation could handle it",
-    ]}
-    causes={[
-     {
-      title: "The informal setup that worked at half the size doesn't scale",
-       body: "When the team was small, everyone knew what was going on. As you grow, that breaks down, but the systems and habits don't change with it. The same processes that worked at half your current size start failing as the volume grows.",
-     },
-     {
-      title: "Processes aren't written down and belong to individuals, not the business",
-      body: "Key knowledge lives in the heads of key people. That was fine when the business was small. As it grows, those people become bottlenecks, and the business can only move as fast as they can. If they leave, the process leaves with them.",
-     },
-     {
-      title: "Growth happened before the operational foundation was ready",
-      body: "It's easy to take on new contracts, products, or markets without asking whether the operation is ready. The revenue looks good on paper. The margin doesn't, because the cost of a stretched operation hides in rework, mistakes, and overtime.",
-     },
-     {
-      title: 'Nobody owns the end-to-end process',
-      body: "People own their own department, but nobody owns the full run from order in to invoice out. Problems at the handoffs between teams are nobody's job to fix, so they stay and get worse.",
-     },
-    ]}
-    howIHelp="I come on site and follow how work moves through your business, from the moment an order arrives to the moment it's invoiced and out the door. I map what's there, spot what's missing, and put a cost on it in time, margin, and risk. Within five days you get a written report with every finding and every fix prioritised. Quick wins are separated from bigger changes, so you know what to do this week and what to plan for. If you need help making the changes, I run a structured Deliver engagement to do the work with you. And if you're scaling a business and need ongoing operational leadership, there's a retained option: monthly support without the cost of a full-time hire."
-   
-   slug="cant-scale-operations"
-   targetService={problemRouting['cant-scale-operations'].targetService}
-   relatedProblems={problemRouting['cant-scale-operations'].relatedProblems}
-   relatedReading={problemRouting['cant-scale-operations'].relatedReading}
-   relatedSectors={problemRouting['cant-scale-operations'].relatedSectors}
-   relatedResources={problemRouting['cant-scale-operations'].relatedResources}
-   video={problemVideos['cant-scale-operations']}
-   heroArt={heroArt963}
-   inlineArt={a993}
-  />
+   {problemVideos['cant-scale-operations'] && (
+    <VideoSchema
+     name={problemVideos['cant-scale-operations'].title}
+     description={problemVideos['cant-scale-operations'].closeLine}
+     youtubeId={problemVideos['cant-scale-operations'].youtubeId}
+     uploadDate={problemVideos['cant-scale-operations'].uploadDate}
+     durationSec={problemVideos['cant-scale-operations'].durationSec}
+    />
+   )}
+   <div className={styles.flow}>
+    <ProblemPageV2
+     slug="cant-scale-operations"
+     problem="Operations that can't keep up with growth"
+     crumb="Operations that can't keep up with growth"
+     h1Lead="Problem · business growing operations not scaling"
+     headline="Your business is growing. ||Your operations aren't scaling with it.||"
+     heroLede="More orders. More staff. More pressure. But not more profit, and not more confidence that tomorrow will be better than today. That's an operations problem."
+     heroBody="Your systems and processes were built for half your current size, and now they're becoming the ceiling on your growth. I help businesses like yours build the operational foundations for scaling a business without the chaos."
+     heroArt={heroArt963}
+     symptomsHeading="The signs."
+     symptomsLede=""
+     symptoms={[
+      "You're taking on more work but making less profit per order",
+      "Your senior people spend their days on admin that should sit further down the team",
+      "Quality is inconsistent. It depends who did the job, not what the process says.",
+      "Everything flows through one or two people, and if they're off, everything slows",
+      "You've hired more staff but it hasn't made anything faster",
+      "Month-end is a nightmare because nobody trusts the numbers",
+      "You know something's wrong but can't pin down exactly where",
+      "A new contract sounds exciting but you're not sure your operation could handle it",
+     ]}
+     symptomsCaption="Count the ones that apply. Each one is the operation telling you it was built for half the size."
+     photoBand={{
+      eyebrow: 'Where the strain shows',
+      heading: 'More orders through the same floor.',
+      lede: 'Three photographs from client sites. An embroidery floor, a carousel mid-run and the packing station: the same three places carrying twice the work they were set up for.',
+      photos: [
+       { odId: 'photo-o', no: 'DO-ART-979o', src: '/images/site/evidence/band-screenprint-carousel-f0dce0.webp', alt: 'A screen print carousel mid-run at a client site.', kicker: '', line: '' },
+       { odId: 'photo-d', no: 'DO-ART-979d', src: '/images/site/evidence/hero-embroidery-floor-84216c.webp', alt: 'An embroidery production floor at a client site.', kicker: '', line: '' },
+       { odId: 'photo-n', no: 'DO-ART-979n', src: '/images/site/evidence/band-packing-station-7c4f80.webp', alt: 'A packing station with cartons, tape and a label printer at a client site.', kicker: '', line: '' },
+      ],
+     }}
+     causes={[
+      { icon: 'i-users', title: "The informal setup that worked at half the size doesn't scale", body: "When the team was small, everyone knew what was going on. As you grow, that breaks down, but the systems and habits don't change with it. The same processes that worked at half your current size start failing as the volume grows." },
+      { icon: 'i-file-warning', title: "Processes aren't written down and belong to individuals, not the business", body: "Key knowledge lives in the heads of key people. That was fine when the business was small. As it grows, those people become bottlenecks, and the business can only move as fast as they can. If they leave, the process leaves with them." },
+      { icon: 'i-trending-up', title: 'Growth happened before the operational foundation was ready', body: "It's easy to take on new contracts, products, or markets without asking whether the operation is ready. The revenue looks good on paper. The margin doesn't, because the cost of a stretched operation hides in rework, mistakes, and overtime." },
+      { icon: 'i-git-branch', title: 'Nobody owns the end-to-end process', body: "People own their own department, but nobody owns the full run from order in to invoice out. Problems at the handoffs between teams are nobody's job to fix, so they stay and get worse." },
+     ]}
+     plate={{
+      eyebrow: 'The real day',
+      heading: 'The spec sheet assumes a day nobody has.',
+      lede: 'Capacity planned from the machine’s rated speed assumes one operator, one design and no changeovers. Planned from the real day, the numbers come out lower, and the plan holds when the orders arrive.',
+      art: a993,
+     }}
+     howLede="I come on site and follow how work moves through your business, from the moment an order arrives to the moment it's invoiced and out the door. I map what's there, spot what's missing, and put a cost on it in time, margin, and risk. Within five days you get a written report with every finding and every fix prioritised."
+     howBody="Quick wins are separated from bigger changes, so you know what to do this week and what to plan for. If you need help making the changes, I run a structured Deliver engagement to do the work with you. And if you're scaling a business and need ongoing operational leadership, there's a retained option: monthly support without the cost of a full-time hire."
+     howTone="off"
+     routing={problemRouting['cant-scale-operations']}
+    />
+    {problemVideos['cant-scale-operations'] && (
+     <section className="g-off" data-od-id="video-embed">
+      <div className="wrap">
+       <VideoEmbed
+        youtubeId={problemVideos['cant-scale-operations'].youtubeId}
+        title={problemVideos['cant-scale-operations'].title}
+        closeLine={problemVideos['cant-scale-operations'].closeLine}
+        app={problemVideos['cant-scale-operations'].app}
+        durationSec={problemVideos['cant-scale-operations'].durationSec}
+        playlistUrl={problemVideos['cant-scale-operations'].playlistUrl}
+       />
+      </div>
+     </section>
+    )}
+   </div>
    <D17Motion />
   </>
  );

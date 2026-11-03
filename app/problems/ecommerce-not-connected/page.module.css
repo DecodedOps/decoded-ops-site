@@ -1,0 +1,57 @@
+/* RS2 P1 (CR-WEB-083): ProblemPageV2 renders the v2 shell as one block, so the
+   slot-less sections (video, the tabbed platform block, the visible FAQ) sit at
+   their mockup positions via flex order. */
+.flow {
+ display: flex;
+ flex-direction: column;
+}
+.flow > :global([data-od-id='hero']) { order: 10 }
+.flow > :global([data-od-id='symptoms']) { order: 20 }
+/* The 3 Nov mockup carries no photo band on this page (the platform block
+   takes the slot), so the shell's empty band is hidden rather than invented. */
+.flow > :global([data-od-id='photo-band']) { display: none }
+.flow > :global([data-od-id='causes']) { order: 30 }
+.flow > :global([data-od-id='video-embed']) { order: 40 }
+.flow > :global([data-od-id='platforms']) { order: 50 }
+.flow > :global([data-od-id='plate']) { order: 60 }
+.flow > :global([data-od-id='how-i-help']) { order: 70 }
+.flow > :global([data-od-id='faq']) { order: 75 }
+.flow > :global([data-od-id='keep-reading']) { order: 80 }
+
+/* This page's symptoms ledger carries no lede; the shared component always
+   emits the element. */
+.flow :global(.sym-head .sec-lede:empty) { display: none }
+
+/* ── platform tabs (the mockup's set-10 block) ─────────────────────────── */
+.tabs {
+ display: inline-flex;
+ gap: 4px;
+ padding: 4px;
+ margin-top: 28px;
+ border: 1px solid var(--do-border-subtle);
+ border-radius: var(--do-radius-full);
+ background: var(--do-white);
+}
+.tabs button {
+ min-height: 44px;
+ padding: 0 22px;
+ border: 0;
+ border-radius: var(--do-radius-full);
+ background: transparent;
+ font: inherit;
+ font-weight: 600;
+ color: var(--do-text-secondary);
+ cursor: pointer;
+}
+.tabs button:hover { background: color-mix(in srgb, var(--do-sky-blue) 18%, transparent); color: var(--do-text-primary) }
+.tabs button[aria-selected='true'] { background: var(--do-prussian-blue); color: var(--do-off-white) }
+.tabs button:focus-visible { outline: 2px solid var(--do-cerulean); outline-offset: 2px }
+.tabPanel[hidden] { display: none }
+.tabPanel :global(.t-body) { margin: 24px 0 0; max-width: 68ch }
+
+/* ── the visible FAQ (the mockup's set-10 block) ───────────────────────── */
+.faq { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 0 56px; margin-top: 32px }
+.faqItem { padding: 22px 0; border-top: 1px solid var(--do-border-subtle) }
+.faqItem h3 { margin: 0 0 8px; font-size: var(--do-text-lg); line-height: 1.3; color: var(--do-text-primary) }
+.faqItem :global(.t-card) { font-size: var(--do-text-base); max-width: 58ch }
+@media (max-width: 800px) { .faq { grid-template-columns: 1fr } }
