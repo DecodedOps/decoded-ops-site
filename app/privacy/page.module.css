@@ -1,0 +1,31 @@
+/* /privacy — page layout only. The shared patterns live in ds-marketing.css,
+   d17-locations.css and site-v3.css. Two blocks below are page-local because no
+   shared sheet carries them and the shared sheets are read-only in this lane:
+
+   1. the mockup's own page <style> (.legal-art, .a1006 geometry, .hero .t-lede),
+   2. the resource-article-v1 grid (post-grid / post-aside / toc) — the same
+      block every article page carries in its own page.module.css,
+   3. `prose--legal` — the mockup records this as "a new shared block in
+      site-v3.css"; site-v3.css is off-limits here, so it lives locally. */
+
+.root :global(.legal-art) { max-width: none; margin-top: 44px }
+.root :global(.a1006) { --u: calc(100cqw / 1152); --pu: calc(100% / 1152) }
+.root :global(.hero .t-lede) { max-width: 52ch }
+
+.root :global(.post-aside .go .ic) { margin-right: 4px }
+.root :global(.post-grid) { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: 56px; align-items: start; margin-top: 56px }
+.root :global(.post-aside) { position: sticky; top: 96px; display: flex; flex-direction: column; gap: 30px }
+.root :global(.toc-h) { display: block; margin: 0 0 12px; font-family: var(--do-font-heading); font-size: var(--do-text-xs); font-weight: 600; letter-spacing: var(--do-tracking-wide); text-transform: uppercase; color: var(--do-text-muted) }
+.root :global(.toc) { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--do-border-subtle) }
+.root :global(.toc li) { border-bottom: 1px solid var(--do-border-subtle) }
+.root :global(.toc a) { display: grid; grid-template-columns: 26px 1fr; gap: 10px; align-items: baseline; padding: 10px 0; font-size: var(--do-text-sm); line-height: 1.45; color: var(--do-text-secondary); text-decoration: none }
+.root :global(.toc a:hover) { color: var(--do-text-primary); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--do-cerulean) }
+.root :global(.toc a b) { font-family: var(--do-font-mono); font-weight: 500; font-size: var(--do-text-xs); letter-spacing: 0.06em; color: var(--do-text-muted) }
+@media (max-width: 900px) {
+  .root :global(.post-grid) { grid-template-columns: 1fr; gap: 36px; margin-top: 36px }
+  .root :global(.post-aside) { position: static }
+}
+
+/* prose--legal: the policy column inside the grid */
+.root :global(.prose--legal) { max-width: none; margin: 0 }
+.root :global(.prose--legal h2) { scroll-margin-top: 96px }

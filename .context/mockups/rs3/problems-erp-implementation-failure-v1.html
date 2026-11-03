@@ -1,0 +1,665 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Most ERP implementation failure in print and embroidery businesses traces back to one thing: the audit that should have come before the decision was made.">
+<!-- v1 (14 Oct 2026) · release set 9 · /problems/erp-implementation-failure on the approved problems v6 family. Staging has no hero figure, no signs list and no causes list, so the family slots are filled from what the page does have: hero head + the staging journey poster DO-ART-967 as the hero piece · the case study 01 before/after lists as the navy ledger · three evidence photographs · the page's six FAQ answers as the Why-it-happens block (visible, matching the FAQPage schema) · DO-ART-991 (the vendor brief) in the navy plate section as a split · the Hanicks proof panel (the figures the poster cites) · How I help from the case study 02 section and the closing copy · keep reading. All staging strings verbatim; new strings carry data-new-copy. -->
+<title>ERP Implementation Failure, Prevented · Decoded Ops (v1 mockup)</title>
+<link rel="stylesheet" href="../ds-marketing.css">
+<link rel="stylesheet" href="../assets/site/d17-global.css">
+<link rel="stylesheet" href="../assets/site/d17-problems.css">
+<link rel="stylesheet" href="../assets/site/d17-resources.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What happens when the vendor scopes their own ERP implementation?", "acceptedAnswer": {"@type": "Answer", "text": "When the vendor scopes their own implementation, they scope for the software, not for your business. The gaps only become visible after go-live."}}, {"@type": "Question", "name": "Why do ERP implementations fail without independent oversight?", "acceptedAnswer": {"@type": "Answer", "text": "Without someone in your corner who understands both the sector and the software, there is no one to hold the vendor to account when they miss requirements or cut corners."}}, {"@type": "Question", "name": "How does data quality affect ERP implementation success?", "acceptedAnswer": {"@type": "Answer", "text": "Most implementation failures trace back to data quality. Clean data migration is unglamorous work that vendors underprice and businesses underestimate."}}, {"@type": "Question", "name": "Can the wrong ERP software cause implementation failure?", "acceptedAnswer": {"@type": "Answer", "text": "Sometimes the implementation fails because the software was the wrong choice from the start, selected on demo, not on fit."}}, {"@type": "Question", "name": "What are the most common causes of ERP implementation failure in decorated goods businesses?", "acceptedAnswer": {"@type": "Answer", "text": "The five most common causes are: no independent vendor brief written before vendor selection; the implementation scoped by the vendor rather than the business; data quality problems that were underestimated; no one independently accountable for outcomes; and wrong ERP software selected based on a demo in a different sector."}}, {"@type": "Question", "name": "My ERP implementation went over budget, what should I do?", "acceptedAnswer": {"@type": "Answer", "text": "An ERP implementation cost overrun is almost always a scoping failure. The first step is an independent review of what the original specification covered versus what the vendor has delivered, or is claiming to have delivered. That assessment tells you whether the overrun is legitimate, whether the vendor is at fault, and what the realistic options are."}}]}]}</script>
+<style>
+/* ── R1 type contract ─────────────────────────────────────────────────── */
+.t-lede{ font-size:var(--do-text-lg); line-height:1.55; max-width:60ch }
+.t-card{ font-size:var(--do-text-sm); line-height:1.55; margin:0; color:color-mix(in srgb, var(--do-prussian-blue) 76%, transparent) }
+.t-meta{ font-size:var(--do-text-xs); line-height:1.4; font-weight:var(--do-weight-semibold); letter-spacing:var(--do-tracking-wide); text-transform:uppercase }
+h1,h2,h3{ text-wrap:balance }
+p{ text-wrap:pretty }
+.lede{ line-height:1.55 }
+
+/* ── R2 icon contract ─────────────────────────────────────────────────── */
+.ic{ display:inline-block; flex:none; fill:none; stroke:currentColor; stroke-width:1.75; stroke-linecap:round; stroke-linejoin:round; vertical-align:middle }
+.ic-16{ width:16px; height:16px } .ic-20{ width:20px; height:20px } .ic-24{ width:24px; height:24px }
+.ic-tile{ display:inline-flex; align-items:center; justify-content:center; width:44px; height:44px; border-radius:var(--do-radius-md);
+  background:color-mix(in srgb, var(--do-sky-blue) 26%, transparent); color:var(--do-prussian-blue) }
+.go{ display:inline-flex; align-items:center; gap:8px; font-size:var(--do-text-sm); font-weight:var(--do-weight-semibold); color:var(--do-text-primary);
+  text-decoration:underline; text-underline-offset:5px; text-decoration-color:var(--do-cerulean); text-decoration-thickness:2px }
+.go:hover{ text-decoration-color:var(--do-prussian-blue); text-decoration-thickness:3px }
+.go .ic{ color:var(--do-cerulean) }
+.go:focus-visible{ outline:2px solid var(--do-cerulean); outline-offset:3px; border-radius:var(--do-radius-sm) }
+
+/* ── 01 · hero: split head, then the report + roadmap piece full width ─── */
+.hero{ padding:72px 0 88px }
+.hero-head{ display:grid; grid-template-columns:minmax(0,7fr) minmax(0,5fr); gap:48px; align-items:end }
+.hero h1{ max-width:14ch }
+.hero .t-lede{ margin:0; color:color-mix(in srgb, var(--do-prussian-blue) 74%, transparent) }
+.hero .btn-row{ margin:26px 0 0 }
+@media(max-width:960px){ .hero-head{ grid-template-columns:1fr; gap:24px; align-items:start } }
+
+/* DO-ART-939 · Clarity hero · report + roadmap over a site-visit photograph (the 1004 recipe) */
+.sw{ --u:calc(100cqw / 1152); --pu:calc(100% / 1152); margin:44px 0 0 }
+.sw-cap .k{ font-size:max(10px, calc(13 * var(--u))); color:var(--do-off-white) }
+.sw-cap .k span{ color:var(--do-sky-blue) }
+.sw-cap .bar{ width:calc(64 * var(--u)); height:5px; border-radius:3px; background:var(--do-amber); margin:calc(20 * var(--u)) 0 }
+.sw-cap h3{ margin:0; font-family:var(--do-font-heading); font-weight:800; color:var(--do-white); font-size:max(24px, calc(44 * var(--u))); line-height:1.04; letter-spacing:-.032em }
+.sw-cap p{ margin:calc(16 * var(--u)) 0 0; font-size:max(14px, calc(17 * var(--u))); line-height:1.45; color:color-mix(in srgb, var(--do-off-white) 80%, transparent) }
+.sw-cap .d17-mark{ margin-top:calc(30 * var(--u)) }
+.sw-doc{ display:grid; grid-template-columns:34% 1fr; gap:calc(36 * var(--pu)); padding:calc(54 * var(--pu)) calc(46 * var(--pu)) calc(56 * var(--pu)) calc(52 * var(--pu)) }
+.sw-doc::before{ content:''; position:absolute; inset:0; z-index:-1;
+  background:linear-gradient(90deg, var(--do-prussian-blue) 0%, var(--do-prussian-blue) 33%, color-mix(in srgb, var(--do-prussian-blue) 55%, transparent) 50%, color-mix(in srgb, var(--do-prussian-blue) 12%, transparent) 100%) }
+.sw-doc .d17-ph{ left:30% }
+.sw-doc .sw-cap{ align-self:center }
+.sw-doc .stage{ position:relative; min-height:calc(460 * var(--u)) }
+.sw-doc .stage .d17-doc{ --u:calc(100cqw / 1152) }
+.a939 .d17-ph{ left:28% }
+.a939 .d17-ph img{ object-position:50% 55%; --d17-grade:saturate(.7) contrast(1.06) brightness(.82) }
+.a939 .stage{ min-height:calc(500 * var(--u)) }
+.a939 .doc-f{ left:calc(8 * var(--u)); top:calc(20 * var(--u)); width:calc(390 * var(--u)); transform:rotate(-2.4deg) }
+.a939 .doc-m{ left:calc(396 * var(--u)); top:calc(206 * var(--u)); width:calc(292 * var(--u)); transform:rotate(3.2deg); z-index:2 }
+.fx{ margin-top:calc(12 * var(--u)) }
+.fx .r{ display:grid; grid-template-columns:1.25fr 1fr auto; gap:calc(10 * var(--u)); align-items:center; padding:calc(8 * var(--u)) 0;
+  border-top:1px solid color-mix(in srgb, var(--do-prussian-blue) 12%, transparent); font-size:max(7px, calc(12.5 * var(--u))); font-weight:600; line-height:1.2 }
+.fx .r i{ display:block; height:calc(9 * var(--u)); border-radius:9px; transform-origin:left center; background:linear-gradient(90deg, var(--do-cerulean), var(--do-sky-blue)); width:var(--w) }
+.fx .r.top i{ background:var(--do-amber) }
+.fx .r em{ font-style:normal; font-family:var(--do-font-mono); font-size:max(6px, calc(9 * var(--u))); letter-spacing:.1em; text-transform:uppercase; color:color-mix(in srgb, var(--do-prussian-blue) 60%, transparent) }
+.chg{ list-style:none; margin:calc(12 * var(--u)) 0 0; padding:0; counter-reset:c }
+.chg li{ counter-increment:c; display:grid; grid-template-columns:calc(24 * var(--u)) 1fr auto; gap:calc(8 * var(--u)); align-items:center; padding:calc(8 * var(--u)) 0;
+  border-top:1px solid color-mix(in srgb, var(--do-prussian-blue) 12%, transparent); font-size:max(7px, calc(12.5 * var(--u))); font-weight:600; line-height:1.2 }
+.chg li::before{ content:counter(c); display:grid; place-items:center; width:calc(20 * var(--u)); height:calc(20 * var(--u)); border-radius:50%;
+  background:var(--do-prussian-blue); color:var(--do-white); font-family:var(--do-font-mono); font-size:max(6px, calc(10 * var(--u))) }
+.st-chip{ font-family:var(--do-font-mono); font-weight:700; font-size:max(6px, calc(9.5 * var(--u))); letter-spacing:.1em; text-transform:uppercase;
+  padding:calc(3 * var(--u)) calc(7 * var(--u)); border-radius:99px; white-space:nowrap; background:color-mix(in srgb, var(--do-sky-blue) 32%, transparent); color:var(--do-prussian-blue) }
+.st-chip--a{ background:var(--do-amber) }
+.st-chip--o{ background:transparent; border:1px solid color-mix(in srgb, var(--do-prussian-blue) 30%, transparent) }
+.doc-foot{ margin-top:calc(12 * var(--u)); padding-top:calc(8 * var(--u)); border-top:1px dashed color-mix(in srgb, var(--do-prussian-blue) 25%, transparent);
+  font-family:var(--do-font-mono); font-size:max(6px, calc(9.5 * var(--u))); letter-spacing:.08em; color:color-mix(in srgb, var(--do-prussian-blue) 62%, transparent) }
+.guar{ position:absolute; z-index:4; right:calc(14 * var(--u)); top:calc(18 * var(--u)); width:calc(158 * var(--u)); aspect-ratio:1; border-radius:50%;
+  display:grid; place-items:center; text-align:center; background:color-mix(in srgb, var(--do-prussian-blue) 88%, transparent); border:3px solid var(--do-amber);
+  box-shadow:0 0 0 calc(6 * var(--u)) color-mix(in srgb, var(--do-amber) 22%, transparent), 0 calc(18 * var(--u)) calc(36 * var(--u)) color-mix(in srgb, #000 45%, transparent); transform:rotate(-8deg) }
+.guar b{ display:block; font-family:var(--do-font-heading); font-weight:800; font-size:max(26px, calc(46 * var(--u))); line-height:1; color:var(--do-amber) }
+.guar span{ display:block; margin-top:calc(4 * var(--u)); padding:0 calc(16 * var(--u)); font-family:var(--do-font-mono); font-size:max(8px, calc(10.5 * var(--u))); letter-spacing:.12em; text-transform:uppercase; line-height:1.35; color:var(--do-off-white) }
+.sx-tag{ position:absolute; z-index:4; background:var(--do-white); color:var(--do-prussian-blue); border-radius:calc(4 * var(--u)); padding:calc(9 * var(--u)) calc(12 * var(--u));
+  box-shadow:0 calc(14 * var(--u)) calc(30 * var(--u)) color-mix(in srgb, #000 45%, transparent); font-size:max(10px, calc(13 * var(--u))); font-weight:700; line-height:1.25; white-space:nowrap }
+.sx-tag small{ display:block; font-family:var(--do-font-mono); font-weight:600; font-size:max(7.5px, calc(9.5 * var(--u))); letter-spacing:.14em; text-transform:uppercase; color:var(--do-text-secondary); margin-bottom:2px }
+.a939 .t5{ left:calc(40 * var(--u)); bottom:calc(10 * var(--u)) }
+@media (max-width:760px){
+  .sw{ margin-top:26px }
+  .sw-doc{ grid-template-columns:1fr; padding:26px 18px 24px; gap:10px }
+  .sw-doc .d17-ph{ left:0; top:auto; height:62% }
+  .sw-doc::before{ background:linear-gradient(180deg, var(--do-prussian-blue) 0 38%, color-mix(in srgb, var(--do-prussian-blue) 40%, transparent) 100%) }
+  .sw-doc .stage{ min-height:0; display:flex; flex-direction:column; gap:18px; padding-top:10px }
+  .sw-doc .stage .d17-doc{ position:relative; left:auto !important; top:auto !important; width:100% !important; --u:.78px }
+  .a939 .stage .d17-doc:nth-child(odd){ transform:rotate(-1deg) } .a939 .stage .d17-doc:nth-child(even){ transform:rotate(1deg) }
+  .guar{ position:relative; right:auto; top:auto; width:128px; margin:4px 0 0 auto; order:3 }
+  .a939 .t5{ position:relative; left:auto; bottom:auto; align-self:flex-start; order:4 }
+}
+
+/* ── 02 · the route on navy ───────────────────────────────────────────── */
+.route-sec{ position:relative; overflow:hidden }
+.route-sec .wrap{ position:relative; z-index:1 }
+.route-head{ display:grid; grid-template-columns:minmax(0,7fr) minmax(0,5fr); gap:48px; align-items:end }
+.route-head h2{ max-width:18ch } .route-head .lede{ margin:0 }
+@media(max-width:900px){ .route-head{ grid-template-columns:1fr; gap:16px; align-items:start } }
+.route{ list-style:none; margin:44px 0 0; padding:36px 28px 32px; position:relative; display:grid; grid-template-columns:repeat(4,1fr); gap:0 18px;
+  background:var(--do-surface-raised); border:1px solid var(--do-border-subtle); border-radius:var(--do-radius-2xl) }
+.route::before{ content:''; position:absolute; left:calc(28px + 24px); right:calc(4px + (100% - 110px) / 4); top:calc(36px + 24px); height:2px; background:var(--do-sky-blue) }
+.stop{ position:relative; display:flex; flex-direction:column; gap:10px; padding-right:4px }
+.node{ position:relative; z-index:1; width:48px; height:48px; border-radius:var(--do-radius-full); display:inline-flex; align-items:center; justify-content:center; margin-bottom:6px;
+  background:var(--do-surface-raised); border:2px solid var(--do-sky-blue); color:var(--do-prussian-blue) }
+.stop .t-meta{ color:var(--do-text-secondary) }
+.stop h3{ margin:0; font-size:var(--do-text-lg); font-weight:var(--do-weight-bold); line-height:1.3; color:var(--do-text-primary) }
+.stop--out .node{ background:var(--do-amber); border-color:var(--do-amber); color:var(--do-prussian-blue) }
+.stop--out h3{ font-weight:var(--do-weight-extrabold) }
+.route-cap{ margin:18px 0 0; font-size:var(--do-text-sm); color:var(--do-text-muted-on-dark); display:flex; gap:10px; align-items:center }
+.route-cap .ic{ color:var(--do-sky-blue) }
+@media(max-width:1000px){
+  .route{ grid-template-columns:1fr; gap:22px; padding:28px 24px }
+  .route::before{ left:calc(24px + 23px); right:auto; width:2px; top:52px; bottom:52px; height:auto }
+  .stop{ display:grid; grid-template-columns:48px 1fr; column-gap:18px; row-gap:4px; align-items:start }
+  .stop .node{ grid-row:1 / span 3; margin:0 }
+}
+
+/* ── 02a · on the day: three site-visit photographs, captioned as what they are ── */
+.ev-head{ display:grid; grid-template-columns:minmax(0,7fr) minmax(0,5fr); gap:48px; align-items:end }
+.ev-head h2{ max-width:18ch } .ev-head .lede{ margin:0 }
+@media(max-width:900px){ .ev-head{ grid-template-columns:1fr; gap:16px; align-items:start } }
+.ev-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:40px }
+@media(max-width:900px){ .ev-grid{ grid-template-columns:1fr } }
+.ev{ --u:calc(100cqw / 380); aspect-ratio:16 / 11; margin:0; display:flex; flex-direction:column; justify-content:flex-end; padding:calc(18 * var(--u)) }
+.ev::before{ content:''; position:absolute; inset:0; z-index:-1; background:linear-gradient(0deg, color-mix(in srgb, var(--do-prussian-blue) 92%, transparent) 0%, color-mix(in srgb, var(--do-prussian-blue) 55%, transparent) 34%, transparent 62%) }
+.ev .k{ margin:0 0 .5em; font-size:max(9px, calc(10 * var(--u))); color:var(--do-sky-blue) }
+.ev .line{ margin:0 0 calc(12 * var(--u)); font-family:var(--do-font-heading); font-weight:800; color:var(--do-white); font-size:max(17px, calc(21 * var(--u))); line-height:1.1; letter-spacing:-.02em }
+.ev .d17-mark{ align-self:flex-start; font-size:max(8px, calc(9 * var(--u))) }
+
+/* ── 03 · six areas ───────────────────────────────────────────────────── */
+.sec-head{ max-width:720px } .sec-head .lede{ margin:0 }
+.areas{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:44px }
+.area{ background:var(--do-surface-raised); border:1px solid var(--do-border-subtle); border-radius:var(--do-radius-2xl); padding:26px 26px 28px; display:flex; flex-direction:column; gap:14px }
+.area-top{ display:flex; align-items:center }
+.area .num{ font-family:var(--do-font-heading); font-size:var(--do-text-sm); font-weight:var(--do-weight-semibold); color:var(--do-text-secondary); font-variant-numeric:tabular-nums; margin-left:auto }
+.area h3{ font-size:var(--do-text-lg); font-weight:var(--do-weight-bold); line-height:1.3; margin:4px 0 0; color:var(--do-text-primary) }
+@media(max-width:1000px){ .areas{ grid-template-columns:repeat(2,1fr) } }
+@media(max-width:640px){ .areas{ grid-template-columns:1fr } }
+
+/* ── 04 · the seal ────────────────────────────────────────────────────── */
+.seal{ display:grid; grid-template-columns:auto minmax(0,1fr); gap:44px; align-items:center; max-width:1000px; margin-inline:auto;
+  padding:clamp(34px,4vw,52px) clamp(28px,4vw,56px); background:var(--do-surface-dark); color:var(--do-text-on-dark); border-radius:var(--do-radius-2xl); box-shadow:var(--do-shadow-lg) }
+@media(max-width:760px){ .seal{ grid-template-columns:1fr; gap:16px } }
+.seal-x{ margin:0; font-family:var(--do-font-heading); font-weight:var(--do-weight-extrabold); font-size:clamp(3.4rem,8vw,6.2rem); line-height:.86; letter-spacing:-.05em; color:var(--do-amber) }
+.seal-tag{ display:block; margin-bottom:12px; font-family:var(--do-font-mono); font-size:var(--do-text-xs); letter-spacing:var(--do-tracking-wider); text-transform:uppercase; color:var(--do-text-muted-on-dark) }
+.seal h2{ color:var(--do-text-on-dark); max-width:20ch }
+.seal p{ margin:14px 0 0; font-size:var(--do-text-lg); line-height:1.55; max-width:54ch; color:color-mix(in srgb, var(--do-off-white) 80%, transparent) }
+
+/* ── 05 · the closer ──────────────────────────────────────────────────── */
+.closer-grid{ display:grid; grid-template-columns:minmax(0,6fr) minmax(0,6fr); gap:56px; align-items:center }
+@media(max-width:900px){ .closer-grid{ grid-template-columns:1fr; gap:26px } }
+.closer h2{ max-width:15ch } .closer .lede{ margin:0 }
+.closer .btn-row{ margin:26px 0 0; align-items:center; gap:14px 28px }
+
+/* ── footer repair (belongs in ds-marketing.css) ───────────────────────── */
+footer .foot-grid{ grid-template-columns:minmax(0,2.1fr) repeat(4,minmax(0,1fr)); gap:34px 30px; margin-bottom:42px }
+@media(max-width:1040px){ footer .foot-grid{ grid-template-columns:repeat(3,minmax(0,1fr)) } footer .foot-brand{ grid-column:1 / -1 } }
+@media(max-width:620px){ footer .foot-grid{ grid-template-columns:repeat(2,minmax(0,1fr)) } }
+.foot-brand{ padding-right:26px }
+.blurb{ margin:14px 0 0; font-size:var(--do-text-sm); line-height:1.55; max-width:34ch; color:color-mix(in srgb, var(--do-off-white) 72%, transparent) }
+.foot-contact{ margin-top:22px; padding-top:20px; border-top:1px solid var(--do-border-dark) }
+.foot-contact a{ margin-bottom:7px; font-size:var(--do-text-base); font-weight:var(--do-weight-medium); color:var(--do-text-on-dark) }
+.foot-contact a:hover{ color:var(--do-text-on-dark); text-decoration:underline; text-underline-offset:4px; text-decoration-color:var(--do-amber); text-decoration-thickness:2px }
+footer .foot-cta{ display:inline-flex; margin:20px 0 0; font-size:var(--do-text-sm); color:var(--do-text-on-dark); border-color:var(--do-cerulean) }
+footer .foot-cta:hover{ color:var(--do-text-on-dark); background:color-mix(in srgb, var(--do-cerulean) 18%, transparent) }
+.foot-loc{ margin:20px 0 0; font-size:var(--do-text-xs); letter-spacing:var(--do-tracking-wide); color:var(--do-text-muted-on-dark) }
+.foot-find{ margin-bottom:30px; padding:30px 0 6px; border-top:1px solid var(--do-border-dark) }
+.foot-find-row{ display:grid; grid-template-columns:118px minmax(0,1fr); gap:18px; align-items:baseline; padding-bottom:22px }
+@media(max-width:620px){ .foot-find-row{ grid-template-columns:1fr; gap:11px } }
+.foot-find-lbl{ font-family:var(--do-font-mono); font-size:var(--do-text-xs); letter-spacing:var(--do-tracking-wider); text-transform:uppercase; color:var(--do-text-muted-on-dark) }
+.foot-chips{ display:flex; flex-wrap:wrap; gap:9px }
+.foot-chips a{ display:inline-flex; align-items:center; gap:6px; margin:0; padding:6px 13px; border-radius:var(--do-radius-full); font-size:var(--do-text-xs); font-weight:var(--do-weight-medium);
+  color:var(--do-text-on-dark); border:1px solid var(--do-border-dark); background:color-mix(in srgb, var(--do-off-white) 5%, transparent);
+  transition:background var(--do-duration-fast) var(--do-ease-default), border-color var(--do-duration-fast) var(--do-ease-default) }
+.foot-chips a:hover{ color:var(--do-text-on-dark); background:color-mix(in srgb, var(--do-off-white) 11%, transparent); border-color:var(--do-cerulean) }
+.foot-chips a:focus-visible{ outline:2px solid var(--do-cerulean); outline-offset:2px }
+.foot-chips .foot-all{ background:transparent; color:var(--do-amber); border-color:color-mix(in srgb, var(--do-amber) 45%, transparent) }
+.foot-chips .foot-all:hover{ color:var(--do-amber); border-color:var(--do-amber); background:color-mix(in srgb, var(--do-amber) 14%, transparent) }
+a:focus-visible,.btn:focus-visible,button:focus-visible{ outline:3px solid var(--do-cerulean); outline-offset:3px }
+
+/* ═══ problem-page patterns (problems v5): hero · symptoms ledger · photo band · icon causes · how I help · keep reading ═══ */
+.p-hero{ padding:72px 0 88px }
+.p-hero-grid{ display:grid; grid-template-columns:minmax(0,6fr) minmax(0,6fr); gap:56px; align-items:center }
+@media(max-width:960px){ .p-hero-grid{ grid-template-columns:1fr; gap:34px } }
+.p-hero h1{ margin-bottom:0 }
+.p-hero h1 em{ font-style:normal; color:inherit; box-shadow:inset 0 -.16em 0 color-mix(in srgb, var(--do-sky-blue) 60%, transparent); -webkit-box-decoration-break:clone; box-decoration-break:clone }
+.p-hero .t-lede{ margin:24px 0 0; color:var(--do-text-primary) }
+.p-hero .t-body{ margin:16px 0 0; max-width:60ch }
+.t-body{ font-size:var(--do-text-base); line-height:1.6; color:var(--do-text-secondary) }
+.p-hero .btn-row{ margin:30px 0 0; align-items:center; gap:14px 28px }
+.sec-lede{ margin:20px 0 0; font-size:var(--do-text-lg); line-height:1.55; max-width:44ch }
+
+/* symptoms: a ledger, not a grid of cards */
+.sym-sec{ padding:88px 0 }
+.sym-grid{ display:grid; grid-template-columns:minmax(0,5fr) minmax(0,7fr); gap:64px; align-items:start }
+.sym-head{ position:sticky; top:104px }
+.sym-head h2{ max-width:16ch } .sym-head .sec-lede{ color:color-mix(in srgb, var(--do-off-white) 80%, transparent) }
+.sym{ list-style:none; margin:0; padding:0; counter-reset:s }
+.sym li{ display:grid; grid-template-columns:56px minmax(0,1fr); gap:20px; align-items:baseline; padding:22px 0; border-top:1px solid var(--do-border-dark) }
+.sym li:last-child{ border-bottom:1px solid var(--do-border-dark) }
+.sym .n{ font-family:var(--do-font-mono); font-size:var(--do-text-xs); letter-spacing:var(--do-tracking-wider); color:var(--do-sky-blue) }
+.sym p{ margin:0; font-size:var(--do-text-lg); line-height:1.45; color:var(--do-off-white); max-width:52ch }
+@media(max-width:900px){ .sym-grid{ grid-template-columns:1fr; gap:30px } .sym-head{ position:static } .sym li{ grid-template-columns:40px 1fr; gap:14px; padding:18px 0 } }
+
+/* causes: icon cards, two up */
+.areas.areas--2{ grid-template-columns:repeat(2,1fr) }
+@media(max-width:700px){ .areas.areas--2{ grid-template-columns:1fr } }
+.area h3{ margin-top:2px }
+
+/* plate section with its own heading */
+.plate-sec .plate-head{ display:grid; grid-template-columns:minmax(0,7fr) minmax(0,5fr); gap:48px; align-items:end; margin-bottom:8px }
+.plate-sec .plate-head h2{ max-width:20ch } .plate-sec .plate-head .lede{ margin:0 }
+@media(max-width:900px){ .plate-sec .plate-head{ grid-template-columns:1fr; gap:16px; align-items:start } }
+.plate-sec .sw{ margin-top:36px }
+
+/* how I help: lede on the left, the offer as a ticked list on the right */
+.how-grid{ display:grid; grid-template-columns:minmax(0,6fr) minmax(0,5fr); gap:64px; align-items:start }
+@media(max-width:900px){ .how-grid{ grid-template-columns:1fr; gap:32px } }
+.how-grid h2{ max-width:16ch } .how-grid .t-lede{ margin:22px 0 0; max-width:54ch }
+.how-grid .t-body{ margin:16px 0 0; max-width:54ch }
+.offer{ background:var(--do-surface-raised); border:1px solid var(--do-border-subtle); border-radius:var(--do-radius-2xl); padding:30px 30px 28px }
+.offer h3{ margin:0 0 6px; font-size:var(--do-text-xl); line-height:1.25 }
+.offer .t-card{ max-width:44ch }
+.ticks{ list-style:none; margin:20px 0 26px; padding:0; border-top:1px solid var(--do-border-subtle) }
+.ticks li{ display:flex; gap:12px; align-items:flex-start; padding:13px 2px; border-bottom:1px solid var(--do-border-subtle); font-size:var(--do-text-base); line-height:1.5; color:var(--do-text-primary) }
+.ticks .ic{ color:var(--do-prussian-blue); margin-top:3px }
+.offer .btn{ width:100% } .offer .alt{ display:block; margin-top:14px; font-size:var(--do-text-sm); color:var(--do-text-secondary); text-decoration:underline; text-underline-offset:4px; text-decoration-color:var(--do-cerulean); text-decoration-thickness:2px }
+.offer .alt:hover{ text-decoration-color:var(--do-prussian-blue) }
+.how-r .t-lede{ margin:0 0 18px; max-width:54ch } .how-r .t-body{ margin:0; max-width:54ch }
+.answer-b{ font-weight:var(--do-weight-bold) }
+
+/* proof: figure panel */
+.proof .t-lede{ margin:18px 0 0 }
+
+/* ── case study: the figures drawn as a feed panel ──────────────────────── */
+.feed{ background:var(--do-surface-dark); color:var(--do-text-on-dark); border-radius:var(--do-radius-2xl);
+  padding:32px 32px 30px; box-shadow:var(--do-shadow-xl);
+  background-image:radial-gradient(70% 80% at 92% 0%, color-mix(in srgb, var(--do-cerulean) 20%, transparent), transparent 70%) }
+.feed-k{ color:var(--do-text-muted-on-dark) }
+.feed-big{ margin:14px 0 22px; font-size:var(--do-text-base); color:color-mix(in srgb, var(--do-off-white) 86%, transparent) }
+.feed-big b{ display:block; font-family:var(--do-font-heading); font-weight:var(--do-weight-extrabold);
+  font-size:clamp(2.4rem,4.4vw,3.4rem); line-height:1; letter-spacing:-0.02em; color:var(--do-off-white);
+  font-variant-numeric:tabular-nums; margin-bottom:8px }
+.meter{ height:18px; border-radius:var(--do-radius-full); overflow:hidden;
+  background:color-mix(in srgb, var(--do-sky-blue) 16%, transparent) }
+.meter span{ display:block; height:100%; border-radius:inherit; background:var(--do-sky-blue) }
+.meter-legend{ display:flex; justify-content:space-between; gap:20px; align-items:baseline; margin-top:12px;
+  font-size:var(--do-text-sm); line-height:1.55; color:color-mix(in srgb, var(--do-off-white) 80%, transparent) }
+.meter-legend b{ color:var(--do-off-white); font-variant-numeric:tabular-nums }
+.meter-legend .pct{ font-family:var(--do-font-heading); font-weight:var(--do-weight-bold);
+  font-size:var(--do-text-2xl); color:var(--do-amber); font-variant-numeric:tabular-nums }
+.feed-rule{ height:1px; margin:24px 0 20px; background:color-mix(in srgb, var(--do-sky-blue) 22%, transparent) }
+.sup{ display:grid; grid-template-columns:auto 1fr; gap:22px; align-items:center }
+.sup p{ margin:0; font-size:var(--do-text-sm); color:color-mix(in srgb, var(--do-off-white) 80%, transparent) }
+.sup p b{ display:block; font-family:var(--do-font-heading); font-size:var(--do-text-3xl); line-height:1;
+  color:var(--do-off-white); margin-bottom:6px }
+.sup p span{ color:var(--do-text-muted-on-dark) }
+.dots{ display:grid; grid-template-columns:repeat(15,8px); gap:5px }
+.dots i{ width:8px; height:8px; border-radius:50%; background:color-mix(in srgb, var(--do-sky-blue) 20%, transparent) }
+.dots i.on{ background:var(--do-sky-blue) }
+@media(max-width:480px){ .sup{ grid-template-columns:1fr } }
+
+/* ── case study: proof with real figures ───────────────────────────────── */
+.proof{ display:grid; grid-template-columns:5fr 7fr; gap:56px; align-items:center }
+.proof .note{ font-size:var(--do-text-sm); line-height:1.55; color:var(--do-text-secondary);
+  border-top:1px solid var(--do-border-subtle); padding-top:14px; margin:18px 0 0; max-width:52ch }
+.text-link{ display:inline-flex; align-items:center; gap:8px; margin-top:24px;
+  font-weight:var(--do-weight-semibold); color:var(--do-text-primary);
+  text-decoration:underline; text-decoration-color:var(--do-cerulean);
+  text-decoration-thickness:2px; text-underline-offset:5px; border-radius:var(--do-radius-sm) }
+.text-link:hover{ text-decoration-color:var(--do-prussian-blue) }
+.text-link .ic{ color:var(--do-cerulean) }
+@media(max-width:960px){ .proof{ grid-template-columns:1fr; gap:32px } }
+
+/* ── keep reading: four equal columns ──────────────────────────────────── */
+.next{ padding:72px 0 }
+.next-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:20px; margin-top:32px; align-items:stretch }
+.next-card{ background:var(--do-surface-raised); border:1px solid var(--do-border-subtle);
+  border-radius:var(--do-radius-2xl); padding:24px; display:flex; flex-direction:column }
+.next-card h3{ font-size:var(--do-text-lg); line-height:1.3; margin:8px 0 14px }
+.next-card .t-meta{ color:var(--do-text-secondary) }
+.next-card ul{ list-style:none; margin:0; padding:0; display:grid; gap:4px }
+.next-card li a{ display:flex; gap:10px; align-items:flex-start; padding:7px 8px; margin:0 -8px;
+  border-radius:var(--do-radius-md); text-decoration:none; color:var(--do-text-primary) }
+.next-card li a:hover{ background:color-mix(in srgb, var(--do-cerulean) 10%, transparent) }
+.next-card li a .ic{ color:var(--do-cerulean); margin-top:2px }
+.next-card--service{ background:var(--do-surface-dark); border-color:var(--do-surface-dark); color:var(--do-text-on-dark) }
+.next-card--service .t-meta{ color:var(--do-text-muted-on-dark) }
+.next-card--service h3{ color:var(--do-text-on-dark) }
+.next-card--service .t-card{ color:color-mix(in srgb, var(--do-off-white) 80%, transparent); margin-bottom:22px }
+.next-card--service .go{ margin-top:auto; display:inline-flex; align-items:center; gap:8px;
+  color:var(--do-off-white); font-weight:var(--do-weight-semibold); text-decoration:underline;
+  text-decoration-color:var(--do-sky-blue); text-decoration-thickness:2px; text-underline-offset:5px;
+  border-radius:var(--do-radius-sm) }
+.next-card--service .go:hover{ text-decoration-color:var(--do-off-white) }
+.next-card--service .go .ic{ color:var(--do-sky-blue) }
+.sub{ display:block; font-size:var(--do-text-xs); color:var(--do-text-secondary); margin-top:2px }
+.sub{ display:block; font-size:var(--do-text-xs); color:var(--do-text-secondary); margin-top:2px }
+
+/* closer */
+.cta-close{ padding:88px 0 }
+.cta-close .closer-grid h2{ max-width:18ch }
+
+/* plate section as a split when the piece is a 560-wide sx figure */
+.plate-split{ display:grid; grid-template-columns:minmax(0,5fr) minmax(0,7fr); gap:56px; align-items:center }
+.plate-split h2{ max-width:16ch } .plate-split .lede{ margin:20px 0 0 }
+.plate-split .text-link{ color:var(--do-off-white); text-decoration-color:var(--do-sky-blue) } .plate-split .text-link .ic{ color:var(--do-sky-blue) }
+.plate-split .d17{ width:100%; max-width:640px; margin-left:auto }
+@media(max-width:960px){ .plate-split{ grid-template-columns:1fr; gap:32px } .plate-split .d17{ margin-left:0 } }
+.p-hero .hero-head h1{ max-width:14ch }
+.p-hero .hero-head .t-lede{ margin:0 }
+.p-hero .hero-head .t-body{ margin:14px 0 0 }
+.p-hero .hero-head .btn-row{ margin-top:26px; align-items:center; gap:14px 28px }
+.a967{ --u:calc(100cqw / 1600); margin-top:44px } /* v6's .sw rule sets --u on a 1152 grid; the poster is drawn on 1600 */
+.a967 svg.route{ background:none; border:0; border-radius:0; padding:0; margin:0; display:block } /* v6's .route card rule would otherwise paint the poster's svg white */
+.ba-grid{ display:grid; grid-template-columns:1fr 1fr; gap:48px; margin-top:40px }
+.ba-grid .sym p{ font-size:var(--do-text-base) } .ba-grid .sym p b{ color:var(--do-amber) }
+@media(max-width:900px){ .ba-grid{ grid-template-columns:1fr; gap:24px } }
+.faq{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:0 56px; margin-top:32px }
+.faq-item{ padding:22px 0; border-top:1px solid var(--do-border-subtle) }
+.faq-item h3{ margin:0 0 8px; font-size:var(--do-text-lg); line-height:1.3; color:var(--do-text-primary) }
+.faq-item .t-card{ font-size:var(--do-text-base); max-width:58ch }
+@media(max-width:760px){ .faq{ grid-template-columns:1fr } }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <!-- Lucide geometry, lucide-static v1.54.0 (ISC), embedded path-for-path -->
+  <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+</svg>
+
+<header class="site-head site-head--paths" data-od-id="site-head">
+  <div class="wrap">
+    <a class="logo" href="/">Decoded<span>Ops</span></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">
+      <svg class="bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      <svg class="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <nav class="site-nav" id="site-nav" aria-label="Primary">
+      <div class="path-group">
+        <button class="path-trigger" type="button" aria-expanded="false" aria-controls="path-a1">
+          <span class="path-label">Something's wrong</span><span class="path-sub">Start with a diagnostic</span>
+          <svg class="path-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="path-menu" id="path-a1">
+          <a href="/clarity">Discovery Day<small>A full day on site, a written plan</small></a>
+          <a href="/locations/tech-audit">Technology audit<small>Focused on one part of the business</small></a>
+        </div>
+      </div>
+      <div class="path-group">
+        <button class="path-trigger" type="button" aria-expanded="false" aria-controls="path-a2">
+          <span class="path-label">Buy vs build</span><span class="path-sub">Systems &amp; apps</span>
+          <svg class="path-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="path-menu" id="path-a2">
+          <a href="/systems">Systems<small>The buy-vs-build question</small></a>
+          <a href="/apps/works">Works<small>Supplier feeds into one catalogue</small></a>
+          <a href="/apps/proof">Proof<small>Versions, approvals, delivery</small></a>
+        </div>
+      </div>
+      <div class="path-group">
+        <button class="path-trigger" type="button" aria-expanded="false" aria-controls="path-a3">
+          <span class="path-label">Ongoing leadership</span><span class="path-sub">A standing CTO</span>
+          <svg class="path-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="path-menu" id="path-a3">
+          <a href="/retained">Retained<small>Advisory, embedded or programme</small></a>
+          <a href="/fractional-cto">Fractional CTO<small>Ongoing technology leadership</small></a>
+        </div>
+      </div>
+      <a class="nav-flat" href="/work">Proof</a>
+      <a class="nav-flat" href="/pricing">Pricing</a>
+      <a class="btn btn--primary nav-cta" href="/contact">Book a free 60-min call</a>
+    </nav>
+  </div>
+</header>
+
+<section class="g-off p-hero" data-od-id="hero">
+  <div class="wrap">
+    <div class="hero-head">
+      <div>
+        <span class="eyebrow">The new system rollout went wrong</span>
+        <h1 data-od-id="hero-h1">What happens when <em>the audit doesn&rsquo;t come first.</em></h1>
+      </div>
+      <div>
+        <p class="t-lede">ERP implementation failure is common when projects skip an independent audit. They routinely run over budget and late, because nobody looked at the business before picking the software.</p>
+        <p class="t-body">The fix isn’t a bigger budget. It’s doing the checking first, before any platform gets chosen. And where the answer turns out to be software I build, the same rule applies: scope in writing before anything is signed.</p>
+        <div class="btn-row">
+          <a class="btn btn--primary" href="/contact" data-od-id="hero-cta">Book a free discovery call</a>
+          <a class="go" href="/clarity">See how a Clarity Audit works <svg class="ic ic-16" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+        </div>
+      </div>
+    </div>
+<figure class="d17 sw a967" data-od-id="hero-visual" data-motion data-no="DO-ART-967" data-rev="01" data-tx="poster"
+aria-label="Journey poster DO-ART-967. One decision, choosing an ERP, and two routes from it. The vendor-scoped route: the demo, sold on what the software does well; the contract, scoped by the vendor; go-live, where the workarounds begin; ending over budget and late, with the platform blamed for a data problem. The audit-first route: the audit, looking at the business first; the data, fixed before anything moved; the platform, kept and working; ending at Hanicks with 154,518 products matched to a supplier automatically out of 317,812 brought in.">
+<div class="gridl" aria-hidden="true"></div>
+<svg class="route" viewBox="0 0 1600 760" preserveAspectRatio="none" aria-hidden="true">
+<path d="M300 390 C390 390 380 210 480 210 H1250" fill="none" stroke="#8ECAE6" stroke-width="6" stroke-dasharray="14 12" stroke-linecap="round" class="m-draw" pathLength="1" style="animation-delay:.2s"/>
+<path d="M300 390 C390 390 380 560 480 560 H1250" fill="none" stroke="#FFB703" stroke-width="10" stroke-linecap="round" class="m-draw" pathLength="1" style="animation-delay:.9s"/>
+<circle cx="300" cy="390" r="16" fill="#F8F9FA" stroke="#023047" stroke-width="6"/>
+<g fill="#023047" stroke="#8ECAE6" stroke-width="4"><circle cx="580" cy="210" r="12"/><circle cx="830" cy="210" r="12"/><circle cx="1080" cy="210" r="12"/></g>
+<g fill="#F8F9FA" stroke="#023047" stroke-width="5"><circle cx="580" cy="560" r="14"/><circle cx="830" cy="560" r="14"/><circle cx="1080" cy="560" r="14"/></g>
+</svg>
+<p class="eb d17-mono">The pattern · same business, same platform</p>
+<div class="st st--start m-fade" style="left:calc(70 * var(--u));top:calc(322 * var(--u))"><span class="n">01 · The decision</span><h4>Choosing an ERP</h4><p>and who scopes it first</p></div>
+<div class="lane lane--v">
+<div class="st st--v m-fade" style="left:calc(556 * var(--u));top:calc(240 * var(--u))"><span class="n">02 · The demo</span><h4>Sold on its strengths</h4><p>what it does well, moved past what it doesn't</p></div>
+<div class="st st--v m-fade" style="left:calc(806 * var(--u));top:calc(240 * var(--u))"><span class="n">03 · The contract</span><h4>Scoped by the vendor</h4><p>before anyone looked at the business</p></div>
+<div class="st st--v m-fade" style="left:calc(1056 * var(--u));top:calc(240 * var(--u))"><span class="n">04 · Go-live</span><h4>Workarounds begin</h4><p>the gaps turn up on the floor</p></div>
+<div class="res res--v m-fade" style="left:calc(1280 * var(--u));top:calc(120 * var(--u))"><span class="n">Vendor-scoped</span><b>Over budget, late</b><p>and the platform takes the blame for a data problem</p></div>
+</div>
+<div class="lane lane--a">
+<div class="st st--a m-fade" style="left:calc(556 * var(--u));top:calc(590 * var(--u))"><span class="n">02 · The audit</span><h4>The business first</h4><p>every workflow followed before any software</p></div>
+<div class="st st--a m-fade" style="left:calc(806 * var(--u));top:calc(590 * var(--u))"><span class="n">03 · The data</span><h4>Fixed first</h4><p>supplier feeds matched, before anything moved</p></div>
+<div class="st st--a m-fade" style="left:calc(1056 * var(--u));top:calc(590 * var(--u))"><span class="n">04 · The platform</span><h4>Kept, and working</h4><p>the one they had already paid for</p></div>
+<div class="res res--a m-pop" style="left:calc(1280 * var(--u));top:calc(470 * var(--u));animation-delay:2.2s"><span class="n">Audit first · Hanicks</span><b>154,518 matched</b><p>to a supplier automatically, out of 317,812 products brought in</p></div>
+</div>
+<div class="prints" aria-hidden="true">
+<div class="print" style="left:calc(50 * var(--u));top:calc(478 * var(--u));width:calc(165 * var(--u));height:calc(170 * var(--u));transform:rotate(-4deg)">
+<img src="/images/site/evidence/card-warehouse-floor-f1d62c.webp" alt="" style="object-position:50% 50%"><div class="tint"></div><span>The floor it has to serve</span></div>
+<div class="print" style="left:calc(226 * var(--u));top:calc(505 * var(--u));width:calc(150 * var(--u));height:calc(160 * var(--u));transform:rotate(3deg)">
+<img src="/images/site/evidence/card-embroidery-heads-50b561.webp" alt="" style="object-position:60% 50%"><div class="tint"></div><span>Decoration, the part demos skip</span></div>
+</div>
+<span class="d17-mark d17-mark--abs">decodedops.co.uk · DO-ART-967 · Rev 01</span>
+</figure>
+  </div>
+</section>
+
+<section class="g-navy sym-sec" data-od-id="before-after">
+  <div class="wrap">
+    <div class="route-head">
+      <div><span class="eyebrow">Case study 01 &middot; real production numbers</span><h2 data-od-id="before-after-h2">The platform stayed. The layer around it changed.</h2></div>
+      <p class="lede">Nobody ripped out an ERP here. The diagnostic came first, the data got fixed, and the platform they’d already paid for started working.</p>
+    </div>
+    <div class="ba-grid" data-od-id="before-after-ledgers">
+    <div data-od-id="ledger-before"><span class="t-meta" style="color:var(--do-sky-blue)">Before</span><ol class="sym" style="margin-top:14px">
+      <li><span class="n">B1</span><p>The <b>317,812</b> products scattered across supplier feeds</p></li>
+      <li><span class="n">B2</span><p>No consistent SKU to match any of them against</p></li>
+      <li><span class="n">B3</span><p>No reliable stock picture for the warehouse or the website</p></li>
+      <li><span class="n">B4</span><p>A platform taking the blame for a data problem</p></li>
+    </ol></div>
+    <div data-od-id="ledger-after"><span class="t-meta" style="color:var(--do-sky-blue)">After</span><ol class="sym" style="margin-top:14px">
+      <li><span class="n">A1</span><p><b>154,518</b> matched to a supplier automatically</p></li>
+      <li><span class="n">A2</span><p><b>40</b> active suppliers feeding in, without anyone re-keying a row</p></li>
+      <li><span class="n">A3</span><p><b>3,844</b> Amazon listings re-optimised ahead of a title-format deadline</p></li>
+      <li><span class="n">A4</span><p>The platform stayed. The layer around it changed.</p></li>
+    </ol></div>
+    </div>
+    <p class="route-cap" data-new-copy><svg class="ic ic-16" aria-hidden="true"><use href="#i-check"/></svg>Same business, same platform. The only thing that moved was the order of the work.</p>
+  </div>
+</section>
+
+<section class="g-white" data-od-id="photo-band">
+  <div class="wrap">
+    <div class="ev-head">
+      <div><span class="eyebrow" data-new-copy>Where it goes wrong</span><h2 data-od-id="photo-band-h2" data-new-copy>The gaps turn up on the floor, not in the demo.</h2></div>
+      <p class="lede" data-new-copy>Three of my own photographs from client visits this year. Goods in, the warehouse floor and the machine heads are where a vendor-scoped implementation meets the data it never checked.</p>
+    </div>
+    <div class="ev-grid" data-od-id="photo-band-photos">
+      <figure class="d17 ev" data-od-id="photo-l" data-no="DO-ART-979l" data-rev="01" data-tx="photo">
+        <div class="d17-ph"><img src="/images/site/evidence/plate-pallets-12eebd.webp" width="1600" height="900" loading="lazy" alt="Pallets of inbound stock on a client's goods-in floor."></div>
+        <div class="d17-scan" aria-hidden="true"></div>
+        <p class="k d17-mono">Goods in &middot; June 2026</p>
+        <p class="line">Inbound, before it is counted</p>
+        <span class="d17-mark">decodedops.co.uk &middot; DO-ART-979l &middot; Rev 01</span>
+      </figure>
+      <figure class="d17 ev" data-od-id="photo-h" data-no="DO-ART-979h" data-rev="01" data-tx="photo">
+        <div class="d17-ph"><img src="/images/site/evidence/card-warehouse-floor-f1d62c.webp" width="1600" height="900" loading="lazy" alt="A warehouse floor at a client site."></div>
+        <div class="d17-scan" aria-hidden="true"></div>
+        <p class="k d17-mono">The floor &middot; 2026</p>
+        <p class="line">The warehouse floor</p>
+        <span class="d17-mark">decodedops.co.uk &middot; DO-ART-979h &middot; Rev 01</span>
+      </figure>
+      <figure class="d17 ev" data-od-id="photo-i" data-no="DO-ART-979i" data-rev="01" data-tx="photo">
+        <div class="d17-ph"><img src="/images/site/evidence/card-embroidery-heads-50b561.webp" width="1600" height="900" loading="lazy" alt="Embroidery machine heads mid-run at a client site."></div>
+        <div class="d17-scan" aria-hidden="true"></div>
+        <p class="k d17-mono">The floor &middot; 2026</p>
+        <p class="line">Machine heads, mid-run</p>
+        <span class="d17-mark">decodedops.co.uk &middot; DO-ART-979i &middot; Rev 01</span>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="g-tint" data-od-id="faq">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Why it happens</span>
+      <h2 data-od-id="faq-h2" data-new-copy>What people ask after a rollout goes wrong.</h2>
+      <p class="sec-lede" data-new-copy>Six questions, answered the way they are answered on the first call. They are the same six that sit behind this page for search.</p>
+    </div>
+    <div class="faq" data-od-id="faq-list">
+      <div class="faq-item" data-od-id="faq-1"><h3>What happens when the vendor scopes their own ERP implementation?</h3><p class="t-card">When the vendor scopes their own implementation, they scope for the software, not for your business. The gaps only become visible after go-live.</p></div>
+      <div class="faq-item" data-od-id="faq-2"><h3>Why do ERP implementations fail without independent oversight?</h3><p class="t-card">Without someone in your corner who understands both the sector and the software, there is no one to hold the vendor to account when they miss requirements or cut corners.</p></div>
+      <div class="faq-item" data-od-id="faq-3"><h3>How does data quality affect ERP implementation success?</h3><p class="t-card">Most implementation failures trace back to data quality. Clean data migration is unglamorous work that vendors underprice and businesses underestimate.</p></div>
+      <div class="faq-item" data-od-id="faq-4"><h3>Can the wrong ERP software cause implementation failure?</h3><p class="t-card">Sometimes the implementation fails because the software was the wrong choice from the start, selected on demo, not on fit.</p></div>
+      <div class="faq-item" data-od-id="faq-5"><h3>What are the most common causes of ERP implementation failure in decorated goods businesses?</h3><p class="t-card">The five most common causes are: no independent vendor brief written before vendor selection; the implementation scoped by the vendor rather than the business; data quality problems that were underestimated; no one independently accountable for outcomes; and wrong ERP software selected based on a demo in a different sector.</p></div>
+      <div class="faq-item" data-od-id="faq-6"><h3>My ERP implementation went over budget, what should I do?</h3><p class="t-card">An ERP implementation cost overrun is almost always a scoping failure. The first step is an independent review of what the original specification covered versus what the vendor has delivered, or is claiming to have delivered. That assessment tells you whether the overrun is legitimate, whether the vendor is at fault, and what the realistic options are.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="g-navy plate-sec" data-od-id="plate">
+  <div class="wrap plate-split">
+    <div>
+      <span class="eyebrow" data-new-copy>The brief</span>
+      <h2 data-od-id="plate-h2" data-new-copy>Write the brief before any demo.</h2>
+      <p class="lede" data-new-copy>The ERP selection playbook's vendor brief, scored like for like, as an example. Every candidate is marked against how you actually work, mine included. An implementation scoped from a brief like this does not fail for the reasons above.</p>
+      <a class="text-link" href="/resources/erp-selection-playbook" data-new-copy>The ERP selection playbook <svg class="ic ic-16" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+    </div>
+    <div>
+<figure class="d17 sx sx--solo a991" data-od-id="plate-brief" data-motion data-no="DO-ART-991" data-rev="01" data-tx="photo"
+aria-label="Artwork DO-ART-991. The ERP selection playbook over a graded photograph of folded workwear, and beside it the vendor brief, written before any demo, scoring three candidates like-for-like as an example: candidate A, candidate B, and ours, scored the same way. The requirements are the page's own: mixed decoration methods, the artwork approval loop, a B2B portal, blank stock and work in progress, supplier lead times, and a data migration plan. Write the brief first; every demo is scored against it, ours included.">
+<div class="d17-ph"><img src="/images/d17/cat-workwear.webp" alt="" width="900" height="596"></div>
+<div class="d17-scan" aria-hidden="true"></div>
+<div class="sx-top d17-mono" aria-hidden="true"><span>ERP selection</span><span>Brief before demo</span></div>
+<div class="stage" aria-hidden="true">
+<div class="d17-doc cov-dark doc-ec m-drop" style="animation-delay:.05s">
+<span class="ref">Decoded Ops · playbook</span>
+<h4>ERP selection for decorated goods</h4>
+<p class="sub">Audit · brief · vendors · compare · negotiate</p>
+<div class="lines"><i style="width:84%"></i><i style="width:70%"></i><i style="width:52%"></i></div>
+</div>
+<div class="d17-doc doc-vb m-drop" style="animation-delay:.35s">
+<span class="tab">BRIEF</span>
+<span class="ref">Vendor brief · scored like-for-like · example</span>
+<h4>Does it cover how we work?</h4>
+<table class="vb">
+<thead><tr><th>Requirement</th><th>A</th><th>B</th><th class="us">Ours</th></tr></thead>
+<tbody>
+  <tr><td>Mixed decoration methods</td><td><i class="n"></i></td><td><i class="y"></i></td><td><i class="y"></i></td></tr>
+  <tr><td>Artwork approval loop</td><td><i class="n"></i></td><td><i class="p"></i></td><td><i class="y"></i></td></tr>
+  <tr><td>B2B portal</td><td><i class="y"></i></td><td><i class="n"></i></td><td><i class="p"></i></td></tr>
+  <tr><td>Blank stock and WIP</td><td><i class="p"></i></td><td><i class="p"></i></td><td><i class="y"></i></td></tr>
+  <tr><td>Supplier lead times</td><td><i class="y"></i></td><td><i class="n"></i></td><td><i class="y"></i></td></tr>
+  <tr><td>Data migration plan</td><td><i class="p"></i></td><td><i class="y"></i></td><td><i class="p"></i></td></tr>
+</tbody>
+</table>
+<p class="key"><span><i class="y"></i>Covers</span><span><i class="p"></i>Partly</span><span><i class="n"></i>Gap</span></p>
+</div>
+</div>
+<div class="sx-foot">
+<div class="sx-bar" aria-hidden="true"></div>
+<p class="sx-say">Brief first. <em>Every demo scored against it, ours too.</em></p>
+<span class="d17-mark">decodedops.co.uk · DO-ART-991 · Rev 01</span>
+</div>
+</figure>
+    </div>
+  </div>
+</section>
+
+<section class="g-white" data-od-id="proof">
+  <div class="wrap proof">
+    <div>
+      <span class="eyebrow" data-new-copy>What one catalogue looks like</span>
+      <h2 data-od-id="proof-h2" data-new-copy>The diagnostic came first. The platform they had stayed.</h2>
+      <p class="t-lede" data-new-copy>One import pipeline, run to a schedule, matching supplier feeds to a catalogue that already existed. The platform was not replaced; the data around it was fixed. Not projected and not modelled. This is what actually happened.</p>
+      <p class="note">This client sells heating spares, not decorated goods. The problem underneath is the same one: many suppliers and systems, one set of data that has to agree.</p>
+      <a class="text-link" href="/case-studies/case-study-01" data-od-id="proof-link">Read the case study <svg class="ic ic-16" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+    </div>
+    <div class="feed" data-od-id="case-study-figures" role="img" aria-label="317,812 products came in from supplier feeds. 154,518 of them, 49%, were matched to a supplier automatically. 40 of 89 suppliers on file are actively feeding in.">
+      <span class="t-meta feed-k">Supplier feeds into one catalogue</span>
+      <p class="feed-big"><b>317,812</b> products brought in from supplier feeds</p>
+      <div class="meter" aria-hidden="true"><span style="width:48.6%"></span></div>
+      <div class="meter-legend" aria-hidden="true"><span><b>154,518</b> matched to a supplier automatically, before anyone had to touch them</span><span class="pct">49%</span></div>
+      <div class="feed-rule"></div>
+      <div class="sup"><div class="dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><p><b>40</b> active suppliers feeding in <span>(89 on file)</span></p></div>
+    </div>
+  </div>
+</section>
+
+<section class="g-off" data-od-id="how-i-help">
+  <div class="wrap how-grid">
+    <div>
+      <span class="eyebrow">How I help</span>
+      <h2 data-od-id="how-h2">Different business, ahead of the decision rather than after it.</h2>
+      <p class="t-lede">Same pattern, different business: the diagnostic work came ahead of their own ERP decision, rather than after an ERP implementation failure. That’s the whole difference, and it’s the cheapest part of the project.</p>
+      <p class="t-body">Case study 02: <b>17</b> supplier feeds automated from feed to ERP, and a projected saving of <b>20&ndash;40</b> hours a week, with the ERP decision still to come and a brief to make it against.</p>
+      <p class="t-body">If you’re mid-way through an implementation that’s slipping, that’s exactly the conversation to have now rather than after go-live.</p>
+    </div>
+    <aside class="offer" data-od-id="offer">
+      <h3>The first call is free.</h3>
+      <p class="t-card">60 minutes. No sales pitch, just a direct conversation about your situation.</p>
+      <ul class="ticks">
+        <li><svg class="ic ic-20" aria-hidden="true"><use href="#i-check"/></svg><span>One day on site</span></li>
+        <li><svg class="ic ic-20" aria-hidden="true"><use href="#i-check"/></svg><span>Written report in 5 days</span></li>
+        <li><svg class="ic ic-20" aria-hidden="true"><use href="#i-check"/></svg><span>3&times; Clarity Guarantee</span></li>
+        <li><svg class="ic ic-20" aria-hidden="true"><use href="#i-check"/></svg><span>No vendor agenda</span></li>
+      </ul>
+      <a class="btn btn--primary" href="/contact" data-od-id="offer-cta">Book a free call</a>
+      <a class="alt" href="https://bookings.cloud.microsoft/bookwithme/user/cd8e6071c12d43198fdd3d4b5a1f0c6e%40decodedops.co.uk/meetingtype/P0WZOGSVokOqOnMRxyU1eg2?anonymous&amp;ismsaljsauthenabled" data-od-id="offer-alt">Or book a call directly</a>
+    </aside>
+  </div>
+</section>
+
+<section class="g-tint next" data-od-id="keep-reading">
+  <div class="wrap">
+    <span class="eyebrow">Keep reading</span>
+    <div class="next-grid">
+      <div class="next-card next-card--service" data-od-id="next-service">
+        <span class="t-meta">Get this fixed</span>
+        <h3>Clarity Audit</h3>
+        <p class="t-card">The checking that should have come first: a day on site, every workflow followed, the data looked at before any platform is chosen or blamed.</p>
+        <a class="go" href="/clarity">See how it works <svg class="ic ic-16" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+      </div>
+      <div class="next-card" data-od-id="next-problems"><span class="t-meta">Related problems</span><h3>You might also have</h3><ul class="t-card"><li><a href="/problems/wrong-erp-software"><svg class="ic ic-16" aria-hidden="true"><use href="#i-arrow-right"/></svg><span>We’re on the wrong software</span></a></li><li><a href="/problems/data-scattered"><svg class="ic ic-16" aria-hidden="true"><use href="#i-arrow-right"/></svg><span>The numbers never agree</span></a></li><li><a href="/problems/buy-vs-build"><svg class="ic ic-16" aria-hidden="true"><use href="#i-arrow-right"/></svg><span>Buy it or build it?</span></a></li></ul></div>
+      <div class="next-card" data-od-id="next-reading"><span class="t-meta">Further reading</span><h3>From the blog and the toolkit</h3><ul class="t-card"><li><a href="/resources/erp-selection-playbook"><svg class="ic ic-16" aria-hidden="true"><use href="#i-arrow-right"/></svg><span>The ERP selection playbook</span></a></li><li><a href="/blog/the-real-cost-of-a-failed-erp-project"><svg class="ic ic-16" aria-hidden="true"><use href="#i-arrow-right"/></svg><span>The real cost of a failed ERP project</span></a></li><li><a href="/blog/5-questions-vendors-wont-like"><svg class="ic ic-16" aria-hidden="true"><use href="#i-arrow-right"/></svg><span>5 questions ERP vendors won’t like</span></a></li></ul></div>
+      <div class="next-card" data-od-id="next-sectors"><span class="t-meta">Sectors where this shows up</span><h3>Common in</h3><ul class="t-card"><li><a href="/sectors/garment-decoration"><svg class="ic ic-16" aria-hidden="true"><use href="#i-arrow-right"/></svg><span>Garment decoration</span></a></li><li><a href="/sectors/workwear"><svg class="ic ic-16" aria-hidden="true"><use href="#i-arrow-right"/></svg><span>Workwear</span></a></li><li><a href="/sectors/print-promotional"><svg class="ic ic-16" aria-hidden="true"><use href="#i-arrow-right"/></svg><span>Print &amp;amp; promotional</span></a></li></ul></div>
+    </div>
+  </div>
+</section>
+<footer data-od-id="footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="logo" href="/">Decoded<span>Ops</span></a>
+        <p class="blurb">Independent technology and operations consultancy for the decorated-goods sector. No vendor agenda.</p>
+        <div class="foot-contact">
+          <a href="mailto:craig@decodedops.co.uk">craig@decodedops.co.uk</a>
+          <a href="tel:+447735620603">07735 620603</a>
+          <a class="btn btn--outline foot-cta" href="/contact">Book a free 60-min call</a>
+        </div>
+        <p class="foot-loc">Based in Worthing, West Sussex &middot; working across the UK</p>
+      </div>
+      <div><h4>Diagnose</h4><a href="/clarity">Discovery Day</a><a href="/locations/tech-audit">Technology audit</a></div>
+      <div><h4>Buy vs build</h4><a href="/systems">Systems</a><a href="/apps/works">Works</a><a href="/apps/proof">Proof</a></div>
+      <div><h4>Ongoing leadership</h4><a href="/retained">Retained</a><a href="/fractional-cto">Fractional CTO</a></div>
+      <div><h4>Company</h4><a href="/about">About</a><a href="/work">Case studies</a><a href="/pricing">Pricing</a><a href="/contact">Contact</a><a href="/privacy">Privacy</a><a href="/clients">Client login</a></div>
+    </div>
+    <div class="foot-find">
+      <div class="foot-find-row">
+        <span class="foot-find-lbl">Sectors</span>
+        <span class="foot-chips">
+          <a href="/sectors/workwear">Workwear</a><a href="/sectors/teamwear-clubwear">Teamwear</a><a href="/sectors/schoolwear">Schoolwear</a>
+          <a href="/sectors/promotional-merchandise">Promo</a><a href="/sectors/print-promotional">Print</a><a href="/sectors/signs-graphics">Signage</a>
+          <a class="foot-all" href="/sectors">All sectors <svg class="ic ic-16" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+        </span>
+      </div>
+      <div class="foot-find-row">
+        <span class="foot-find-lbl">Problems</span>
+        <span class="foot-chips">
+          <a href="/problems/erp-implementation-failure">ERP failure</a><a href="/problems/data-scattered">Data scattered</a><a href="/problems/buy-vs-build">Buy vs build</a>
+          <a href="/problems/no-ops-owner">No ops owner</a><a href="/problems/ai-paralysis">AI paralysis</a>
+          <a class="foot-all" href="/problems">All problems <svg class="ic ic-16" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+        </span>
+      </div>
+    </div>
+    <div class="foot-bottom"><span>&copy; Decoded Ops 2026</span><span>Plain English. No jargon. No vendor agenda.</span></div>
+  </div>
+</footer>
+<script>
+(function(){ if(!('IntersectionObserver' in window)) return; if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var mo=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('play'); mo.unobserve(e.target); } }); },{threshold:.35});
+  document.querySelectorAll('.d17[data-motion]').forEach(function(el){ mo.observe(el); }); })();
+</script>
+</body>
+</html>

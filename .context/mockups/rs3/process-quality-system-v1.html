@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to Write a Standard Operating Procedure | Decoded Ops (v1 mockup)</title>
+<meta name="description" content="How to write a standard operating procedure that your team actually uses: a Process Register, one-page SOPs and an Improvement Log you keep once I leave.">
+<!-- v1 (14 Oct 2026) · WO-WEB-003 · /process-quality-system on the approved service-page shape (Clarity v2 / Deliver v1). Copy verbatim from
+     the staging branch (app/process-quality-system/page.tsx) for the hero, the four loop steps and the closer; the H1 carries the primary
+     keyword as the pill. New: hero piece DO-ART-1031 (a one-page SOP and the process register over DO-ART-979g), the evidence lede, and
+     the three 'what you keep' cards (from the page's own meta description). The loop was DO-ART-305 on staging; here it is the house
+     route card, so no plate is redrawn. -->
+<link rel="stylesheet" href="../ds-marketing.css">
+<link rel="stylesheet" href="../assets/site/d17-global.css">
+<link rel="stylesheet" href="../assets/site/d17-apps-cases.css">
+<link rel="stylesheet" href="../assets/site/site-v3.css">
+<style>
+/* page layout only · every pattern lives in site-v3.css */
+.a1031 .d17-ph{ left:28% }
+.a1031 .d17-ph img{ --d17-grade:saturate(.7) contrast(1.06) brightness(.82); object-position:50% 50% }
+.a1031 .stage{ min-height:calc(500 * var(--u)) }
+.a1031 .doc-f{ left:calc(8 * var(--u)); top:calc(20 * var(--u)); width:calc(390 * var(--u)); transform:rotate(-2.4deg) }
+.a1031 .doc-m{ left:calc(396 * var(--u)); top:calc(206 * var(--u)); width:calc(292 * var(--u)); transform:rotate(3.2deg); z-index:2 }
+.a1031 .t5{ left:calc(40 * var(--u)); bottom:calc(10 * var(--u)) }
+@media (max-width:760px){ .a1031 .stage .d17-doc:nth-child(odd){ transform:rotate(-1deg) } .a1031 .stage .d17-doc:nth-child(even){ transform:rotate(1deg) } .a1031 .t5{ position:relative; left:auto; bottom:auto; align-self:flex-start; order:3 } }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <!-- Lucide geometry, lucide-static v1.54.0 (ISC), embedded path-for-path -->
+  <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+  <symbol id="i-server" viewBox="0 0 24 24"><rect width="20" height="8" x="2" y="2" rx="2" ry="2"/><rect width="20" height="8" x="2" y="14" rx="2" ry="2"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/></symbol>
+  <symbol id="i-puzzle" viewBox="0 0 24 24"><path d="M15.39 4.39a1 1 0 0 0 1.68-.474 2.5 2.5 0 1 1 3.014 3.015 1 1 0 0 0-.474 1.68l1.683 1.682a2.414 2.414 0 0 1 0 3.414L19.61 15.39a1 1 0 0 1-1.68-.474 2.5 2.5 0 1 0-3.014 3.015 1 1 0 0 1 .474 1.68l-1.683 1.682a2.414 2.414 0 0 1-3.414 0L8.61 19.61a1 1 0 0 0-1.68.474 2.5 2.5 0 1 1-3.014-3.015 1 1 0 0 0 .474-1.68l-1.683-1.682a2.414 2.414 0 0 1 0-3.414L4.39 8.61a1 1 0 0 1 1.68.474 2.5 2.5 0 1 0 3.014-3.015 1 1 0 0 1-.474-1.68l1.683-1.682a2.414 2.414 0 0 1 3.414 0z"/></symbol>
+  <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></symbol>
+  <symbol id="i-database" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><path d="M16 3.128a4 4 0 0 1 0 7.744"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><circle cx="9" cy="7" r="4"/></symbol>
+  <symbol id="i-truck" viewBox="0 0 24 24"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></symbol>
+  <symbol id="i-workflow" viewBox="0 0 24 24"><rect width="8" height="8" x="3" y="3" rx="2"/><path d="M7 11v4a2 2 0 0 0 2 2h4"/><rect width="8" height="8" x="13" y="13" rx="2"/></symbol>
+  <symbol id="i-package-check" viewBox="0 0 24 24"><path d="M12 22V12"/><path d="m16 17 2 2 4-4"/><path d="M21 11.127V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.729l7 4a2 2 0 0 0 2 .001l1.32-.753"/><path d="M3.29 7 12 12l8.71-5"/><path d="m7.5 4.27 8.997 5.148"/></symbol>
+  <symbol id="i-trending-up" viewBox="0 0 24 24"><path d="M16 7h6v6"/><path d="m22 7-8.5 8.5-5-5L2 17"/></symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></symbol>
+  <symbol id="i-settings" viewBox="0 0 24 24"><path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="i-badge-check" viewBox="0 0 24 24"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m16 9-5.5 5.5L8 12"/></symbol>
+  <symbol id="i-shopping-cart" viewBox="0 0 24 24"><path d="m2.05 2.05 1.099-.028a1 1 0 0 1 1.008.815l2.69 14.347A1 1 0 0 0 7.83 18H18"/><path d="M4.563 5h16.435a1 1 0 0 1 .981 1.204l-1.026 6.226A2 2 0 0 1 18.962 14H6.25"/><circle cx="18" cy="20" r="2"/><circle cx="8" cy="20" r="2"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></symbol>
+  <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 3v12"/><path d="m17 8-5-5-5 5"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
+  <symbol id="i-clipboard-check" viewBox="0 0 24 24"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/></symbol>
+  <symbol id="i-file-check" viewBox="0 0 24 24"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="m9 15 2 2 4-4"/></symbol>
+  <symbol id="i-layout-grid" viewBox="0 0 24 24"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></symbol>
+  <symbol id="i-map-pin" viewBox="0 0 24 24"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></symbol>
+</svg>
+
+<header class="site-head site-head--paths" data-od-id="site-head">
+  <div class="wrap">
+    <a class="logo" href="/">Decoded<span>Ops</span></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">
+      <svg class="bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      <svg class="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <!-- nav mirrors the live components/Header.tsx (13 Oct 2026), plus Catalogue under Software I’ve already built -->
+    <nav class="site-nav" id="site-nav" aria-label="Primary">
+      <div class="path-group">
+        <button class="path-trigger" type="button" aria-expanded="false" aria-controls="path-wrong">
+          <span class="path-label">What’s going wrong</span>
+          <svg class="path-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="path-menu path-menu--mega" id="path-wrong">
+          <div class="path-col"><p class="path-head">Systems &amp; software</p>
+            <a href="/problems/systems-dont-talk">Nothing talks to anything else</a>
+            <a href="/problems/wrong-erp-software">We’re on the wrong software</a>
+            <a href="/problems/erp-implementation-failure">The new system rollout went wrong</a>
+            <a href="/problems/legacy-system">Our system is ancient</a>
+            <a href="/problems/ecommerce-not-connected">The website isn’t connected to the office</a>
+          </div>
+          <div class="path-col"><p class="path-head">Growth &amp; capacity</p>
+            <a href="/problems/slow-processes">Everything takes too long</a>
+            <a href="/problems/cant-scale-operations">We can’t take on more work</a>
+            <a href="/problems/bottleneck-growth">One person is the bottleneck</a>
+            <a href="/problems/seasonal-peaks">Busy season breaks us</a>
+          </div>
+          <div class="path-col"><p class="path-head">Data &amp; day to day</p>
+            <a href="/problems/spreadsheet-addiction">We run the place on spreadsheets</a>
+            <a href="/problems/manual-workarounds">Everyone has their own workaround</a>
+            <a href="/problems/data-scattered">The numbers never agree</a>
+            <a href="/problems/inventory-blind">We don’t know what stock we have</a>
+            <a href="/problems/ops-in-owners-head">It’s all in the owner’s head</a>
+          </div>
+          <div class="path-col"><p class="path-head">Risk &amp; what’s next</p>
+            <a href="/problems/no-ops-owner">Nobody owns operations</a>
+            <a href="/problems/disaster-recovery">If the server died tomorrow…</a>
+            <a href="/problems/ai-paralysis">Everyone says use AI, where do I start?</a>
+            <a href="/problems/buy-vs-build">Buy it or build it?</a>
+          </div>
+        </div>
+      </div>
+      <div class="path-group">
+        <button class="path-trigger" type="button" aria-expanded="false" aria-controls="path-help">
+          <span class="path-label">How I help</span>
+          <svg class="path-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="path-menu path-menu--mega" id="path-help">
+          <div class="path-col"><p class="path-head">The four steps</p>
+            <a href="/clarity">Clarity<small>A day on site, then a written plan &middot; most people start here</small></a>
+            <a href="/deliver">Deliver<small>I fix the two or three worst things</small></a>
+            <a href="/transform">Transform<small>Rebuild how the business runs</small></a>
+            <a href="/retained">Retained<small>A technology director, part time</small></a>
+          </div>
+          <div class="path-col"><p class="path-head">Software I’ve already built</p>
+            <a href="/apps/works">Works<small>The ERP for decorated goods</small></a>
+            <a href="/apps/proof">Proof<small>Versions, approvals and delivery</small></a>
+            <a href="/apps/commerce">Commerce<small>B2B ordering for your customers</small></a>
+            <a href="/apps/catalogue" aria-current="page">Catalogue<small>Supplier feeds in, one clean catalogue, feeds out</small></a>
+            <a href="/apps">All apps<small>What’s ready to buy today</small></a>
+          </div>
+          <div class="path-col"><p class="path-head">How I work</p>
+            <a href="/resources/decoded-method">The Decoded Method</a>
+            <a href="/how-i-build">How I build software</a>
+            <a href="/pricing">Prices, in plain numbers</a>
+            <a href="/about">About Craig</a>
+          </div>
+        </div>
+      </div>
+      <div class="path-group">
+        <button class="path-trigger" type="button" aria-expanded="false" aria-controls="path-industry">
+          <span class="path-label">Your industry</span>
+          <svg class="path-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="path-menu path-menu--mega" id="path-industry">
+          <div class="path-col"><p class="path-head">Pick what you make</p>
+            <a href="/sectors/garment-decoration">Garment decoration</a>
+            <a href="/sectors/print-promotional">Print &amp; promotional</a>
+            <a href="/sectors/workwear">Workwear</a>
+            <a href="/sectors/teamwear-clubwear">Teamwear &amp; clubwear</a>
+            <a href="/sectors/schoolwear">Schoolwear</a>
+          </div>
+          <div class="path-col"><p class="path-head">More trades</p>
+            <a href="/sectors/signs-graphics">Signs &amp; graphics</a>
+            <a href="/sectors/awards-engraving">Awards &amp; engraving</a>
+            <a href="/sectors/labels-packaging">Labels &amp; packaging</a>
+            <a href="/sectors/promotional-merchandise">Promotional merchandise</a>
+          </div>
+        </div>
+      </div>
+      <div class="path-group">
+        <button class="path-trigger" type="button" aria-expanded="false" aria-controls="path-small">
+          <span class="path-label">Small business</span>
+          <svg class="path-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="path-menu path-menu--mega" id="path-small">
+          <div class="path-col"><p class="path-head">Small business services</p>
+            <a href="/small-business">Clarity Check<small>Fixed-price, done remotely &middot; £600</small></a>
+            <a href="/pricing">Everything else<small>Same services, same from-prices as everyone else</small></a>
+          </div>
+          <div class="path-col"><p class="path-head">Start free</p>
+            <a href="/tools/ops-health-score">Ops health score</a>
+            <a href="/resources/audit-checklist">The audit checklist</a>
+            <a href="/small-business">Read the whole thing</a>
+          </div>
+        </div>
+      </div>
+      <div class="path-group">
+        <button class="path-trigger" type="button" aria-expanded="false" aria-controls="path-proof">
+          <span class="path-label">Proof &amp; free tools</span>
+          <svg class="path-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="path-menu path-menu--mega" id="path-proof">
+          <div class="path-col"><p class="path-head">Work I’ve done</p>
+            <a href="/case-studies/case-study-01">Case study 01</a>
+            <a href="/case-studies/case-study-02">Case study 02</a>
+            <a href="/case-studies/case-study-03">Case study 03</a>
+            <a href="/case-studies/eternal-fitness">Eternal Fitness</a>
+            <a href="/case-studies">All case studies</a>
+          </div>
+          <div class="path-col"><p class="path-head">Free calculators</p>
+            <a href="/tools/ops-health-score">Ops health score</a>
+            <a href="/tools/downtime-cost-calculator">What downtime costs you</a>
+            <a href="/tools/automation-roi-calculator">Is automation worth it?</a>
+            <a href="/tools/rto-calculator">How fast could you recover?</a>
+            <a href="/tools/should-i-replace-erp">Should I replace my ERP?</a>
+          </div>
+          <div class="path-col"><p class="path-head">Guides &amp; writing</p>
+            <a href="/resources/audit-checklist">The ops audit checklist</a>
+            <a href="/resources/5-warning-signs">5 signs your systems are failing</a>
+            <a href="/resources/sop-template">SOP template for decoration businesses</a>
+            <a href="/resources/erp-selection-playbook">ERP selection guide</a>
+            <a href="/resources/artwork-approval-playbook">Artwork approval playbook</a>
+            <a href="/resources/decoded-method">The Decoded Method</a>
+            <a href="/resources/six-sigma">Six Sigma, explained simply</a>
+            <a href="/process-quality-system">Building a quality system</a>
+            <a href="/blog">The blog</a>
+          </div>
+        </div>
+      </div>
+      <a class="nav-flat" href="/pricing">Pricing</a>
+      <a class="nav-flat" href="/clients/login">Client Login</a>
+      <a class="btn btn--primary nav-cta" href="/contact">Book a free call</a>
+    </nav>
+  </div>
+</header>
+
+<main id="content">
+
+<section class="g-off hero" data-od-id="hero">
+  <div class="wrap">
+    <div class="hero-head">
+      <div>
+        <h1 data-od-id="hero-h1"><span class="h1-kw" data-new-copy>How to write a standard operating procedure</span> How your business keeps improving after I leave.</h1>
+      </div>
+      <div>
+        <p class="t-lede">Not a report that sits in a drawer. A working system for how the business documents, checks, and improves its own processes, built during the engagement and owned by you after it. It covers how to write a standard operating procedure your team will actually follow, and how to keep it followed.</p>
+        <div class="btn-row"><a class="btn btn--primary" href="/contact" data-od-id="hero-cta" data-new-copy>Book a free discovery call</a></div>
+      </div>
+    </div>
+
+    <!-- DO-ART-1031 r01 · Process & Quality System hero · a one-page SOP and the process register over DO-ART-979g (paperwork on an office desk, a client site, 2026). -->
+    <figure class="d17 sw sw-doc a1031" data-od-id="hero-visual" data-motion data-no="DO-ART-1031" data-rev="01" data-tx="photo"
+      aria-label="Artwork DO-ART-1031. Two documents over a graded photograph of paperwork on an office desk. A one-page standard operating procedure for pick and pack, three numbered steps, with the test written underneath: can someone who doesn’t know the job follow it? The process register: every process that matters with its status, quote to order documented, artwork approval being checked, pick and despatch mapped, and the improvement log underneath. A tag reads: yours after I leave.">
+      <div class="d17-ph"><img src="/images/site/evidence/hero-office-paperwork-75fcd2.webp" width="1600" height="900" alt=""></div>
+      <div class="d17-scan" aria-hidden="true"></div>
+      <figcaption class="sw-cap">
+        <div class="k d17-mono" data-new-copy>Process &amp; Quality System <span>&middot; what you keep</span></div>
+        <div class="bar" aria-hidden="true"></div>
+        <h3 data-new-copy>A working system, not a report in a drawer.</h3>
+        <p data-new-copy>A Process Register, one-page SOPs and an Improvement Log, built during the engagement and owned by you after it.</p>
+        <span class="d17-mark">decodedops.co.uk &middot; DO-ART-1031 &middot; Rev 01</span>
+      </figcaption>
+      <div class="stage" aria-hidden="true">
+        <div class="d17-doc doc-f m-drop" style="animation-delay:.1s"><span class="tab">SOP</span>
+          <span class="ref">One-page SOP &middot; pick and pack</span>
+          <h4>Written so someone new can follow it</h4>
+          <p class="sub">one page &middot; one process &middot; one owner</p>
+          <ol class="chg">
+            <li>Pick from the bin on the job sheet<span class="st-chip">01</span></li>
+            <li>Check the quantity against the order<span class="st-chip">02</span></li>
+            <li>Pack, label, scan out<span class="st-chip">03</span></li>
+            <li>Anything short: flag it, don’t ship it<span class="st-chip st-chip--a">Rule</span></li>
+          </ol>
+          <div class="doc-foot">The test: can someone who doesn’t know the job follow it?</div></div>
+        <div class="d17-doc doc-m m-drop" style="animation-delay:.45s"><span class="tab">REGISTER</span>
+          <span class="ref">Process register</span>
+          <h4>Every process that matters</h4>
+          <ol class="chg">
+            <li>Quote to order<span class="st-chip">Documented</span></li>
+            <li>Artwork approval<span class="st-chip st-chip--a">Checking</span></li>
+            <li>Pick and despatch<span class="st-chip st-chip--o">Mapped</span></li>
+          </ol>
+          <div class="doc-foot">Improvement log: what changed, what it was worth, what’s next</div></div>
+        <div class="sx-tag t5 m-pop" style="animation-delay:1.9s"><small>Yours after I leave</small>Owned by you, run without me</div>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<section class="g-navy route-sec" data-od-id="loop">
+  <div class="do-dot-grid" aria-hidden="true" style="position:absolute; inset:0; pointer-events:none"></div>
+  <div class="wrap">
+    <div class="route-head">
+      <div>
+        <span class="eyebrow">The loop</span>
+        <h2 data-od-id="loop-h2">The same four steps, for every process that matters.</h2>
+      </div>
+      <p class="lede">Not a one-off audit. A loop that keeps running after the engagement ends, because the last step feeds the first one.</p>
+    </div>
+    <ol class="route" data-od-id="loop-steps">
+      <li class="stop" data-od-id="loop-1">
+        <span class="node"><svg class="ic ic-24" aria-hidden="true"><use href="#i-map-pin"/></svg></span>
+        <span class="t-meta">Step 1</span><h3>Map the process</h3>
+        <p class="t-card">As it actually runs, watched from start to finish. Not as the org chart describes it and not as anyone remembers it.</p>
+      </li>
+      <li class="stop" data-od-id="loop-2">
+        <span class="node"><svg class="ic ic-24" aria-hidden="true"><use href="#i-file-check"/></svg></span>
+        <span class="t-meta">Step 2</span><h3>Document it as an SOP</h3>
+        <p class="t-card">Written so someone who doesn’t already know the job can follow it. That’s the test: not whether the person who wrote it recognises it.</p>
+      </li>
+      <li class="stop" data-od-id="loop-3">
+        <span class="node"><svg class="ic ic-24" aria-hidden="true"><use href="#i-clipboard-check"/></svg></span>
+        <span class="t-meta">Step 3</span><h3>Check it’s followed</h3>
+        <p class="t-card">Knowing how to write a standard operating procedure is only the start. An SOP nobody follows is a document, not a system. This is the step most businesses skip and the reason their documentation goes stale.</p>
+      </li>
+      <li class="stop stop--out" data-od-id="loop-4">
+        <span class="node"><svg class="ic ic-24" aria-hidden="true"><use href="#i-trending-up"/></svg></span>
+        <span class="t-meta">Step 4</span><h3>Log what’s improved</h3>
+        <p class="t-card">What changed, what it was worth, and what’s next. The log is yours, and it’s what makes the loop run again without me.</p>
+      </li>
+    </ol>
+    <p class="route-cap"><svg class="ic ic-16" aria-hidden="true"><use href="#i-check"/></svg>Then round again, for every process that matters.</p>
+  </div>
+</section>
+
+<section class="g-white" data-od-id="where">
+  <div class="wrap">
+    <div class="ev-head">
+      <div>
+        <span class="eyebrow" data-new-copy>Where the SOP gets tested</span>
+        <h2 data-od-id="where-h2" data-new-copy>At the bench, on the shelf, at the door.</h2>
+      </div>
+      <p class="lede" data-new-copy>Three of my own photographs from client visits this year. A process is whatever happens at the bench and the door, not what the org chart says, and that’s where an SOP is checked.</p>
+    </div>
+    <div class="ev-grid" data-od-id="where-photos">
+      <figure class="d17 ev" data-od-id="photo-job-sheets" data-no="DO-ART-979k" data-rev="01" data-tx="photo">
+        <div class="d17-ph"><img src="/images/site/evidence/plate-job-sheets-63dd9c.webp" width="1600" height="900" alt="Paper job sheets laid out on a workbench at a client site."></div>
+        <div class="d17-scan" aria-hidden="true"></div>
+        <p class="k d17-mono">The bench &middot; June 2026</p>
+        <p class="line">Job sheets, still on paper</p>
+        <span class="d17-mark">decodedops.co.uk &middot; DO-ART-979k &middot; Rev 01</span>
+      </figure>
+      <figure class="d17 ev" data-od-id="photo-shelf" data-no="DO-ART-979j" data-rev="01" data-tx="photo">
+        <div class="d17-ph"><img src="/images/site/evidence/card-garment-shelf-724253.webp" width="1600" height="900" alt="Folded garments on a stockroom shelf at a client site."></div>
+        <div class="d17-scan" aria-hidden="true"></div>
+        <p class="k d17-mono">Stock &middot; June 2026</p>
+        <p class="line">The shelf the SOP describes</p>
+        <span class="d17-mark">decodedops.co.uk &middot; DO-ART-979j &middot; Rev 01</span>
+      </figure>
+      <figure class="d17 ev" data-od-id="photo-cartons" data-no="DO-ART-979q" data-rev="01" data-tx="photo">
+        <div class="d17-ph"><img src="/images/site/evidence/plate-cartons-packed-2fb0ae.webp" width="1600" height="900" alt="Packed cartons waiting for collection at a client site."></div>
+        <div class="d17-scan" aria-hidden="true"></div>
+        <p class="k d17-mono">Despatch &middot; June 2026</p>
+        <p class="line">Packed, checked, out the door</p>
+        <span class="d17-mark">decodedops.co.uk &middot; DO-ART-979q &middot; Rev 01</span>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="g-tint" data-od-id="keep">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow" data-new-copy>What you keep</span>
+      <h2 data-od-id="keep-h2" data-new-copy>Three documents, and the habit of using them.</h2>
+      <p class="lede" data-new-copy>Built alongside the work, not written up afterwards. Each one is plain enough that your team keeps it going once I’ve gone.</p>
+    </div>
+    <div class="areas" data-od-id="keep-cards">
+      <article class="area" data-od-id="keep-register"><div class="area-top"><span class="ic-tile"><svg class="ic ic-24" aria-hidden="true"><use href="#i-layout-grid"/></svg></span><span class="num">01</span></div><h3 data-new-copy>The Process Register</h3><p class="t-card" data-new-copy>Every process that matters, named, owned and dated, with where it is in the loop: mapped, documented, being checked, improved.</p></article>
+      <article class="area" data-od-id="keep-sops"><div class="area-top"><span class="ic-tile"><svg class="ic ic-24" aria-hidden="true"><use href="#i-file-check"/></svg></span><span class="num">02</span></div><h3 data-new-copy>One-page SOPs</h3><p class="t-card" data-new-copy>One page per process, written so someone who doesn’t already know the job can follow it. If it needs a second page, it’s two processes.</p></article>
+      <article class="area" data-od-id="keep-log"><div class="area-top"><span class="ic-tile"><svg class="ic ic-24" aria-hidden="true"><use href="#i-trending-up"/></svg></span><span class="num">03</span></div><h3 data-new-copy>The Improvement Log</h3><p class="t-card" data-new-copy>What changed, what it was worth, and what’s next. The log is yours, and it’s what makes the loop run again without me.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="g-off closer" data-od-id="cta">
+  <div class="wrap closer-grid">
+    <div>
+      <span class="eyebrow">Where it fits</span>
+      <h2 data-od-id="cta-h2">See how this fits into Deliver.</h2>
+    </div>
+    <div>
+      <p class="lede">Every Deliver engagement builds this alongside the project itself, so what you keep afterwards is a documented process, not just something that works and nobody can explain.</p>
+      <div class="btn-row">
+        <a class="btn btn--primary" href="/contact" data-od-id="cta-primary">Book a free discovery call</a>
+        <a class="go" href="/deliver">See how Deliver runs <svg class="ic ic-16" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer data-od-id="footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="logo" href="/">Decoded<span>Ops</span></a>
+        <p class="blurb">Independent technology and operations consultancy for the decorated-goods sector. No vendor agenda.</p>
+        <div class="foot-contact">
+          <a href="mailto:craig@decodedops.co.uk">craig@decodedops.co.uk</a>
+          <a href="tel:+447735620603">07735 620603</a>
+          <a class="btn btn--outline foot-cta" href="/contact">Book a free 60-min call</a>
+        </div>
+        <p class="foot-loc">Based in Worthing, West Sussex &middot; working across the UK</p>
+      </div>
+      <!-- footer links mirror the live components/Footer.tsx (13 Oct 2026), plus Catalogue under Apps -->
+      <div><h4>Work with me</h4><a href="/clarity">Clarity Audit</a><a href="/deliver">Deliver</a><a href="/transform">Transform</a><a href="/retained">Retained</a><a href="/small-business">Small business suite</a><a href="/how-i-build">How I build software</a></div>
+      <div><h4>Apps</h4><a href="/apps/works">Works</a><a href="/apps/proof">Proof</a><a href="/apps/commerce">Commerce</a><a href="/apps/catalogue">Catalogue</a><a href="/apps">All apps</a></div>
+      <div><h4>Company</h4><a href="/about">About</a><a href="/case-studies">Case studies</a><a href="/pricing">Pricing</a><a href="/contact">Contact</a></div>
+    </div>
+    <div class="foot-find">
+      <div class="foot-find-row">
+        <span class="foot-find-lbl">Sectors</span>
+        <span class="foot-chips">
+          <a href="/sectors/garment-decoration">Garment decoration</a><a href="/sectors/workwear">Workwear</a><a href="/sectors/teamwear-clubwear">Teamwear</a><a href="/sectors/schoolwear">Schoolwear</a><a href="/sectors/promotional-merchandise">Promo</a><a href="/sectors/print-promotional">Print</a><a href="/sectors/signs-graphics">Signage</a><a href="/sectors/awards-engraving">Awards</a><a href="/sectors/labels-packaging">Labels &amp; packaging</a>
+        </span>
+      </div>
+      <div class="foot-find-row">
+        <span class="foot-find-lbl">Problems</span>
+        <span class="foot-chips">
+          <a href="/problems/erp-implementation-failure">ERP failure</a><a href="/problems/systems-dont-talk">Systems don’t talk</a><a href="/problems/data-scattered">Data scattered</a><a href="/problems/spreadsheet-addiction">Spreadsheet addiction</a><a href="/problems/buy-vs-build">Buy vs build</a><a href="/problems/no-ops-owner">No ops owner</a><a href="/problems/ai-paralysis">AI paralysis</a>
+          <a class="foot-all" href="/problems">All problems <svg class="ic ic-16" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+        </span>
+      </div>
+      <div class="foot-find-row">
+        <span class="foot-find-lbl">Guides</span>
+        <span class="foot-chips">
+          <a href="/resources/decoded-method">The Decoded Method</a><a href="/resources/audit-checklist">Audit checklist</a><a href="/resources/5-warning-signs">5 warning signs</a><a href="/resources/six-sigma">Six Sigma explained</a><a href="/tools">Free calculators</a>
+          <a class="foot-all" href="/resources">All resources <svg class="ic ic-16" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+        </span>
+      </div>
+      <div class="foot-find-row">
+        <span class="foot-find-lbl">Locations</span>
+        <span class="foot-chips">
+          <a href="/locations/sussex-surrey">Sussex &amp; Surrey</a><a href="/locations/manchester">Manchester</a><a href="/locations/tech-audit">Technology audit, UK-wide</a>
+        </span>
+      </div>
+    </div>
+    <div class="foot-bottom"><span>&copy; 2026 Decoded Ops</span><span class="foot-legal"><a href="/clients/login">Client login</a><a href="/privacy">Privacy</a><a href="/cookies">Cookies</a></span></div>
+  </div>
+</footer>
+<script>
+(function(){ if(!('IntersectionObserver' in window)) return; if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var mo=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('play'); mo.unobserve(e.target); } }); },{threshold:.35});
+  document.querySelectorAll('.d17[data-motion]').forEach(function(el){ mo.observe(el); }); })();
+</script>
+</body>
+</html>
