@@ -14,7 +14,7 @@ import s from './page.module.css';
 
 
 // Icons used by this page that are not in components/IconSprite.tsx —
-// Lucide geometry (ISC), embedded path-for-path as in the approved mockup.
+// Lucide geometry (ISC), embedded path-for-path.
 const LocalIconSprite = () => (
   <svg width="0" height="0" style={{ position: 'absolute' }} aria-hidden="true" focusable="false">
     <symbol id="i-rotate-ccw" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" /><path d="M3 3v5h5" /></symbol>

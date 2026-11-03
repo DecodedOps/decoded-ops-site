@@ -30,7 +30,7 @@ export const metadata: Metadata = {
 };
 
 // Icons used by this page that are not in components/IconSprite.tsx —
-// Lucide geometry (ISC), embedded path-for-path as in the approved mockup.
+// Lucide geometry (ISC), embedded path-for-path.
 const LocalIconSprite = () => (
   <svg width="0" height="0" style={{ position: 'absolute' }} aria-hidden="true" focusable="false">
     <symbol id="i-triangle-alert" viewBox="0 0 24 24"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3" /><path d="M12 9v4" /><path d="M12 17h.01" /></symbol>

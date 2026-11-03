@@ -68,7 +68,7 @@ export default async function BlogPage() {
   const posts = await fetchBlogIndex();
 
   // The by-topic archive: the posts beyond the newest seven (the lead and the
-  // six the mockup shows as recent), grouped the way the mockup groups them.
+  // six the approved design shows as recent), grouped the way it groups them.
   // Every title, slug and count here is derived from the live post list —
   // nothing about the posts is hard-coded.
   const archiveRest: any[] = posts.slice(7);
@@ -144,7 +144,7 @@ export default async function BlogPage() {
         </section>
       )}
 
-      {/* Kept from the existing page: the mockup dropped this section, but it
+      {/* Kept from the existing page: the approved design drops this section, but it
           carries the audit-checklist copy and link (RELEASE-SET-3 §keep) */}
       <section className="g-white" data-od-id="free-resources">
         <div className="wrap">

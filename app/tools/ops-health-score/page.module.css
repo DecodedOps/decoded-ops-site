@@ -1,10 +1,10 @@
-/* RS3 lane R (CR-WEB-084) — the mockup's page-layout <style> block for
-   /tools/ops-health-score, plus the scorer-row and legend patterns its own
-   asset sheet would have carried (the mockup's asset CSS is not in the
-   repo). Anchored on the page root class so nothing here can reach another
-   route. The shared sheets themselves are untouched. */
+/* RS3 lane R (CR-WEB-084) — the approved design's page-layout <style> block
+   for /tools/ops-health-score, plus the scorer-row and legend patterns its
+   own asset sheet would have carried (that asset CSS is not in the repo).
+   Anchored on the page root class so nothing here can reach another route.
+   The shared sheets themselves are untouched. */
 
-/* mockup page-layout block */
+/* design page-layout block */
 .root :global(.hero-split .d17) { width: 100% }
 .root :global(.scorer .t-card b) { font-weight: var(--do-weight-semibold); color: var(--do-text-primary) }
 .root :global(.result .t-lede) { margin: 14px 0 0 }
@@ -23,8 +23,8 @@
 .root :global(.scorer .t-card) { margin: 0 }
 @media (max-width: 640px) { .root :global(.scorer > li) { grid-template-columns: 1fr; gap: 14px } }
 
-/* .scale is a progress-bar pattern in site-v3.css; on this page the mockup
-   uses the same class for the 1–5 button group, so reset the bar's box */
+/* .scale is a progress-bar pattern in site-v3.css; on this page the approved
+   design uses the same class for the 1–5 button group, so reset the bar's box */
 .root :global(.scorer .scale) { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; height: auto; border-radius: 0; background: none; overflow: visible }
 .root :global(.scorer .scale i) { display: none }
 
