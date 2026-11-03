@@ -1,14 +1,17 @@
 import type { Metadata } from 'next';
-import { ProblemPageDS } from '@/components/ProblemPageDS';
-import { DisasterRecoverySchematic } from '@/components/schematics/problems/DisasterRecoverySchematic';
 import { JsonLd } from '@/components/JsonLd';
+import { ProblemPageV2 } from '@/components/ProblemPageV2';
+import { VideoEmbed } from '@/components/VideoEmbed';
+import { VideoSchema } from '@/components/VideoSchema';
 import { problemRouting } from '@/data/problem-routing';
 import { problemVideos } from '@/data/problem-videos';
 import '@/app/d17-global.css';
 import '@/app/d17-problems.css';
+import '@/app/d17-resources.css';
+import '@/app/problems/problems-v2.css';
 import { D17Motion } from '@/components/D17Motion';
 import { a998Solo } from '@/lib/d17-figures/a998';
-import '@/app/d17-resources.css';
+import styles from './page.module.css';
 
 export const metadata: Metadata = {
  title: 'Business Continuity Disaster Recovery Plan | Decoded Ops',
@@ -105,42 +108,88 @@ const heroArt965 = `<figure class="d17 sx px a965" data-od-id="hero-evidence" da
 
 
 
+const plateArt = `<div class="${styles.plateSplit}">
+ <div>
+  <span class="eyebrow">Recovery time</span>
+  <h2 data-od-id="plate-h2">Seven hours back, four times a year.</h2>
+  <p class="lede">Worked from the RTO calculator’s example figures, not a client’s: four major incidents a year, eight hours to recover today, one hour as the target. The gap is what a written, tested plan is worth.</p>
+  <a class="text-link" href="/tools/rto-calculator">Run the calculator on your own figures <svg class="ic ic-16" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+ </div>
+ <div>${a998Solo.replace('data-od-id="hero-art"', 'data-od-id="plate-recovery"')}</div>
+</div>`;
+
 export default function DisasterRecoveryPage() {
  return (
   <>
    <JsonLd data={drSchema} />
-   <ProblemPageDS
-   problem="No disaster recovery plan"
-   headline="Your systems go down on a Tuesday morning. ||When do you get back up?||"
-    intro="Most print, embroidery, and decoration businesses have no plan for what happens when their systems go down. They care. It just feels like something for big IT departments. Until the server fails, the hosting goes down, or ransomware locks every screen. Then the cost of not having a business continuity disaster recovery plan becomes very visible, very quickly."
-   heroGraphic={<DisasterRecoverySchematic />}
-   symptoms={[
-    "You have no written plan for what to do when your critical systems go down",
-    "You assume your hosting provider or software vendor handles backup and recovery",
-    "Recovery from your last outage took days, not hours",
-    "There are backup processes written somewhere, but you're not sure they still work",
-    "You couldn't say how long you can afford to be offline without guessing",
-    "Key operational data lives in only one place",
-    "The last time you tested a restore, it didn't work",
-   ]}
-   causes={[
-    { title: 'Disaster planning keeps getting postponed', body: "Planning for a disaster always feels like something to do later. The business is running, the systems are working, and there are more pressing things to fix. The cost of putting it off only shows up when the systems stop." },
-    { title: 'Assuming the vendor handles it', body: "Most vendors have uptime guarantees, but those rarely cover your data, your recovery order, or how long you can afford to be down. Their backup is not your recovery plan. A backup stores your data. A recovery plan says which systems come back first, in what order, and how fast." },
-    { title: 'No one is accountable for recovery', body: "In businesses without a dedicated IT person, 'who gets us back online?' has no clear answer. On outage day, everyone assumes someone else is handling it." },
-    { title: 'The cost of downtime is invisible until it happens', body: "Lost orders, halted production, missed deadlines, overtime to catch up, damaged reputation. None of it shows on a balance sheet until the outage is over, by which point the cost has already been paid. Most small businesses have never worked out how long they can afford to be down." },
-   ]}
-   howIHelp="I look at your current systems, your backups, and how you'd actually recover, then give you a practical business continuity disaster recovery plan built around your business. Not a 50-page IT document. A clear, prioritised list covering what to protect first, how fast each system can realistically be recovered, and what it would cost to recover faster. Plus a simple test schedule so you know the plan works before you need it."
-  
-   slug="disaster-recovery"
-   targetService={problemRouting['disaster-recovery'].targetService}
-   relatedProblems={problemRouting['disaster-recovery'].relatedProblems}
-   relatedReading={problemRouting['disaster-recovery'].relatedReading}
-   relatedSectors={problemRouting['disaster-recovery'].relatedSectors}
-   relatedResources={problemRouting['disaster-recovery'].relatedResources}
-   video={problemVideos['disaster-recovery']}
-   heroArt={heroArt965}
-   inlineArt={a998Solo}
-  />
+   {problemVideos['disaster-recovery'] && (
+    <VideoSchema
+     name={problemVideos['disaster-recovery'].title}
+     description={problemVideos['disaster-recovery'].closeLine}
+     youtubeId={problemVideos['disaster-recovery'].youtubeId}
+     uploadDate={problemVideos['disaster-recovery'].uploadDate}
+     durationSec={problemVideos['disaster-recovery'].durationSec}
+    />
+   )}
+   <div className={styles.flow}>
+    <ProblemPageV2
+     slug="disaster-recovery"
+     problem="No disaster recovery plan"
+     crumb="No disaster recovery plan"
+     h1Lead="Problem · business continuity disaster recovery plan"
+     headline="Your systems go down on a Tuesday morning. ||When do you get back up?||"
+     heroLede="Most print, embroidery, and decoration businesses have no plan for what happens when their systems go down. They care. It just feels like something for big IT departments."
+     heroBody="Until the server fails, the hosting goes down, or ransomware locks every screen. Then the cost of not having a business continuity disaster recovery plan becomes very visible, very quickly."
+     heroArt={heroArt965}
+     symptomsHeading="The signs."
+     symptomsLede=""
+     symptoms={[
+      "You have no written plan for what to do when your critical systems go down",
+      "You assume your hosting provider or software vendor handles backup and recovery",
+      "Recovery from your last outage took days, not hours",
+      "There are backup processes written somewhere, but you're not sure they still work",
+      "You couldn't say how long you can afford to be offline without guessing",
+      "Key operational data lives in only one place",
+      "The last time you tested a restore, it didn't work",
+     ]}
+     symptomsCaption="Count the ones that apply. Each one is an hour you would be guessing on the day."
+     photoBand={{
+      eyebrow: 'What stops when the systems do',
+      heading: 'Every job here needs the system to be up.',
+      lede: 'Three photographs from client sites. The office desk, the job sheets on the bench and the warehouse floor: all of it waits when the order system is down.',
+      photos: [
+       { odId: 'photo-g', no: 'DO-ART-979g', src: '/images/site/evidence/hero-office-paperwork-75fcd2.webp', alt: 'Paperwork on an office desk at a client site.', kicker: '', line: '' },
+       { odId: 'photo-k', no: 'DO-ART-979k', src: '/images/site/evidence/plate-job-sheets-63dd9c.webp', alt: 'Paper job sheets laid out on a workbench at a client site.', kicker: '', line: '' },
+       { odId: 'photo-h', no: 'DO-ART-979h', src: '/images/site/evidence/card-warehouse-floor-f1d62c.webp', alt: 'A warehouse floor at a client site.', kicker: '', line: '' },
+      ],
+     }}
+     causes={[
+      { icon: 'i-history', title: 'Disaster planning keeps getting postponed', body: "Planning for a disaster always feels like something to do later. The business is running, the systems are working, and there are more pressing things to fix. The cost of putting it off only shows up when the systems stop." },
+      { icon: 'i-server', title: 'Assuming the vendor handles it', body: "Most vendors have uptime guarantees, but those rarely cover your data, your recovery order, or how long you can afford to be down. Their backup is not your recovery plan. A backup stores your data. A recovery plan says which systems come back first, in what order, and how fast." },
+      { icon: 'i-users', title: 'No one is accountable for recovery', body: "In businesses without a dedicated IT person, 'who gets us back online?' has no clear answer. On outage day, everyone assumes someone else is handling it." },
+      { icon: 'i-calculator', title: 'The cost of downtime is invisible until it happens', body: "Lost orders, halted production, missed deadlines, overtime to catch up, damaged reputation. None of it shows on a balance sheet until the outage is over, by which point the cost has already been paid. Most small businesses have never worked out how long they can afford to be down." },
+     ]}
+     plate={{ art: plateArt }}
+     howLede="I look at your current systems, your backups, and how you'd actually recover, then give you a practical business continuity disaster recovery plan built around your business. Not a 50-page IT document."
+     howBody="A clear, prioritised list covering what to protect first, how fast each system can realistically be recovered, and what it would cost to recover faster. Plus a simple test schedule so you know the plan works before you need it."
+     howTone="off"
+     routing={problemRouting['disaster-recovery']}
+    />
+    {problemVideos['disaster-recovery'] && (
+     <section className="g-off" data-od-id="video-embed">
+      <div className="wrap">
+       <VideoEmbed
+        youtubeId={problemVideos['disaster-recovery'].youtubeId}
+        title={problemVideos['disaster-recovery'].title}
+        closeLine={problemVideos['disaster-recovery'].closeLine}
+        app={problemVideos['disaster-recovery'].app}
+        durationSec={problemVideos['disaster-recovery'].durationSec}
+        playlistUrl={problemVideos['disaster-recovery'].playlistUrl}
+       />
+      </div>
+     </section>
+    )}
+   </div>
    <D17Motion />
   </>
  );

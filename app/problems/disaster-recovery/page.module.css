@@ -1,0 +1,35 @@
+/* RS2 P1 (CR-WEB-083): ProblemPageV2 renders the v2 shell as one block, so the
+   slot-less video section sits at its staging position (right after the causes
+   cards) via flex order. Section backgrounds and paddings are unchanged. */
+.flow {
+ display: flex;
+ flex-direction: column;
+}
+.flow > :global([data-od-id='hero']) { order: 10 }
+.flow > :global([data-od-id='symptoms']) { order: 20 }
+.flow > :global([data-od-id='photo-band']) { order: 30 }
+.flow > :global([data-od-id='causes']) { order: 40 }
+.flow > :global([data-od-id='video-embed']) { order: 50 }
+.flow > :global([data-od-id='plate']) { order: 60 }
+.flow > :global([data-od-id='how-i-help']) { order: 70 }
+.flow > :global([data-od-id='keep-reading']) { order: 80 }
+
+/* The 3 Nov mockups' photo band carries no captions and this page's symptoms
+   ledger carries no lede; the shared component always emits both elements. */
+.flow :global(.ev .k:empty),
+.flow :global(.ev .line:empty),
+.flow :global(.sym-head .sec-lede:empty) { display: none }
+
+/* The plate is the mockup's navy split (heading + calculator link beside
+   DO-ART-998), carried through ProblemPageV2's plate art slot. These rules are
+   the mockup's .plate-split block, anchored on a local class. */
+.plateSplit { display: grid; grid-template-columns: minmax(0,5fr) minmax(0,7fr); gap: 56px; align-items: center }
+.plateSplit :global(h2) { max-width: 16ch }
+.plateSplit :global(.lede) { margin: 20px 0 0 }
+.plateSplit :global(.text-link) { color: var(--do-off-white); text-decoration-color: var(--do-sky-blue) }
+.plateSplit :global(.text-link .ic) { color: var(--do-sky-blue) }
+.plateSplit :global(.d17) { width: 100%; max-width: 640px; margin-left: auto }
+@media (max-width: 960px) {
+ .plateSplit { grid-template-columns: 1fr; gap: 32px }
+ .plateSplit :global(.d17) { margin-left: 0 }
+}
