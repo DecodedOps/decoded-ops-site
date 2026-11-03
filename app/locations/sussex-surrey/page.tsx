@@ -243,7 +243,9 @@ export default function SussexSurreyPage() {
               <p className="t-lede">I work with decorated-goods businesses across West Sussex, East Sussex, and Surrey. The operational problems in this trade don&apos;t change from postcode to postcode: supplier data that doesn&apos;t match what&apos;s on the shelf, artwork stuck in an email thread, and stock nobody fully trusts. An on-site day here works the same way it does everywhere: I follow the actual process, then write down what I find.</p>
               <p className="t-body">Whether a decoration business is based in Worthing itself or out towards Shoreham-by-Sea, Brighton, or Guildford, the same systems problems turn up: manual handoffs, disconnected data, and processes that live in someone&apos;s head rather than on paper.</p>
               <p className="t-body">The work I do is the same wherever the business is based: a structured, independent look at what&apos;s running, what it costs, and what it&apos;s holding back. But the conversation starts with understanding what&apos;s specific to this business, in this market.</p>
-              <p className="t-meta" style={{ marginTop: 24 }}>Towns I cover &middot; Based in Worthing, West Sussex. On-site where the work needs it across the whole region.</p>
+              {/* Keyword heading kept from the live page (local SEO); the mockup folded this section into the meta line. */}
+              <h2 style={{ fontSize: 'var(--do-text-lg)', marginTop: 32 }}>On site across Sussex and Surrey</h2>
+              <p className="t-meta" style={{ marginTop: 8 }}>Towns I cover &middot; Based in Worthing, West Sussex. On-site where the work needs it across the whole region.</p>
               <nav className="chips" style={{ marginTop: 12 }} aria-label="Areas covered">
                 {sussexSurreyTowns.map((town) => (
                   <Link key={town} href="/locations/sussex-surrey">{town}</Link>

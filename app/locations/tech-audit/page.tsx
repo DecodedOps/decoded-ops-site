@@ -233,6 +233,7 @@ export default function TechAuditPage() {
               <div className="btn-row">
                 <Link className="btn btn--primary" href="/contact" data-od-id="cta-primary">Book a free call</Link>
                 <Link className="go" href="/locations/sussex-surrey">Sussex &amp; Surrey <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+                <Link className="go" href="/locations/manchester">Manchester <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
               </div>
             </div>
           </div>
