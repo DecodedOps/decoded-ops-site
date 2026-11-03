@@ -1,0 +1,16 @@
+/* RS3 lane A (CR-WEB-084) — page layout only, from the 3 Nov mockup's
+   <style> block (.context/mockups/rs3/about-v2.html).
+   Every pattern lives in site-v3.css and the d17 sheets; only the rules the
+   mockup keeps page-local are here. Anchored on .root — no bare globals.
+   The mockup's .hero-split .t-body / .hero-split .btn-row rules are not
+   repeated: site-v3.css already carries them (its product-pages block). */
+
+.root :global(.portrait) { container-type: inline-size; max-width: 520px; margin-left: auto }
+.root :global(.portrait-cap) { margin: 14px 0 0; max-width: 48ch; margin-left: auto }
+.root :global(.plate-img) {
+  margin: 40px 0 0;
+  border-radius: var(--do-radius-2xl);
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--do-sky-blue) 25%, transparent);
+}
+.root :global(.plate-img img) { display: block; width: 100%; height: auto }

@@ -1,0 +1,57 @@
+/* RS3 lane A (CR-WEB-084) — page layout only, from the 3 Nov mockup's
+   <style> block (.context/mockups/rs3/fractional-coo-v1.html).
+   Every pattern lives in site-v3.css and the d17 sheets; only the rules the
+   mockup keeps page-local are here. Anchored on .root — no bare globals.
+   The .faq block is here because no shared sheet carries it (the same rules
+   sit page-locally in app/apps/proof/proof-v2.css and commerce-v2.css). */
+
+.root :global(.a1030 .d17-ph) { left: 28% }
+.root :global(.a1030 .d17-ph img) {
+  --d17-grade: saturate(.7) contrast(1.06) brightness(.82);
+  object-position: 50% 40%;
+}
+.root :global(.a1030 .stage) { min-height: calc(500 * var(--u)) }
+.root :global(.a1030 .doc-f) {
+  left: calc(8 * var(--u));
+  top: calc(20 * var(--u));
+  width: calc(390 * var(--u));
+  transform: rotate(-2.4deg);
+}
+.root :global(.a1030 .doc-m) {
+  left: calc(396 * var(--u));
+  top: calc(206 * var(--u));
+  width: calc(292 * var(--u));
+  transform: rotate(3.2deg);
+  z-index: 2;
+}
+.root :global(.a1030 .t5) { left: calc(40 * var(--u)); bottom: calc(10 * var(--u)) }
+@media (max-width: 760px) {
+  .root :global(.a1030 .stage .d17-doc:nth-child(odd)) { transform: rotate(-1deg) }
+  .root :global(.a1030 .stage .d17-doc:nth-child(even)) { transform: rotate(1deg) }
+  .root :global(.a1030 .t5) { position: relative; left: auto; bottom: auto; align-self: flex-start; order: 3 }
+}
+
+.root :global(.areas--4 .area .meta) {
+  margin: 2px 0 0;
+  font-size: var(--do-text-sm);
+  font-weight: var(--do-weight-semibold);
+  color: var(--do-text-secondary);
+}
+.root :global(.note) {
+  margin: 24px 0 0;
+  max-width: 70ch;
+  font-size: var(--do-text-base);
+  line-height: 1.6;
+  color: var(--do-text-primary);
+}
+
+.root :global(.split) { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin-top: 36px }
+.root :global(.split h3) { margin: 0 0 10px; color: var(--do-text-on-dark) }
+.root :global(.split .t-body) { color: color-mix(in srgb, var(--do-off-white) 82%, transparent) }
+@media (max-width: 860px) { .root :global(.split) { grid-template-columns: 1fr; gap: 28px } }
+
+.root :global(.faq) { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 56px; margin-top: 32px }
+.root :global(.faq-item) { padding: 22px 0; border-top: 1px solid var(--do-border-subtle) }
+.root :global(.faq-item h3) { margin: 0 0 8px; font-size: var(--do-text-lg); line-height: 1.3; color: var(--do-text-primary) }
+.root :global(.faq-item .t-card) { font-size: var(--do-text-base); max-width: 58ch }
+@media (max-width: 900px) { .root :global(.faq) { grid-template-columns: 1fr } }

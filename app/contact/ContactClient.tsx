@@ -1,12 +1,24 @@
 'use client';
 
-import { ArrowRight, Mail, Phone, Clock, MessageSquare, CheckCircle, AlertCircle, Loader, Calendar } from 'lucide-react';
+import { AlertCircle, Loader } from 'lucide-react';
 import { useState } from 'react';
 import { submitContactForm } from './actions';
 import { captureContext } from '@/lib/lead-context';
 import { BOOKING_URL } from '@/lib/constants';
 import { D17Motion } from '@/components/D17Motion';
+import { IconSprite } from '@/components/IconSprite';
 import d17 from '@/app/d17-art.module.css';
+
+// Icons used by this page that are not in components/IconSprite.tsx —
+// Lucide geometry, embedded path-for-path (see the 3 Nov mockup).
+const ContactIconSprite = () => (
+  <svg width="0" height="0" style={{ position: 'absolute' }} aria-hidden="true">
+    <symbol id="i-calendar" viewBox="0 0 24 24"><path d="M8 2v3" /><path d="M16 2v3" /><rect x="3" y="3" width="18" height="18" rx="2" /><path d="M3 9h18" /></symbol>
+    <symbol id="i-message-square" viewBox="0 0 24 24"><path d="M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z" /></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /><path d="M12 6v6l4 2" /></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" /><rect x="2" y="4" width="20" height="16" rx="2" /></symbol>
+  </svg>
+);
 
 export function ContactClient() {
   const [formState, setFormState] = useState<{
@@ -69,115 +81,61 @@ export function ContactClient() {
 
   return (
     <>
+      <IconSprite />
+      <ContactIconSprite />
+
       {/* HERO */}
-      <section className="g-off">
-        <div className="wrap">
-          <div className={d17.contactHero} style={{ gap: 'clamp(48px, 8vw, 64px)', alignItems: 'center' }}>
-            <div>
-              <span className="eyebrow" style={{ marginBottom: 22 }}>Get in touch</span>
-              <h1 className="h1">Start with a free <em>60-minute call.</em></h1>
-              <p className="lede">
-                No sales pitch. No obligation. Book a free discovery call for a direct conversation about your business, what&apos;s frustrating you, and whether there&apos;s something I can help with.
-              </p>
-              <div style={{ marginTop: 24, marginBottom: 24 }}>
-                <a
-                  href={BOOKING_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn btn--primary"
-                  style={{ width: '100%' }}
-                >
-                  <Calendar size={16} />
-                  Book a call directly <ArrowRight size={16} />
-                </a>
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-                <a href="mailto:craig@decodedops.co.uk" style={{ display: 'flex', gap: 16, alignItems: 'center', textDecoration: 'none' }}>
-                  <div style={{ width: 48, height: 48, borderRadius: 'var(--do-radius-xl)', background: 'color-mix(in srgb, var(--do-cerulean) 10%, transparent)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                    <Mail size={20} style={{ color: 'var(--do-cerulean)' }} />
-                  </div>
-                  <div>
-                    <div style={{ fontSize: 'var(--do-text-xs)', color: 'var(--do-text-muted)', marginBottom: 2 }}>Email</div>
-                    <div style={{ fontWeight: 'var(--do-weight-semibold)', color: 'var(--do-text-primary)' }}>craig@decodedops.co.uk</div>
-                  </div>
-                </a>
-                <a href="tel:+447735620603" style={{ display: 'flex', gap: 16, alignItems: 'center', textDecoration: 'none' }}>
-                  <div style={{ width: 48, height: 48, borderRadius: 'var(--do-radius-xl)', background: 'color-mix(in srgb, var(--do-cerulean) 10%, transparent)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                    <Phone size={20} style={{ color: 'var(--do-cerulean)' }} />
-                  </div>
-                  <div>
-                    <div style={{ fontSize: 'var(--do-text-xs)', color: 'var(--do-text-muted)', marginBottom: 2 }}>Phone</div>
-                    <div style={{ fontWeight: 'var(--do-weight-semibold)', color: 'var(--do-text-primary)' }}>07735 620 603</div>
-                  </div>
-                </a>
-              </div>
+      <section className="g-off hero" data-od-id="hero">
+        <div className="wrap hero-split">
+          <div>
+            <h1 data-od-id="hero-title">
+              <span className="h1-kw" data-new-copy>Book a free discovery call</span>{' '}
+              Start with a free <em style={{ fontStyle: 'normal' }}>60-minute call.</em>
+            </h1>
+            <p className="t-lede" style={{ marginTop: 20 }}>
+              No sales pitch. No obligation. Book a free discovery call for a direct conversation about your business, what&apos;s frustrating you, and whether there&apos;s something I can help with.
+            </p>
+            <div className="btn-row">
+              <a
+                href={BOOKING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn--primary"
+                data-od-id="hero-cta"
+              >
+                <svg className="ic ic-16" aria-hidden="true"><use href="#i-calendar" /></svg> Book a call directly
+              </a>
+              <a className="go" href="#message">Or send a message <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></a>
             </div>
+          </div>
 
-            {/* Form */}
-            <div className={d17.contactFormCard}>
-              <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '6px 14px', borderRadius: 'var(--do-radius-full)', background: 'color-mix(in srgb, var(--do-prussian-blue) 10%, transparent)', border: '1px solid color-mix(in srgb, var(--do-prussian-blue) 20%, transparent)', marginBottom: 24 }}>
-                <MessageSquare size={12} style={{ color: 'var(--do-text-primary)' }} />
-                <span style={{ fontSize: 'var(--do-text-xs)', fontWeight: 'var(--do-weight-semibold)', textTransform: 'uppercase', letterSpacing: 'var(--do-tracking-wider)', color: 'var(--do-text-primary)' }}>Send a message</span>
+          {/* Form */}
+          <div className="form-card" id="message" data-od-id="form-card">
+            <span className="t-meta"><svg className="ic ic-16" aria-hidden="true" style={{ verticalAlign: '-3px' }}><use href="#i-message-square" /></svg> Send a message</span>
+
+            {formState.status === 'success' && (
+              <p className="form-note is-on" role="status" data-od-id="form-note">
+                {formState.message} Check your email for confirmation.
+              </p>
+            )}
+
+            {formState.status === 'error' && (
+              <div style={{ marginTop: 18, padding: 16, borderRadius: 'var(--do-radius-lg)', background: 'color-mix(in srgb, var(--do-status-danger) 10%, transparent)', border: '1px solid color-mix(in srgb, var(--do-status-danger) 20%, transparent)', display: 'flex', gap: 12 }}>
+                <AlertCircle size={20} style={{ color: 'var(--do-danger-text)', flexShrink: 0, marginTop: 2 }} />
+                <p style={{ fontSize: 'var(--do-text-sm)', fontWeight: 'var(--do-weight-medium)', color: 'var(--do-danger-text)', marginBottom: 0 }}>{formState.message}</p>
               </div>
+            )}
 
-              {formState.status === 'success' && (
-                <div style={{ marginBottom: 24, padding: 16, borderRadius: 'var(--do-radius-lg)', background: 'color-mix(in srgb, var(--do-status-success) 12%, transparent)', border: '1px solid color-mix(in srgb, var(--do-status-success) 20%, transparent)', display: 'flex', gap: 12 }}>
-                  <CheckCircle size={20} style={{ color: 'var(--do-success-text)', flexShrink: 0, marginTop: 2 }} />
-                  <div>
-                    <p style={{ fontSize: 'var(--do-text-sm)', fontWeight: 'var(--do-weight-medium)', color: 'var(--do-success-text)', marginBottom: 0 }}>{formState.message}</p>
-                    <p style={{ fontSize: 'var(--do-text-xs)', color: 'var(--do-success-text)', marginTop: 4 }}>Check your email for confirmation.</p>
-                  </div>
-                </div>
-              )}
-
-              {formState.status === 'error' && (
-                <div style={{ marginBottom: 24, padding: 16, borderRadius: 'var(--do-radius-lg)', background: 'color-mix(in srgb, var(--do-status-danger) 10%, transparent)', border: '1px solid color-mix(in srgb, var(--do-status-danger) 20%, transparent)', display: 'flex', gap: 12 }}>
-                  <AlertCircle size={20} style={{ color: 'var(--do-danger-text)', flexShrink: 0, marginTop: 2 }} />
-                  <p style={{ fontSize: 'var(--do-text-sm)', fontWeight: 'var(--do-weight-medium)', color: 'var(--do-danger-text)', marginBottom: 0 }}>{formState.message}</p>
-                </div>
-              )}
-
-              <form style={{ display: 'flex', flexDirection: 'column', gap: 16 }} onSubmit={handleSubmit}>
-                <div className={d17.contactFormRow}>
-                  <div>
-                    <label style={{ display: 'block', fontSize: 'var(--do-text-sm)', fontWeight: 'var(--do-weight-medium)', color: 'var(--do-text-primary)', marginBottom: 6 }}>Your name</label>
-                    <input
-                      type="text"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      placeholder="Jane Smith"
-                      required
-                      disabled={formState.status === 'loading'}
-                      style={formState.status === 'loading' ? inputDisabled : inputClass}
-                      onFocus={(e) => { const s = e.target.style; s.borderColor = 'var(--do-cerulean)'; s.boxShadow = '0 0 0 3px color-mix(in srgb, var(--do-cerulean) 12%, transparent)'; }}
-                      onBlur={(e) => { e.target.style.borderColor = ''; e.target.style.boxShadow = ''; }}
-                    />
-                  </div>
-                  <div>
-                    <label style={{ display: 'block', fontSize: 'var(--do-text-sm)', fontWeight: 'var(--do-weight-medium)', color: 'var(--do-text-primary)', marginBottom: 6 }}>Email address</label>
-                    <input
-                      type="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      placeholder="jane@yourcompany.co.uk"
-                      required
-                      disabled={formState.status === 'loading'}
-                      style={formState.status === 'loading' ? inputDisabled : inputClass}
-                      onFocus={(e) => { const s = e.target.style; s.borderColor = 'var(--do-cerulean)'; s.boxShadow = '0 0 0 3px color-mix(in srgb, var(--do-cerulean) 12%, transparent)'; }}
-                      onBlur={(e) => { e.target.style.borderColor = ''; e.target.style.boxShadow = ''; }}
-                    />
-                  </div>
-                </div>
+            <form onSubmit={handleSubmit}>
+              <div className="row-2">
                 <div>
-                  <label style={{ display: 'block', fontSize: 'var(--do-text-sm)', fontWeight: 'var(--do-weight-medium)', color: 'var(--do-text-primary)', marginBottom: 6 }}>Your business</label>
+                  <label style={{ display: 'block', fontSize: 'var(--do-text-sm)', fontWeight: 'var(--do-weight-medium)', color: 'var(--do-text-primary)', marginBottom: 6 }}>Your name</label>
                   <input
                     type="text"
-                    name="company"
-                    value={formData.company}
+                    name="name"
+                    value={formData.name}
                     onChange={handleChange}
-                    placeholder="What you do, roughly how big you are"
+                    placeholder="Jane Smith"
                     required
                     disabled={formState.status === 'loading'}
                     style={formState.status === 'loading' ? inputDisabled : inputClass}
@@ -186,72 +144,107 @@ export function ContactClient() {
                   />
                 </div>
                 <div>
-                  <label style={{ display: 'block', fontSize: 'var(--do-text-sm)', fontWeight: 'var(--do-weight-medium)', color: 'var(--do-text-primary)', marginBottom: 6 }}>What&apos;s going on</label>
-                  <textarea
-                    name="message"
-                    value={formData.message}
+                  <label style={{ display: 'block', fontSize: 'var(--do-text-sm)', fontWeight: 'var(--do-weight-medium)', color: 'var(--do-text-primary)', marginBottom: 6 }}>Email address</label>
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
                     onChange={handleChange}
-                    rows={5}
-                    placeholder="Tell me about the situation, the system problems, the operational pain, the decision you're trying to make."
+                    placeholder="jane@yourcompany.co.uk"
                     required
                     disabled={formState.status === 'loading'}
-                    style={{
-                      ...(formState.status === 'loading' ? inputDisabled : inputClass),
-                      resize: 'none' as const,
-                    }}
+                    style={formState.status === 'loading' ? inputDisabled : inputClass}
                     onFocus={(e) => { const s = e.target.style; s.borderColor = 'var(--do-cerulean)'; s.boxShadow = '0 0 0 3px color-mix(in srgb, var(--do-cerulean) 12%, transparent)'; }}
                     onBlur={(e) => { e.target.style.borderColor = ''; e.target.style.boxShadow = ''; }}
                   />
                 </div>
-                <button
-                  type="submit"
+              </div>
+              <div>
+                <label style={{ display: 'block', fontSize: 'var(--do-text-sm)', fontWeight: 'var(--do-weight-medium)', color: 'var(--do-text-primary)', marginBottom: 6 }}>Your business</label>
+                <input
+                  type="text"
+                  name="company"
+                  value={formData.company}
+                  onChange={handleChange}
+                  placeholder="What you do, roughly how big you are"
+                  required
                   disabled={formState.status === 'loading'}
-                  className="btn btn--primary"
-                  style={{ width: '100%', opacity: formState.status === 'loading' ? 0.5 : 1, cursor: formState.status === 'loading' ? 'not-allowed' : 'pointer' }}
-                >
-                  {formState.status === 'loading' ? (
-                    <>
-                      <Loader size={16} className="animate-spin" />
-                      Sending...
-                    </>
-                  ) : (
-                    <>
-                      Send message <ArrowRight size={16} />
-                    </>
-                  )}
-                </button>
-              </form>
-            </div>
+                  style={formState.status === 'loading' ? inputDisabled : inputClass}
+                  onFocus={(e) => { const s = e.target.style; s.borderColor = 'var(--do-cerulean)'; s.boxShadow = '0 0 0 3px color-mix(in srgb, var(--do-cerulean) 12%, transparent)'; }}
+                  onBlur={(e) => { e.target.style.borderColor = ''; e.target.style.boxShadow = ''; }}
+                />
+              </div>
+              <div>
+                <label style={{ display: 'block', fontSize: 'var(--do-text-sm)', fontWeight: 'var(--do-weight-medium)', color: 'var(--do-text-primary)', marginBottom: 6 }}>What&apos;s going on</label>
+                <textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  rows={5}
+                  placeholder="Tell me about the situation, the system problems, the operational pain, the decision you're trying to make."
+                  required
+                  disabled={formState.status === 'loading'}
+                  style={{
+                    ...(formState.status === 'loading' ? inputDisabled : inputClass),
+                    resize: 'none' as const,
+                  }}
+                  onFocus={(e) => { const s = e.target.style; s.borderColor = 'var(--do-cerulean)'; s.boxShadow = '0 0 0 3px color-mix(in srgb, var(--do-cerulean) 12%, transparent)'; }}
+                  onBlur={(e) => { e.target.style.borderColor = ''; e.target.style.boxShadow = ''; }}
+                />
+              </div>
+              <button
+                type="submit"
+                disabled={formState.status === 'loading'}
+                className="btn btn--outline"
+                style={{ width: '100%', justifyContent: 'center', opacity: formState.status === 'loading' ? 0.5 : 1, cursor: formState.status === 'loading' ? 'not-allowed' : 'pointer' }}
+                data-od-id="form-submit"
+              >
+                {formState.status === 'loading' ? (
+                  <>
+                    <Loader size={16} className="animate-spin" />
+                    Sending...
+                  </>
+                ) : (
+                  <>
+                    Send message <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg>
+                  </>
+                )}
+              </button>
+            </form>
           </div>
         </div>
       </section>
 
       {/* WHAT TO EXPECT, dark */}
-      <section className="g-navy">
+      <section className="g-navy" data-od-id="what-to-expect">
         <div className="wrap">
-          <div style={{ maxWidth: '42ch', marginBottom: 64 }}>
-            <span className="eyebrow" style={{ marginBottom: 22 }}>What to expect</span>
-            <h2 className="h2">How the first call works</h2>
+          <div className="route-head">
+            <div>
+              <span className="eyebrow">What to expect</span>
+              <h2 data-od-id="expect-h2">How the first call works</h2>
+            </div>
             <p className="lede">Once you book a free discovery call there&apos;s no preparation needed. Just turn up and tell me what&apos;s happening.</p>
           </div>
-          <div className="grid grid--3">
-            {[
-              { icon: Clock, title: '60 minutes', desc: "That's all it takes to get a clear view of what's happening and whether I can help. No extended discovery process, no homework to complete." },
-              { icon: MessageSquare, title: 'Direct questions', desc: "I'll ask direct questions about your operation, your systems, and the things that are frustrating you. You'll get direct answers back, not a follow-up proposal." },
-              { icon: ArrowRight, title: 'A clear next step', desc: "At the end of the call, you'll know whether an audit makes sense, what it would involve, and what it would cost. No pressure. You decide what happens next." },
-            ].map(item => {
-              const Icon = item.icon;
-              return (
-                <div key={item.title} className="card">
-                  <div style={{ width: 40, height: 40, borderRadius: 'var(--do-radius-xl)', background: 'color-mix(in srgb, var(--do-cerulean) 20%, transparent)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 16 }}>
-                    <Icon size={20} style={{ color: 'var(--do-cerulean)' }} />
-                  </div>
-                  <h3 style={{ fontSize: 'var(--do-text-lg)', fontWeight: 'var(--do-weight-bold)', color: 'var(--do-text-on-dark)', marginBottom: 8 }}>{item.title}</h3>
-                  <p style={{ fontSize: 'var(--do-text-sm)', color: 'var(--do-text-on-dark)', opacity: 0.72, lineHeight: 1.75, marginBottom: 0 }}>{item.desc}</p>
-                </div>
-              );
-            })}
-          </div>
+          <ol className="route route--3" data-od-id="expect-route">
+            <li className="stop" data-od-id="stop-60">
+              <span className="node"><svg className="ic ic-24" aria-hidden="true"><use href="#i-clock" /></svg></span>
+              <span className="t-meta">01</span>
+              <h3>60 minutes</h3>
+              <p className="t-card">That&apos;s all it takes to get a clear view of what&apos;s happening and whether I can help. No extended discovery process, no homework to complete.</p>
+            </li>
+            <li className="stop" data-od-id="stop-questions">
+              <span className="node"><svg className="ic ic-24" aria-hidden="true"><use href="#i-message-square" /></svg></span>
+              <span className="t-meta">02</span>
+              <h3>Direct questions</h3>
+              <p className="t-card">I&apos;ll ask direct questions about your operation, your systems, and the things that are frustrating you. You&apos;ll get direct answers back, not a follow-up proposal.</p>
+            </li>
+            <li className="stop" data-od-id="stop-next">
+              <span className="node"><svg className="ic ic-24" aria-hidden="true"><use href="#i-arrow-right" /></svg></span>
+              <span className="t-meta">03</span>
+              <h3>A clear next step</h3>
+              <p className="t-card">At the end of the call, you&apos;ll know whether an audit makes sense, what it would involve, and what it would cost. No pressure. You decide what happens next.</p>
+            </li>
+          </ol>
         </div>
       </section>
 
@@ -259,9 +252,9 @@ export function ContactClient() {
            (assets/craig-blackman.jpg, the same photograph as /about), warm,
            light grade. "It reaches me directly" is the argument, so the
            panel shows who it reaches. */}
-      <section className="g-navy cta-strip" data-od-id="cta-strip">
-        <div className="wrap" style={{ maxWidth: 1148 }}>
-          <figure className={`${d17.d17} ${d17.a920}`} data-od-id="direct-line"
+      <section className="g-off" data-od-id="direct-line">
+        <div className="wrap">
+          <figure className={`${d17.d17} ${d17.a920}`} data-od-id="direct-line-panel"
                   data-no="DO-ART-920" data-rev="01" data-tx="photo" style={{ margin: 0 }}>
             <div className={d17.d17Ph}><img src="/images/d17/craig-blackman.webp" width={950} height={1067}
                  alt="Craig Blackman on a beach, smiling, hands in the pockets of a black jacket." /></div>
@@ -273,11 +266,15 @@ export function ContactClient() {
               <p className="lede">Call or email &mdash; either way it reaches me directly, not a gatekeeper.</p>
               <div className={d17.heroCta}>
                 <a className={d17.contactLink} href="mailto:craig@decodedops.co.uk" data-od-id="contact-email">
-                  <span className="icon">&#9993;</span>
+                  <span className="icon" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <svg className="ic ic-20" aria-hidden="true"><use href="#i-mail" /></svg>
+                  </span>
                   <span><span className="lbl">Email</span><br /><span className="val">craig@decodedops.co.uk</span></span>
                 </a>
                 <a className={d17.contactLink} href="tel:+447735620603" data-od-id="contact-phone">
-                  <span className="icon">&#9742;</span>
+                  <span className="icon" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <svg className="ic ic-20" aria-hidden="true"><use href="#i-phone" /></svg>
+                  </span>
                   <span><span className="lbl">Phone</span><br /><span className="val">07735 620 603</span></span>
                 </a>
               </div>

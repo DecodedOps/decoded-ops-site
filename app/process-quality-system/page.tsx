@@ -1,9 +1,14 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Artwork } from '@/components/Artwork';
-import { PhotoPiece } from '@/components/PhotoPiece';
 import { BreadcrumbSchema } from '@/components/BreadcrumbSchema';
+import { D17Motion } from '@/components/D17Motion';
+import { IconSprite } from '@/components/IconSprite';
 import { OG_IMAGE, OG_IMAGE_PATH } from '@/lib/seo';
+import '@/app/d17-global.css';
+import '@/app/d17-apps-cases.css';
+import '@/app/design-system/site-v3.css';
+import styles from './page.module.css';
 
 export const metadata: Metadata = {
   title: 'How to Write a Standard Operating Procedure | Decoded Ops',
@@ -27,32 +32,87 @@ export const metadata: Metadata = {
 export default function ProcessQualitySystemPage() {
   return (
     <>
+      <IconSprite />
       <BreadcrumbSchema items={[
         { name: 'Home', url: 'https://decodedops.co.uk/' },
         { name: 'Process & Quality System', url: 'https://decodedops.co.uk/process-quality-system' },
       ]} />
 
-      {/* 1 · HERO CENTRE */}
-      <section className="g-off">
-        <div className="container hero-center">
-          <p className="eyebrow">Process &amp; Quality System</p>
-          <h1>How your business keeps improving after I leave.</h1>
-          <p className="lead">Not a report that sits in a drawer. A working system for how the business
-            documents, checks, and improves its own processes, built during the engagement and owned by
-            you after it. It covers how to write a standard operating procedure your team will actually follow.</p>
-          <div className="hero-cta">
-            <Link className="btn btn-primary btn-arrow" href="/deliver">See how this fits into Deliver</Link>
+      <div className={styles.root}>
+      {/* 1 · HERO */}
+      <section className="g-off hero" data-od-id="hero">
+        <div className="wrap">
+          <div className="hero-head">
+            <div>
+              <h1 data-od-id="hero-h1">
+                <span className="h1-kw" data-new-copy>How to write a standard operating procedure</span>{' '}
+                How your business keeps improving after I leave.
+              </h1>
+            </div>
+            <div>
+              <p className="t-lede">Not a report that sits in a drawer. A working system for how the business
+                documents, checks, and improves its own processes, built during the engagement and owned by
+                you after it. It covers how to write a standard operating procedure your team will actually follow.</p>
+              <div className="btn-row" data-od-id="hero-cta">
+                <Link className="btn btn--primary" href="/contact" data-new-copy>Book a free discovery call</Link>
+                <Link className="go" href="/deliver">See how this fits into Deliver <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+              </div>
+            </div>
           </div>
+
+          {/* DO-ART-1031 r01 · Process & Quality System hero · a one-page SOP and
+               the process register over DO-ART-979g (paperwork on an office desk,
+               a client site, 2026). */}
+          <figure className="d17 sw sw-doc a1031" data-od-id="hero-visual" data-motion data-no="DO-ART-1031" data-rev="01" data-tx="photo"
+            aria-label="Artwork DO-ART-1031. Two documents over a graded photograph of paperwork on an office desk. A one-page standard operating procedure for pick and pack, three numbered steps, with the test written underneath: can someone who doesn’t know the job follow it? The process register: every process that matters with its status, quote to order documented, artwork approval being checked, pick and despatch mapped, and the improvement log underneath. A tag reads: yours after I leave.">
+            <div className="d17-ph"><img src="/images/site/evidence/hero-office-paperwork-75fcd2.webp" width="1600" height="900" alt="" /></div>
+            <div className="d17-scan" aria-hidden="true"></div>
+            <figcaption className="sw-cap">
+              <div className="k d17-mono" data-new-copy>Process &amp; Quality System <span>&middot; what you keep</span></div>
+              <div className="bar" aria-hidden="true"></div>
+              <h3 data-new-copy>A working system, not a report in a drawer.</h3>
+              <p data-new-copy>A Process Register, one-page SOPs and an Improvement Log, built during the engagement and owned by you after it.</p>
+              <span className="d17-mark">decodedops.co.uk &middot; DO-ART-1031 &middot; Rev 01</span>
+            </figcaption>
+            <div className="stage" aria-hidden="true">
+              <div className="d17-doc doc-f m-drop" style={{ animationDelay: '.1s' }}><span className="tab">SOP</span>
+                <span className="ref">One-page SOP &middot; pick and pack</span>
+                <h4>Written so someone new can follow it</h4>
+                <p className="sub">one page &middot; one process &middot; one owner</p>
+                <ol className="chg">
+                  <li>Pick from the bin on the job sheet<span className="st-chip">01</span></li>
+                  <li>Check the quantity against the order<span className="st-chip">02</span></li>
+                  <li>Pack, label, scan out<span className="st-chip">03</span></li>
+                  <li>Anything short: flag it, don&rsquo;t ship it<span className="st-chip st-chip--a">Rule</span></li>
+                </ol>
+                <div className="doc-foot">The test: can someone who doesn&rsquo;t know the job follow it?</div></div>
+              <div className="d17-doc doc-m m-drop" style={{ animationDelay: '.45s' }}><span className="tab">REGISTER</span>
+                <span className="ref">Process register</span>
+                <h4>Every process that matters</h4>
+                <ol className="chg">
+                  <li>Quote to order<span className="st-chip">Documented</span></li>
+                  <li>Artwork approval<span className="st-chip st-chip--a">Checking</span></li>
+                  <li>Pick and despatch<span className="st-chip st-chip--o">Mapped</span></li>
+                </ol>
+                <div className="doc-foot">Improvement log: what changed, what it was worth, what&rsquo;s next</div></div>
+              <div className="sx-tag t5 m-pop" style={{ animationDelay: '1.9s' }}><small>Yours after I leave</small>Owned by you, run without me</div>
+            </div>
+          </figure>
         </div>
       </section>
 
-      {/* 2 · THE LOOP · DO-ART-305 */}
-      <section className="g-tint">
-        <div className="container">
-          <p className="eyebrow">The loop &middot; DO-ART-305</p>
-          <h2>The same four steps, for every process that matters.</h2>
-          <p className="lead" style={{ marginTop: 16 }}>Not a one-off audit. A loop that keeps running after
-            the engagement ends, because the last step feeds the first one.</p>
+      {/* 2 · THE LOOP · DO-ART-305 kept (lane brief) + the house route card */}
+      <section className="g-navy route-sec" data-od-id="loop">
+        <div className="do-dot-grid" aria-hidden="true" style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }} />
+        <div className="wrap">
+          <div className="route-head">
+            <div>
+              <span className="eyebrow">The loop</span>
+              <h2 data-od-id="loop-h2">The same four steps, for every process that matters.</h2>
+            </div>
+            <p className="lede">Not a one-off audit. A loop that keeps running after
+              the engagement ends, because the last step feeds the first one.</p>
+          </div>
 
           <div className="plate-scroll" style={{ marginTop: 34 }}>
             <div className="plate-frame">
@@ -121,65 +181,125 @@ export default function ProcessQualitySystemPage() {
             </div>
           </div>
 
-          <div className="steps">
-            <article className="step">
-              <p className="step-n">STEP 1</p>
-              <h3>Map the process</h3>
-              <p>As it actually runs, watched from start to finish. Not as the org chart describes it and not as
-                anyone remembers it.</p>
+          <ol className="route" data-od-id="loop-steps">
+            <li className="stop" data-od-id="loop-1">
+              <span className="node"><svg className="ic ic-24" aria-hidden="true"><use href="#i-map-pin" /></svg></span>
+              <span className="t-meta">Step 1</span><h3>Map the process</h3>
+              <p className="t-card">As it actually runs, watched from start to finish. Not as the org chart describes it and not as anyone remembers it.</p>
+            </li>
+            <li className="stop" data-od-id="loop-2">
+              <span className="node"><svg className="ic ic-24" aria-hidden="true"><use href="#i-file-check" /></svg></span>
+              <span className="t-meta">Step 2</span><h3>Document it as an SOP</h3>
+              <p className="t-card">Written so someone who doesn&rsquo;t already know the job can follow it. That&rsquo;s the test: not whether the person who wrote it recognises it.</p>
+            </li>
+            <li className="stop" data-od-id="loop-3">
+              <span className="node"><svg className="ic ic-24" aria-hidden="true"><use href="#i-clipboard-check" /></svg></span>
+              <span className="t-meta">Step 3</span><h3>Check it&rsquo;s followed</h3>
+              <p className="t-card">Knowing how to write a standard operating procedure is only the start. An SOP nobody follows is a document, not a system. This is the step most businesses skip and the reason their documentation goes stale.</p>
+            </li>
+            <li className="stop stop--out" data-od-id="loop-4">
+              <span className="node"><svg className="ic ic-24" aria-hidden="true"><use href="#i-trending-up" /></svg></span>
+              <span className="t-meta">Step 4</span><h3>Log what&rsquo;s improved</h3>
+              <p className="t-card">What changed, what it was worth, and what&rsquo;s next. The log is yours, and it&rsquo;s what makes the loop run again without me.</p>
+            </li>
+          </ol>
+          <p className="route-cap"><svg className="ic ic-16" aria-hidden="true"><use href="#i-check" /></svg>Then round again, for every process that matters.</p>
+        </div>
+      </section>
+
+      {/* 3 · WHERE THE SOP GETS TESTED */}
+      <section className="g-white" data-od-id="where">
+        <div className="wrap">
+          <div className="ev-head">
+            <div>
+              <span className="eyebrow" data-new-copy>Where the SOP gets tested</span>
+              <h2 data-od-id="where-h2" data-new-copy>At the bench, on the shelf, at the door.</h2>
+            </div>
+            <p className="lede" data-new-copy>Three of my own photographs from client visits this year. A process is whatever happens at the bench and the door, not what the org chart says, and that&rsquo;s where an SOP is checked.</p>
+          </div>
+          <div className="ev-grid" data-od-id="where-photos">
+            <figure className="d17 ev" data-od-id="photo-job-sheets" data-no="DO-ART-979k" data-rev="01" data-tx="photo">
+              <div className="d17-ph"><img src="/images/site/evidence/plate-job-sheets-63dd9c.webp" width="1600" height="900" alt="Paper job sheets laid out on a workbench at a client site." /></div>
+              <div className="d17-scan" aria-hidden="true"></div>
+              <p className="k d17-mono">The bench &middot; June 2026</p>
+              <p className="line">Job sheets, still on paper</p>
+              <span className="d17-mark">decodedops.co.uk &middot; DO-ART-979k &middot; Rev 01</span>
+            </figure>
+            <figure className="d17 ev" data-od-id="photo-shelf" data-no="DO-ART-979j" data-rev="01" data-tx="photo">
+              <div className="d17-ph"><img src="/images/site/evidence/card-garment-shelf-724253.webp" width="1600" height="900" alt="Folded garments on a stockroom shelf at a client site." /></div>
+              <div className="d17-scan" aria-hidden="true"></div>
+              <p className="k d17-mono">Stock &middot; June 2026</p>
+              <p className="line">The shelf the SOP describes</p>
+              <span className="d17-mark">decodedops.co.uk &middot; DO-ART-979j &middot; Rev 01</span>
+            </figure>
+            <figure className="d17 ev" data-od-id="photo-cartons" data-no="DO-ART-979q" data-rev="01" data-tx="photo">
+              <div className="d17-ph"><img src="/images/site/evidence/plate-cartons-packed-2fb0ae.webp" width="1600" height="900" alt="Packed cartons waiting for collection at a client site." /></div>
+              <div className="d17-scan" aria-hidden="true"></div>
+              <p className="k d17-mono">Despatch &middot; June 2026</p>
+              <p className="line">Packed, checked, out the door</p>
+              <span className="d17-mark">decodedops.co.uk &middot; DO-ART-979q &middot; Rev 01</span>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      {/* 4 · WHAT YOU KEEP */}
+      <section className="g-tint" data-od-id="keep">
+        <div className="wrap">
+          <div className="sec-head">
+            <span className="eyebrow" data-new-copy>What you keep</span>
+            <h2 data-od-id="keep-h2" data-new-copy>Three documents, and the habit of using them.</h2>
+            <p className="lede" data-new-copy>Built alongside the work, not written up afterwards. Each one is plain enough that your team keeps it going once I&rsquo;ve gone.</p>
+          </div>
+          <div className="areas" data-od-id="keep-cards">
+            <article className="area" data-od-id="keep-register">
+              <div className="area-top">
+                <span className="ic-tile"><svg className="ic ic-24" aria-hidden="true"><use href="#i-layout-grid" /></svg></span>
+                <span className="num">01</span>
+              </div>
+              <h3 data-new-copy>The Process Register</h3>
+              <p className="t-card" data-new-copy>Every process that matters, named, owned and dated, with where it is in the loop: mapped, documented, being checked, improved.</p>
             </article>
-            <article className="step">
-              <p className="step-n">STEP 2</p>
-              <h3>Document it as an SOP</h3>
-              <p>Written so someone who doesn&rsquo;t already know the job can follow it. That&rsquo;s the test:
-                not whether the person who wrote it recognises it.</p>
+            <article className="area" data-od-id="keep-sops">
+              <div className="area-top">
+                <span className="ic-tile"><svg className="ic ic-24" aria-hidden="true"><use href="#i-file-check" /></svg></span>
+                <span className="num">02</span>
+              </div>
+              <h3 data-new-copy>One-page SOPs</h3>
+              <p className="t-card" data-new-copy>One page per process, written so someone who doesn&rsquo;t already know the job can follow it. If it needs a second page, it&rsquo;s two processes.</p>
             </article>
-            <article className="step">
-              <p className="step-n">STEP 3</p>
-              <h3>Check it&rsquo;s followed</h3>
-              <p>Knowing how to write a standard operating procedure is only the start. An SOP nobody follows is a document, not a system. This is the step most businesses skip
-                and the reason their documentation goes stale.</p>
-            </article>
-            <article className="step step--last">
-              <p className="step-n">STEP 4</p>
-              <h3>Log what&rsquo;s improved</h3>
-              <p>What changed, what it was worth, and what&rsquo;s next. The log is yours, and it&rsquo;s what makes
-                the loop run again without me.</p>
+            <article className="area" data-od-id="keep-log">
+              <div className="area-top">
+                <span className="ic-tile"><svg className="ic ic-24" aria-hidden="true"><use href="#i-trending-up" /></svg></span>
+                <span className="num">03</span>
+              </div>
+              <h3 data-new-copy>The Improvement Log</h3>
+              <p className="t-card" data-new-copy>What changed, what it was worth, and what&rsquo;s next. The log is yours, and it&rsquo;s what makes the loop run again without me.</p>
             </article>
           </div>
         </div>
       </section>
 
-      {/* 2a · EVIDENCE PHOTO · DO-ART-914 */}
-      <section className="g-white ev-band" data-od-id="evidence">
-        <div className="container">
-          <PhotoPiece
-            src="/images/money/band-screenprint-carousel-f0dce0.webp"
-            width={1600}
-            height={900}
-            alt="A screenprint carousel and press on a workshop floor, print tables alongside."
-            no="DO-ART-914"
-            rev="01"
-            eyebrow="Evidence · Process & Quality System"
-            caption="The same result, every run"
-            focus="50% 50%"
-          />
-        </div>
-      </section>
-
-      {/* 3 · CTA STRIP */}
-      <section className="g-navy cta-strip">
-        <div className="container" style={{ maxWidth: 760 }}>
-          <h2>See how this fits into Deliver.</h2>
-          <p className="lead">Every Deliver engagement builds this alongside the project itself, so what you
-            keep afterwards is a documented process, not just something that works and nobody can
-            explain.</p>
-          <div className="hero-cta">
-            <Link className="btn btn-primary" href="/deliver">See how this fits into Deliver</Link>
-            <Link className="btn btn-secondary btn-arrow" href="/resources/decoded-method">The Decoded Method</Link>
+      {/* 5 · CLOSER */}
+      <section className="g-off closer" data-od-id="cta">
+        <div className="wrap closer-grid">
+          <div>
+            <span className="eyebrow">Where it fits</span>
+            <h2 data-od-id="cta-h2">See how this fits into Deliver.</h2>
+          </div>
+          <div>
+            <p className="lede">Every Deliver engagement builds this alongside the project itself, so what you
+              keep afterwards is a documented process, not just something that works and nobody can
+              explain.</p>
+            <div className="btn-row">
+              <Link className="btn btn--primary" href="/deliver" data-od-id="cta-primary">See how this fits into Deliver</Link>
+              <Link className="go" href="/resources/decoded-method">The Decoded Method <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+            </div>
           </div>
         </div>
       </section>
+      </div>
+      <D17Motion />
     </>
   );
 }

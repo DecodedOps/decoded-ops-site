@@ -1,0 +1,33 @@
+/* RS3 lane A (CR-WEB-084) — page layout only, from the 3 Nov mockup's
+   <style> block (.context/mockups/rs3/sectors-operations-consultant-print-embroidery-v1.html).
+   Every pattern lives in site-v3.css and the d17 sheets; only the rules the
+   mockup keeps page-local are here. Anchored on .root — no bare globals.
+   The mockup's .hero-split .t-body / .hero-split .btn-row rules are not
+   repeated: site-v3.css already carries them (its product-pages block). */
+
+.root :global(.a1029 .stage) { aspect-ratio: 560 / 420 }
+.root :global(.a1029 .d17-ph img) {
+  object-position: 50% 50%;
+  --d17-grade: saturate(.62) contrast(1.05) brightness(.88);
+}
+.root :global(.a1029::before) {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--do-prussian-blue) 55%, transparent) 0%, transparent 16%, transparent 52%, color-mix(in srgb, var(--do-prussian-blue) 90%, transparent) 78%, var(--do-prussian-blue) 100%),
+    linear-gradient(90deg, color-mix(in srgb, var(--do-prussian-blue) 30%, transparent), transparent 30%, transparent 70%, color-mix(in srgb, var(--do-prussian-blue) 30%, transparent));
+}
+
+.root :global(.a120r2) {
+  --u: calc(100cqw / 1152);
+  --pu: calc(100% / 1152);
+  padding: calc(40 * var(--pu)) calc(40 * var(--pu)) calc(30 * var(--pu));
+}
+.root :global(.a120r2 .v-tall) { display: none }
+@media (max-width: 760px) {
+  .root :global(.a120r2) { padding: 22px 14px 20px }
+  .root :global(.a120r2 .v-wide) { display: none }
+  .root :global(.a120r2 .v-tall) { display: block }
+}
