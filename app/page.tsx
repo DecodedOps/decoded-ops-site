@@ -355,11 +355,13 @@ export default function HomePage() {
           <div className="wrap">
             <div className="origin-lead" data-od-id="origin-lead">
               <span className="eyebrow">Where the software came from</span>
-              <h2>I didn&rsquo;t set out to build software.</h2>
+              <h2>I build software where nothing on the market does the job.</h2>
               <p>I kept meeting the same gap in businesses I was already fixing as an operations consultant. The platform was
                 usually right. It just would not do one particular job, and nothing on the market closed
                 that gap at a price a business this size could justify. So I built the thing that
                 did.</p>
+              <p>The same rule applies to your business. If something off the shelf does the job, that is
+                what I will recommend. If nothing does, I will build what you need.</p>
               <p>Because it was built by someone who does the process work, the Process Register and the
                 SOPs are built in rather than bolted on. That is the Decoded Method running inside the
                 software instead of sitting in a folder nobody opens.</p>

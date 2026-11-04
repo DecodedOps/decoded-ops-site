@@ -178,11 +178,12 @@ export default function AboutPage() {
           <div className="route-head">
             <div>
               <span className="eyebrow">Why the software exists</span>
-              <h2 data-od-id="software-h2">I didn&apos;t set out to build software.</h2>
+              <h2 data-od-id="software-h2">I build software where nothing on the market does the job.</h2>
             </div>
             <p className="lede">I kept meeting the same gap in businesses I was already fixing, and
               nothing on the market closed it at a price those businesses could justify. So I built
-              the thing that did. It exists because the operational work needed it, and every feature in it has come out of a real job for a real client.</p>
+              the thing that did. It exists because the operational work needed it, and every feature in it has come out of a real job for a real client.
+              The same goes for yours: off the shelf when something fits, built for you when nothing does.</p>
           </div>
 
           {/* DO-ART-719 r03 · drawn engineering plate, website cut of the
