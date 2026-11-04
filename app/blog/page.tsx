@@ -7,6 +7,7 @@ import { IconSprite } from '@/components/IconSprite';
 import type { Metadata } from 'next';
 import localBlogPosts from '@/data/blog-index.json';
 import { hubFetch } from '@/lib/hub-fetch';
+import { BLOG_REVIEW, BLOG_REVIEW_SCOPE, reviewStatusLabel, formatTargetDate } from '@/lib/blog-review';
 import { OG_IMAGE, OG_IMAGE_PATH } from '@/lib/seo';
 import '@/app/d17-global.css';
 import '@/app/d17-apps-cases.css';
@@ -48,9 +49,8 @@ const blogSchema = {
 async function fetchBlogIndex() {
   let hubItems: any[] = [];
   try {
-    const res = await hubFetch(`${HUB_API}/api/content/index`, {
-      next: { revalidate: 300 },
-    });
+    const res = await hubFetch(`${HUB_API}/api/content/index${BLOG_REVIEW_SCOPE ? `?${BLOG_REVIEW_SCOPE}` : ''}`,
+      BLOG_REVIEW ? { cache: 'no-store' } : { next: { revalidate: 300 } });
     if (res.ok) {
       const data = await res.json();
       hubItems = data.items || [];
@@ -65,7 +65,11 @@ async function fetchBlogIndex() {
 }
 
 export default async function BlogPage() {
-  const posts = await fetchBlogIndex();
+  const all = await fetchBlogIndex();
+  // Staging review mode only: unpublished posts are listed in their own section
+  // below, never mixed into the public list.
+  const posts = all.filter((p: any) => !p.status || p.status === 'published');
+  const unpublished = BLOG_REVIEW ? all.filter((p: any) => p.status && p.status !== 'published') : [];
 
   // The by-topic archive: the posts beyond the newest seven (the lead and the
   // six the approved design shows as recent), grouped the way it groups them.
@@ -114,6 +118,25 @@ export default async function BlogPage() {
           </div>
         </div>
       </section>
+
+      {unpublished.length > 0 && (
+        <section className="g-white" data-od-id="review">
+          <div className="wrap">
+            <div className="route-head">
+              <div><span className="eyebrow">Staging only</span><h2>Unpublished posts, for review.</h2></div>
+              <p className="lede">{unpublished.length} posts that are not live. They show here on staging only, for content review and artwork briefs, and are hidden on the live site.</p>
+            </div>
+            <div className="next-grid">
+              {unpublished.map((p: any) => (
+                <div className="next-card" key={p.slug}>
+                  <span className="t-meta">{reviewStatusLabel(p.status)}{p.targetDate ? ` · due ${formatTargetDate(p.targetDate)}` : ''}{typeof p.wordCount === 'number' ? ` · ${p.wordCount} words` : ''}</span>
+                  <h3><Link href={`/blog/${p.slug}`}>{p.title}</Link></h3>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {archiveColumns.length > 0 && (
         <section className="g-white" data-od-id="archive">

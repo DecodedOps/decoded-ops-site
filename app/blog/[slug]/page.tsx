@@ -9,6 +9,7 @@ import { BreadcrumbSchema } from '@/components/BreadcrumbSchema';
 import type { Metadata } from 'next';
 import localBlogPosts from '@/data/blog-index.json';
 import { hubFetch } from '@/lib/hub-fetch';
+import { BLOG_REVIEW, BLOG_REVIEW_SCOPE, reviewStatusLabel, formatTargetDate } from '@/lib/blog-review';
 
 const HUB_API = process.env.HUB_API_URL || 'http://localhost:3000';
 
@@ -73,8 +74,8 @@ function buildArticleSchema(item: any, slug: string, pubDate: string) {
 
 async function fetchBlogPost(slug: string, preview?: string) {
   try {
-    const url = `${HUB_API}/api/content/detail?slug=${encodeURIComponent(slug)}${preview ? `&preview=${encodeURIComponent(preview)}` : ''}`;
-    const res = await hubFetch(url, preview ? { cache: 'no-store' } : { next: { revalidate: 300 } });
+    const url = `${HUB_API}/api/content/detail?slug=${encodeURIComponent(slug)}${preview ? `&preview=${encodeURIComponent(preview)}` : ''}${BLOG_REVIEW_SCOPE ? `&${BLOG_REVIEW_SCOPE}` : ''}`;
+    const res = await hubFetch(url, preview || BLOG_REVIEW ? { cache: 'no-store' } : { next: { revalidate: 300 } });
     if (!res.ok) return null;
     const data = await res.json();
     return data.item ? { ...data.item, _preview: !!data.preview } : null;
@@ -185,8 +186,8 @@ export default async function BlogPost({ params, searchParams }: PageProps) {
 
       {isPreview && (
         <div className="w-full px-6 py-4 text-center" style={{ background: '#FFB703', color: '#023047' }}>
-          <p className="font-semibold text-sm uppercase tracking-wider">PREVIEW — not published</p>
-          <p className="text-xs mt-1" style={{ color: '#023047cc' }}>This link expires in 24 hours. Do not share.</p>
+          <p className="font-semibold text-sm uppercase tracking-wider">Not published{item.status && item.status !== 'published' ? ` · ${reviewStatusLabel(item.status)}` : ''}{item.targetDate ? ` · due ${formatTargetDate(item.targetDate)}` : ''}</p>
+          <p className="text-xs mt-1" style={{ color: '#023047cc' }}>{BLOG_REVIEW && !preview ? 'Shown on staging for review only. It does not appear on the live site.' : 'This link expires in 24 hours. Do not share.'}</p>
         </div>
       )}
 
