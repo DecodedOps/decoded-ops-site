@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { ReactNode } from 'react';
-import { BOOKING_URL } from '@/lib/constants';
 import { BreadcrumbSchema } from './BreadcrumbSchema';
 import { VideoEmbed } from './VideoEmbed';
 import { VideoSchema } from './VideoSchema';
@@ -87,7 +86,7 @@ export function ProblemPageDS({ problem, headline, intro, heroGraphic, symptoms,
             <div className="hair" />
             <p className="lede">{intro}</p>
             <div className="btn-row">
-              <Link className="btn btn--primary" href="/contact">Talk about your situation</Link>
+              <Link className="btn btn--primary" href="/contact">Book a free discovery call</Link>
               <Link className="btn btn--outline" href="/clarity">See how the audit works</Link>
             </div>
           </div>
@@ -172,11 +171,8 @@ export function ProblemPageDS({ problem, headline, intro, heroGraphic, symptoms,
               ))}
             </ul>
             <div className="btn-row" style={{ margin: '0 0 12px' }}>
-              <Link href="/contact" className="btn btn--primary" style={{ width: '100%' }}>Book a free call</Link>
+              <Link href="/contact" className="btn btn--primary" style={{ width: '100%' }}>Book a free discovery call</Link>
             </div>
-            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="underline text-sm text-center block" style={{ color: 'var(--do-text-secondary)' }}>
-              Or book a call directly
-            </a>
           </div>
         </div>
       </section>

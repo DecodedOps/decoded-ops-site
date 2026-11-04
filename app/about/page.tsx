@@ -49,8 +49,8 @@ export default function AboutPage() {
             <p className="t-body">That&apos;s why I know what a system needs to do for the person using it, not just the
               person commissioning it.</p>
             <div className="btn-row" data-od-id="hero-cta">
-              <Link className="btn btn--primary" href="/contact">Book a call</Link>
-              <Link className="go" href="/how-i-build">How I build <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+              <Link className="btn btn--primary" href="/contact">Book a free discovery call</Link>
+              <Link className="btn btn--outline" href="/how-i-build">How I build</Link>
             </div>
           </div>
 
@@ -215,8 +215,8 @@ export default function AboutPage() {
           <div>
             <p className="lede">A straightforward conversation about whether this is the right fit, before anything gets booked.</p>
             <div className="btn-row">
-              <Link className="btn btn--primary" href="/contact" data-od-id="cta-primary">Book a call</Link>
-              <Link className="go" href="/clarity">See how a Clarity Audit works <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+              <Link className="btn btn--primary" href="/contact" data-od-id="cta-primary">Book a free discovery call</Link>
+              <Link className="btn btn--outline" href="/clarity">See how a Clarity Audit works</Link>
             </div>
           </div>
         </div>

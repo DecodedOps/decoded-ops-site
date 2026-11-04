@@ -118,7 +118,7 @@ export default function ResourcesPage() {
             <p className="t-body" data-new-copy>Nine of them, below. The drawing shows the order they work best in: recognise, check, measure, document, and only then choose a platform.</p>
             <div className="btn-row">
               <Link className="btn btn--primary" href="/resources/audit-checklist" data-od-id="hero-cta" data-new-copy>Start with the audit checklist</Link>
-              <Link className="go" href="/tools" data-new-copy>The free calculators <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+              <Link className="btn btn--outline" href="/tools" data-new-copy>The free calculators</Link>
             </div>
           </div>
 
@@ -282,7 +282,7 @@ export default function ResourcesPage() {
             <p className="lede" data-new-copy>An audit is where things get specific: a day on site, every finding quantified, every recommendation costed, and a plan you can act on.</p>
             <div className="btn-row">
               <Link className="btn btn--primary" href="/contact" data-od-id="cta-primary" data-new-copy>Book a free discovery call</Link>
-              <Link className="go" href="/clarity" data-new-copy>See how a Clarity Audit works <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+              <Link className="btn btn--outline" href="/clarity" data-new-copy>See how a Clarity Audit works</Link>
             </div>
           </div>
         </div>

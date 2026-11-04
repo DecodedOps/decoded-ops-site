@@ -251,7 +251,7 @@ export default function EternalFitnessCaseStudyPage() {
               <p className="lede">If you need a technical lead who&apos;ll build the tool without pretending it replaces the expert, get in touch.</p>
               <div className="btn-row">
                 <Link className="btn btn--primary" href="/contact" data-od-id="cta-primary">Book a free discovery call</Link>
-                <Link className="go" href="/case-studies">See other client work <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+                <Link className="btn btn--outline" href="/case-studies">See other client work</Link>
               </div>
             </div>
           </div>

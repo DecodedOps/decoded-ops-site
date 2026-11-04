@@ -195,8 +195,8 @@ export default function ManchesterPage() {
                 Manchester&apos;s decorated-goods sector is one of the UK&apos;s most active. The technology decisions that are inconvenient in smaller towns become more urgent at this scale, where the cost of a failed integration or a stockout runs into tens of thousands.
               </p>
               <div className="btn-row">
-                <Link className="btn btn--primary" href="/contact" data-od-id="hero-cta">Book a free call</Link>
-                <Link className="go" href="/retained">See how fractional CTO works <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+                <Link className="btn btn--primary" href="/contact" data-od-id="hero-cta">Book a free discovery call</Link>
+                <Link className="btn btn--outline" href="/retained">See how fractional CTO works</Link>
               </div>
             </div>
           </div>
@@ -313,8 +313,8 @@ export default function ManchesterPage() {
           <div>
             <p className="lede">A fixed-price, one-day diagnostic. Find out what your systems are costing you before committing to anything ongoing.</p>
             <div className="btn-row">
-              <Link className="btn btn--primary" href="/contact" data-od-id="cta-primary">Book a free call</Link>
-              <Link className="go" href="/locations/tech-audit">Technology audit, UK-wide <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+              <Link className="btn btn--primary" href="/contact" data-od-id="cta-primary">Book a free discovery call</Link>
+              <Link className="btn btn--outline" href="/locations/tech-audit">Technology audit, UK-wide</Link>
             </div>
           </div>
         </div>

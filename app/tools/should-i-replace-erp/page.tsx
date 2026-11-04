@@ -203,7 +203,7 @@ export default function ShouldIReplaceErpPage() {
             <p className="lede">Whether you fix it or replace it, a Clarity Audit gives you the written brief to judge every option against, mine included.</p>
             <div className="btn-row">
               <Link className="btn btn--primary" href="/contact" data-od-id="cta-primary">Book a free discovery call</Link>
-              <Link className="go" href="/problems/wrong-erp-software">On the wrong software? <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+              <Link className="btn btn--outline" href="/problems/wrong-erp-software">On the wrong software?</Link>
             </div>
           </div>
         </div>

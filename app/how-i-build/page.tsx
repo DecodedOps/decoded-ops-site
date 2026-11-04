@@ -223,7 +223,7 @@ export default function HowIBuildPage() {
               <p className="lede">An hour on what&rsquo;s actually going wrong. You&rsquo;ll get an honest read on which rung you&rsquo;re on, including if the answer is that you don&rsquo;t need me at all.</p>
               <div className="btn-row">
                 <Link className="btn btn--primary" href="/contact" data-od-id="cta-primary">Book a free discovery call</Link>
-                <Link className="go" href="/apps">See what I&rsquo;ve built <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+                <Link className="btn btn--outline" href="/apps">See what I&rsquo;ve built</Link>
               </div>
             </div>
           </div>

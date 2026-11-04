@@ -70,7 +70,7 @@ export default function SixSigmaPage() {
               <a className="btn btn--primary" href="/downloads/six-sigma.pdf" download data-od-id="hero-cta" style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
                 <Download size={20} /> Download the playbook
               </a>
-              <a className="go" href="#scale" data-new-copy>See the scale <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></a>
+              <a className="btn btn--outline" href="#scale" data-new-copy>See the scale</a>
             </div>
           </div>
 
@@ -151,7 +151,7 @@ export default function SixSigmaPage() {
             <p className="lede">A Clarity Audit maps your actual defect rate, finds the process gaps behind it, and gives you a costed plan to close them.</p>
             <div className="btn-row">
               <Link className="btn btn--primary" href="/contact" data-od-id="cta-primary">Book a free discovery call</Link>
-              <Link className="go" href="/clarity">See what Clarity covers <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+              <Link className="btn btn--outline" href="/clarity">See what Clarity covers</Link>
             </div>
           </div>
         </div>

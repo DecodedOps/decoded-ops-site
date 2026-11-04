@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { Download, MessageSquareQuote, FileCheck, Users, RefreshCw, GitBranch, BadgeCheck } from 'lucide-react';
-import { BOOKING_URL } from '@/lib/constants';
 import { JsonLd } from '@/components/JsonLd';
 import { IconSprite } from '@/components/IconSprite';
 import { D17Motion } from '@/components/D17Motion';
@@ -122,7 +121,7 @@ export default function DecodedMethodPage() {
               <a className="btn btn--primary" href="/downloads/decoded-method.pdf" download data-od-id="hero-cta" style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
                 <Download size={20} /> Download the playbook
               </a>
-              <a className="go" href="#s1" data-new-copy>Read it here instead <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></a>
+              <a className="btn btn--outline" href="#s1" data-new-copy>Read it here instead</a>
             </div>
           </div>
 
@@ -267,13 +266,12 @@ export default function DecodedMethodPage() {
             <p className="lede">Seven pages: the three layers with worked examples, the six principles, and a self-assessment scorecard to see where your operation stands right now. No email required.</p>
             <div className="btn-row">
               <Link className="btn btn--primary" href="/contact" data-od-id="cta-primary">Book a free discovery call</Link>
-              <Link className="go" href="/clarity">See what Clarity covers <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+              <Link className="btn btn--outline" href="/clarity">See what Clarity covers</Link>
             </div>
             {/* kept: the mockup's closer drops this copy from the old CTA card — it is SEO copy */}
             <p className="t-card" style={{ marginTop: 24 }}>
               Want a business process review across your own operation? A Clarity engagement builds your Process Register with you, mapping what you do, who owns it, and where the gaps are. Retained clients get the Method as a living hub I host and keep current, not a document that goes stale.
             </p>
-            <p style={{ marginTop: 12 }}><a className="go" href={BOOKING_URL} target="_blank" rel="noopener noreferrer">Or book a call directly <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></a></p>
           </div>
         </div>
       </section>

@@ -182,7 +182,7 @@ export default function SmallBusinessPage() {
               <p className="lede">Book a free call and I&rsquo;ll point you to the most relevant option, including if the answer is the Clarity Check and nothing more.</p>
               <div className="btn-row">
                 <Link className="btn btn--primary" href="/pricing" data-od-id="cta-primary">See all pricing</Link>
-                <Link className="go" href="/contact">Book a free 60-min call <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+                <Link className="btn btn--outline" href="/contact">Book a free discovery call</Link>
               </div>
             </div>
           </div>

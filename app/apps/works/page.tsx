@@ -98,8 +98,8 @@ export default function DataAppPage() {
               <p className="t-lede">Every Clarity Audit ends in a written brief, and for years the same brief asked for an ERP for printing companies built for decorated goods. Nothing on the market covered it: supplier feeds, decoration data, blank-to-finished mapping, artwork held against the job. So I built the missing piece.</p>
               <p className="t-body">Engagement by engagement it grew into an ERP for a printing company or embroiderer, and today it runs the whole operation: catalogue, orders, purchasing, stock, production and despatch. It still plays both ways. Alongside the platform you already own, or as the system itself.</p>
               <div className="btn-row">
-                <Link className="btn btn--primary" href="/contact?product=works" data-od-id="hero-cta">Book a discovery call</Link>
-                <Link className="go" href="/clarity">See how a Clarity Audit works <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+                <Link className="btn btn--primary" href="/contact?product=works" data-od-id="hero-cta">Book a free discovery call</Link>
+                <Link className="btn btn--outline" href="/clarity">See how a Clarity Audit works</Link>
               </div>
             </div>
             <div>
@@ -271,7 +271,7 @@ export default function DataAppPage() {
                 <p className="t-card">Unlimited feeds, marketplace automation, multi-warehouse.</p>
               </article>
             </div>
-            <p className="t-body tier-note">What this costs depends on scope, so it&rsquo;s quoted once I know what your setup needs rather than read off a list. I&rsquo;m not VAT registered, so there&rsquo;s no VAT to add. How I price everything else is on the <Link className="go" href="/pricing">pricing page</Link>.</p>
+            <p className="t-body tier-note">What this costs depends on scope, so it&rsquo;s quoted once I know what your setup needs rather than read off a list. I&rsquo;m not VAT registered, so there&rsquo;s no VAT to add. How I price everything else is on the <Link className="t-link" href="/pricing">pricing page</Link>.</p>
             <p className="t-body tier-note">Already using Decoded Catalogue or Proof? Works includes both. You only pay the difference.</p>
           </div>
         </section>
@@ -346,7 +346,7 @@ export default function DataAppPage() {
                 <span className="eyebrow">What happens next</span>
                 <h2 data-od-id="next-h2">Three steps to running it.</h2>
               </div>
-              <p className="lede">You know what setup involves before anything is booked. <Link className="go" href="/apps#what-happens-next">How getting it works <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link></p>
+              <p className="lede">You know what setup involves before anything is booked. <Link className="t-link" href="/apps#what-happens-next">How getting it works</Link></p>
             </div>
             <ol className="route route--3" data-od-id="next-route">
               <li className="stop" data-od-id="next-call"><span className="node"><svg className="ic ic-24" aria-hidden="true"><use href="#i-phone" /></svg></span><span className="t-meta">Step 1</span><h3>Discovery call</h3><p className="t-card stop-text">We talk through what you run now: your suppliers, your orders, and where the keying-in happens.</p></li>
@@ -401,8 +401,8 @@ export default function DataAppPage() {
             <div>
               <p className="lede">No pitch. If it turns out you don&rsquo;t need this, that&rsquo;s what you&rsquo;ll hear.</p>
               <div className="btn-row">
-                <Link className="btn btn--primary" href="/contact?product=works" data-od-id="cta-primary">Book a discovery call</Link>
-                <Link className="go" href="/apps">See the other systems <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+                <Link className="btn btn--primary" href="/contact?product=works" data-od-id="cta-primary">Book a free discovery call</Link>
+                <Link className="btn btn--outline" href="/apps">See the other systems</Link>
               </div>
             </div>
           </div>

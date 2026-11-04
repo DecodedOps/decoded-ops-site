@@ -101,7 +101,7 @@ export default function PricingPage() {
                 <p className="t-lede">One fixed price to begin. Everything else in my operations consultancy is scoped once I understand your operation.</p>
                 <div className="btn-row">
                   <Link className="btn btn--primary" href="/contact" data-od-id="hero-cta">Book a free discovery call</Link>
-                  <Link className="go" href="/how-i-build">See how I decide what to build <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+                  <Link className="btn btn--outline" href="/how-i-build">See how I decide what to build</Link>
                 </div>
               </div>
             </div>
@@ -213,7 +213,7 @@ export default function PricingPage() {
               <div>
                 <p className="t-lede" style={{ margin: 0 }}>Three products. Scoped and quoted per business.</p>
                 <p className="t-body">Proof and Commerce sell on founding-client terms while the first names go on the reference list: six months of support included, in exchange for being one of the first named references. Stated plainly, not a discount dressed as an offer.</p>
-                <p className="t-body">If an off-the-shelf platform fits, that&rsquo;s folded into the Clarity Audit at no extra cost. Nothing separate to buy. Building something only makes sense once buying has been ruled out in writing, <Link className="go" href="/how-i-build">that&rsquo;s the whole of how I build</Link>.</p>
+                <p className="t-body">If an off-the-shelf platform fits, that&rsquo;s folded into the Clarity Audit at no extra cost. Nothing separate to buy. Building something only makes sense once buying has been ruled out in writing, <Link className="t-link" href="/how-i-build">that&rsquo;s the whole of how I build</Link>.</p>
               </div>
               <div>
                 <span className="t-meta">There is no price list for the apps. What one costs depends on four things</span>
@@ -236,7 +236,7 @@ export default function PricingPage() {
             <div><h2 data-od-id="cta-h2">Get the price pack</h2></div>
             <div>
               <p className="lede">Two pages: how I price, and what I built. Sent the same day.</p>
-              <div className="btn-row"><Link className="btn btn--primary" href="/contact" data-od-id="cta-primary">Request the price pack</Link><Link className="go" href="/clarity">See how Clarity Audit works <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link></div>
+              <div className="btn-row"><Link className="btn btn--primary" href="/contact" data-od-id="cta-primary">Request the price pack</Link><Link className="btn btn--outline" href="/clarity">See how Clarity Audit works</Link></div>
             </div>
           </div>
         </section>

@@ -186,7 +186,7 @@ export default async function BlogPage() {
             <p className="lede">These resources are free, whether you run an embroidery business or another kind of decoration shop. An audit is where things get specific. I quantify every finding, cost every recommendation, and map your next steps.</p>
             <div className="btn-row">
               <Link className="btn btn--primary" href="/contact" data-od-id="cta-primary">Book a free discovery call</Link>
-              <Link className="go" href="/resources/audit-checklist">Start with the operational audit checklist <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+              <Link className="btn btn--outline" href="/resources/audit-checklist">Start with the operational audit checklist</Link>
             </div>
           </div>
         </div>

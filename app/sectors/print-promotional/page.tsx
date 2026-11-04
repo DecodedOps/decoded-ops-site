@@ -97,7 +97,7 @@ export default function PrintPromotionalPage() {
               <h1 data-od-id="hero-title"><span className="h1-kw">Print &amp; promo &middot; print shop management software</span> Start with knowing what your current process actually costs.</h1>
               <p className="t-lede">Print shop management software is usually built for long runs; print and promotional businesses run short jobs on tight deadlines instead, with artwork approvals that eat time. The result is missed deadlines, rework, and complaints, even when the team is working hard.</p>
               <div className="btn-row">
-                <Link className="btn btn--primary" href="/contact" data-od-id="hero-cta">Book a free call <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+                <Link className="btn btn--primary" href="/contact" data-od-id="hero-cta">Book a free discovery call <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
                 <Link className="btn btn--outline" href="/clarity">See how the audit works <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
               </div>
             </div>
@@ -372,7 +372,7 @@ export default function PrintPromotionalPage() {
               </div>
               <div className="close-actions">
                 <Link className="btn btn--primary" href="/contact" data-od-id="closing-cta-primary">Book a free discovery call <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
-                <Link className="text-link" href="/clarity">See how a Clarity Audit works <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+                <Link className="btn btn--outline" href="/clarity">See how a Clarity Audit works</Link>
               </div>
             </div>
           </div>

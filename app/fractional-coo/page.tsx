@@ -106,8 +106,8 @@ export default function FractionalCooPage() {
                 I&rsquo;ve spent twenty-five years in print, embroidery and decoration, from the warehouse floor to IT to operations,
                 and I work inside your business the way I&rsquo;d want someone to work inside mine.</p>
               <div className="btn-row" data-od-id="hero-cta">
-                <Link className="btn btn--primary" href="/contact">Let&rsquo;s talk about whether this suits you</Link>
-                <Link className="go" href="/retained">How the engagement works <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+                <Link className="btn btn--primary" href="/contact">Book a free discovery call</Link>
+                <Link className="btn btn--outline" href="/retained">How the engagement works</Link>
               </div>
             </div>
           </div>
@@ -313,8 +313,8 @@ export default function FractionalCooPage() {
             <p className="lede">An hour, no obligation, and an honest answer at the end of it, including if
               the answer is that you don&rsquo;t need this yet.</p>
             <div className="btn-row">
-              <Link className="btn btn--primary" href="/contact" data-od-id="cta-primary">Let&rsquo;s talk about whether this suits you</Link>
-              <Link className="go" href="/pricing">See the full price list <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+              <Link className="btn btn--primary" href="/contact" data-od-id="cta-primary">Book a free discovery call</Link>
+              <Link className="btn btn--outline" href="/pricing">See the full price list</Link>
             </div>
           </div>
         </div>

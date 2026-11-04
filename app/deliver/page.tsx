@@ -200,7 +200,7 @@ export default function DeliverPage() {
               <p className="lede">Every Deliver engagement starts here: a full day on site and a written plan, before anything gets built.</p>
               <div className="btn-row">
                 <Link className="btn btn--primary" href="/contact" data-od-id="cta-primary">Book a free discovery call</Link>
-                <Link className="go" href="/process-quality-system">See the Process &amp; Quality System <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+                <Link className="btn btn--outline" href="/process-quality-system">See the Process &amp; Quality System</Link>
               </div>
             </div>
           </div>

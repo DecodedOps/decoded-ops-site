@@ -83,7 +83,7 @@ export function SectorPageV2({ data: d }: { data: SectorV2Data }) {
               <p className="t-lede">{d.lede}</p>
               {d.body && <p className="t-body">{d.body}</p>}
               <div className="btn-row">
-                <Link className="btn btn--primary" href="/contact">Book a free call <ArrowIcon /></Link>
+                <Link className="btn btn--primary" href="/contact">Book a free discovery call <ArrowIcon /></Link>
                 <Link className="btn btn--outline" href="/clarity">See how the audit works <ArrowIcon /></Link>
               </div>
             </div>
@@ -229,7 +229,7 @@ export function SectorPageV2({ data: d }: { data: SectorV2Data }) {
               <p className="lede">The audit starts with a free 60-minute call. No obligation. Just a conversation about what’s happening in your business.</p>
               <div className="btn-row">
                 <Link className="btn btn--primary" href="/contact">Book a free discovery call</Link>
-                <Link className="go" href="/clarity">See how a Clarity Audit works <ArrowIcon /></Link>
+                <Link className="btn btn--outline" href="/clarity">See how a Clarity Audit works</Link>
               </div>
             </div>
           </div>

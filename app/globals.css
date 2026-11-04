@@ -439,3 +439,14 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Tailwind utility: cerulean text on light backgrounds (CR-WEB-065) */
 .text-cerulean { color: var(--do-text-cerulean); }
+
+/* Button and link system (Craig, 4 Nov 2026): main action = amber pill
+   (.btn--primary); a second action beside it = outlined pill (.btn--outline)
+   on the same row; arrow text links (.go) only where there is no button;
+   a link inside a sentence = .t-link, plain underline, no arrow. */
+.t-link{ color:inherit; font-weight:var(--do-weight-semibold); text-decoration:underline;
+  text-underline-offset:4px; text-decoration-color:var(--do-cerulean); text-decoration-thickness:2px }
+.t-link:hover{ text-decoration-color:currentColor }
+.g-navy .btn--outline{ color:var(--do-text-on-dark) }
+.btn-row{ align-items:center }
+@media (max-width:640px){ .btn-row .btn, .vid-cta .btn{ white-space:normal; text-align:center } }

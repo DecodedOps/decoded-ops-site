@@ -107,8 +107,8 @@ export default function CataloguePage() {
               <p className="t-lede" style={{ marginTop: 20 }}>You sell from Ralawise, PenCarrie and a dozen other supplier feeds, and someone keys products and prices into the website by hand.</p>
               <p className="t-body">Catalogue brings the feeds in, keeps prices and stock current, tidies the data and pushes it out to your website and marketplaces. It’s the supplier catalogue management part of Decoded Works, set up for you and run on its own.</p>
               <div className="btn-row">
-                <Link className="btn btn--primary" href="/contact?product=catalogue" data-od-id="hero-cta">Book a discovery call</Link>
-                <Link className="go" href="/apps#what-happens-next">How getting it works <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+                <Link className="btn btn--primary" href="/contact?product=catalogue" data-od-id="hero-cta">Book a free discovery call</Link>
+                <Link className="btn btn--outline" href="/apps#what-happens-next">How getting it works</Link>
               </div>
             </div>
             <div>
@@ -327,7 +327,7 @@ export default function CataloguePage() {
           <div className="wrap">
             <div className="route-head">
               <div><span className="eyebrow">What happens next</span><h2 data-od-id="next-h2">Three steps to running it.</h2></div>
-              <p className="lede">You know what setup involves before anything is booked. <Link className="go" href="/apps#what-happens-next">How getting it works <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link></p>
+              <p className="lede">You know what setup involves before anything is booked. <Link className="t-link" href="/apps#what-happens-next">How getting it works</Link></p>
             </div>
             <ol className="route route--3" data-od-id="next-route">
               <li className="stop" data-od-id="next-call"><span className="node"><svg className="ic ic-24" aria-hidden="true"><use href="#i-phone" /></svg></span><span className="t-meta">Step 1</span><h3>Discovery call</h3><p className="t-card stop-text">We talk through what you run now: your suppliers, your website, and where the keying-in happens.</p></li>
@@ -395,7 +395,7 @@ export default function CataloguePage() {
             <div><h2 data-od-id="cta-h2">Talk about your supplier feeds</h2></div>
             <div>
               <p className="lede">Tell me which suppliers you sell from and where the products need to go. If Catalogue isn’t the answer, that’s what you’ll hear.</p>
-              <div className="btn-row"><Link className="btn btn--primary" href="/contact?product=catalogue" data-od-id="cta-primary">Book a discovery call</Link><Link className="go" href="/apps">See all four products <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link></div>
+              <div className="btn-row"><Link className="btn btn--primary" href="/contact?product=catalogue" data-od-id="cta-primary">Book a free discovery call</Link><Link className="btn btn--outline" href="/apps">See all four products</Link></div>
             </div>
           </div>
         </section>

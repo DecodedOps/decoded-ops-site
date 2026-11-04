@@ -5,7 +5,6 @@ import { BreadcrumbSchema } from '@/components/BreadcrumbSchema';
 import { VideoEmbed } from '@/components/VideoEmbed';
 import { VideoSchema } from '@/components/VideoSchema';
 import { problemVideos } from '@/data/problem-videos';
-import { BOOKING_URL } from '@/lib/constants';
 import '@/app/d17-global.css';
 import '@/app/d17-problems.css';
 import '@/app/d17-resources.css';
@@ -171,7 +170,7 @@ export default function ERPImplementationFailurePage() {
          same rule applies: scope in writing before anything is signed.</p>
         <div className="btn-row">
          <Link className="btn btn--primary" href="/contact" data-od-id="hero-cta">Book a free discovery call</Link>
-         <Link className="go" href="/clarity">See how a Clarity Audit works <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+         <Link className="btn btn--outline" href="/clarity">See how a Clarity Audit works</Link>
         </div>
        </div>
       </div>
@@ -351,8 +350,7 @@ export default function ERPImplementationFailurePage() {
         <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>3&times; Clarity Guarantee</span></li>
         <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>No vendor agenda</span></li>
        </ul>
-       <Link className="btn btn--primary" href="/contact" data-od-id="offer-cta">Book a free call</Link>
-       <Link className="alt" href={BOOKING_URL} data-od-id="offer-alt">Or book a call directly</Link>
+       <Link className="btn btn--primary" href="/contact" data-od-id="offer-cta">Book a free discovery call</Link>
       </aside>
      </div>
     </section>

@@ -7,7 +7,6 @@ import { VideoEmbed } from '@/components/VideoEmbed';
 import { VideoSchema } from '@/components/VideoSchema';
 import { problemVideos } from '@/data/problem-videos';
 import { problemRouting } from '@/data/problem-routing';
-import { BOOKING_URL } from '@/lib/constants';
 import '@/app/d17-global.css';
 import '@/app/d17-problems.css';
 import '@/app/problems/problems-v2.css';
@@ -301,8 +300,7 @@ export default function OpsInOwnersHeadPage() {
          <li key={item}><Icon id="i-check" size={20} /><span>{item}</span></li>
         ))}
        </ul>
-       <Link className="btn btn--primary" href="/contact" data-od-id="offer-cta">Book a free call</Link>
-       <a className="alt" href={BOOKING_URL} target="_blank" rel="noopener noreferrer" data-od-id="offer-alt">Or book a call directly</a>
+       <Link className="btn btn--primary" href="/contact" data-od-id="offer-cta">Book a free discovery call</Link>
       </aside>
      </div>
     </section>
@@ -314,7 +312,7 @@ export default function OpsInOwnersHeadPage() {
       <p className="lede">A Clarity Audit captures what only you know, before it&apos;s too late to ask.</p>
       <div className="hero-cta">
        <Link className="btn btn--primary" href="/contact">Book a Clarity Audit</Link>
-       <Link className="btn-ghost btn-arrow" href="/deliver">See how Deliver works</Link>
+       <Link className="btn btn--outline" href="/deliver">See how Deliver works</Link>
       </div>
      </div>
     </section>

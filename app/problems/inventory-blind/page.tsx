@@ -7,7 +7,6 @@ import { VideoEmbed } from '@/components/VideoEmbed';
 import { VideoSchema } from '@/components/VideoSchema';
 import { problemVideos } from '@/data/problem-videos';
 import { problemRouting } from '@/data/problem-routing';
-import { BOOKING_URL } from '@/lib/constants';
 import { a943 } from '@/lib/d17-figures/a943';
 import '@/app/d17-global.css';
 import '@/app/d17-problems.css';
@@ -234,8 +233,7 @@ export default function InventoryBlindPage() {
          <li key={item}><Icon id="i-check" size={20} /><span>{item}</span></li>
         ))}
        </ul>
-       <Link className="btn btn--primary" href="/contact" data-od-id="offer-cta">Book a free call</Link>
-       <a className="alt" href={BOOKING_URL} target="_blank" rel="noopener noreferrer" data-od-id="offer-alt">Or book a call directly</a>
+       <Link className="btn btn--primary" href="/contact" data-od-id="offer-cta">Book a free discovery call</Link>
       </aside>
      </div>
     </section>
@@ -247,8 +245,8 @@ export default function InventoryBlindPage() {
       <p className="lede">A Clarity Audit maps your current stock picture and what it would take to
        make it real-time.</p>
       <div className="hero-cta">
-       <Link className="btn btn--primary" href="/contact">Book a free 60 minute call</Link>
-       <Link className="btn-ghost btn-arrow" href="/apps/works">See Works</Link>
+       <Link className="btn btn--primary" href="/contact">Book a free discovery call</Link>
+       <Link className="btn btn--outline" href="/apps/works">See Works</Link>
       </div>
      </div>
     </section>

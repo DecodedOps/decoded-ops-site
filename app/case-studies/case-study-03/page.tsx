@@ -227,7 +227,7 @@ export default function CaseStudy03Page() {
               <p className="lede">For a diagnosis of what your own ERP or platform situation needs, book a Clarity Audit.</p>
               <div className="btn-row">
                 <Link className="btn btn--primary" href="/contact" data-od-id="cta-primary">Book a free discovery call</Link>
-                <Link className="go" href="/clarity">See how a Clarity Audit works <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+                <Link className="btn btn--outline" href="/clarity">See how a Clarity Audit works</Link>
               </div>
             </div>
           </div>

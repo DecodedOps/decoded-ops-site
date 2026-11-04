@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { BOOKING_URL } from '@/lib/constants';
 import { JsonLd } from '@/components/JsonLd';
 import { IconSprite } from '@/components/IconSprite';
 import { D17Motion } from '@/components/D17Motion';
@@ -319,8 +318,10 @@ export default function ArtworkApprovalPlaybookPage() {
             <p>
               The real value comes when artwork approval connects to production scheduling, costing, and despatch without manual handoffs. That is what a Clarity engagement maps out across your whole operation.
             </p>
-            <p><Link href="/contact">Book a free discovery call</Link> <Link href="/clarity">See what an audit covers</Link></p>
-            <p><a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">Or book a call directly</a></p>
+            <div className="btn-row">
+              <Link className="btn btn--primary" href="/contact">Book a free discovery call</Link>
+              <Link className="btn btn--outline" href="/clarity">See what an audit covers</Link>
+            </div>
           </div>
         </div>
       </section>
@@ -335,7 +336,7 @@ export default function ArtworkApprovalPlaybookPage() {
             <p className="lede" data-new-copy>A Clarity Audit traces a week of artwork from enquiry to release and shows which gaps add the round trips, and what closing them is worth.</p>
             <div className="btn-row">
               <Link className="btn btn--primary" href="/contact" data-od-id="cta-primary">Book a free discovery call</Link>
-              <Link className="go" href="/clarity">See what an audit covers <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+              <Link className="btn btn--outline" href="/clarity">See what an audit covers</Link>
             </div>
           </div>
         </div>

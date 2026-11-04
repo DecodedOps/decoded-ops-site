@@ -114,7 +114,7 @@ export default function ToolsPage() {
             <p className="t-body" data-new-copy>Five calculators, each worked from your own figures. Every one hands back a number you can take into a meeting, and shows how it got there.</p>
             <div className="btn-row">
               <Link className="btn btn--primary" href="/tools/ops-health-score" data-od-id="hero-cta" data-new-copy>Start with the ops health score</Link>
-              <Link className="go" href="/resources" data-new-copy>Guides and templates <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+              <Link className="btn btn--outline" href="/resources" data-new-copy>Guides and templates</Link>
             </div>
           </div>
 
@@ -244,7 +244,7 @@ export default function ToolsPage() {
             <p className="lede" data-new-copy>If the figure surprises you, a Clarity Audit finds where it comes from and what to do about it: a day on site, then a written plan.</p>
             <div className="btn-row">
               <Link className="btn btn--primary" href="/contact" data-od-id="cta-primary" data-new-copy>Book a free discovery call</Link>
-              <Link className="go" href="/resources" data-new-copy>Free guides and templates <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+              <Link className="btn btn--outline" href="/resources" data-new-copy>Free guides and templates</Link>
             </div>
           </div>
         </div>

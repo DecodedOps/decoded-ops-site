@@ -171,7 +171,7 @@ export default function CapacityPlannerPage() {
             <p className="lede">A Clarity Audit maps your real throughput, finds where capacity is lost to process gaps, and gives you a costed plan to reclaim it.</p>
             <div className="btn-row">
               <Link className="btn btn--primary" href="/contact" data-od-id="cta-primary">Book a free discovery call</Link>
-              <Link className="go" href="/clarity">See what Clarity covers <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+              <Link className="btn btn--outline" href="/clarity">See what Clarity covers</Link>
             </div>
           </div>
         </div>

@@ -209,7 +209,7 @@ export default function CookiesPage() {
             <p className="lede" data-new-copy>Email me and I&rsquo;ll answer in person. There is no legal department here; the person who wrote the policy is the person who reads the mail.</p>
             <div className="btn-row">
               <a className="btn btn--primary" href="/contact" data-od-id="cta-primary" data-new-copy>Contact me</a>
-              <a className="go" href="/privacy" data-new-copy>Privacy policy <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></a>
+              <a className="btn btn--outline" href="/privacy" data-new-copy>Privacy policy</a>
             </div>
           </div>
         </div>

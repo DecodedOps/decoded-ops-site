@@ -97,7 +97,7 @@ export default function ClarityPage() {
                   areas from start to finish, rather than just discussing them. Priced to your scope, confirmed before you commit, and covered by the
                   3&times; guarantee below: if the report doesn&rsquo;t find at least three times the fee, it&rsquo;s
                   refunded in full. A written report within five working days, walked through with you in person.</p>
-                <div className="btn-row"><Link className="btn btn--primary" href="/contact" data-od-id="hero-cta">Book a free 60-min call</Link></div>
+                <div className="btn-row"><Link className="btn btn--primary" href="/contact" data-od-id="hero-cta">Book a free discovery call</Link></div>
               </div>
             </div>
 
@@ -249,7 +249,7 @@ export default function ClarityPage() {
               <p className="lede">The discovery call is free, takes 60 minutes, and comes with no obligation. Just an honest conversation about your operation.</p>
               <div className="btn-row">
                 <Link className="btn btn--primary" href="/contact" data-od-id="cta-primary">Book a free discovery call</Link>
-                <Link className="go" href="/deliver">See how Deliver follows on <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+                <Link className="btn btn--outline" href="/deliver">See how Deliver follows on</Link>
               </div>
             </div>
           </div>

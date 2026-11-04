@@ -152,8 +152,8 @@ export default function TechAuditPage() {
               <div>
                 <p className="t-lede">An independent audit that tells you exactly what your systems are costing you, and what to do about it. Priced to your scope, confirmed before you commit.</p>
                 <div className="btn-row">
-                  <Link className="btn btn--primary" href="/contact" data-od-id="hero-cta">Book a free call</Link>
-                  <Link className="go" href="/clarity">See what the Clarity Audit covers <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+                  <Link className="btn btn--primary" href="/contact" data-od-id="hero-cta">Book a free discovery call</Link>
+                  <Link className="btn btn--outline" href="/clarity">See what the Clarity Audit covers</Link>
                 </div>
               </div>
             </div>
@@ -231,9 +231,9 @@ export default function TechAuditPage() {
             <div>
               <p className="lede">Based in Worthing, West Sussex. On-site where the work needs it, anywhere in the UK.</p>
               <div className="btn-row">
-                <Link className="btn btn--primary" href="/contact" data-od-id="cta-primary">Book a free call</Link>
-                <Link className="go" href="/locations/sussex-surrey">Sussex &amp; Surrey <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
-                <Link className="go" href="/locations/manchester">Manchester <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+                <Link className="btn btn--primary" href="/contact" data-od-id="cta-primary">Book a free discovery call</Link>
+                <Link className="btn btn--outline" href="/locations/sussex-surrey">Sussex &amp; Surrey</Link>
+                <Link className="btn btn--outline" href="/locations/manchester">Manchester</Link>
               </div>
             </div>
           </div>

@@ -96,7 +96,7 @@ export default function RtoCalculatorPage() {
             <p className="lede">A Clarity Audit looks at your systems, your backups and how you would actually recover, and gives you a continuity plan built around the hours you can afford.</p>
             <div className="btn-row">
               <Link className="btn btn--primary" href="/contact" data-od-id="cta-primary">Book a free discovery call</Link>
-              <Link className="go" href="/problems/disaster-recovery">No disaster recovery plan? <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+              <Link className="btn btn--outline" href="/problems/disaster-recovery">No disaster recovery plan?</Link>
             </div>
           </div>
         </div>

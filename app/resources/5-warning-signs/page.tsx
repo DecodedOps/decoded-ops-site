@@ -1,5 +1,5 @@
+import { Fragment } from 'react';
 import Link from 'next/link';
-import { BOOKING_URL } from '@/lib/constants';
 import { JsonLd } from '@/components/JsonLd';
 import { IconSprite } from '@/components/IconSprite';
 import { D17Motion } from '@/components/D17Motion';
@@ -129,10 +129,10 @@ export default function FiveWarningSignsPage() {
           </aside>
           <div className="prose" data-od-id="article-body">
             {signs.map((sign, i) => (
-              <div key={i}>
+              <Fragment key={i}>
                 <h2 id={`s${i + 1}`}>{sign.title}</h2>
                 <p>{sign.body}</p>
-              </div>
+              </Fragment>
             ))}
             <h2 id="s6">What I&apos;m doing about this right now</h2>
             <p>
@@ -143,8 +143,10 @@ export default function FiveWarningSignsPage() {
             <p>
               A Clarity Audit finds where the cost is hiding, quantifies it, and gives you a specific, costed plan to fix it, in plain English, with no vendor agenda.
             </p>
-            <p><Link href="/contact">Book a free discovery call</Link> <Link href="/clarity">See what a Clarity Audit covers</Link></p>
-            <p><a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">Or book a call directly</a></p>
+            <div className="btn-row">
+              <Link className="btn btn--primary" href="/contact">Book a free discovery call</Link>
+              <Link className="btn btn--outline" href="/clarity">See what a Clarity Audit covers</Link>
+            </div>
           </div>
         </div>
       </section>
@@ -159,7 +161,7 @@ export default function FiveWarningSignsPage() {
             <p className="lede">A Clarity Audit finds where the cost is hiding, quantifies it, and gives you a specific plan for what to fix first. Covered by the 3&times; Clarity Guarantee.</p>
             <div className="btn-row">
               <Link className="btn btn--primary" href="/contact" data-od-id="cta-primary">Book a free discovery call</Link>
-              <Link className="go" href="/clarity">See what a Clarity Audit covers <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+              <Link className="btn btn--outline" href="/clarity">See what a Clarity Audit covers</Link>
             </div>
           </div>
         </div>

@@ -119,7 +119,7 @@ export default function OperationsConsultantPrintEmbroideryPage() {
               businesses rarely account for that.</p>
             <p className="t-body">As an operations management consultant, I help UK print and embroidery businesses fix the systems that do not match how they actually work.</p>
             <div className="btn-row" data-od-id="hero-cta">
-              <Link className="btn btn--primary" href="/contact">Book a free call <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+              <Link className="btn btn--primary" href="/contact">Book a free discovery call <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
               <Link className="btn btn--outline" href="/clarity">See how the audit works <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
             </div>
           </div>
@@ -373,7 +373,7 @@ export default function OperationsConsultantPrintEmbroideryPage() {
             <p className="lede">The audit starts with a free 60-minute call. No obligation. Just a conversation about what&apos;s happening in your business.</p>
             <div className="btn-row">
               <Link className="btn btn--primary" href="/contact" data-od-id="cta-primary">Book a free discovery call</Link>
-              <Link className="go" href="/clarity">See how a Clarity Audit works <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+              <Link className="btn btn--outline" href="/clarity">See how a Clarity Audit works</Link>
             </div>
           </div>
         </div>

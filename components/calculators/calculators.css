@@ -69,8 +69,8 @@
 .calc-table tbody tr { border-bottom: 1px solid color-mix(in srgb, var(--do-text-on-dark) 10%, transparent); }
 
 .calc-cta {
-  display: block; width: 100%; text-align: center; padding: 12px 0;
-  border-radius: var(--do-radius-lg); background: var(--do-amber); color: var(--do-prussian-blue);
+  display: block; width: 100%; text-align: center; padding: 14px 26px;
+  border-radius: var(--do-radius-full); background: var(--do-amber); color: var(--do-prussian-blue);
   font-weight: 600; text-decoration: none;
 }
 .calc-cta:hover { background: color-mix(in srgb, var(--do-amber) 90%, black); }

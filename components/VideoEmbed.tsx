@@ -77,9 +77,9 @@ export function VideoEmbed({ youtubeId, title, closeLine, app, durationSec, play
       </div>
       <p className="vid-close">{closeLine}</p>
       <div className="vid-cta">
-        <a className="btn btn--primary" href="/contact">Book a discovery call</a>
+        <a className="btn btn--primary" href="/contact">Book a free discovery call</a>
         <a
-          className="yt"
+          className="btn btn--outline"
           href={playlistUrl}
           target="_blank"
           rel="noopener noreferrer"

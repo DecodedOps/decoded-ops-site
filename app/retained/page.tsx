@@ -99,7 +99,7 @@ export default function RetainedPage() {
               <div>
                 <p className="t-lede">Ongoing technology and operations leadership, as a fractional CTO or <Link href="/fractional-coo">fractional COO</Link>, without the cost of a full-time hire.
                   The scope and cadence of this fractional CTO role are agreed at the start.</p>
-                <div className="btn-row"><Link className="btn btn--primary" href="/contact" data-od-id="hero-cta">Let&rsquo;s talk about whether this suits you</Link></div>
+                <div className="btn-row"><Link className="btn btn--primary" href="/contact" data-od-id="hero-cta">Book a free discovery call</Link></div>
               </div>
             </div>
 
@@ -256,8 +256,8 @@ export default function RetainedPage() {
             <div>
               <p className="lede">An hour, no obligation, and an honest answer at the end of it, including if the answer is that you don&rsquo;t need this yet.</p>
               <div className="btn-row">
-                <Link className="btn btn--primary" href="/contact" data-od-id="cta-primary">Let&rsquo;s talk about whether this suits you</Link>
-                <Link className="go" href="/pricing">See the full price list <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+                <Link className="btn btn--primary" href="/contact" data-od-id="cta-primary">Book a free discovery call</Link>
+                <Link className="btn btn--outline" href="/pricing">See the full price list</Link>
               </div>
             </div>
           </div>

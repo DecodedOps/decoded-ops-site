@@ -313,7 +313,7 @@ export default function SpreadsheetAddictionPage() {
       <p className="lede">A Clarity Audit maps every process that currently depends on a spreadsheet, and the written plan tells you which ones to move first, before the file that runs the business stops opening.</p>
       <div className="btn-row">
        <Link className="btn btn--primary" href="/contact" data-od-id="cta-primary">Book a Clarity Audit</Link>
-       <Link className="go" href="/deliver">See how Deliver works <Icon id="i-arrow-right" /></Link>
+       <Link className="btn btn--outline" href="/deliver">See how Deliver works</Link>
       </div>
      </div>
     </div>

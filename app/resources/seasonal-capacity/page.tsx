@@ -165,7 +165,7 @@ export default function SeasonalCapacityPage() {
             <p className="lede">A Clarity Audit maps your seasonal capacity picture across all six operational areas, so you can plan hiring, investment, and pricing around real data, not guesswork.</p>
             <div className="btn-row">
               <Link className="btn btn--primary" href="/contact" data-od-id="cta-primary">Book a free discovery call</Link>
-              <Link className="go" href="/clarity">See what Clarity covers <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+              <Link className="btn btn--outline" href="/clarity">See what Clarity covers</Link>
             </div>
           </div>
         </div>

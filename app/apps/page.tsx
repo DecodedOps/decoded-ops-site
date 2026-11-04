@@ -84,8 +84,8 @@ export default function AppsPage() {
             <p className="t-lede" style={{ marginTop: 20 }}>Four products, built for the jobs the platforms in this sector were never going to do, and proven at real clients.</p>
             <p className="t-body" style={{ margin: '12px 0 0', maxWidth: '62ch' }}>Embroidery business software, print shop software, a trade shop and a supplier catalogue. Each one works on its own, and they’re built to fit together.</p>
             <div className="btn-row">
-              <Link className="btn btn--primary" href="/contact?product=apps" data-od-id="hero-cta">Book a discovery call</Link>
-              <a className="go" href="#where-to-start">Where to start <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></a>
+              <Link className="btn btn--primary" href="/contact?product=apps" data-od-id="hero-cta">Book a free discovery call</Link>
+              <a className="btn btn--outline" href="#where-to-start">Where to start</a>
             </div>
             <div className="hero-shots" data-od-id="hero-screens">
               <figure className="shot" data-od-id="shot-works"><img src="/images/site/screens/works/do-art-1019a-works-dashboard.webp" width="1600" height="1000" alt="Decoded Works Today screen, sample data." loading="eager" /><figcaption><b>Works</b><span>Live at Hanicks</span></figcaption></figure>
@@ -335,7 +335,7 @@ export default function AppsPage() {
           <div className="wrap">
             <div className="route-head">
               <div><span className="eyebrow">What happens next</span><h2 data-od-id="next-h2">Three steps to running it.</h2></div>
-              <p className="lede">You know what setup involves before anything is booked. <Link className="go" href="/apps#what-happens-next">How getting it works <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link></p>
+              <p className="lede">You know what setup involves before anything is booked. <Link className="t-link" href="/apps#what-happens-next">How getting it works</Link></p>
             </div>
             <ol className="route route--3" data-od-id="next-route">
               <li className="stop" data-od-id="next-call"><span className="node"><svg className="ic ic-24" aria-hidden="true"><use href="#i-phone" /></svg></span><span className="t-meta">Step 1</span><h3>Discovery call</h3><p className="t-card stop-text">We talk through what you run now: the systems, the spreadsheets, and where work gets keyed in twice.</p></li>
@@ -369,7 +369,7 @@ export default function AppsPage() {
             <div><h2 data-od-id="cta-h2">Not sure which one fits?</h2></div>
             <div>
               <p className="lede">Tell me what you run now and where it hurts. I’ll tell you which of these is worth it, if any.</p>
-              <div className="btn-row"><Link className="btn btn--primary" href="/contact?product=apps" data-od-id="cta-primary">Book a discovery call</Link><Link className="go" href="/how-i-build">How I decide what to build <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link></div>
+              <div className="btn-row"><Link className="btn btn--primary" href="/contact?product=apps" data-od-id="cta-primary">Book a free discovery call</Link><Link className="btn btn--outline" href="/how-i-build">How I decide what to build</Link></div>
             </div>
           </div>
         </section>

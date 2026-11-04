@@ -1,6 +1,6 @@
+import { Fragment } from 'react';
 import Link from 'next/link';
 import { Download } from 'lucide-react';
-import { BOOKING_URL } from '@/lib/constants';
 import { JsonLd } from '@/components/JsonLd';
 import { IconSprite } from '@/components/IconSprite';
 import { D17Motion } from '@/components/D17Motion';
@@ -146,7 +146,7 @@ export default function ChecklistPage() {
               <a className="btn btn--primary" href="/downloads/decoded-ops-audit-checklist.docx" data-od-id="hero-cta" style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
                 <Download size={20} /> Download the checklist (.docx)
               </a>
-              <a className="go" href="#s1" data-new-copy>Read it here instead <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></a>
+              <a className="btn btn--outline" href="#s1" data-new-copy>Read it here instead</a>
             </div>
           </div>
           <div dangerouslySetInnerHTML={{ __html: `
@@ -291,12 +291,12 @@ export default function ChecklistPage() {
               The items you can&apos;t answer are the most valuable. They&apos;re where the hidden costs usually are.
             </p>
             {checklist.map((section, sectionIndex) => (
-              <div key={sectionIndex}>
+              <Fragment key={sectionIndex}>
                 <h2 id={`s${sectionIndex + 2}`}>{section.section}</h2>
                 {section.items.map((item, itemIndex) => (
                   <p key={itemIndex}>{item}</p>
                 ))}
-              </div>
+              </Fragment>
             ))}
             <h2 id="s9">Key takeaways</h2>
             {takeaways.map((item, i) => (
@@ -317,8 +317,10 @@ export default function ChecklistPage() {
             <p>
               The real value is in seeing what you don&apos;t know. If there are gaps, an audit finds them, puts a number on them, and gives you a plan to fix them.
             </p>
-            <p><Link href="/contact">Book a free discovery call</Link> <Link href="/clarity">See what an audit covers</Link></p>
-            <p><a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">Or book a call directly</a></p>
+            <div className="btn-row">
+              <Link className="btn btn--primary" href="/contact">Book a free discovery call</Link>
+              <Link className="btn btn--outline" href="/clarity">See what an audit covers</Link>
+            </div>
           </div>
         </div>
       </section>
@@ -333,7 +335,7 @@ export default function ChecklistPage() {
             <p className="lede" data-new-copy>A Clarity Audit answers the questions you can&rsquo;t, on site in a day, with the written report in five working days.</p>
             <div className="btn-row">
               <Link className="btn btn--primary" href="/contact" data-od-id="cta-primary">Book a free discovery call</Link>
-              <Link className="go" href="/clarity">See what an audit covers <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+              <Link className="btn btn--outline" href="/clarity">See what an audit covers</Link>
             </div>
           </div>
         </div>

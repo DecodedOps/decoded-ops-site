@@ -239,7 +239,7 @@ export default function TransformPage() {
                 programme this size, and there won&rsquo;t be. It starts the same way everything does: a full day on site and a written plan.</p>
               <div className="btn-row">
                 <Link className="btn btn--primary" href="/contact" data-od-id="cta-primary">Book a free discovery call</Link>
-                <Link className="go" href="/deliver">See how Deliver runs <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+                <Link className="btn btn--outline" href="/deliver">See how Deliver runs</Link>
               </div>
             </div>
           </div>

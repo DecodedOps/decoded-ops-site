@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { ArrowRight, CheckCircle2, Check, AlertTriangle } from 'lucide-react';
-import { BOOKING_URL } from '@/lib/constants';
 import { JsonLd } from '@/components/JsonLd';
 import { D17Motion } from '@/components/D17Motion';
 import { a991 } from '@/lib/d17-figures/a991';
@@ -362,7 +361,6 @@ export default function ErpSelectionPlaybookPage() {
                 See what an audit covers
               </Link>
             </div>
-            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" style={{ fontSize: 'var(--do-text-sm)', color: 'var(--do-text-cerulean)', fontWeight: 'var(--do-weight-medium)', display: 'inline-flex', alignItems: 'center', gap: 4 }}>Or book a call directly <ArrowRight size={14} /></a>
           </div>
 
         </div>

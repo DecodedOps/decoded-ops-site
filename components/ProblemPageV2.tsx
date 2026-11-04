@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { BOOKING_URL } from '@/lib/constants';
 import { problemRouting } from '@/data/problem-routing';
 import { BreadcrumbSchema } from './BreadcrumbSchema';
 import { IconSprite } from './IconSprite';
@@ -109,8 +108,8 @@ export function ProblemPageV2(p: ProblemPageV2Props) {
             <p className="t-lede">{p.heroLede}</p>
             <p className="t-body">{p.heroBody}</p>
             <div className="btn-row">
-              <Link className="btn btn--primary" href="/contact" data-od-id="hero-cta">Talk about your situation</Link>
-              <Link className="go" href="/clarity">See how the audit works <Icon id="i-arrow-right" /></Link>
+              <Link className="btn btn--primary" href="/contact" data-od-id="hero-cta">Book a free discovery call</Link>
+              <Link className="btn btn--outline" href="/clarity">See how the audit works</Link>
             </div>
           </div>
           <div data-od-id="hero-visual" dangerouslySetInnerHTML={{ __html: p.heroArt }} />
@@ -257,8 +256,7 @@ export function ProblemPageV2(p: ProblemPageV2Props) {
                 <li key={item}><Icon id="i-check" size={20} /><span>{item}</span></li>
               ))}
             </ul>
-            <Link className="btn btn--primary" href="/contact" data-od-id="offer-cta">Book a free call</Link>
-            <a className="alt" href={BOOKING_URL} target="_blank" rel="noopener noreferrer" data-od-id="offer-alt">Or book a call directly</a>
+            <Link className="btn btn--primary" href="/contact" data-od-id="offer-cta">Book a free discovery call</Link>
           </aside>
         </div>
       </section>

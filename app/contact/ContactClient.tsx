@@ -103,9 +103,9 @@ export function ContactClient() {
                 className="btn btn--primary"
                 data-od-id="hero-cta"
               >
-                <svg className="ic ic-16" aria-hidden="true"><use href="#i-calendar" /></svg> Book a call directly
+                <svg className="ic ic-16" aria-hidden="true"><use href="#i-calendar" /></svg> Book a free discovery call
               </a>
-              <a className="go" href="#message">Or send a message <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></a>
+              <a className="btn btn--outline" href="#message">Send a message</a>
             </div>
           </div>
 

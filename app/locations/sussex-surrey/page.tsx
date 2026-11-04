@@ -166,8 +166,8 @@ export default function SussexSurreyPage() {
               <div>
                 <p className="t-lede">Growing businesses in Sussex and Surrey face real technology decisions: which vendor to pick, which systems to integrate, which platform to choose. Without someone senior owning those decisions, the cost quietly adds up.</p>
                 <div className="btn-row">
-                  <Link className="btn btn--primary" href="/contact" data-od-id="hero-cta">Book a free call</Link>
-                  <Link className="go" href="/retained">See how fractional CTO works <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+                  <Link className="btn btn--primary" href="/contact" data-od-id="hero-cta">Book a free discovery call</Link>
+                  <Link className="btn btn--outline" href="/retained">See how fractional CTO works</Link>
                 </div>
               </div>
             </div>
@@ -279,8 +279,8 @@ export default function SussexSurreyPage() {
             <div>
               <p className="lede">A fixed-price, one-day diagnostic. Find out what your systems are costing you before committing to anything ongoing.</p>
               <div className="btn-row">
-                <Link className="btn btn--primary" href="/contact" data-od-id="cta-primary">Book a free call</Link>
-                <Link className="go" href="/locations/tech-audit">Technology audit, UK-wide <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+                <Link className="btn btn--primary" href="/contact" data-od-id="cta-primary">Book a free discovery call</Link>
+                <Link className="btn btn--outline" href="/locations/tech-audit">Technology audit, UK-wide</Link>
               </div>
             </div>
           </div>

@@ -341,7 +341,7 @@ export function Header() {
                       <p>Then the on-site work is a better fit, same steps, done in person.</p>
                     </div>
                     <div className="band-actions">
-                      <Link className="btn btn--primary btn--sm" href="/contact" onClick={() => { closePanel(); setMobileOpen(false); }}>Book a discovery call</Link>
+                      <Link className="btn btn--primary btn--sm" href="/contact" onClick={() => { closePanel(); setMobileOpen(false); }}>Book a free discovery call</Link>
                       <Link className="rail-all" href="/clarity" onClick={() => { closePanel(); setMobileOpen(false); }}>See Clarity</Link>
                     </div>
                   </div>
@@ -371,7 +371,7 @@ export function Header() {
             <Link className="nav-flat" href="/clients/login" onClick={() => setMobileOpen(false)}>Client Login</Link>
 
             <div className="nav-tools">
-              <Link className="btn btn--outline btn--sm" href="/contact" onClick={() => setMobileOpen(false)}>Book a discovery call</Link>
+              <Link className="btn btn--outline btn--sm" href="/contact" onClick={() => setMobileOpen(false)}>Book a free discovery call</Link>
             </div>
           </nav>
         </div>

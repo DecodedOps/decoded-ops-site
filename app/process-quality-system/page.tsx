@@ -55,7 +55,7 @@ export default function ProcessQualitySystemPage() {
                 you after it. It covers how to write a standard operating procedure your team will actually follow.</p>
               <div className="btn-row" data-od-id="hero-cta">
                 <Link className="btn btn--primary" href="/contact" data-new-copy>Book a free discovery call</Link>
-                <Link className="go" href="/deliver">See how this fits into Deliver <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+                <Link className="btn btn--outline" href="/deliver">See how this fits into Deliver</Link>
               </div>
             </div>
           </div>
@@ -293,7 +293,7 @@ export default function ProcessQualitySystemPage() {
               explain.</p>
             <div className="btn-row">
               <Link className="btn btn--primary" href="/deliver" data-od-id="cta-primary">See how this fits into Deliver</Link>
-              <Link className="go" href="/resources/decoded-method">The Decoded Method <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+              <Link className="btn btn--outline" href="/resources/decoded-method">The Decoded Method</Link>
             </div>
           </div>
         </div>

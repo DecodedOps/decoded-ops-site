@@ -127,7 +127,7 @@ export default function AutomationRoiCalculatorPage() {
             <p className="lede">A Clarity Audit lists every task your team does by hand, prices each one, and puts them in the order that pays back fastest.</p>
             <div className="btn-row">
               <Link className="btn btn--primary" href="/contact" data-od-id="cta-primary">Book a free discovery call</Link>
-              <Link className="go" href="/problems/manual-workarounds">Manual workarounds <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+              <Link className="btn btn--outline" href="/problems/manual-workarounds">Manual workarounds</Link>
             </div>
           </div>
         </div>

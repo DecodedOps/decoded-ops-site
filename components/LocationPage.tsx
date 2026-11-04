@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
-import { BOOKING_URL } from '@/lib/constants';
 import { SystemsDisconnectedGraphic } from '@/components/graphics/SystemsDisconnectedGraphic';
 
 interface PainPoint {
@@ -75,13 +74,12 @@ export function LocationPage({
           <p className="lede">{intro}</p>
           <div className="hero-cta">
             <Link href="/contact" className="btn btn--primary">
-              Book a free call <ArrowRight size={18} />
+              Book a free discovery call <ArrowRight size={18} />
             </Link>
             <Link href={serviceUrl} className="btn btn--outline">
               {serviceLabel}
             </Link>
           </div>
-          <p className="direct">Or <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">book a call directly</a></p>
         </div>
         {heroArtHtml ? (
           <div className="wrap hero-art" dangerouslySetInnerHTML={{ __html: heroArtHtml }} />
@@ -219,9 +217,8 @@ export function LocationPage({
                   ))}
                 </div>
                 <Link href="/contact" className="btn btn--primary" style={{ width: '100%' }}>
-                  Book a free call <ArrowRight size={18} />
+                  Book a free discovery call <ArrowRight size={18} />
                 </Link>
-                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" style={{ fontSize: 'var(--do-text-sm)', color: '#dfe6ea', fontWeight: 'var(--do-weight-medium)', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 4, marginTop: 12 }}>Or book a call directly <ArrowRight size={14} /></a>
                 <p style={{ fontSize: 'var(--do-text-xs)', color: '#c3d0d6', textAlign: 'center', marginTop: 16, marginBottom: 0 }}>
                   Serving {town} and across {county}
                 </p>

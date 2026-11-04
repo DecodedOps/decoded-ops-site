@@ -106,8 +106,8 @@ export default function CommercePage() {
               <p className="t-lede" style={{ marginTop: 20 }}>A B2B ordering portal and webstore software for decorators: your shop in your brand, trade customers ordering on account, and a shop for every school, club or company you supply.</p>
               <p className="t-body" style={{ margin: '12px 0 0', maxWidth: '56ch' }}>It’s built on an open-source commerce starter, so the foundations are real rather than built from scratch, and decoration is built into every shop.</p>
               <div className="btn-row">
-                <Link className="btn btn--primary" href="/contact?product=commerce" data-od-id="hero-cta">Book a discovery call</Link>
-                <Link className="go" href="#web-to-stitch">How decoration works <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+                <Link className="btn btn--primary" href="/contact?product=commerce" data-od-id="hero-cta">Book a free discovery call</Link>
+                <Link className="btn btn--outline" href="#web-to-stitch">How decoration works</Link>
               </div>
             </div>
             <div>
@@ -137,7 +137,7 @@ export default function CommercePage() {
               <div>
                 <h3>Checked before anything is made.</h3>
                 <p className="t-body">Every uploaded logo is checked by your team before production starts. Nothing is digitised automatically and no stitch count is guessed: the shop takes the order, people sign off the artwork.</p>
-                <p className="t-body">With <Link className="go" href="/apps/works">Decoded Works</Link> alongside, the proof goes to the customer for sign-off first, through <Link className="go" href="/apps/proof">Proof</Link>.</p>
+                <p className="t-body">With <Link className="t-link" href="/apps/works">Decoded Works</Link> alongside, the proof goes to the customer for sign-off first, through <Link className="t-link" href="/apps/proof">Proof</Link>.</p>
               </div>
               <figure className="shot" data-od-id="shot-order">
                 <img src="/images/site/screens/commerce/do-art-1027d-commerce-order-received.webp" width={1600} height={1000} alt="Decoded Commerce order received page with the steps from proof to despatch, sample data." loading="lazy" />
@@ -307,7 +307,7 @@ export default function CommercePage() {
           <div className="wrap">
             <div className="route-head">
               <div><span className="eyebrow">What happens next</span><h2 data-od-id="next-h2">Three steps to running it.</h2></div>
-              <p className="lede">You know what setup involves before anything is booked. <Link className="go" href="/apps#what-happens-next">How getting it works <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link></p>
+              <p className="lede">You know what setup involves before anything is booked. <Link className="t-link" href="/apps#what-happens-next">How getting it works</Link></p>
             </div>
             <ol className="route route--3" data-od-id="next-route">
               <li className="stop" data-od-id="next-call"><span className="node"><svg className="ic ic-24" aria-hidden="true"><use href="#i-phone" /></svg></span><span className="t-meta">Step 1</span><h3>Discovery call</h3><p className="t-card stop-text">We talk through how you sell now: who orders, how they pay, and where orders get keyed in by hand.</p></li>
@@ -379,7 +379,7 @@ export default function CommercePage() {
             <div><h2 data-od-id="cta-h2">Still taking trade orders by email?</h2></div>
             <div>
               <p className="lede">Tell me who buys from you and how they order now. If a shop isn’t the answer, I’ll say so.</p>
-              <div className="btn-row"><Link className="btn btn--primary" href="/contact?product=commerce" data-od-id="cta-primary">Book a discovery call</Link><Link className="go" href="/apps">See all four products <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link></div>
+              <div className="btn-row"><Link className="btn btn--primary" href="/contact?product=commerce" data-od-id="cta-primary">Book a free discovery call</Link><Link className="btn btn--outline" href="/apps">See all four products</Link></div>
             </div>
           </div>
         </section>

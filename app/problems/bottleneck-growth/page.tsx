@@ -6,7 +6,6 @@ import { VideoEmbed } from '@/components/VideoEmbed';
 import { VideoSchema } from '@/components/VideoSchema';
 import { problemVideos } from '@/data/problem-videos';
 import { problemRouting } from '@/data/problem-routing';
-import { BOOKING_URL } from '@/lib/constants';
 import '@/app/d17-global.css';
 import '@/app/d17-problems.css';
 import '@/app/problems/problems-v2.css';
@@ -274,8 +273,7 @@ export default function BottleneckGrowthPage() {
         <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>3× Clarity Guarantee</span></li>
         <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>No vendor agenda</span></li>
        </ul>
-       <Link className="btn btn--primary" href="/contact" data-od-id="offer-cta">Book a free call</Link>
-       <a className="alt" href={BOOKING_URL} target="_blank" rel="noopener noreferrer" data-od-id="offer-alt">Or book a call directly</a>
+       <Link className="btn btn--primary" href="/contact" data-od-id="offer-cta">Book a free discovery call</Link>
       </aside>
      </div>
     </section>

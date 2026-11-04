@@ -5,7 +5,6 @@ import { BreadcrumbSchema } from '@/components/BreadcrumbSchema';
 import { VideoEmbed } from '@/components/VideoEmbed';
 import { VideoSchema } from '@/components/VideoSchema';
 import { problemVideos } from '@/data/problem-videos';
-import { BOOKING_URL } from '@/lib/constants';
 import '@/app/d17-global.css';
 import '@/app/d17-problems.css';
 import '@/app/design-system/site-v3.css';
@@ -238,8 +237,8 @@ export default function LegacySystemPage() {
        <p className="t-body">A blank garment becomes a different, finished product the moment it&apos;s
         printed or embroidered, and most platforms have no clean way to model that.</p>
        <div className="btn-row">
-        <Link className="btn btn--primary" href="/contact" data-od-id="hero-cta">Talk about your situation</Link>
-        <Link className="go" href="/clarity">See how the audit works <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+        <Link className="btn btn--primary" href="/contact" data-od-id="hero-cta">Book a free discovery call</Link>
+        <Link className="btn btn--outline" href="/clarity">See how the audit works</Link>
        </div>
       </div>
       <div data-od-id="hero-visual" dangerouslySetInnerHTML={{ __html: heroArt969 }} />
@@ -385,8 +384,7 @@ export default function LegacySystemPage() {
         <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>3&times; Clarity Guarantee</span></li>
         <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>No vendor agenda</span></li>
        </ul>
-       <Link className="btn btn--primary" href="/contact" data-od-id="offer-cta">Book a free call</Link>
-       <Link className="alt" href={BOOKING_URL} data-od-id="offer-alt">Or book a call directly</Link>
+       <Link className="btn btn--primary" href="/contact" data-od-id="offer-cta">Book a free discovery call</Link>
       </aside>
      </div>
     </section>
@@ -439,8 +437,8 @@ export default function LegacySystemPage() {
       <p className="lede">A Clarity Audit scopes the gap and prices the fix, before anything gets
        ripped out.</p>
       <div className="hero-cta">
-       <Link className="btn btn--primary" href="/contact">Book a free 60 minute call</Link>
-       <Link className="btn-ghost btn-arrow" href="/apps/works">See Works</Link>
+       <Link className="btn btn--primary" href="/contact">Book a free discovery call</Link>
+       <Link className="btn btn--outline" href="/apps/works">See Works</Link>
       </div>
      </div>
     </section>

@@ -243,7 +243,7 @@ export default function CaseStudy02Page() {
               <p className="lede">This is a Systems (rung 2) example. If you want a small business technology consultant to find out what your own operation needs, book a Clarity Audit.</p>
               <div className="btn-row">
                 <Link className="btn btn--primary" href="/contact" data-od-id="cta-primary">Book a free discovery call</Link>
-                <Link className="go" href="/apps/works">See Works <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+                <Link className="btn btn--outline" href="/apps/works">See Works</Link>
               </div>
             </div>
           </div>

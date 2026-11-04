@@ -100,7 +100,7 @@ export default function HomePage() {
                   No jargon. No vendor agenda.</p>
                 <div className="btn-row">
                   <Link className="btn btn--primary" href="/clarity">See how a Clarity Audit works</Link>
-                  <Link className="btn btn--outline" href="/contact">Book a free 60 minute call</Link>
+                  <Link className="btn btn--outline" href="/contact">Book a free discovery call</Link>
                 </div>
               </div>
 
@@ -411,8 +411,8 @@ export default function HomePage() {
             </div>
 
             <div className="origin-links" data-od-id="origin-links">
-              <Link className="go" href="/apps">See what&rsquo;s already running</Link>
-              <Link className="go" href="/how-i-build">How I decide what to build</Link>
+              <Link className="go" href="/apps">See what&rsquo;s already running <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+              <Link className="go" href="/how-i-build">How I decide what to build <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
             </div>
           </div>
         </section>

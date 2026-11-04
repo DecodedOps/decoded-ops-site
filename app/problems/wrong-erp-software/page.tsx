@@ -5,7 +5,6 @@ import { BreadcrumbSchema } from '@/components/BreadcrumbSchema';
 import { VideoEmbed } from '@/components/VideoEmbed';
 import { VideoSchema } from '@/components/VideoSchema';
 import { problemVideos } from '@/data/problem-videos';
-import { BOOKING_URL } from '@/lib/constants';
 import { a999Solo } from '@/lib/d17-figures/a999';
 import '@/app/d17-global.css';
 import '@/app/d17-problems.css';
@@ -161,8 +160,8 @@ export default function WrongERPSoftwarePage() {
        <p className="t-body">Most of the time it was avoidable, if someone independent had checked
         the fit before the contracts were signed.</p>
        <div className="btn-row">
-        <Link className="btn btn--primary" href="/contact" data-od-id="hero-cta">Talk about your situation</Link>
-        <Link className="go" href="/clarity">See how the audit works <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+        <Link className="btn btn--primary" href="/contact" data-od-id="hero-cta">Book a free discovery call</Link>
+        <Link className="btn btn--outline" href="/clarity">See how the audit works</Link>
        </div>
       </div>
       <div data-od-id="hero-visual" dangerouslySetInnerHTML={{ __html: heroArt978 }} />
@@ -326,8 +325,7 @@ export default function WrongERPSoftwarePage() {
         <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>3&times; Clarity Guarantee</span></li>
         <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>No vendor agenda</span></li>
        </ul>
-       <Link className="btn btn--primary" href="/contact" data-od-id="offer-cta">Book a free call</Link>
-       <Link className="alt" href={BOOKING_URL} data-od-id="offer-alt">Or book a call directly</Link>
+       <Link className="btn btn--primary" href="/contact" data-od-id="offer-cta">Book a free discovery call</Link>
       </aside>
      </div>
     </section>
@@ -383,7 +381,7 @@ export default function WrongERPSoftwarePage() {
        that fits.</p>
       <div className="hero-cta">
        <Link className="btn btn--primary" href="/contact">Book a free discovery call</Link>
-       <Link className="btn btn--ghost btn-arrow" href="/clarity">See how a Clarity Audit works</Link>
+       <Link className="btn btn--outline" href="/clarity">See how a Clarity Audit works</Link>
       </div>
      </div>
     </section>

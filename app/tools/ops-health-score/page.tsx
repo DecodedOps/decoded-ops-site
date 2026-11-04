@@ -191,7 +191,7 @@ export default function OpsHealthScorePage() {
                   <p className="t-lede">{result.description}</p>
                   <div className="btn-row">
                     <Link className="btn btn--primary" href="/contact" data-od-id="result-cta">Book a Clarity Audit</Link>
-                    <button type="button" onClick={reset} className="go" data-reset style={{ background: 'none', border: 0, padding: 0, cursor: 'pointer' }}><svg className="ic ic-16" aria-hidden="true"><use href="#i-rotate-ccw" /></svg> Try again</button>
+                    <button type="button" onClick={reset} className="btn btn--outline" data-reset><svg className="ic ic-16" aria-hidden="true"><use href="#i-rotate-ccw" /></svg> Try again</button>
                   </div>
                   <p className="note" data-new-copy>The score is yours to keep. Leaving your details afterwards is optional.</p>
                 </div>
@@ -257,7 +257,7 @@ export default function OpsHealthScorePage() {
             <p className="lede" data-new-copy>Bring the result to a free discovery call and we work out whether the weakest area is a process problem, a data problem or a platform problem, and what fixing it involves.</p>
             <div className="btn-row">
               <Link className="btn btn--primary" href="/contact" data-od-id="cta-primary" data-new-copy>Book a free discovery call</Link>
-              <Link className="go" href="/tools" data-new-copy>The other free calculators <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+              <Link className="btn btn--outline" href="/tools" data-new-copy>The other free calculators</Link>
             </div>
           </div>
         </div>

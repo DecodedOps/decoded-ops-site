@@ -98,8 +98,8 @@ export default function ProofPage() {
               <p className="t-lede" style={{ marginTop: 20 }}>Artwork approval software with an artwork vault across embroidery and print formats, full revision control and an audit trail. Colourways and thread libraries are held against the job, not scattered across folders and someone&rsquo;s memory.</p>
               <p className="t-body" style={{ margin: '12px 0 0', maxWidth: '56ch' }}>Proofing software for printers and embroiderers: customers approve their own proofs instead of an email chain, and the version they approved is the one that goes to the floor.</p>
               <div className="btn-row">
-                <Link className="btn btn--primary" href="/contact?product=proof" data-od-id="hero-cta">Book a discovery call</Link>
-                <Link className="go" href="#terms">Read the terms first <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+                <Link className="btn btn--primary" href="/contact?product=proof" data-od-id="hero-cta">Book a free discovery call</Link>
+                <Link className="btn btn--outline" href="#terms">Read the terms first</Link>
               </div>
             </div>
             <div>
@@ -139,7 +139,7 @@ export default function ProofPage() {
                 <p className="t-card">Every artwork job tracked from the day the file arrives to the day it&rsquo;s ready, with the digitised design, stitch count and size on the record. When Proof runs inside Works, the approved file goes to the floor machine-ready.</p>
               </article>
             </div>
-            <p className="t-body" style={{ marginTop: 24, maxWidth: '68ch' }}>Quotes, invoices and the sales pipeline sit alongside the artwork when you add <a className="go" href="#crm">CRM</a>.</p>
+            <p className="t-body" style={{ marginTop: 24, maxWidth: '68ch' }}>Quotes, invoices and the sales pipeline sit alongside the artwork when you add <a className="t-link" href="#crm">CRM</a>.</p>
           </div>
         </section>
 
@@ -283,7 +283,7 @@ export default function ProofPage() {
           <div className="wrap">
             <div className="route-head">
               <div><span className="eyebrow">What happens next</span><h2 data-od-id="next-h2">Three steps to running it.</h2></div>
-              <p className="lede">You know what setup involves before anything is booked. <Link className="go" href="/apps#what-happens-next">How getting it works <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link></p>
+              <p className="lede">You know what setup involves before anything is booked. <Link className="t-link" href="/apps#what-happens-next">How getting it works</Link></p>
             </div>
             <ol className="route route--3" data-od-id="next-route">
               <li className="stop" data-od-id="next-call"><span className="node"><svg className="ic ic-24" aria-hidden="true"><use href="#i-phone" /></svg></span><span className="t-meta">Step 1</span><h3>Discovery call</h3><p className="t-card stop-text">We talk through how artwork moves now: who sends what, who approves it, and where versions get lost.</p></li>
@@ -355,7 +355,7 @@ export default function ProofPage() {
             <div><h2 data-od-id="cta-h2">Lost track of which version they approved?</h2></div>
             <div>
               <p className="lede">Tell me how proofing works today, the formats, the machines and who signs off. If your artwork problem is smaller than this, I&rsquo;ll tell you that.</p>
-              <div className="btn-row"><Link className="btn btn--primary" href="/contact?product=proof" data-od-id="cta-primary">Book a discovery call</Link><Link className="go" href="/apps">See all four products <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link></div>
+              <div className="btn-row"><Link className="btn btn--primary" href="/contact?product=proof" data-od-id="cta-primary">Book a free discovery call</Link><Link className="btn btn--outline" href="/apps">See all four products</Link></div>
             </div>
           </div>
         </section>

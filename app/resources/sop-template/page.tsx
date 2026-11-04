@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { Download } from 'lucide-react';
-import { BOOKING_URL } from '@/lib/constants';
 import { JsonLd } from '@/components/JsonLd';
 import { IconSprite } from '@/components/IconSprite';
 import { D17Motion } from '@/components/D17Motion';
@@ -96,7 +95,7 @@ export default function SopTemplatePage() {
               <a className="btn btn--primary" href="/downloads/decoded-ops-sop-template.docx" data-od-id="hero-cta" style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
                 <Download size={20} /> Download the template (.docx)
               </a>
-              <a className="go" href="#s1" data-new-copy>Read it here instead <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></a>
+              <a className="btn btn--outline" href="#s1" data-new-copy>Read it here instead</a>
             </div>
           </div>
           <div dangerouslySetInnerHTML={{ __html: `
@@ -256,8 +255,10 @@ export default function SopTemplatePage() {
             <p>
               The real value comes when every process in your business is documented, owned, and reviewed regularly. A Clarity engagement builds the full three-layer system with you, mapping what you do, who owns it, and where the gaps are.
             </p>
-            <p><Link href="/contact">Book a free discovery call</Link> <Link href="/clarity">See what Clarity covers</Link></p>
-            <p><a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">Or book a call directly</a></p>
+            <div className="btn-row">
+              <Link className="btn btn--primary" href="/contact">Book a free discovery call</Link>
+              <Link className="btn btn--outline" href="/clarity">See what Clarity covers</Link>
+            </div>
           </div>
         </div>
       </section>
@@ -285,7 +286,7 @@ export default function SopTemplatePage() {
             <p className="lede" data-new-copy>A Clarity Audit maps which processes to write first and in what order, and the Process &amp; Quality System keeps them current.</p>
             <div className="btn-row">
               <Link className="btn btn--primary" href="/contact" data-od-id="cta-primary">Book a free discovery call</Link>
-              <Link className="go" href="/clarity">See what Clarity covers <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
+              <Link className="btn btn--outline" href="/clarity">See what Clarity covers</Link>
             </div>
           </div>
         </div>
