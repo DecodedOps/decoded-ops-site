@@ -78,7 +78,8 @@ async function fetchBlogPost(slug: string, preview?: string) {
     const res = await hubFetch(url, preview || BLOG_REVIEW ? { cache: 'no-store' } : { next: { revalidate: 300 } });
     if (!res.ok) return null;
     const data = await res.json();
-    return data.item ? { ...data.item, _preview: !!data.preview } : null;
+    // Review mode gets preview:true for every keyed response; only an unpublished post is a preview.
+    return data.item ? { ...data.item, _preview: !!data.preview && data.item.status !== 'published' } : null;
   } catch {
     return null;
   }
