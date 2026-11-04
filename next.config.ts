@@ -56,7 +56,12 @@ const nextConfig: NextConfig = {
       { source: '/apps/artwork-manager', destination: '/apps/proof', permanent: true },
       // BUG-WEB-017: blog slugs renamed during relaunch — preserve Search Console equity
       { source: '/blog/artwork-approval-process', destination: '/blog/artwork-approval-workflow-brief-to-sign-off-24-hours', permanent: true },
-      { source: '/blog/embroidery-quality-standards', destination: '/blog/embroidery-quality-standards-stitch-density-thread-durability', permanent: true },
+      { source: '/blog/embroidery-quality-standards', destination: '/blog/embroidery-stitch-density-quality-speed-cost', permanent: true },
+      // 4 Nov 2026 blog rewrite (Craig): merged posts 301 to the post that absorbed them; local SEO retired.
+      { source: '/blog/how-to-evaluate-an-ai-tool-without-getting-sold-to', destination: '/blog/ai-isnt-your-problem-your-processes-are', permanent: true },
+      { source: '/blog/b2b-portal-down-on-christmas-jumper-day-cartoon', destination: '/blog/what-happens-when-your-systems-go-down', permanent: true },
+      { source: '/blog/embroidery-quality-standards-stitch-density-thread-durability', destination: '/blog/embroidery-stitch-density-quality-speed-cost', permanent: true },
+      { source: '/blog/local-seo-print-shop', destination: '/blog', permanent: true },
       { source: '/blog/orderwise-what-it-does-well-what-it-doesn-t', destination: '/blog/erp-gaps-decorated-goods-business', permanent: true },
     ];
   },
