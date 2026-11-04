@@ -12,18 +12,18 @@ import styles from './page.module.css';
 
 export const metadata: Metadata = {
   title: 'Technology Audit, Independent & UK-Wide | Decoded Ops',
-  description: 'My technology audit is independent, with no vendor agenda, for print, embroidery and workwear businesses anywhere in the UK. See what a day on site covers.',
+  description: 'My technology audit is independent, with no commission, for print, embroidery and workwear businesses anywhere in the UK. See what a day on site covers.',
   alternates: { canonical: '/locations/tech-audit' },
   openGraph: {
     title: 'Technology Audit, Independent & UK-Wide | Decoded Ops',
-    description: 'My technology audit is independent, with no vendor agenda, for print, embroidery and workwear businesses anywhere in the UK. See what a day on site covers.',
+    description: 'My technology audit is independent, with no commission, for print, embroidery and workwear businesses anywhere in the UK. See what a day on site covers.',
     url: 'https://decodedops.co.uk/locations/tech-audit',
     images: [{ url: '/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Technology Audit, Independent & UK-Wide | Decoded Ops',
-    description: 'My technology audit is independent, with no vendor agenda, for print, embroidery and workwear businesses anywhere in the UK. See what a day on site covers.',
+    description: 'My technology audit is independent, with no commission, for print, embroidery and workwear businesses anywhere in the UK. See what a day on site covers.',
   },
 };
 
@@ -203,7 +203,7 @@ export default function TechAuditPage() {
                 </li>
               ))}
             </ol>
-            <p className="route-cap"><svg className="ic ic-16" aria-hidden="true"><use href="#i-check" /></svg>UK-wide, on-site where the work needs it. No vendor relationships or commission.</p>
+            <p className="route-cap"><svg className="ic ic-16" aria-hidden="true"><use href="#i-check" /></svg>UK-wide, on-site where the work needs it. No commission, my own software scored like everything else.</p>
           </div>
         </section>
 
@@ -215,7 +215,7 @@ export default function TechAuditPage() {
               <div>
                 <span className="seal-tag">Decoded Ops &middot; the audit &middot; the guarantee</span>
                 <h2 data-od-id="seal-h2">If I don&rsquo;t find 3&times; the fee, you get a full refund.</h2>
-                <p>In recoverable cost or lost revenue, with no conditions. No vendor relationships or commission, and worked at every level, warehouse floor to boardroom.</p>
+                <p>In recoverable cost or lost revenue, with no conditions. No commission, my own software scored like everything else, and worked at every level, warehouse floor to boardroom.</p>
               </div>
             </div>
           </div>

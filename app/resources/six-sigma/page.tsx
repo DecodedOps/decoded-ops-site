@@ -125,7 +125,7 @@ export default function SixSigmaPage() {
               </li>
             ))}
           </ol>
-          <p className="route-cap"><svg className="ic ic-16" aria-hidden="true"><use href="#i-check" /></svg>Most decoration businesses operate at 3 to 4 Sigma. Here is what that actually means.</p>
+          <p className="route-cap"><svg className="ic ic-16" aria-hidden="true"><use href="#i-check" /></svg>In my experience, many decoration businesses sit somewhere around 3 to 4 Sigma without knowing it. Here is what that actually means.</p>
         </div>
       </section>
 
@@ -135,7 +135,7 @@ export default function SixSigmaPage() {
           <div className="sec-head"><span className="eyebrow">The real gap</span>
             <h2 data-od-id="gap-h2">The gap is process, not machinery</h2>
             <p className="lede">Moving from <strong>3 Sigma to 5 Sigma</strong> cuts your defect rate by <strong>99.6%</strong>. That is not a machine upgrade. It is a process redesign: standardised settings, documented procedures, and measured checkpoints are what separate the two. Not a newer heat press.</p>
-            <p>If your defect rate feels stuck, the fix usually is not new equipment. It is documenting and standardising what your best operator already does, which is six sigma for small business in practice. That is exactly what a Clarity engagement maps.</p>
+            <p>If your defect rate feels stuck, the fix usually is not new equipment. It is documenting and standardising what your best operator already does, which is six sigma for small business in practice. That is exactly what a Clarity Audit maps.</p>
           </div>
           <div dangerouslySetInnerHTML={{ __html: a986 }} />
         </div>

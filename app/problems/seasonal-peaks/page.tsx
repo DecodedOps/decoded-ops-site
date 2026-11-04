@@ -15,18 +15,18 @@ import styles from './page.module.css';
 
 export const metadata: Metadata = {
  title: 'Production Capacity Planning for Peaks | Decoded Ops',
- description: "Production capacity planning matters when your busiest month runs four times your quietest and the systems can't flex. Here's how I get them ready for it.",
+ description: "Production capacity planning matters when your busiest month runs several times your quietest and the systems can't flex. Here's how I get them ready for it.",
  alternates: { canonical: '/problems/seasonal-peaks' },
  openGraph: {
   title: 'Production Capacity Planning for Peaks | Decoded Ops',
-  description: "Production capacity planning matters when your busiest month runs four times your quietest and the systems can't flex. Here's how I get them ready for it.",
+  description: "Production capacity planning matters when your busiest month runs several times your quietest and the systems can't flex. Here's how I get them ready for it.",
   url: 'https://decodedops.co.uk/problems/seasonal-peaks',
   images: [{ url: '/opengraph-image', width: 1200, height: 630 }],
  },
  twitter: {
   card: 'summary_large_image',
   title: 'Production Capacity Planning for Peaks | Decoded Ops',
-  description: "Production capacity planning matters when your busiest month runs four times your quietest and the systems can't flex. Here's how I get them ready for it.",
+  description: "Production capacity planning matters when your busiest month runs several times your quietest and the systems can't flex. Here's how I get them ready for it.",
  },
 };
 
@@ -39,7 +39,7 @@ const seasonalPeaksSchema = {
     {
      '@type': 'Question',
      name: 'Why do seasonal peaks break decorated-goods operations?',
-     acceptedAnswer: { '@type': 'Answer', text: 'In decorated goods, demand is not flat. Schoolwear peaks in July and August. Promotional merchandise spikes in November and December. Teamwear surges in spring. If your systems cannot scale up and down with those rhythms, you are either burning staff out in the peak or carrying idle capacity in the trough, and neither is sustainable.' },
+     acceptedAnswer: { '@type': 'Answer', text: 'In decorated goods, demand is not flat. Schoolwear peaks from July to September. Promotional merchandise spikes from November to January. Teamwear surges in spring. If your systems cannot scale up and down with those rhythms, you are either burning staff out in the peak or carrying idle capacity in the trough, and neither is sustainable.' },
     },
     {
      '@type': 'Question',
@@ -62,7 +62,7 @@ const seasonalPeaksSchema = {
 };
 
 const heroArt973 = `<figure class="d17 sx px ph-fade a973" data-od-id="hero-evidence" data-motion data-no="DO-ART-973" data-rev="01" data-tx="screen"
-        aria-label="Artwork DO-ART-973. An order intake chart by month, drawn as a shape without figures, over a dimmed photograph. Teamwear rises from March to June, schoolwear peaks in July to September with August the busiest month, four times February, the quietest, and promotional work climbs in November and December. A dashed line marks what the team can process; every month above it is amber. Staffed for the average, swamped at the peak.">
+        aria-label="Artwork DO-ART-973. An order intake chart by month, drawn as a shape without figures, over a dimmed photograph. Teamwear rises from March to June, schoolwear peaks in July to September with August the busiest month, several times the level of February, the quietest, and promotional work climbs from November to January. A dashed line marks what the team can process; every month above it is amber. Staffed for the average, swamped at the peak.">
   <div class="d17-ph"><img src="/images/d17/problems/cat-awards-70dc2f.webp" alt="" width="900" height="1200"></div>
   <div class="d17-scan" aria-hidden="true"></div>
   <div class="sx-top d17-mono" aria-hidden="true"><span>Seasonal peaks</span><span>Twelve months, three rhythms</span></div>
@@ -70,7 +70,7 @@ const heroArt973 = `<figure class="d17 sx px ph-fade a973" data-od-id="hero-evid
     <div class="win-bar"><span class="dots"><i></i><i></i><i></i></span><span class="crumb"><span>Insight ›</span> Order intake</span><span class="pill">12 MONTHS</span></div>
     <div class="win-flat">
       <h5>Order intake by month</h5>
-      <p class="s">The shape of the year: the busiest month, four times the quietest</p>
+      <p class="s">The shape of the year: the busiest month, several times the quietest</p>
       <div class="seasons"><span style="grid-column:3 / 7">Teamwear</span><span style="grid-column:7 / 10" class="on">Schoolwear</span><span style="grid-column:11 / 13">Promotional</span></div>
       <div class="chart">
           <i class="m-grow" style="--h:30%;animation-delay:0.00s"></i>
@@ -124,7 +124,7 @@ const plateArt1010 = `<figure class="d17 sw sw-doc a718 a1010" data-od-id="plate
         <tr><th>Rhythm</th><th>Peak</th><th>What lands</th></tr>
         <tr><td>Schoolwear</td><td>July to September</td><td>Embroidery runs, printed logos, size-specific orders</td></tr>
         <tr><td>Teamwear</td><td>March to June</td><td>Names, numbers, sponsor logos</td></tr>
-        <tr><td>Promotional</td><td>November to January</td><td>Quoting, artworking, producing at ten times the usual volume</td></tr>
+        <tr><td>Promotional</td><td>November to January</td><td>Quoting, artworking, producing at many times the usual volume</td></tr>
       </table>
     </div>
     <div class="d17-doc sop doc-s m-drop" style="animation-delay:.4s">
@@ -181,16 +181,16 @@ export default function SeasonalPeaksPage() {
       problem="Seasonal peaks"
       crumb="Seasonal peaks"
       h1Lead="Problem · production capacity planning"
-      headline="Your busiest month is four times your quietest, and your systems can't flex."
-      heroLede="In decorated goods, demand isn't flat. Schoolwear peaks in July and August. Promotional merchandise spikes in November and December. Teamwear surges in spring."
+      headline="Your busiest month is several times your quietest, and your systems can't flex."
+      heroLede="In decorated goods, demand isn't flat. Schoolwear peaks from July to September. Promotional merchandise spikes from November to January. Teamwear surges in spring."
       heroBody="If your systems can't stretch and shrink with those rhythms, you're either burning staff out in the peak or paying idle staff in the quiet months. Neither is sustainable, and production capacity planning has to start well before the peak."
       heroArt={heroArt973}
       symptomsEyebrow="The evidence"
       symptomsHeading="Three seasonal rhythms, same business."
       symptomsLede="These aren't hypotheticals. They are the actual demand curves every decorated-goods business lives with, and most of them are still staffing for the average, not the peak."
       symptoms={[
-       'Schoolwear, July to September. Back-to-school means four months of demand compressed into eight weeks. Embroidery runs, printed logos, size-specific orders, all of it landing at once, and all of it needing to be right the first time.',
-       'Promotional, November to January. Christmas gifting, corporate calendars, end-of-year award events. The merchandise catalogue that sat quiet all year suddenly needs quoting, artworking, and producing at ten times the usual volume.',
+       'Schoolwear, July to September. In the schoolwear businesses I work with, back-to-school squeezes months of demand into a few weeks. Embroidery runs, printed logos, size-specific orders, all of it landing at once, and all of it needing to be right the first time.',
+       'Promotional, November to January. Christmas gifting, corporate calendars, end-of-year award events. The merchandise catalogue that sat quiet all year suddenly needs quoting, artworking, and producing at many times the usual volume.',
        'Teamwear, March to June. New season kits, club orders, tournament merchandise. Every order is personalised, names, numbers, sponsor logos, and every one of them needs to land before the first fixture.',
       ]}
       symptomsCaption="One business can carry all three. The quiet months pay for the peaks."
@@ -211,7 +211,7 @@ export default function SeasonalPeaksPage() {
        lede: "A calendar of the three rhythms, a one-page SOP a seasonal worker can follow on day one, and a log of what went wrong last time. The plan is on paper by June, not in someone's head in August.",
        art: plateArt1010,
       }}
-      howLede="A Clarity Audit starts your production capacity planning by mapping your actual seasonal demand curves against your current capacity, and the written plan tells you which processes to automate first so the business can handle the peak without burning out the people. Ten times the orders shouldn't mean ten times the staff."
+      howLede="A Clarity Audit starts your production capacity planning by mapping your actual seasonal demand curves against your current capacity, and the written plan tells you which processes to automate first so the business can handle the peak without burning out the people. A peak in orders shouldn't mean a matching peak in staff."
       howBody="Where automation fits (supplier feeds into Works, artwork approval workflows, order-to-production routing), the system absorbs the volume spike instead of the team absorbing the overtime."
       howTone="off"
       routing={problemRouting['seasonal-peaks']}
@@ -244,7 +244,7 @@ export default function SeasonalPeaksPage() {
        <article className="area" data-od-id="causes-3">
         <div className="area-top"><span className="ic-tile"><Icon id="i-refresh-cw" size={24} /></span><span className="num">03</span></div>
         <h3>Supplier data can&apos;t keep up with demand</h3>
-        <p className="t-card">When you&apos;re ordering ten times the stock in half the time, supplier feeds that update
+        <p className="t-card">When you&apos;re ordering far more stock in far less time, supplier feeds that update
          weekly aren&apos;t good enough. The gap between what&apos;s available and what&apos;s on screen widens
          exactly when it hurts most.</p>
        </article>
@@ -283,8 +283,8 @@ export default function SeasonalPeaksPage() {
        <h2 data-od-id="how-h2">Systems that scale, so your staffing doesn&apos;t have to.</h2>
        <p className="t-lede">A Clarity Audit starts your production capacity planning by mapping your actual seasonal demand curves against your current capacity,
         and the written plan tells you which processes to automate first so the business can handle
-        the peak without burning out the people. <b>Ten times the orders shouldn&apos;t mean ten times
-        the staff.</b></p>
+        the peak without burning out the people. <b>A peak in orders shouldn&apos;t mean a matching peak in
+        staff.</b></p>
        <p className="t-body">Where automation fits (supplier feeds into Works, artwork approval workflows,
         order-to-production routing), the system absorbs the volume spike instead of the team
         absorbing the overtime.</p>
@@ -293,7 +293,7 @@ export default function SeasonalPeaksPage() {
        <h3>The first call is free.</h3>
        <p className="t-card">60 minutes. No sales pitch, just a direct conversation about your situation.</p>
        <ul className="ticks">
-        {['One day on site', 'Written report in 5 days', '3× Clarity Guarantee', 'No vendor agenda'].map(item => (
+        {['One day on site', 'Written report in 5 days', '3× Clarity Guarantee', 'No commission'].map(item => (
          <li key={item}><Icon id="i-check" size={20} /><span>{item}</span></li>
         ))}
        </ul>

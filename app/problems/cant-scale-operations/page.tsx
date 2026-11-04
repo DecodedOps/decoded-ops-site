@@ -73,7 +73,7 @@ const cantScaleSchema = {
      name: 'How long does the Clarity Audit and implementation process take?',
      acceptedAnswer: {
       '@type': 'Answer',
-      text: "The Clarity Audit takes one day on site, with a written report delivered within five working days. Quick wins can be implemented in days. A structured Deliver engagement typically runs over six to twelve weeks. Retained support is ongoing.",
+      text: "The Clarity Audit takes one day on site, with a written report delivered within five working days. Quick wins can be implemented in days. Deliver runs for a minimum of three months. Retained is a fractional role with a 12-month minimum.",
      },
     },
     {

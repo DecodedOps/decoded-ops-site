@@ -181,7 +181,7 @@ export default function SystemsDontTalkPage() {
     plateNote="Each island knows only what it is told. Every gap gets bridged by hand. Every bridge is a place data goes wrong."
     proof
     howLede="I map every system you use, every bit of data that moves between them, and every manual bridge your team has built to paper over the gaps. Then I show you what it's actually costing you."
-    howBody="After that, I give you independent options: connect systems where it makes sense, merge them where that's cheaper, or replace the ones that are the problem. No vendor relationships. No preferred solutions. Just a clear picture and a practical way forward."
+    howBody="After that, I give you independent options: connect systems where it makes sense, merge them where that's cheaper, or replace the ones that are the problem. No commission. Off the shelf first, and my own software scored like everything else. Just a clear picture and a practical way forward."
     howTone="off"
     routing={problemRouting['systems-dont-talk']}
    />

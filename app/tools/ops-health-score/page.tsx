@@ -190,7 +190,7 @@ export default function OpsHealthScorePage() {
                   <h2 data-od-id="result-h2">{result.label}</h2>
                   <p className="t-lede">{result.description}</p>
                   <div className="btn-row">
-                    <Link className="btn btn--primary" href="/contact" data-od-id="result-cta">Book a Clarity Audit</Link>
+                    <Link className="btn btn--primary" href="/contact" data-od-id="result-cta">Book a free discovery call</Link>
                     <button type="button" onClick={reset} className="btn btn--outline" data-reset><svg className="ic ic-16" aria-hidden="true"><use href="#i-rotate-ccw" /></svg> Try again</button>
                   </div>
                   <p className="note" data-new-copy>The score is yours to keep. Leaving your details afterwards is optional.</p>
@@ -254,7 +254,7 @@ export default function OpsHealthScorePage() {
             <h2 data-od-id="cta-h2" data-new-copy>A score is where the conversation starts.</h2>
           </div>
           <div>
-            <p className="lede" data-new-copy>Bring the result to a free discovery call and we work out whether the weakest area is a process problem, a data problem or a platform problem, and what fixing it involves.</p>
+            <p className="lede" data-new-copy>Bring the result to a free discovery call and I&rsquo;ll work out whether the weakest area is a process problem, a data problem or a platform problem, and what fixing it involves.</p>
             <div className="btn-row">
               <Link className="btn btn--primary" href="/contact" data-od-id="cta-primary" data-new-copy>Book a free discovery call</Link>
               <Link className="btn btn--outline" href="/tools" data-new-copy>The other free calculators</Link>

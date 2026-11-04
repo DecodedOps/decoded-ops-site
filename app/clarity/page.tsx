@@ -45,7 +45,7 @@ const clarityFaqSchema = {
         {
           '@type': 'Question',
           name: 'What happens after the Clarity Audit?',
-          acceptedAnswer: { '@type': 'Answer', text: 'You get a written report covering what is costing you, what to do about it, what it will cost to fix, and in what order. The debrief is walked through in person so you can push back while Craig is still in the room. Then it is yours to act on with Decoded Ops or without.' },
+          acceptedAnswer: { '@type': 'Answer', text: 'You get a written report covering what is costing you, what to do about it, what it will cost to fix, and in what order. The debrief is walked through in person so you can push back while I am still in the room. Then it is yours to act on with Decoded Ops or without.' },
         },
       ],
     },

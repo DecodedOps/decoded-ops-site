@@ -257,7 +257,7 @@ export default function RetainedPage() {
               <p className="lede">An hour, no obligation, and an honest answer at the end of it, including if the answer is that you don&rsquo;t need this yet.</p>
               <div className="btn-row">
                 <Link className="btn btn--primary" href="/contact" data-od-id="cta-primary">Book a free discovery call</Link>
-                <Link className="btn btn--outline" href="/pricing">See the full price list</Link>
+                <Link className="btn btn--outline" href="/pricing">See how I price</Link>
               </div>
             </div>
           </div>

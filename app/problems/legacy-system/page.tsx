@@ -151,7 +151,7 @@ const plateArt719 = `
     <g class="m-fade" style="animation-delay:1.1s">
       <circle cx="1010" cy="190" r="23" fill="none" stroke="#8ECAE6" stroke-width="2"/><text class="t-m" x="1010" y="196" text-anchor="middle" style="font-size:15px;fill:#F8F9FA">01</text>
       <text class="t-h" x="1054" y="192" style="font-size:31px">Use what's already there</text>
-      <text class="t" x="1054" y="226" style="font-size:19px;fill:#8ECAE6">Sometimes we can do something with what's</text>
+      <text class="t" x="1054" y="226" style="font-size:19px;fill:#8ECAE6">Sometimes I can do something with what's</text>
       <text class="t" x="1054" y="250" style="font-size:19px;fill:#8ECAE6">already there.</text>
       <circle cx="1010" cy="470" r="23" fill="none" stroke="#8ECAE6" stroke-width="2"/><text class="t-m" x="1010" y="476" text-anchor="middle" style="font-size:15px;fill:#F8F9FA">02</text>
       <text class="t-h" x="1054" y="472" style="font-size:31px">Add a layer on top</text>
@@ -191,7 +191,7 @@ const plateArt719 = `
     <path class="ln" d="M60 860 H100" marker-end="url(#q-ah719)"/><path class="ln" d="M60 1010 H100" marker-end="url(#q-ah719)"/><path class="ln-a" d="M60 1080 V1160 H100" marker-end="url(#q-ah719a)"/>
     <circle cx="140" cy="860" r="26" fill="none" stroke="#8ECAE6" stroke-width="2.4"/><text class="t-m" x="140" y="867" text-anchor="middle" style="font-size:19px;fill:#F8F9FA">01</text>
     <text class="t-h" x="184" y="858" style="font-size:34px">Use what's already there</text>
-    <text class="t" x="184" y="896" style="font-size:24px;fill:#8ECAE6">Sometimes we can do something with</text>
+    <text class="t" x="184" y="896" style="font-size:24px;fill:#8ECAE6">Sometimes I can do something with</text>
     <text class="t" x="184" y="926" style="font-size:24px;fill:#8ECAE6">what's already there.</text>
     <circle cx="140" cy="1010" r="26" fill="none" stroke="#8ECAE6" stroke-width="2.4"/><text class="t-m" x="140" y="1017" text-anchor="middle" style="font-size:19px;fill:#F8F9FA">02</text>
     <text class="t-h" x="184" y="1008" style="font-size:34px">Add a layer on top</text>
@@ -382,7 +382,7 @@ export default function LegacySystemPage() {
         <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>One day on site</span></li>
         <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>Written report in 5 days</span></li>
         <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>3&times; Clarity Guarantee</span></li>
-        <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>No vendor agenda</span></li>
+        <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>No commission</span></li>
        </ul>
        <Link className="btn btn--primary" href="/contact" data-od-id="offer-cta">Book a free discovery call</Link>
       </aside>

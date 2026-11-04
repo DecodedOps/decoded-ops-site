@@ -100,10 +100,10 @@ const helpSteps = [
 ];
 
 const sectors = [
-  'Embroidery and screen printing',
-  'Workwear and uniform supply',
-  'Promotional merchandise',
-  'Fashion textiles',
+  ['Embroidery and screen printing', '/sectors/garment-decoration'],
+  ['Workwear and uniform supply', '/sectors/workwear'],
+  ['Promotional merchandise', '/sectors/promotional-merchandise'],
+  ['Fashion textiles', '/sectors/garment-decoration'],
 ];
 
 const manchesterAreas = ['Salford', 'Stockport', 'Bolton', 'Oldham', 'Bury', 'Rochdale', 'Wigan', 'Altrincham'];
@@ -132,7 +132,7 @@ const locationSchema = {
 // DO-ART-1035 r01 — Manchester hero — the working model from Worthing and the
 // region covered, over a client racking aisle (DO-ART-979f).
 const manchesterHeroArtHtml = `<figure class="d17 sw sw-doc a1035" data-od-id="hero-visual" data-motion data-no="DO-ART-1035" data-rev="01" data-tx="photo"
-      aria-label="Artwork DO-ART-1035. Two documents over a graded photograph of a long racking aisle at a client site. The first, the model from Worthing: clearer scoping before the visit, remote; structured days on site, by arrangement; maintained remotely after the audit, ongoing; around three to four hours by road. The second, the region: Manchester and the North West, with Salford, Stockport, Bolton, Oldham, Bury, Rochdale, Wigan and Altrincham listed, on site by arrangement and remote across the UK. A tag reads: no vendor relationships or commission.">
+      aria-label="Artwork DO-ART-1035. Two documents over a graded photograph of a long racking aisle at a client site. The first, the model from Worthing: clearer scoping before the visit, remote; structured days on site, by arrangement; maintained remotely after the audit, ongoing; around three to four hours by road. The second, the region: Manchester and the North West, with Salford, Stockport, Bolton, Oldham, Bury, Rochdale, Wigan and Altrincham listed, on site by arrangement and remote across the UK. A tag reads: no commission.">
       <div class="d17-ph"><img src="/images/site/evidence/hero-racking-aisle-7d129e.webp" width="1600" height="900" alt=""></div>
       <div class="d17-scan" aria-hidden="true"></div>
       <figcaption class="sw-cap">
@@ -163,7 +163,7 @@ const manchesterHeroArtHtml = `<figure class="d17 sw sw-doc a1035" data-od-id="h
             <li>Everywhere else<span class="st-chip st-chip--a">Remote</span></li>
           </ol>
           <div class="doc-foot">Remote work across the UK</div></div>
-        <div class="sx-tag t5 m-pop" style="animation-delay:1.9s"><small>Independent</small>No vendor relationships or commission</div>
+        <div class="sx-tag t5 m-pop" style="animation-delay:1.9s"><small>Independent</small>No commission</div>
       </div>
     </figure>`;
 
@@ -192,7 +192,7 @@ export default function ManchesterPage() {
             </div>
             <div>
               <p className="t-lede">
-                Manchester&apos;s decorated-goods sector is one of the UK&apos;s most active. The technology decisions that are inconvenient in smaller towns become more urgent at this scale, where the cost of a failed integration or a stockout runs into tens of thousands.
+                Manchester&apos;s decorated-goods sector is a busy one. The technology decisions that are inconvenient in smaller towns become more urgent at this scale, where in my experience a failed integration or a stockout can get expensive fast.
               </p>
               <div className="btn-row">
                 <Link className="btn btn--primary" href="/contact" data-od-id="hero-cta">Book a free discovery call</Link>
@@ -257,8 +257,8 @@ export default function ManchesterPage() {
             <span className="eyebrow">Manchester</span>
             <h2 data-od-id="local-h2">What this looks like for Manchester businesses</h2>
             <nav className="chips" aria-label="Sectors in Manchester">
-              {sectors.map((sector) => (
-                <Link key={sector} href="/sectors/garment-decoration">{sector}</Link>
+              {sectors.map(([sector, href]) => (
+                <Link key={sector} href={href}>{sector}</Link>
               ))}
             </nav>
             <div className="area" style={{ marginTop: 28 }} data-od-id="local-facts">
@@ -297,7 +297,7 @@ export default function ManchesterPage() {
             <div>
               <span className="seal-tag" data-new-copy>Decoded Ops &middot; audit work &middot; the guarantee</span>
               <h2 data-od-id="seal-h2" data-new-copy>3&times; Clarity Guarantee on audit work.</h2>
-              <p data-new-copy>No vendor relationships or commission. Worked at every level, warehouse floor to boardroom. On-site by arrangement, remote across the UK. The first conversation is free and there&rsquo;s no obligation.</p>
+              <p data-new-copy>No commission, my own software scored like everything else. Worked at every level, warehouse floor to boardroom. On-site by arrangement, remote across the UK. The first conversation is free and there&rsquo;s no obligation.</p>
             </div>
           </div>
         </div>

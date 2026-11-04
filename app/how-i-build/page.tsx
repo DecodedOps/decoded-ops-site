@@ -40,7 +40,7 @@ const howIBuildFaqSchema = {
         },
         {
           '@type': 'Question',
-          name: 'Does Decoded Ops resell software?',
+          name: 'Does Decoded Ops resell other vendors’ software?',
           acceptedAnswer: { '@type': 'Answer', text: 'No. There are several good platforms in the sector and no vendor pays for a recommendation. Decoded Ops does not resell any of them. Its own software gets scored the same way, in writing.' },
         },
         {

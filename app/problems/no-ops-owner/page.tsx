@@ -52,7 +52,7 @@ const noOpsOwnerSchema = {
     {
      '@type': 'Question',
      name: 'What is the cost of not having dedicated operations leadership?',
-     acceptedAnswer: { '@type': 'Answer', text: 'The cost shows up in slower growth, repeated mistakes, missed improvements, and owner burnout. Every operational issue that has to be escalated to the owner costs ten times what it would if someone owned operations day-to-day.' },
+     acceptedAnswer: { '@type': 'Answer', text: 'The cost shows up in slower growth, repeated mistakes, missed improvements, and owner burnout. Every operational issue that has to be escalated to the owner costs far more than it would if someone owned operations day-to-day. I see it regularly.' },
     },
     {
      '@type': 'Question',

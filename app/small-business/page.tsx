@@ -107,7 +107,7 @@ export default function SmallBusinessPage() {
                 <h1 data-od-id="hero-h1"><span className="h1-kw">Small business consultant</span> Technology and systems support without the big-business price tag.</h1>
               </div>
               <div>
-                <p className="t-lede">As a small business consultant, I bring the same operational thinking I use with larger businesses, adapted for smaller ones. Remote delivery. Fixed prices. No jargon. No vendor agenda.</p>
+                <p className="t-lede">As a small business consultant, I bring the same operational thinking I use with larger businesses, adapted for smaller ones. Remote delivery. Fixed prices. No jargon. No commission.</p>
                 <p className="t-body">A small business operations consultant covers what a full-time operations director would: technology decisions, vendor oversight, and process improvement, on a flexible, affordable basis built for owner-led businesses.</p>
                 <p className="byline">By Craig Blackman, 25 years in print &amp; embroidery operations</p>
                 <div className="btn-row"><Link className="btn btn--primary" href="/pricing" data-od-id="hero-cta">See all pricing</Link></div>
@@ -124,7 +124,7 @@ export default function SmallBusinessPage() {
               <span className="eyebrow">Start here</span>
               <h2 data-od-id="check-h2">Start with a Clarity Check</h2>
               <p className="t-lede">A fixed-price remote diagnostic, delivered by me as your small business operations consultant, not a junior team.</p>
-              <p className="t-body">Beyond the Clarity Check, it&rsquo;s the same services and the same from-prices as everywhere else on this site. See <Link href="/pricing">full pricing</Link> for details.</p>
+              <p className="t-body">Beyond the Clarity Check, it&rsquo;s the same services as everywhere else on this site, quoted to your scope. See <Link href="/pricing">how I price</Link>.</p>
             </div>
             <div data-od-id="check-card">
               <div className="fig-lead"><p className="fig">£600</p><small>fixed</small></div>

@@ -179,7 +179,7 @@ export default function DecodedMethodPage() {
               <ol className="toc">
                 <li><a href="#s1"><b>01</b><span>Why most process documentation fails</span></a></li>
                 <li><a href="#s2"><b>02</b><span>Three layers, each with a job</span></a></li>
-                <li><a href="#s3"><b>03</b><span>The register we run Decoded Ops on</span></a></li>
+                <li><a href="#s3"><b>03</b><span>The register I run Decoded Ops on</span></a></li>
               </ol>
             </div>
             <div className="byline" data-od-id="byline">
@@ -212,9 +212,9 @@ export default function DecodedMethodPage() {
                 ))}
               </div>
             ))}
-            <h2 id="s3">The register we run Decoded Ops on</h2>
+            <h2 id="s3">The register I run Decoded Ops on</h2>
             <p>
-              Twelve processes, each owned, each with a status. The same artefact a Clarity engagement produces for a client, usually the first time they&apos;ve seen their whole operation on one page.
+              Twelve processes, each owned, each with a status. The same artefact a Clarity Audit produces for a client, usually the first time they&apos;ve seen their whole operation on one page.
             </p>
             <table>
               <thead>
@@ -270,7 +270,7 @@ export default function DecodedMethodPage() {
             </div>
             {/* kept: the mockup's closer drops this copy from the old CTA card — it is SEO copy */}
             <p className="t-card" style={{ marginTop: 24 }}>
-              Want a business process review across your own operation? A Clarity engagement builds your Process Register with you, mapping what you do, who owns it, and where the gaps are. Retained clients get the Method as a living hub I host and keep current, not a document that goes stale.
+              Want a business process review across your own operation? A Clarity Audit builds your Process Register with you, mapping what you do, who owns it, and where the gaps are. Retained clients get the Method as a living hub I host and keep current, not a document that goes stale.
             </p>
           </div>
         </div>

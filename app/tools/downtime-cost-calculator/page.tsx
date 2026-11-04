@@ -16,26 +16,26 @@ const jsonLd = {
   name: 'Downtime Cost Calculator',
   applicationCategory: 'BusinessApplication',
   operatingSystem: 'Web',
-  description: 'A free downtime cost calculator that adds up the annual cost of system outages across labour and lost revenue, for operations leaders in decorated goods.',
+  description: 'A free downtime cost calculator that works out what an hour of your operation costs, then adds up what outages cost you in unrecovered overhead, idle wages and lost sales, for operations leaders in decorated goods.',
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'GBP' },
   url: 'https://decodedops.co.uk/tools/downtime-cost-calculator',
 };
 
 export const metadata: Metadata = {
   title: 'Downtime Cost Calculator, Free Tool Online | Decoded Ops',
-  description: 'My free downtime cost calculator adds up the annual cost of system outages across labour and lost revenue, built for operations leaders in decoration.',
+  description: 'My free downtime cost calculator works out what an hour of your operation costs, then adds up what outages cost you in unrecovered overhead, idle wages and lost sales, for operations leaders in decoration.',
   alternates: { canonical: '/tools/downtime-cost-calculator' },
   openGraph: {
     type: 'website',
     title: 'Downtime Cost Calculator, Free Tool Online | Decoded Ops',
-    description: 'My free downtime cost calculator adds up the annual cost of system outages across labour and lost revenue, built for operations leaders in decoration.',
+    description: 'My free downtime cost calculator works out what an hour of your operation costs, then adds up what outages cost you in unrecovered overhead, idle wages and lost sales, for operations leaders in decoration.',
     url: 'https://decodedops.co.uk/tools/downtime-cost-calculator',
     images: OG_IMAGE,
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Downtime Cost Calculator, Free Tool Online | Decoded Ops',
-    description: 'My free downtime cost calculator adds up the annual cost of system outages across labour and lost revenue, built for operations leaders in decoration.',
+    description: 'My free downtime cost calculator works out what an hour of your operation costs, then adds up what outages cost you in unrecovered overhead, idle wages and lost sales, for operations leaders in decoration.',
     images: [OG_IMAGE_PATH],
   },
 };
@@ -54,10 +54,10 @@ export default function DowntimeCostCalculatorPage() {
             <span className="eyebrow">Free tool</span>
             <h1 data-od-id="hero-h1">Downtime cost calculator</h1>
             <p className="t-lede">
-              Enter your numbers to see exactly what system outages cost you each year in
-              staff time and lost revenue.
+              Enter your numbers to see what an hour of your operation costs, and what system
+              outages cost you each year in overhead, wages and lost sales.
             </p>
-            <p className="t-body">Five numbers. Lost revenue is optional, and the result updates as you type.</p>
+            <p className="t-body">Eight numbers, one of them optional. The result updates as you type.</p>
             <div className="btn-row">
               <a className="btn btn--outline" href="#calc" data-od-id="hero-cta">Enter your numbers</a>
               <a className="go" href="/tools">The other free calculators <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></a>
@@ -66,7 +66,7 @@ export default function DowntimeCostCalculatorPage() {
 
           {/* D17 hero art · DO-ART-996 */}
           <figure className="d17 sx a996" data-od-id="incident-docket" data-motion data-no="DO-ART-996" data-rev="01" data-tx="photo"
-                  aria-label="Artwork DO-ART-996. The scenario, a Tuesday in November, pinned over a graded photograph of embroidery heads. Time: nine o'clock. Machines: all running, files already loaded. Connection: internet down. Trading: no. A result slip, labelled Example and worked from the worksheet's default figures: £3,495 a year, the cost of hours the business is up but can't trade. Everything is running. Nothing is earning.">
+                  aria-label="Artwork DO-ART-996. The scenario, a Tuesday in November, pinned over a graded photograph of embroidery heads. Time: nine o'clock. Machines: all running, files already loaded. Connection: internet down. Trading: no. A result slip, labelled Example and worked from the worksheet's default figures: £3,600 a year, the cost of hours the business is up but can't trade. Everything is running. Nothing is earning.">
             <div className="d17-ph"><img src="/images/d17/resources/hero-workshop-5bb1b8.webp" alt="" width="900" height="900" /></div>
             <div className="d17-scan" aria-hidden="true"></div>
             <div className="sx-top d17-mono" aria-hidden="true"><span>The scenario</span><span>A Tuesday in November</span></div>
@@ -77,7 +77,7 @@ export default function DowntimeCostCalculatorPage() {
               <div className="sx-tag sx-tag--a m-pop" style={{ right: '5%', top: '50%', animationDelay: '.7s' }}><small>Trading</small>No</div>
               <div className="slip m-drop" style={{ animationDelay: '1s' }}>
                 <span className="ref">Worksheet result · example</span>
-                <b>£3,495</b>
+                <b>£3,600</b>
                 <span className="s">a year, up but not trading</span>
               </div>
             </div>
@@ -121,7 +121,7 @@ export default function DowntimeCostCalculatorPage() {
               <span className="eyebrow">Your numbers</span>
               <h2 data-od-id="calc-h2">What an outage costs you in a year.</h2>
             </div>
-            <p className="lede">Who stops, what they cost, how often it happens and for how long.</p>
+            <p className="lede">What it costs to be open, who stops, how often it happens and for how long.</p>
           </div>
           <div style={{ marginTop: 36 }}>
             <DowntimeCostCalculator />

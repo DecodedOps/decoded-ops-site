@@ -54,7 +54,7 @@ const wrongErpSchema = {
     {
      '@type': 'Question',
      name: 'What is the total cost of ownership for an ERP system?',
-     acceptedAnswer: { '@type': 'Answer', text: 'Implementation, training, customisation, integration, ongoing support. The total cost of ownership for an ERP is often two to three times the headline licence cost. That comparison rarely happens before selection.' },
+     acceptedAnswer: { '@type': 'Answer', text: 'Implementation, training, customisation, integration, ongoing support. In my experience the total cost of ownership for an ERP is often well above the headline licence cost. That comparison rarely happens before selection.' },
     },
     {
      '@type': 'Question',
@@ -108,7 +108,7 @@ const heroArt978 = `<figure class="d17 sx px a978" data-od-id="hero-evidence" da
       <div class="row no"><span>CUSTOMISATION</span><span>Costs have passed the licence</span></div>
       <div class="row no"><span>INTEGRATION</span><span>Manual rekeying, two systems</span></div>
       <div class="row no"><span>REFERENCE</span><span>Doesn't understand decoration</span></div>
-      <div class="row no"><span>COST</span><span>2-3x the headline price</span></div>
+      <div class="row no"><span>COST</span><span>Well over the headline price</span></div>
     </div>
   </div>
   <div class="sx-foot">
@@ -264,7 +264,7 @@ export default function WrongERPSoftwarePage() {
         <div className="area-top"><span className="ic-tile"><svg className="ic ic-24" aria-hidden="true"><use href="#i-calculator" /></svg></span><span className="num">04</span></div>
         <h3>The total cost wasn&apos;t modelled</h3>
         <p className="t-card">Setup, training, customisation, integration, ongoing support. The full
-         cost of an ERP for a small business is often two to three times the licence fee. That
+         cost of an ERP for a small business is often well above the licence fee, in my experience. That
          comparison rarely happens before you sign.</p>
        </article>
       </div>
@@ -323,7 +323,7 @@ export default function WrongERPSoftwarePage() {
         <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>One day on site</span></li>
         <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>Written report in 5 days</span></li>
         <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>3&times; Clarity Guarantee</span></li>
-        <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>No vendor agenda</span></li>
+        <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>No commission</span></li>
        </ul>
        <Link className="btn btn--primary" href="/contact" data-od-id="offer-cta">Book a free discovery call</Link>
       </aside>

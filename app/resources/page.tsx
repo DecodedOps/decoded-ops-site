@@ -163,7 +163,7 @@ export default function ResourcesPage() {
   </ol>
   <div class="sx-foot">
     <div class="sx-bar" aria-hidden="true"></div>
-    <p class="sx-say">Choose the platform first, <em>and step five is done first.</em></p>
+    <p class="sx-say">Choose the platform first, <em>and you&rsquo;ve done step five before one to four.</em></p>
     <span class="d17-mark">decodedops.co.uk · DO-ART-980 · Rev 01</span>
   </div>
 </figure>` }} />
@@ -201,7 +201,7 @@ export default function ResourcesPage() {
               <span className="eyebrow" data-new-copy>The order</span>
               <h2 data-od-id="order-h2" data-new-copy>One order, five steps.</h2>
             </div>
-            <p className="lede" data-new-copy>The order that makes the resources worth anything. Choose the platform first, and step five is done first.</p>
+            <p className="lede" data-new-copy>The order that makes the resources worth anything. Choose the platform first, and you&rsquo;ve done step five before one to four.</p>
           </div>
           <ol className="route route--5" data-od-id="order-steps">
             <li className="stop" data-od-id="stop-recognise">

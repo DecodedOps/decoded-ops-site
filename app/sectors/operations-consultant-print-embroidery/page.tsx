@@ -180,7 +180,7 @@ export default function OperationsConsultantPrintEmbroideryPage() {
               <span className="eyebrow">How it fits together</span>
               <h2 data-od-id="architecture-h2" data-new-copy>Scattered systems, an audit, then one operation.</h2>
             </div>
-            <p className="lede" data-new-copy>Three separate processes with no shared data is where most print and embroidery businesses start. The audit maps all three; what follows is one system that knows the difference between them.</p>
+            <p className="lede" data-new-copy>Three separate processes with no shared data is where many of the print and embroidery businesses I meet start. The audit maps all three; what follows is one system that knows the difference between them.</p>
           </div>
           <div style={{ marginTop: 40 }}>
             {/* DO-ART-120 r02 · drawn plate, house schematic vocabulary (D17).

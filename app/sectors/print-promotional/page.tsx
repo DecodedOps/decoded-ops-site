@@ -47,7 +47,7 @@ const sectorSchema = {
         {
           '@type': 'Question',
           name: 'How do I improve my print shop\'s artwork approval workflow?',
-          acceptedAnswer: { '@type': 'Answer', text: 'Start by mapping the current approval process step by step: from artwork received to sign-off confirmed. Most print shops lose 2-3 days per job in the approval loop because it relies on email and manual chasing. Artwork management software that automates proof delivery, revision tracking, and sign-off confirmation can reduce that loop to hours without changing the production process.' },
+          acceptedAnswer: { '@type': 'Answer', text: 'Start by mapping the current approval process step by step: from artwork received to sign-off confirmed. In the print shops I work with, the approval loop often costs days per job because it relies on email and manual chasing. Artwork management software that automates proof delivery, revision tracking, and sign-off confirmation can cut that loop to hours without changing the production process.' },
         },
       ],
     },
@@ -56,13 +56,13 @@ const sectorSchema = {
 
 const challenges = [
   { id: 'challenge-product-complexity', icon: 'i-layers', num: '01', h: 'Product complexity at volume',
-    p: 'One client order can run to 40 different product lines, each with its own supplier, spec, and lead time. Manage that by hand and margin quietly leaks on every job.' },
+    p: 'One client order can run to dozens of product lines, each with its own supplier, spec, and lead time. Manage that by hand and margin quietly leaks on every job.' },
   { id: 'challenge-supplier-fragmentation', icon: 'i-truck', num: '02', h: 'Supplier fragmentation',
     p: 'Multiple suppliers, multiple portals, multiple confirmation processes. The admin of chasing incoming goods rarely shows in the P&L, but it’s real.' },
   { id: 'challenge-sample-approval', icon: 'i-clipboard-check', num: '03', h: 'The sample and approval cycle',
     p: 'Pre-production samples, client approvals, artwork sign-off. Every step that happens outside your system is a step you can’t measure or improve.' },
   { id: 'challenge-quoting-cost', icon: 'i-calculator', num: '04', h: 'What quoting actually costs you',
-    p: 'How much does it cost you to produce a quote? How much of that time converts to an order? Most businesses in this sector have never measured it. And the answer is usually uncomfortable.' },
+    p: 'How much does it cost you to produce a quote? How much of that time converts to an order? Most of the businesses I meet have never measured it. And the answer is usually uncomfortable.' },
   { id: 'challenge-artwork-approval', icon: 'i-file-check', num: '05', h: 'Artwork approval workflow',
     p: 'Artwork approval is where most print shop schedules break down. Every unapproved job stuck in an email thread is a press slot you can’t plan. Automating approval, from brief to proof to sign-off, cuts production delays with no change to the print process.' },
   { id: 'challenge-scheduling', icon: 'i-calendar-clock', num: '06', h: 'Print production scheduling and capacity planning',
@@ -297,7 +297,7 @@ export default function PrintPromotionalPage() {
               <span className="eyebrow">Case study</span>
               <h2>Supplier data and channel automation</h2>
               <div className="hair" />
-              <p className="t-lede">Project-leading an ERP implementation alongside a custom Works build for supplier catalogue management and multi-channel automation.</p>
+              <p className="t-lede">An off-the-shelf ERP stalled, so I built Decoded Works, which became the ERP: supplier catalogue management and multi-channel automation in one place.</p>
               <p className="note">This client sells heating spares, not print. The problem underneath is the same one a promo house has: a large catalogue arriving from many suppliers in different formats, which has to stay clean on every channel.</p>
               <Link className="text-link" href="/case-studies/case-study-01" data-od-id="case-study-link">Read the case study <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link>
             </div>

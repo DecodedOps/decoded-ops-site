@@ -198,7 +198,7 @@ export default function SopTemplatePage() {
               Generic technology advice or off-the-shelf procedures do not help here because your operation is not generic. It is built around the specific combination of machines, materials, supplier relationships, and customer expectations that make your business work.
             </p>
             <p>
-              I worked with a decorated goods business where the entire production schedule lived in the office manager&apos;s head. That person had been there eighteen years. When they went on holiday, production slowed noticeably. Nobody knew why. The knowledge was not documented anywhere. The cost of that single undocumented role showed up every time they took leave. The cost of documenting the key processes was about two days of my time.
+              I worked with a decorated goods business where the entire production schedule lived in the office manager&apos;s head. That person had been there eighteen years. When they went on holiday, production slowed noticeably. Nobody knew why. The knowledge was not documented anywhere. The cost of that single undocumented role showed up every time they took leave. The cost of documenting the key processes was small by comparison.
             </p>
             <h2 id="s4">The three documents that matter</h2>
             <p>
@@ -253,7 +253,7 @@ export default function SopTemplatePage() {
             </p>
             <h3>Once you have your first SOPs written...</h3>
             <p>
-              The real value comes when every process in your business is documented, owned, and reviewed regularly. A Clarity engagement builds the full three-layer system with you, mapping what you do, who owns it, and where the gaps are.
+              The real value comes when every process in your business is documented, owned, and reviewed regularly. A Clarity Audit builds the full three-layer system with you, mapping what you do, who owns it, and where the gaps are.
             </p>
             <div className="btn-row">
               <Link className="btn btn--primary" href="/contact">Book a free discovery call</Link>

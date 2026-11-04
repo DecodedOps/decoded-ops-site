@@ -70,7 +70,8 @@ const ALLOWED = new Set([...publicFigures, ...nonPriceExceptions]);
 
 // Forbidden words: phrase-level matches only (not substrings like "invest" → "vest")
 const FORBIDDEN_WORDS_PATTERNS = [
-  { pattern: /\bvests?\b/i, label: 'vest' },
+  // v10 "licence vests" wording; hi-vis vests (workwear garments) are fine
+  { pattern: /(?<!hi-vis )\bvests?\b/i, label: 'vest' },
   { pattern: /\bRoute [AB]\b/i, label: 'Route A/B' },
   { pattern: /\bday rate\b/i, label: 'day rate' },
   { pattern: /\bQuarterly Sprint\b/i, label: 'Quarterly Sprint' },
@@ -136,10 +137,16 @@ for (const [file, rs] of [...byFile].sort((a, b) => b[1].length - a[1].length)) 
 if (process.argv.includes('--check')) {
   const bad = [];
 
-  // Check 1: disallowed prices outside allowed files
+  // Check 1: disallowed prices outside allowed files. The free calculators
+  // (app/tools/) show worked examples (a downtime cost, an ROI table): those
+  // are the visitor's own numbers, not our prices, so there only a
+  // forbidden_public figure fails (Craig, 4 Nov 2026).
+  const forbiddenAll = new Set((pricingData?.forbidden_public || []).map(String));
   for (const r of rows) {
     if (ALLOWED_FILES.has(r.file)) continue;
+    const calcExample = r.file.startsWith('app/tools/');
     for (const h of r.hits) {
+      if (calcExample && !forbiddenAll.has(String(Math.round(Number(h.replace(/[£,]/g, '')))))) continue;
       if (!ALLOWED.has(h)) bad.push(`${r.file}:${r.line}  disallowed price ${h}  ${r.text.slice(0, 90)}`);
     }
   }

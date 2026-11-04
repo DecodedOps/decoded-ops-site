@@ -6,7 +6,7 @@ import { hubFetch } from '@/lib/hub-fetch'
 
 const BASE_URL = 'https://decodedops.co.uk'
 const HUB_API = process.env.HUB_API_URL || 'http://localhost:3000'
-const SITE_CONTENT_UPDATED = '2026-09-25'
+const SITE_CONTENT_UPDATED = '2026-11-04'
 
 async function fetchBlogPosts() {
   let hubItems: any[] = [];

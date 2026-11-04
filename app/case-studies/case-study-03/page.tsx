@@ -188,7 +188,7 @@ export default function CaseStudy03Page() {
             <div>
               <span className="eyebrow">Shape, not price</span>
               <h2 data-od-id="commercial-h2">The commercial shape</h2>
-              <p className="t-lede">Restructured from Deliver&apos;s usual six months to a twelve-month minimum for this engagement, given the scope: the full build across the first four months, then ongoing weekly involvement.</p>
+              <p className="t-lede">Restructured from Deliver&apos;s usual three-month minimum to a twelve-month minimum for this engagement, given the scope: the full build across the first four months, then ongoing weekly involvement.</p>
               <p className="t-body">I name it here only as a shape, not a price. Pricing detail stays out of public case studies.</p>
             </div>
             <div data-od-id="progress">

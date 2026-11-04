@@ -229,7 +229,7 @@ export default function InventoryBlindPage() {
        <h3>The first call is free.</h3>
        <p className="t-card">60 minutes. No sales pitch, just a direct conversation about your situation.</p>
        <ul className="ticks">
-        {['One day on site', 'Written report in 5 days', '3× Clarity Guarantee', 'No vendor agenda'].map(item => (
+        {['One day on site', 'Written report in 5 days', '3× Clarity Guarantee', 'No commission'].map(item => (
          <li key={item}><Icon id="i-check" size={20} /><span>{item}</span></li>
         ))}
        </ul>

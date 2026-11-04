@@ -219,7 +219,7 @@ export default function TeamwearClubwearPage() {
       <JsonLd data={sectorSchema} />
       <BreadcrumbSchema items={[
               { name: 'Home', url: 'https://decodedops.co.uk' },
-              { name: 'Sectors', url: 'https://decodedops.co.uk/sectors' },
+              { name: 'Sectors', url: 'https://decodedops.co.uk/#sectors' },
               { name: 'Teamwear & Clubwear', url: 'https://decodedops.co.uk/sectors/teamwear-clubwear' },
             ]} />
       <SectorPageV2 data={data} />

@@ -205,7 +205,7 @@ export function LocationPage({
                 </p>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 32 }}>
                   {[
-                    'No vendor relationships or commission',
+                    'No commission on any recommendation',
                     'Worked at every level, warehouse floor to boardroom',
                     '3× Clarity Guarantee on audit work',
                     trustLine || 'Based in the South East, on-site across Sussex and Surrey',

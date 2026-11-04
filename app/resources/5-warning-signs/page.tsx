@@ -141,7 +141,7 @@ export default function FiveWarningSignsPage() {
             <p><strong>The 3&times; Clarity Guarantee:</strong> if a Clarity Audit doesn&apos;t identify at least 3&times; the fee in recoverable cost or lost revenue, you get a full refund. No conditions. No questions.</p>
             <h3>Recognise two or more of these?</h3>
             <p>
-              A Clarity Audit finds where the cost is hiding, quantifies it, and gives you a specific, costed plan to fix it, in plain English, with no vendor agenda.
+              A Clarity Audit finds where the cost is hiding, quantifies it, and gives you a specific, costed plan to fix it, in plain English, with no commission.
             </p>
             <div className="btn-row">
               <Link className="btn btn--primary" href="/contact">Book a free discovery call</Link>

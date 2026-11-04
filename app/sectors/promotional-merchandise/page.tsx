@@ -42,7 +42,7 @@ const sectorSchema = {
         {
           '@type': 'Question',
           name: 'How does the artwork approval loop work?',
-          acceptedAnswer: { '@type': 'Answer', text: 'Client logos in every format, with version control and an audit trail. Customers should approve their own proofs instead of a back-and-forth that eats a day per order. Most promotional merchandise businesses are still managing approval by email.' },
+          acceptedAnswer: { '@type': 'Answer', text: 'Client logos in every format, with version control and an audit trail. Customers should approve their own proofs instead of a back-and-forth that eats time on every order. In my experience, most promotional merchandise businesses are still managing approval by email.' },
         },
         {
           '@type': 'Question',
@@ -99,7 +99,7 @@ const data: SectorV2Data = {
   challengesLede: "In promotional merchandise, the same operational problems appear in different shapes across different businesses. These are the ones that cost the most.",
   challenges: [
     { icon: "i-layers", title: "Multi-supplier catalogue management", body: "Dozens of supplier ranges, each with their own pricing, stock levels, and lead times. Matching products, managing pricing, and keeping stock current across all of them without re-keying data eats more admin hours than anything else in this trade." },
-    { icon: "i-clipboard-check", title: "The artwork loop", body: "Client logos in every format, with version control and an audit trail. Customers should approve their own proofs instead of a back-and-forth that eats a day per order. Most promotional merchandise businesses are still managing approval by email." },
+    { icon: "i-clipboard-check", title: "The artwork loop", body: "Client logos in every format, with version control and an audit trail. Customers should approve their own proofs instead of a back-and-forth that eats time on every order. In my experience, most promotional merchandise businesses are still managing approval by email." },
     { icon: "i-pound", title: "Margin erosion at the order level", body: "When decoration cost, supplier lead time variation, and artwork rework aren’t tracked at the individual order level, margin quietly erodes on every job. It’s invisible in the P&L until the year-end numbers land." },
     { icon: "i-calculator", title: "What quoting actually costs you", body: "The cost of producing quotes that don’t convert is rarely measured, and the answer is usually uncomfortable. A quoting process that takes thirty minutes per prospect becomes a full-time salary at scale." },
     { icon: "i-unplug", title: "eCommerce disconnected from supply", body: "A product listed online that isn’t connected to live supplier data means manual checks on every order. A catalogue of thousands of items makes that impossible to sustain at any volume." },
@@ -227,7 +227,7 @@ export default function PromotionalMerchandisePage() {
       <JsonLd data={sectorSchema} />
       <BreadcrumbSchema items={[
               { name: 'Home', url: 'https://decodedops.co.uk' },
-              { name: 'Sectors', url: 'https://decodedops.co.uk/sectors' },
+              { name: 'Sectors', url: 'https://decodedops.co.uk/#sectors' },
               { name: 'Promotional Merchandise', url: 'https://decodedops.co.uk/sectors/promotional-merchandise' },
             ]} />
       <SectorPageV2 data={data} />

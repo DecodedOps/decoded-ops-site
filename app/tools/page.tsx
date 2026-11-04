@@ -66,11 +66,11 @@ const tools = [
   },
   {
     fig: '£ a year',
-    figSub: 'staff time and lost revenue',
+    figSub: 'overhead, wages and lost sales',
     tag: 'Cost',
     title: 'Downtime Cost Calculator',
     description:
-      'Work out what system outages cost you each year in staff time and lost revenue.',
+      'Work out what an hour of your operation costs, and what outages cost you each year in overhead, wages and lost sales.',
     href: '/tools/downtime-cost-calculator',
   },
   {
@@ -121,7 +121,7 @@ export default function ToolsPage() {
           {/* D17 hero art · DO-ART-981 */}
           <div dangerouslySetInnerHTML={{ __html: `
 <figure class="d17 sx a981" data-od-id="hero-visual" data-motion data-no="DO-ART-981" data-rev="01" data-tx="screen"
-        aria-label="Artwork DO-ART-981. Three calculator result screens fanned over a graded photograph of embroidery heads, each labelled Example and worked from the tool's default inputs. Downtime cost: a total annual cost of downtime of £3,495. Automation ROI: break-even in 8 months, a 3-year return of 227 per cent. RTO: recovery from 8 hours to 1 hour saves £28,000 a year. Every calculator hands back a number, not a vague suggestion.">
+        aria-label="Artwork DO-ART-981. Three calculator result screens fanned over a graded photograph of embroidery heads, each labelled Example and worked from the tool's default inputs. Downtime cost: a total annual cost of downtime of £3,600. Automation ROI: break-even in 8 months, a 3-year return of 227 per cent. RTO: recovery from 8 hours to 1 hour saves £28,000 a year. Every calculator hands back a number, not a vague suggestion.">
   <div class="d17-ph"><img src="/images/d17/hero-workshop.webp" alt="" width="1600" height="2397"></div>
   <div class="d17-scan" aria-hidden="true"></div>
   <div class="sx-top d17-mono" aria-hidden="true"><span>Free tools</span><span>Five calculators</span></div>
@@ -145,8 +145,8 @@ export default function ToolsPage() {
       <div class="win-bar"><span class="dots"><i></i><i></i><i></i></span><span class="crumb">Downtime cost</span><span class="pill">EXAMPLE</span></div>
       <div class="scr-b">
         <p class="l">Total annual cost of downtime</p>
-        <p class="n n--a">£3,495</p>
-        <div class="rows"><span>Overhead paid for, never recovered</span><b>£903</b></div>
+        <p class="n n--a">£3,600</p>
+        <div class="rows"><span>Overhead paid for, never recovered</span><b>£1,008</b></div>
         <div class="rows"><span>Wages for people who couldn't work</span><b>£2,592</b></div>
       </div>
     </div>

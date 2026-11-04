@@ -303,7 +303,8 @@ export default function DataAppPage() {
                 <ul className="t-card">
                   <li><Link href="/apps/proof"><svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg><span>Proof: versions, approvals and delivery</span></Link></li>
                   <li><Link href="/apps/commerce"><svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg><span>Commerce: B2B ordering for your customers</span></Link></li>
-                  <li><Link href="/apps"><svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg><span>All three, one platform</span></Link></li>
+                  <li><Link href="/apps/catalogue"><svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg><span>Catalogue: supplier feeds in, one clean catalogue out</span></Link></li>
+                  <li><Link href="/apps"><svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg><span>All four, one platform</span></Link></li>
                 </ul>
               </div>
               <div className="next-card" data-od-id="next-sectors">

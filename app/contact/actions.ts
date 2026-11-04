@@ -121,7 +121,7 @@ Reply to this email to respond to the inquiry.
           <hr style="border: none; border-top: 1px solid #8ECAE6; margin: 32px 0;" />
 
           <p style="color: #8ECAE6; font-size: 12px; margin: 0;">
-            <strong>Decoded Ops</strong>, Systems Operations &amp; Implementation<br />
+            <strong>Decoded Ops</strong>, operations and technology for decorated goods<br />
             <a href="https://decodedops.co.uk" style="color: #219EBC; text-decoration: none;">decodedops.co.uk</a>
           </p>
         </div>
@@ -140,7 +140,7 @@ Craig Blackman
 Decoded Ops
 
 ---
-Decoded Ops, Systems Operations & Implementation
+Decoded Ops, operations and technology for decorated goods
 https://decodedops.co.uk
       `,
     });

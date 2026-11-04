@@ -50,10 +50,10 @@ const homepageSchema = {
 };
 
 const costLedger = [
-  { value: '3–6', unit: 'hrs a week', desc: 'Lost to manual re-keying between systems that don’t talk to each other', tag: 'Re-keying' },
-  { value: '2–4', unit: 'hrs a week', desc: 'Spent on manual invoicing and reconciliation', tag: 'Finance' },
-  { value: '3–5', unit: 'per cent', desc: 'Of inbound stock at risk where inventory is disconnected', tag: 'Inventory' },
-  { value: '1–3', unit: 'per cent', desc: 'Of orders affected by picking and despatch errors', tag: 'Despatch' },
+  { value: '3–6', unit: 'hrs a week', desc: 'Typically lost to manual re-keying between systems that don’t talk to each other', tag: 'Re-keying' },
+  { value: '2–4', unit: 'hrs a week', desc: 'Typically spent on manual invoicing and reconciliation', tag: 'Finance' },
+  { value: '3–5', unit: 'per cent', desc: 'Of inbound stock I often see at risk where inventory is disconnected', tag: 'Inventory' },
+  { value: '1–3', unit: 'per cent', desc: 'Of orders I often see hit by picking and despatch errors', tag: 'Despatch' },
 ];
 
 const notes = [
@@ -97,7 +97,7 @@ export default function HomePage() {
                 <p>The plan is yours to act on, with me or without me. I&rsquo;ve spent 25 years inside
                   print, embroidery, workwear and promotional merchandise businesses, so I can usually
                   second-guess your problems before you&rsquo;ve finished describing them. Plain English.
-                  No jargon. No vendor agenda.</p>
+                  No jargon. No commission.</p>
                 <div className="btn-row">
                   <Link className="btn btn--primary" href="/clarity">See how a Clarity Audit works</Link>
                   <Link className="btn btn--outline" href="/contact">Book a free discovery call</Link>
@@ -161,9 +161,9 @@ export default function HomePage() {
                 <span className="eyebrow">The cost of standing still</span>
                 <h2>What disconnected systems actually cost you.</h2>
               </div>
-              <p className="lede">These are the numbers I see in businesses like yours most weeks. Not
-                hypothetical, and not worst case. Just the quiet cost of systems that don&rsquo;t talk to each
-                other.</p>
+              <p className="lede">These are the typical ranges I see in businesses like yours. They come from
+                my own experience, not a survey, and they aren&rsquo;t worst case. Just the quiet cost of
+                systems that don&rsquo;t talk to each other.</p>
             </div>
 
             <ol className="ledger" data-od-id="cost-ledger">

@@ -38,7 +38,7 @@ const manualWorkaroundsSchema = {
     {
      '@type': 'Question',
      name: 'How much do manual workarounds actually cost a business?',
-     acceptedAnswer: { '@type': 'Answer', text: 'Data re-entry, error correction, reconciliation, and the overhead of maintaining shadow systems typically add 10–20 hours per employee per week in businesses with significant workaround cultures. The cost is invisible because it is buried in everyone\'s job description.' },
+     acceptedAnswer: { '@type': 'Answer', text: 'Data re-entry, error correction, reconciliation, and the overhead of maintaining shadow systems often add hours every week for each person in businesses with a heavy workaround culture. The cost is invisible because it is buried in everyone\'s job description.' },
     },
     {
      '@type': 'Question',
@@ -53,7 +53,7 @@ const manualWorkaroundsSchema = {
     {
      '@type': 'Question',
      name: 'How much time do manual workarounds cost a print or embroidery business?',
-     acceptedAnswer: { '@type': 'Answer', text: 'Manual re-entry, reconciliation, and shadow-system maintenance typically add 10–20 hours per employee per week in businesses with significant workaround cultures. Eliminating manual data entry through business process automation typically delivers 15–25% efficiency gains in order processing, without adding headcount.' },
+     acceptedAnswer: { '@type': 'Answer', text: 'Manual re-entry, reconciliation, and shadow-system maintenance often add hours every week for each person in businesses with a heavy workaround culture. In my experience, taking out manual data entry through business process automation gives a real gain in order processing, without adding headcount.' },
     },
     {
      '@type': 'Question',

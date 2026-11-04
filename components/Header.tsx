@@ -69,7 +69,7 @@ const helpHow: NavGroup = {
   items: [
     { label: 'The Decoded Method', href: '/resources/decoded-method' },
     { label: 'How I build software', href: '/how-i-build' },
-    { label: 'Prices, in plain numbers', href: '/pricing' },
+    { label: 'How I price', href: '/pricing' },
     { label: 'About Craig', href: '/about' },
   ],
 };
@@ -90,7 +90,7 @@ const sectors: NavLink[] = [
 // ── "Small business", new top-level slot, Craig's decision (2026-08-06) ──
 const smallBusinessProducts: (NavLink & { sub: string })[] = [
   { label: 'Clarity Check', sub: 'Fixed-price, done remotely · £600', href: '/small-business' },
-  { label: 'Everything else', sub: 'Same services, same from-prices as everyone else', href: '/pricing' },
+  { label: 'Everything else', sub: 'Same services, quoted to your scope', href: '/pricing' },
 ];
 const smallBusinessStart: NavGroup = {
   title: 'Start free',
@@ -158,7 +158,7 @@ function MegaGroup({ group, onNavigate }: { group: NavGroup; onNavigate: () => v
   );
 }
 
-function MegaRail({ heading, note, ctaHref = '/contact', ctaLabel = 'Book a discovery call', extra }: {
+function MegaRail({ heading, note, ctaHref = '/contact', ctaLabel = 'Book a free discovery call', extra }: {
   heading: string; note: string; ctaHref?: string; ctaLabel?: string; extra?: { label: string; href: string };
 }) {
   return (
@@ -250,7 +250,7 @@ export function Header() {
               <div className="mega" id="mega-wrong" hidden={openPanel !== 'wrong'}>
                 <div className="container mega-inner">
                   {wrongGroups.map(g => <MegaGroup key={g.title} group={g} onNavigate={() => { closePanel(); setMobileOpen(false); }} />)}
-                  <MegaRail heading="None of these quite fit?" note="Three questions, thirty seconds, and I'll point you at the right page." />
+                  <MegaRail heading="None of these quite fit?" note="Tell me what's going on and I'll point you at the right place." />
                 </div>
               </div>
             </div>
@@ -284,7 +284,7 @@ export function Header() {
                   <MegaGroup group={helpBuilt} onNavigate={() => { closePanel(); setMobileOpen(false); }} />
                   <MegaGroup group={helpHow} onNavigate={() => { closePanel(); setMobileOpen(false); }} />
                   <MegaRail heading="Not sure which step?" note="Almost everyone starts with Clarity, a day on site and a plan you own, whether you hire me after or not."
-                    extra={{ label: 'See what each step costs', href: '/pricing' }} />
+                    extra={{ label: 'See how each step is priced', href: '/pricing' }} />
                 </div>
               </div>
             </div>

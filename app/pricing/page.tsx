@@ -121,7 +121,7 @@ export default function PricingPage() {
               <li data-od-id="row-clarity"><p className="fig">One-off<small>Start here</small></p><div><h3>Clarity Audit</h3><p className="t-card">One day on site, a written plan within five working days.</p></div><span className="tag">Set at the audit, to your scope</span></li>
               <li data-od-id="row-deliver"><p className="fig">3 months<small>minimum</small></p><div><h3>Deliver</h3><p className="t-card">Project delivery, vendor management, and keeping things on track.</p></div><span className="tag">Set at the audit, to your scope</span></li>
               <li data-od-id="row-transform"><p className="fig">6 months<small>minimum</small></p><div><h3>Transform</h3><p className="t-card">Rebuild how the business runs, one project at a time.</p></div><span className="tag">Set at the audit, to your scope</span></li>
-              <li data-od-id="row-retained"><p className="fig">12 months<small>minimum</small></p><div><h3>Retained (fractional)</h3><p className="t-card">A technology director, part time. Direct line to Craig.</p></div><span className="tag">Set at the audit, to your scope</span></li>
+              <li data-od-id="row-retained"><p className="fig">12 months<small>minimum</small></p><div><h3>Retained (fractional)</h3><p className="t-card">A technology director, part time. A direct line to me.</p></div><span className="tag">Set at the audit, to your scope</span></li>
             </ol>
             <p className="t-body" style={{ marginTop: 24, maxWidth: '70ch' }}>Every price has three tiers (Essential, Recommended, Complete), set at the audit by the size and shape of your operation. The full tier sheet is in the price pack, sent on request.</p>
             <div className="t-links"><Link className="go" href="/clarity">See how Clarity Audit works <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link></div>
@@ -211,7 +211,7 @@ export default function PricingPage() {
             </div>
             <div className="split-6" data-od-id="systems-terms">
               <div>
-                <p className="t-lede" style={{ margin: 0 }}>Three products. Scoped and quoted per business.</p>
+                <p className="t-lede" style={{ margin: 0 }}>Four products. Scoped and quoted per business.</p>
                 <p className="t-body">Proof and Commerce sell on founding-client terms while the first names go on the reference list: six months of support included, in exchange for being one of the first named references. Stated plainly, not a discount dressed as an offer.</p>
                 <p className="t-body">If an off-the-shelf platform fits, that&rsquo;s folded into the Clarity Audit at no extra cost. Nothing separate to buy. Building something only makes sense once buying has been ruled out in writing, <Link className="t-link" href="/how-i-build">that&rsquo;s the whole of how I build</Link>.</p>
               </div>
@@ -226,7 +226,7 @@ export default function PricingPage() {
                 <p className="t-body">Two businesses buying the same app can be a long way apart on all four, so the conversation about your setup comes first and the quote comes after it, written for your business. A full custom build is quoted the same way. If nothing on the market fits, that&rsquo;s a Clarity Audit conversation, never a row on a table.</p>
               </div>
             </div>
-            <div className="t-links"><Link className="go" href="/apps">See all three apps <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link><Link className="go" href="/contact">Book a free 60 minute call <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link></div>
+            <div className="t-links"><Link className="go" href="/apps">See all four apps <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link><Link className="go" href="/contact">Book a free discovery call <svg className="ic ic-16" aria-hidden="true"><use href="#i-arrow-right" /></svg></Link></div>
           </div>
         </section>
 

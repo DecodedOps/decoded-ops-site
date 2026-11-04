@@ -217,7 +217,7 @@ export default function WorkwearPage() {
       <JsonLd data={sectorSchema} />
       <BreadcrumbSchema items={[
               { name: 'Home', url: 'https://decodedops.co.uk' },
-              { name: 'Sectors', url: 'https://decodedops.co.uk/sectors' },
+              { name: 'Sectors', url: 'https://decodedops.co.uk/#sectors' },
               { name: 'Workwear', url: 'https://decodedops.co.uk/sectors/workwear' },
             ]} />
       <SectorPageV2 data={data} />

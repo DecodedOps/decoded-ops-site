@@ -263,7 +263,7 @@ export default function SussexSurreyPage() {
               <div>
                 <span className="seal-tag">Decoded Ops &middot; audit work &middot; the guarantee</span>
                 <h2 data-od-id="seal-h2">3&times; Clarity Guarantee on audit work.</h2>
-                <p>No vendor relationships or commission. Worked at every level, warehouse floor to boardroom. Based in Worthing, on-site across Sussex and Surrey. The first conversation is free and there&rsquo;s no obligation.</p>
+                <p>No commission, my own software scored like everything else. Worked at every level, warehouse floor to boardroom. Based in Worthing, on-site across Sussex and Surrey. The first conversation is free and there&rsquo;s no obligation.</p>
               </div>
             </div>
           </div>

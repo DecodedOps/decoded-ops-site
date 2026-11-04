@@ -159,7 +159,7 @@ const data: SectorV2Data = {
   ],
   caseStudy: {
     heading: "ERP and supplier data integration",
-    lede: "Project-leading an ERP change alongside a custom Works build for supplier data, Amazon FBA, and channel automation.",
+    lede: "An off-the-shelf ERP stalled, so I built Decoded Works, which became the ERP: supplier data, Amazon, eBay and OnBuy, and channel automation in one place.",
     note: "This client sells heating spares, not garments. The problem underneath is the same one a decorator has: supplier ranges arriving in different formats that have to stay clean on every channel.",
     layout: "proof",
     href: "/case-studies/case-study-01",

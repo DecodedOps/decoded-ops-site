@@ -60,7 +60,7 @@ const aiParalysisSchema = {
     {
      '@type': 'Question',
      name: 'What does an honest AI readiness assessment look like?',
-     acceptedAnswer: { '@type': 'Answer', text: 'An honest assessment looks at your current processes, data quality, technology stack and team capability, and tells you what needs to be in place before AI can deliver value, where the real opportunities are in your specific operation, and what is noise you can safely ignore. No hype. No vendor agenda.' },
+     acceptedAnswer: { '@type': 'Answer', text: 'An honest assessment looks at your current processes, data quality, technology stack and team capability, and tells you what needs to be in place before AI can deliver value, where the real opportunities are in your specific operation, and what is noise you can safely ignore. No hype. No commission.' },
     },
     {
      '@type': 'Question',
@@ -226,7 +226,7 @@ export default function AiParalysisPage() {
      <div className="wrap how-grid">
       <div>
        <span className="eyebrow">How I help</span>
-       <h2 data-od-id="how-h2">An honest answer, with no vendor agenda.</h2>
+       <h2 data-od-id="how-h2">An honest answer, with no commission.</h2>
        <p className="t-lede">I give you an honest, grounded assessment of where AI can actually help your business right now. <b>I&apos;m not here to sell you an AI tool.</b></p>
        <p className="t-body">I look at your current processes, your data quality, your technology stack and your team&apos;s capability, and I tell you what needs to be in place before AI can deliver value, where the real opportunities are in your specific operation, and what&apos;s noise you can safely ignore.</p>
       </div>
@@ -237,7 +237,7 @@ export default function AiParalysisPage() {
         <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>One day on site</span></li>
         <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>Written report in 5 days</span></li>
         <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>3× Clarity Guarantee</span></li>
-        <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>No vendor agenda</span></li>
+        <li><svg className="ic ic-20" aria-hidden="true"><use href="#i-check" /></svg><span>No commission</span></li>
        </ul>
        <Link className="btn btn--primary" href="/contact" data-od-id="offer-cta">Book a free discovery call</Link>
       </aside>

@@ -238,7 +238,7 @@ export default function ArtworkApprovalPlaybookPage() {
           <div className="prose" data-od-id="article-body">
             <h2 id="s1">Where the time actually goes</h2>
             <p>
-              Artwork approval is the single biggest schedule killer in most decoration businesses. Not because customers are difficult. Not because the artwork is complicated. Because the process starts without enough information, and every gap in that information adds a round trip to a process that should be linear.
+              Artwork approval is the biggest schedule killer in the decoration businesses I work with. Not because customers are difficult. Not because the artwork is complicated. Because the process starts without enough information, and every gap in that information adds a round trip to a process that should be linear.
             </p>
             <p>
               The time is going in the gaps between rounds - not in the artwork creation itself. And most of those rounds exist because the requirements were not confirmed before work started.
@@ -316,7 +316,7 @@ export default function ArtworkApprovalPlaybookPage() {
             ))}
             <h3>Once your artwork workflow is structured...</h3>
             <p>
-              The real value comes when artwork approval connects to production scheduling, costing, and despatch without manual handoffs. That is what a Clarity engagement maps out across your whole operation.
+              The real value comes when artwork approval connects to production scheduling, costing, and despatch without manual handoffs. That is what a Clarity Audit maps out across your whole operation.
             </p>
             <div className="btn-row">
               <Link className="btn btn--primary" href="/contact">Book a free discovery call</Link>

@@ -233,7 +233,7 @@ export default function SchoolwearPage() {
       <JsonLd data={sectorSchema} />
       <BreadcrumbSchema items={[
               { name: 'Home', url: 'https://decodedops.co.uk' },
-              { name: 'Sectors', url: 'https://decodedops.co.uk/sectors' },
+              { name: 'Sectors', url: 'https://decodedops.co.uk/#sectors' },
               { name: 'Schoolwear', url: 'https://decodedops.co.uk/sectors/schoolwear' },
             ]} />
       <SectorPageV2 data={data} />

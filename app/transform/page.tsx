@@ -40,7 +40,7 @@ const transformFaqSchema = {
         {
           '@type': 'Question',
           name: 'Does Transform include buying software?',
-          acceptedAnswer: { '@type': 'Answer', text: 'Every vendor quotes against the same brief and Decoded Ops stays on your side of the table for the build. There is no commission, whichever platform you choose.' },
+          acceptedAnswer: { '@type': 'Answer', text: 'Transform can include new software, and I scope it before anything is bought. Every option, including software I build myself, is scored against the same written brief, and I stay on your side of the table for the build. There is no commission, whichever platform you choose.' },
         },
         {
           '@type': 'Question',
@@ -62,7 +62,7 @@ const baBefore = [
 const dimensions = [
   { id: 'dimension-plan', icon: 'i-git-branch', num: '01', h: 'Sequence the plan',
     p: 'The Clarity Audit report becomes a phased programme, what happens first, what depends on what, and what can run in parallel without the business grinding to a halt.' },
-  { id: 'dimension-procure', icon: 'i-users', num: '02', h: 'I don’t sell software',
+  { id: 'dimension-procure', icon: 'i-users', num: '02', h: 'No commission, whichever platform',
     p: 'Every vendor quotes against the same brief, and I stay on your side of the table for the build. There’s no commission in it for me, whichever platform you choose.' },
   { id: 'dimension-embed', icon: 'i-trending-up', num: '03', h: 'Embed the Process & Quality System',
     p: 'Not one process documented: the whole programme. So what’s still running after I’ve gone is a system the business owns, not a memory of a project.' },
@@ -121,7 +121,7 @@ export default function TransformPage() {
             <li>No commission, whichever platform</li>
             <li>I stay on your side of the table</li>
           </ol>
-          <div class="doc-foot">Independent &middot; I don&rsquo;t sell software</div></div>
+          <div class="doc-foot">Independent &middot; no commission</div></div>
         <div class="sx-tag sx-tag--a t5 m-pop" style="animation-delay:1.9s"><small>Programme</small>Weeks, not a day</div>
       </div>
     </figure>` }} />

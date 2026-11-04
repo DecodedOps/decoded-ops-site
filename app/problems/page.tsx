@@ -39,7 +39,7 @@ const problems = [
  { title: 'No ops owner', href: '/problems/no-ops-owner', desc: 'Nobody in the business is responsible for operations, so nothing gets fixed until it breaks.' },
  { title: "Ops in the owner's head", href: '/problems/ops-in-owners-head', desc: 'If you got hit by a bus tomorrow, nobody would know how to run your business.' },
  { title: 'Quoting takes too long', href: '/problems/quoting-takes-too-long', desc: 'Every quote is rebuilt from scratch, setup charges get forgotten and margin leaks out of the price.' },
- { title: 'Seasonal peaks', href: '/problems/seasonal-peaks', desc: 'Your busiest month is four times your quietest, and your systems cannot flex.' },
+ { title: 'Seasonal peaks', href: '/problems/seasonal-peaks', desc: 'Your busiest month is several times your quietest, and your systems cannot flex.' },
  { title: 'Slow processes', href: '/problems/slow-processes', desc: 'A quote that should take ten minutes takes three days because the data is not where it needs to be.' },
  { title: 'Spreadsheet addiction', href: '/problems/spreadsheet-addiction', desc: 'The spreadsheet that runs your business is one corrupted file away from disaster.' },
  { title: "Systems don't talk", href: '/problems/systems-dont-talk', desc: 'The website, the accounts package, and the warehouse system all hold different versions of the truth.' },
@@ -152,7 +152,7 @@ export default function ProblemsIndexPage() {
       <div style={{ marginTop: 40 }}>
        <div className="plate-scroll">
         <div className="plate-frame" data-od-id="plate-problems">
-         <Plate tone="dark" p="pix" title="Eighteen problems, four places they start"
+         <Plate tone="dark" p="pix" title="Nineteen problems, four places they start"
                 sub="Every problem page on the site, grouped by where the failure actually begins"
                 no="DO-ART-118" rev="01" cls="DECODED OPS · ISSUED">
 

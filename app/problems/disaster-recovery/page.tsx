@@ -44,7 +44,7 @@ const drSchema = {
     {
      '@type': 'Question',
      name: 'How much does an hour of system downtime actually cost?',
-     acceptedAnswer: { '@type': 'Answer', text: 'Lost orders, halted production, staff idle, missed despatch deadlines, overtime to catch up, and reputational damage with customers. For most businesses in this sector, the real cost is two to three times what they estimate.' },
+     acceptedAnswer: { '@type': 'Answer', text: 'Lost orders, halted production, staff idle, missed despatch deadlines, overtime to catch up, and reputational damage with customers. In my experience the real cost is usually well above what a business expects.' },
     },
     {
      '@type': 'Question',

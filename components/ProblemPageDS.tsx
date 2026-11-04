@@ -164,7 +164,7 @@ export function ProblemPageDS({ problem, headline, intro, heroGraphic, symptoms,
             <h3>The first call is free.</h3>
             <p>The first call is free. 60 minutes. No sales pitch, just a direct conversation about your situation.</p>
             <ul style={{ margin: '18px 0 26px', padding: 0, listStyle: 'none' }}>
-              {['One day on site', 'Written report in 5 days', '3× Clarity Guarantee', 'No vendor agenda'].map(item => (
+              {['One day on site', 'Written report in 5 days', '3× Clarity Guarantee', 'No commission'].map(item => (
                 <li key={item} style={{ fontSize: 'var(--do-text-sm)', color: 'color-mix(in srgb, var(--do-prussian-blue) 74%, transparent)', marginBottom: 8 }}>
                   {item}
                 </li>
