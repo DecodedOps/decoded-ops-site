@@ -36,6 +36,7 @@ export function ToolLeadCapture({ tool, resultSummary, answers }: ToolLeadCaptur
           resultSummary,
           answers,
           _honey: honey,
+          ...captureContext(),
         }),
       });
 
@@ -48,6 +49,9 @@ export function ToolLeadCapture({ tool, resultSummary, answers }: ToolLeadCaptur
       }
 
       setStatus('success');
+      try {
+        (window as unknown as { gtag?: (...a: unknown[]) => void }).gtag?.('event', 'generate_lead', { event_category: 'tool', event_label: tool });
+      } catch { /* analytics must never block the lead */ }
     } catch {
       setStatus('error');
       setErrorMsg('Network error. Please check your connection and try again.');
