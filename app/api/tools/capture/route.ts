@@ -6,6 +6,7 @@ import { hubFetch, LEAD_CONTEXT_FIELDS, pickLeadContextFields } from '@/lib/hub-
 const ALLOWED_ORIGINS = [
   'https://decodedops.co.uk',
   'https://www.decodedops.co.uk',
+  'https://staging.decodedops.co.uk',
   ...(process.env.NODE_ENV === 'development' ? ['http://localhost:8765', 'http://localhost:3000'] : []),
 ];
 

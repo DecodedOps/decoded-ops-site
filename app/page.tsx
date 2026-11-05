@@ -161,8 +161,8 @@ export default function HomePage() {
                 <span className="eyebrow">The cost of standing still</span>
                 <h2>What disconnected systems actually cost you.</h2>
               </div>
-              <p className="lede">These are the typical ranges I see in businesses like yours. They come from
-                my own experience, not a survey, and they aren&rsquo;t worst case. Just the quiet cost of
+              <p className="lede">These are the patterns I see in businesses like yours. They come from my own experience,
+                not a survey, and none of them is worst case. Just the quiet cost of
                 systems that don&rsquo;t talk to each other.</p>
             </div>
 
