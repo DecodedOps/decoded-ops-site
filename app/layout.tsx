@@ -68,21 +68,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en-GB" className={`h-full antialiased ${outfit.variable} ${dmSans.variable}`}>
       <body className="min-h-full flex flex-col bg-off-white text-prussian-blue" style={{ fontFamily: 'var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif' }}>
+        <Script id="consent-default" strategy="beforeInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            window.gtag = gtag;
+            gtag('consent','default',{analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',wait_for_update:500});
+            try{if(localStorage.getItem('do-consent-v2')==='accepted'){gtag('consent','update',{analytics_storage:'granted'});}}catch(e){}`}
+        </Script>
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-SN2Z3J31CZ"
           strategy="lazyOnload"
         />
         <Script id="gtag-init" strategy="lazyOnload">
-          {`window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
+          {`gtag('js', new Date());
             gtag('config', 'G-SN2Z3J31CZ');`}
         </Script>
-        <Script
-          src="https://analytics.ahrefs.com/analytics.js"
-          data-key="GagP9ji+yt3Y0PukCnZybQ"
-          strategy="lazyOnload"
-        />
 
         <JsonLd data={{
           '@context': 'https://schema.org',

@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { ChevronDown } from 'lucide-react';
+import { CookieSettingsButton } from '@/components/CookieSettingsButton';
 
 // ── Direction A, "Three columns and a drawer" ───────────────────────────
 // design-systems/decoded-marketing/footer-optimised.html, Direction A,
@@ -158,6 +159,7 @@ export function Footer() {
             <Link href="/clients/login">Client login</Link>
             <Link href="/privacy">Privacy</Link>
             <Link href="/cookies">Cookies</Link>
+            <CookieSettingsButton />
           </nav>
         </div>
 
