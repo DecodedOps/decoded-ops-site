@@ -308,8 +308,7 @@ export function Header() {
                 <svg className="nav-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
               </button>
               <div className="mega" id="mega-software" hidden={openPanel !== 'software'}>
-                <div className="container mega-inner">
-                  <p className="panel-note">Four products for decorated goods, each on its own or built to fit together.</p>
+                <div className="container mega-inner cols-2">
                   <MegaGroup group={softwareProducts} onNavigate={() => { closePanel(); setMobileOpen(false); }} />
                   <MegaGroup group={softwareDecide} onNavigate={() => { closePanel(); setMobileOpen(false); }} />
                   <MegaRail heading="Which one first?" note="Most people start with the product that fixes the problem in front of them, and add the rest when they need them."
