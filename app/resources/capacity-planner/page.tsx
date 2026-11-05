@@ -8,6 +8,7 @@ import { D17Motion } from '@/components/D17Motion';
 import { a993 } from '@/lib/d17-figures/a993';
 import { OG_IMAGE, OG_IMAGE_PATH } from '@/lib/seo';
 import '@/app/d17-global.css';
+import '@/app/d17-problems.css';
 import '@/app/d17-apps-cases.css';
 import '@/app/d17-resources.css';
 import '@/app/design-system/site-v3.css';
