@@ -50,10 +50,10 @@ const homepageSchema = {
 };
 
 const costLedger = [
-  { value: '3–6', unit: 'hrs a week', desc: 'Typically lost to manual re-keying between systems that don’t talk to each other', tag: 'Re-keying' },
-  { value: '2–4', unit: 'hrs a week', desc: 'Typically spent on manual invoicing and reconciliation', tag: 'Finance' },
-  { value: '3–5', unit: 'per cent', desc: 'Of inbound stock I often see at risk where inventory is disconnected', tag: 'Inventory' },
-  { value: '1–3', unit: 'per cent', desc: 'Of orders I often see hit by picking and despatch errors', tag: 'Despatch' },
+  { pattern: 'Manual re-keying', desc: 'Every order, every invoice, every stock movement typed twice because the systems were never connected. The hours add up quietly, week after week.' },
+  { pattern: 'Invoicing and reconciliation', desc: 'Chasing purchase orders across spreadsheets, matching deliveries to invoices by hand, catching the differences before they become disputes.' },
+  { pattern: 'Disconnected inventory', desc: 'Stock the warehouse has but the system doesn’t, or the other way round. The gap means stockouts, over-orders, and cash tied up in the wrong place.' },
+  { pattern: 'Picking and despatch errors', desc: 'Wrong sizes, wrong quantities, wrong addresses. The cost isn’t just the return. It’s the relationship damage and the time spent putting it right.' },
 ];
 
 const notes = [
@@ -168,10 +168,9 @@ export default function HomePage() {
 
             <ol className="ledger" data-od-id="cost-ledger">
               {costLedger.map(item => (
-                <li key={item.tag}>
-                  <p className="fig">{item.value}<small>{item.unit}</small></p>
+                <li key={item.pattern}>
+                  <p className="fig">{item.pattern}</p>
                   <p className="desc">{item.desc}</p>
-                  <span className="tag">{item.tag}</span>
                 </li>
               ))}
             </ol>
