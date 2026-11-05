@@ -11,9 +11,11 @@ const ALLOWED_ORIGINS = [
 
 const VALID_TOOLS = [
   'automation-roi-calculator',
+  'capacity-planner',
   'downtime-cost-calculator',
   'ops-health-score',
   'rto-calculator',
+  'seasonal-capacity',
   'should-i-replace-erp',
 ] as const;
 
@@ -221,6 +223,8 @@ export async function POST(req: NextRequest) {
       'rto-calculator': 'RTO Calculator',
       'should-i-replace-erp': 'Should I Replace My ERP',
       'automation-roi-calculator': 'Automation ROI Calculator',
+      'capacity-planner': 'Capacity Planner',
+      'seasonal-capacity': 'Seasonal Capacity Calculator',
     };
     const readableTool = toolNames[tool] || tool;
 
