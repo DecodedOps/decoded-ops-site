@@ -195,7 +195,7 @@ export default function CaseStudy02Page() {
               <p className="t-body" style={{ marginTop: 0 }}>The eCommerce platform stayed, because it was the right tool for selling. Works was built alongside it to do the parts the platform was never going to do: supplier feeds kept current, decorated and plain stock tracked separately, warehouse work (bins, barcode scanning, batch picking on a phone), and new products and variants published to the website automatically.</p>
               <p className="t-body">The website integration has been running in production since July. Supplier automation and warehouse tooling are still growing. Next up is measuring the real hours saved to replace the projection.</p>
               <h3 data-od-id="progress-h3">What&apos;s still in progress</h3>
-              <p className="t-body" style={{ marginTop: 0 }}>Works keeps expanding. Warehouse floor tooling and further supplier automation are active, ongoing work, not a finished job being presented as complete.</p>
+              <p className="t-body" style={{ marginTop: 0 }}>Works keeps expanding. Warehouse floor tooling and further supplier automation are the next pieces, and the saving will be measured once they are in use.</p>
             </div>
           </div>
         </section>
