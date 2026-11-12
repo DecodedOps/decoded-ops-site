@@ -1,1 +1,1 @@
-FROM ghcr.io/decodedops/decoded-ops-site:f4b4bb2cfc842daec48950d0500655e4c34927fd
+FROM ghcr.io/decodedops/decoded-ops-site:0f159a01ed392f61eae0184c75bc0e3fc8648c0f
