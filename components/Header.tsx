@@ -80,9 +80,8 @@ const softwareDecide: NavGroup = {
     // No /apps/own-or-rent page exists. The "buy outright, or lease to own"
     // software section on /pricing is the nearest existing page.
     { label: 'Own or rent', sub: 'Buy outright, or lease to own', href: '/pricing' },
-    // No /compare page exists (marked "phase 3" in app/apps/page.tsx).
-    // The /apps hub lays the four products out side by side.
-    { label: 'Compare', sub: 'The four products side by side', href: '/apps' },
+    // CR-WEB-085: /compare lists the hub-driven comparison guides.
+    { label: 'Compare', sub: 'Fair guides to the alternatives', href: '/compare' },
   ],
 };
 

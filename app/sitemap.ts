@@ -8,6 +8,18 @@ const BASE_URL = 'https://decodedops.co.uk'
 const HUB_API = process.env.HUB_API_URL || 'http://localhost:3000'
 const SITE_CONTENT_UPDATED = '2026-11-04'
 
+async function fetchComparePages(): Promise<{ slug: string; updatedAt?: string }[]> {
+  try {
+    const res = await hubFetch(`${HUB_API}/api/content/index?kind=compare`, { next: { revalidate: 300 } });
+    if (res.ok) {
+      const items: { slug?: string }[] = (await res.json()).items || [];
+      // Only compare-* rows: an older hub ignores kind=compare and returns the blog index.
+      return items.filter((c) => typeof c.slug === 'string' && c.slug.startsWith('compare-')) as { slug: string; updatedAt?: string }[];
+    }
+  } catch {}
+  return [];
+}
+
 async function fetchBlogPosts() {
   let hubItems: any[] = [];
   try {
@@ -45,6 +57,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }
 
   const posts = await fetchBlogPosts();
+  const comparePosts = await fetchComparePages();
 
   const problemSlugs = routeSlugs.problems
   const sectorSlugs = routeSlugs.sectors
@@ -101,6 +114,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }))
 
+  // CR-WEB-085: published comparison guides (hub website_page rows, slug compare-*)
+  const comparePages: MetadataRoute.Sitemap = comparePosts.length === 0 ? [] : [
+    { url: `${BASE_URL}/compare`, lastModified: new Date(SITE_CONTENT_UPDATED), changeFrequency: 'monthly' as const, priority: 0.75 },
+    ...comparePosts.map((c) => ({
+      url: `${BASE_URL}/compare/${c.slug.replace(/^compare-/, '')}`,
+      lastModified: new Date(c.updatedAt || SITE_CONTENT_UPDATED),
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    })),
+  ]
+
   const problemPages = problemSlugs.map(slug => ({
     url: `${BASE_URL}/problems/${slug}`,
     lastModified: new Date(SITE_CONTENT_UPDATED),
@@ -132,6 +156,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   return [
     ...staticPages,
     ...blogPages,
+    ...comparePages,
     ...problemPages,
     ...sectorPages,
     ...toolPages,
