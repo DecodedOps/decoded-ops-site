@@ -55,6 +55,11 @@
 .site-head--mega .nav-toggle svg{ width:22px; height:22px }
 
 .site-head--mega .site-nav{ display:flex; align-items:center; gap:2px; margin-left:auto }
+/* BUG-WEB-031: nine desktop items need ~1360px; compact padding, hamburger below that */
+.site-head--mega .container{ max-width:1520px }
+.site-head--mega .head-inner{ gap:12px }
+.site-head--mega .nav-trigger,
+.site-head--mega .nav-flat{ padding-inline:8px }
 .site-head--mega .nav-item{ position:static }
 .site-head--mega .nav-trigger,
 .site-head--mega .nav-flat{ display:inline-flex; align-items:center; gap:6px; margin:0;
@@ -75,7 +80,7 @@
   transition:transform var(--do-duration-normal) var(--do-ease-default) }
 .site-head--mega .nav-trigger[aria-expanded="true"] .nav-chev{ transform:rotate(180deg) }
 
-.site-head--mega .nav-tools{ display:flex; align-items:center; gap:10px; margin-left:10px }
+.site-head--mega .nav-tools{ display:flex; align-items:center; gap:8px; margin-left:4px }
 /* ds-marketing's ".site-nav a" repaints link text muted at .875rem. On a
    solid button that lands at 3.9:1, so the button colours are restated. */
 .site-head--mega .site-nav .btn{ font-size:var(--do-text-sm) }
@@ -222,7 +227,7 @@
 .scrim[hidden]{ display:none }
 
 /* ── mobile nav ────────────────────────────────────────────────────── */
-@media(max-width:1100px){
+@media(max-width:1360px){
   .site-head--mega .nav-toggle{ display:inline-flex }
   .site-head--mega .site-nav{ display:none; position:fixed;
     top:var(--do-header-h); left:0; right:0;

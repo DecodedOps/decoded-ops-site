@@ -188,7 +188,7 @@ export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
   const lastClickRef = useRef<PanelKey | null>(null);
-  const isMobile = () => typeof window !== 'undefined' && window.matchMedia('(max-width:1100px)').matches;
+  const isMobile = () => typeof window !== 'undefined' && window.matchMedia('(max-width:1360px)').matches;
 
   useEffect(() => {
     function onDocClick(e: MouseEvent) {
