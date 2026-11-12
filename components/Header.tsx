@@ -5,7 +5,7 @@ import Link from 'next/link';
 type NavLink = { label: string; sub?: string; href: string };
 type NavGroup = { title: string; items: NavLink[] };
 
-// ── "What's going wrong", all 18 problem pages, grouped and in plain English ──
+// ── "What's going wrong", all 19 problem pages, grouped and in plain English ──
 const wrongGroups: NavGroup[] = [
   {
     title: 'Systems & software',
@@ -21,6 +21,7 @@ const wrongGroups: NavGroup[] = [
     title: 'Growth & capacity',
     items: [
       { label: 'Everything takes too long', href: '/problems/slow-processes' },
+      { label: 'Quotes take too long', href: '/problems/quoting-takes-too-long' },
       { label: "We can't take on more work", href: '/problems/cant-scale-operations' },
       { label: 'One person is the bottleneck', href: '/problems/bottleneck-growth' },
       { label: 'Busy season breaks us', href: '/problems/seasonal-peaks' },
