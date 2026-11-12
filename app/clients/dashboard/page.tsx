@@ -67,7 +67,7 @@ function formatDate(dateStr: string): string {
   return new Date(dateStr).toLocaleDateString('en-GB', { year: 'numeric', month: 'short', day: 'numeric' })
 }
 
-const ALL_CLIENT_IDS = ['tacklebag', 'cobra-workwear', 'hanicks', 'cwear', 'scotshirts', 'key-supplies', 'david-sharp']
+const ALL_CLIENT_IDS = ['tacklebag', 'cobra-workwear', 'hanicks', 'cwear', 'scotshirts', 'key-supplies', 'david-sharp', 'duncan-stewart-textiles']
 
 async function fetchHubDocs(clientId: string): Promise<HubDoc[]> {
   const hubUrl = process.env.HUB_API_URL
