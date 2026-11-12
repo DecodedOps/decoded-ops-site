@@ -33,7 +33,6 @@ interface ValueComparison {
 
 interface AddOnModule {
   id: string;
-  icon: string;
   iconName?: string;
   name: string;
   description: string;
@@ -176,7 +175,7 @@ export default function PricingSection({ data }: { data: PricingData }) {
                       {mod.iconName && ADDON_ICON_MAP[mod.iconName] ? (() => {
                         const Icon = ADDON_ICON_MAP[mod.iconName];
                         return <Icon size={28} />;
-                      })() : <span className="text-3xl">{mod.icon}</span>}
+                      })() : <Package size={28} />}
                     </div>
                     <h4 className="text-lg font-black text-white mb-2">{mod.name}</h4>
                     <p className="text-xs text-[rgba(255,255,255,0.6)] leading-relaxed">{mod.description}</p>
@@ -320,7 +319,7 @@ export default function PricingSection({ data }: { data: PricingData }) {
             )}
             {data.notIncluded.length > 0 && (
               <div className="bg-white rounded-xl p-7 shadow-sm">
-                <h3 className="text-base font-bold text-[#023047] mb-4">What's not included</h3>
+                <h3 className="text-base font-bold text-[#023047] mb-4">What&apos;s not included</h3>
                 <div className="text-sm text-[#5a7d8f] leading-loose">
                   {data.notIncluded.map((item, i) => (
                     <div key={i}>✕ {item}</div>

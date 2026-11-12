@@ -114,7 +114,7 @@ export default function EcommerceBreakdownChart() {
         <div className="space-y-6">
           <div>
             <p className="text-[#219EBC] text-sm uppercase tracking-wide font-semibold mb-2">You Think:</p>
-            <p className="text-white/90">"I just need to integrate my eCommerce platform with my ERP."</p>
+            <p className="text-white/90">&quot;I just need to integrate my eCommerce platform with my ERP.&quot;</p>
           </div>
 
           <div className="border-t border-[#219EBC]/30 pt-6">
@@ -139,9 +139,9 @@ export default function EcommerceBreakdownChart() {
             <div className="flex items-start gap-3">
               <span className="text-xl">⚠️</span>
               <div>
-                <p className="text-[#219EBC] text-sm font-bold mb-2">Here's the problem:</p>
+                <p className="text-[#219EBC] text-sm font-bold mb-2">Here&apos;s the problem:</p>
                 <p className="text-white/90 text-sm leading-relaxed">
-                  Even after the integration is built, your core problems aren't solved. Your system still can't validate artwork or understand your production workflow. The integration just passes data between two systems that weren't designed for your business.
+                  Even after the integration is built, your core problems aren&apos;t solved. Your system still can&apos;t validate artwork or understand your production workflow. The integration just passes data between two systems that weren&apos;t designed for your business.
                 </p>
               </div>
             </div>

@@ -27,7 +27,6 @@ interface PainPoint {
   title: string;
   description: string;
   stat: string;
-  icon?: string;
   iconName?: string;
   borderColor?: string;
   bgColor?: string;
@@ -88,7 +87,7 @@ export default function ChallengeSection({ data, systems }: { data: ChallengeDat
                   {point.iconName && ICON_MAP[point.iconName] ? (() => {
                     const Icon = ICON_MAP[point.iconName];
                     return <Icon size={22} className={statTextClass} />;
-                  })() : <span className="text-2xl">{point.icon}</span>}
+                  })() : <Package size={22} className={statTextClass} />}
                 </div>
                 <h3 className="text-lg font-bold text-[#023047] mb-2">
                   {point.title}

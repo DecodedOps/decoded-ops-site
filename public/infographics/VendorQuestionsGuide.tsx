@@ -53,10 +53,10 @@ export default function VendorQuestionsGuide() {
       <div className="bg-gradient-to-r from-[#219EBC]/10 to-transparent rounded-lg border border-[#219EBC]/30 p-6 lg:p-8 mb-8">
         <p className="text-[#023047] text-sm uppercase tracking-wide font-semibold mb-2">Framework</p>
         <h3 className="text-[#023047] text-2xl lg:text-3xl font-bold">
-          5 Questions Vendors Won't Like
+          5 Questions Vendors Won&apos;t Like
         </h3>
         <p className="text-[#023047]/70 mt-3 text-lg">
-          Ask these before signing anything. Vendors want "yes" answers. These questions expose the risks.
+          Ask these before signing anything. Vendors want &quot;yes&quot; answers. These questions expose the risks.
         </p>
       </div>
 
@@ -117,7 +117,7 @@ export default function VendorQuestionsGuide() {
       <div className="mt-8 p-6 lg:p-8 bg-[#023047] text-white rounded-lg">
         <p className="text-sm uppercase tracking-wide font-semibold text-[#219EBC] mb-3">Pro Tip</p>
         <p className="text-base lg:text-lg leading-relaxed">
-          Vendors who can't answer these clearly don't fully understand your needs, or they're hiding complexity. Either way, that's a red flag. The best vendors will welcome these questions because they have good answers.
+          Vendors who can&apos;t answer these clearly don&apos;t fully understand your needs, or they&apos;re hiding complexity. Either way, that&apos;s a red flag. The best vendors will welcome these questions because they have good answers.
         </p>
       </div>
     </div>

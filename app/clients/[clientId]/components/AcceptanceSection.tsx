@@ -33,7 +33,7 @@ interface AcceptanceData {
 
 const DEFAULT_OPTIONS = [
   { id: 'C', name: 'Tier 1 — Clarity Audit', desc: 'Structured on-site audit + written assessment + specifications', price: '£1,500 fixed' },
-  { id: 'B', name: 'Tier 2 — Deliver Consultancy ⭐', desc: 'Full consultancy programme — vendor selection, requirements, integration architecture (Recommended)', price: 'from £1,400/month' },
+  { id: 'B', name: 'Tier 2 — Deliver Consultancy', desc: 'Full consultancy programme — vendor selection, requirements, integration architecture (Recommended)', price: 'from £1,400/month' },
   { id: 'A', name: 'Tier 3 — Transform Programme', desc: 'Full implementation oversight + (optional) productised build line', price: 'from £1,800/month' },
 ];
 
@@ -99,7 +99,7 @@ export default function AcceptanceSection({ data }: { data: AcceptanceData }) {
         {submitted ? (
           <div className="text-center py-10 px-8 bg-[rgba(27,94,32,0.15)] border border-[rgba(27,94,32,0.3)] rounded-xl">
             <div className="mb-4 text-[#4ade80]"><PartyPopper size={48} /></div>
-            <h3 className="text-2xl font-black text-[#4ade80] mb-2">Excellent — let's get started.</h3>
+            <h3 className="text-2xl font-black text-[#4ade80] mb-2">Excellent — let&apos;s get started.</h3>
             <p className="text-base text-[rgba(255,255,255,0.6)]">
               Craig will receive your acceptance and be in touch within one working day with next steps. Looking forward to it.
             </p>
@@ -254,7 +254,7 @@ export default function AcceptanceSection({ data }: { data: AcceptanceData }) {
               onClick={handleSubmit}
               className="w-full py-5 bg-[#219EBC] hover:bg-[#1a7d97] hover:-translate-y-0.5 hover:shadow-2xl hover:shadow-[rgba(33,158,188,0.3)] text-white font-bold text-base rounded-xl transition-all duration-300 tracking-wide"
             >
-              Confirm Engagement — Let's Begin →
+              Confirm Engagement — Let&apos;s Begin →
             </button>
           </>
         )}

@@ -26,7 +26,6 @@ export const hanicksProposal = {
         title: 'No central product master — data in silos',
         description: 'IBasis, HRP and DHS each have their own data formats, part numbering conventions and image assets. There is no single source of truth for product descriptions, GC codes, RRP or stock availability. Every channel update requires manual reconciliation across three sources.',
         stat: '3 supplier data formats — all manually reconciled before any channel update',
-        icon: '🔧',
         iconName: 'Wrench',
         borderColor: 'border-[#FB8500]',
         bgColor: 'bg-[rgba(251,133,0,0.1)]',
@@ -35,7 +34,6 @@ export const hanicksProposal = {
         title: 'Three channels, no joined-up view',
         description: 'Website, Amazon and direct orders (phone and email) all operate independently. There is no central view of stock across channels, no automated stock sync between WooCommerce and Amazon, and direct orders are communicated manually rather than flowing into a single system. A stock discrepancy on Amazon or an oversell on the website is discovered after the fact, not prevented.',
         stat: 'No single view of orders or stock across website, Amazon and direct — reconciliation is manual',
-        icon: '🛒',
         iconName: 'ShoppingCart',
         borderColor: 'border-[#C62828]',
         bgColor: 'bg-[rgba(198,40,40,0.1)]',
@@ -44,7 +42,6 @@ export const hanicksProposal = {
         title: 'No ERP — no operational backbone',
         description: 'Without an ERP there is no authoritative record of stock levels, purchase orders, supplier lead times or profitability by product or channel. Decisions are made on incomplete information. Selecting and implementing the right ERP — in the right sequence — is the single most consequential technology decision Hanicks will make.',
         stat: 'High risk: wrong ERP selection without a requirements brief is a six-figure risk',
-        icon: '🖧',
         iconName: 'Network',
         borderColor: 'border-[#219EBC]',
         bgColor: 'bg-[rgba(33,158,188,0.1)]',
@@ -53,7 +50,6 @@ export const hanicksProposal = {
         title: 'GS1 barcode gap & own-brand not scalable',
         description: 'GS1 barcodes are being established but have not been mapped into the product catalogue, the ERP, or the channel listings. Without this the barcodes deliver no operational benefit. Meanwhile the own-brand China-manufactured product range — a strategically important margin opportunity — lacks the structured approach to SKU management, lead time tracking and supplier onboarding needed to scale.',
         stat: 'GS1 barcodes unintegrated · own-brand pipeline needs structuring for growth',
-        icon: '📦',
         iconName: 'Package',
         borderColor: 'border-[#FFB703]',
         bgColor: 'bg-[rgba(255,183,3,0.1)]',
@@ -284,7 +280,7 @@ export const hanicksProposal = {
   },
   why: {
     tag: 'Why Decoded Ops',
-    title: 'Sector specialist.\nNo vendor agenda.\nCraig does the work.',
+    title: 'Sector specialist.\nPlain advice.\nCraig does the work.',
     subtitle: 'Decoded Ops works exclusively in product, distribution and eCommerce. Craig Blackman brings 20+ years of operational and technology experience — and will personally build the IBasis App. No subcontracted developers, no lost context, no agency markup.',
     comparison: [
       {
@@ -516,7 +512,7 @@ export const hanicksProposal = {
     options: [
       { id: 'C', name: 'Tier 1 — Discovery Day', desc: 'On-site audit + written assessment + IBasis App spec + Khaos requirements document', price: '£1,500 fixed' },
       { id: 'B', name: 'Tier 2 — Deliver (Project Lead)', desc: 'Craig as project lead for Khaos implementation and channel automation. Excludes IBasis App build.', price: '£2,500/month · 3 months' },
-      { id: 'A', name: 'Tier 3 — Transform + IBasis App ⭐', desc: 'Full programme — IBasis App built, Khaos implemented, Craig as project lead throughout. (Recommended)', price: '£17,200 / 3 months' },
+      { id: 'A', name: 'Tier 3 — Transform + IBasis App', desc: 'Full programme — IBasis App built, Khaos implemented, Craig as project lead throughout. (Recommended)', price: '£17,200 / 3 months' },
     ],
   },
 };
