@@ -359,7 +359,7 @@ export default function AppsPage() {
                 </div>
               ))}
             </div>
-            {/* // phase 3: /compare link */}
+            <p className="t-card" style={{ marginTop: 24 }}>Weighing this against another system? <Link href="/compare">Read the fair comparison guides</Link>.</p>
           </div>
         </section>
 
