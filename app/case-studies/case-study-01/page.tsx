@@ -34,7 +34,7 @@ const schema = {
       '@type': 'Article',
       headline: 'Case study 01: Hanicks',
       description: 'Hanicks sells heating spares. A big catalogue arriving from lots of suppliers in different formats, needing to be clean and current on every channel.',
-      author: { '@type': 'Person', name: 'Craig Blackman' },
+      author: { '@id': '/#craig' },
       publisher: {
         '@type': 'Organization', name: 'Decoded Ops',
         logo: { '@type': 'ImageObject', url: 'https://decodedops.co.uk/logo.png', width: 512, height: 512 },

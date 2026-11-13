@@ -54,7 +54,7 @@ function buildArticleSchema(item: any, slug: string, pubDate: string) {
         headline,
         datePublished: pubDate,
         dateModified: pubDate,
-        author: { '@type': 'Person', name: 'Craig Blackman', url: 'https://decodedops.co.uk/about' },
+        author: { '@id': '/#craig' },
         publisher: {
           '@type': 'Organization', name: 'Decoded Ops', url: 'https://decodedops.co.uk',
           logo: { '@type': 'ImageObject', url: 'https://decodedops.co.uk/logo.png', width: 512, height: 512 },

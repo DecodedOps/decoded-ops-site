@@ -33,7 +33,7 @@ const schema = {
       '@type': 'Article',
       headline: 'Case study 03: architect and advisor, not the builder',
       description: 'A Clarity Audit into Deliver Consultancy: vendor requirements, procurement and integration architecture for a workwear B2B distributor\'s B2B ordering portal.',
-      author: { '@type': 'Person', name: 'Craig Blackman' },
+      author: { '@id': '/#craig' },
       publisher: {
         '@type': 'Organization', name: 'Decoded Ops',
         logo: { '@type': 'ImageObject', url: 'https://decodedops.co.uk/logo.png', width: 512, height: 512 },

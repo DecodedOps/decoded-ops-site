@@ -34,7 +34,7 @@ const schema = {
       '@type': 'Article',
       headline: 'Eternal Fitness: Full Site Build and AI Training Tool',
       description: 'Technical lead on a full site rebuild and an AI-assisted training plan tool for Eternal Fitness, a 1-to-1 personal training studio for clinical populations.',
-      author: { '@type': 'Person', name: 'Craig Blackman' },
+      author: { '@id': '/#craig' },
       publisher: {
         '@type': 'Organization', name: 'Decoded Ops',
         logo: { '@type': 'ImageObject', url: 'https://decodedops.co.uk/logo.png', width: 512, height: 512 },

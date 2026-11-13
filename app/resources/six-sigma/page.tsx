@@ -18,7 +18,7 @@ const schema = {
     {
       '@type': 'Article',
       headline: 'What 5 & 6 Sigma Mean for Your Print & Embroidery Operation',
-      author: { '@type': 'Person', name: 'Craig Blackman' },
+      author: { '@id': '/#craig' },
       publisher: { '@type': 'Organization', name: 'Decoded Ops' },
       url: 'https://decodedops.co.uk/resources/six-sigma',
     },

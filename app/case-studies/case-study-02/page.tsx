@@ -34,7 +34,7 @@ const schema = {
       '@type': 'Article',
       headline: 'Case study 02: the diagnostic came before the decision',
       description: 'A Clarity Audit into a Deliver engagement for a branded apparel and decoration retailer. 17 supplier feeds automated, 20 to 40 hours a week of admin time projected saved.',
-      author: { '@type': 'Person', name: 'Craig Blackman' },
+      author: { '@id': '/#craig' },
       publisher: {
         '@type': 'Organization', name: 'Decoded Ops',
         logo: { '@type': 'ImageObject', url: 'https://decodedops.co.uk/logo.png', width: 512, height: 512 },

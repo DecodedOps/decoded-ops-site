@@ -16,7 +16,7 @@ const schema = {
     {
       '@type': 'Article',
       headline: 'Artwork Approval Workflow: From Brief to Sign-Off in 24 Hours',
-      author: { '@type': 'Person', name: 'Craig Blackman' },
+      author: { '@id': '/#craig' },
       publisher: { '@type': 'Organization', name: 'Decoded Ops' },
       url: 'https://decodedops.co.uk/resources/artwork-approval-playbook',
     },
