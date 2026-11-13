@@ -100,6 +100,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           telephone: '07735 620 603',
           founder: {
             '@type': 'Person',
+            '@id': '/#craig',
             name: 'Craig Blackman',
             jobTitle: 'Founder & Principal Consultant',
           },
