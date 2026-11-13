@@ -29,7 +29,7 @@ const sectorSchema = {
       url: 'https://decodedops.co.uk/sectors/garment-decoration',
       name: 'Garment Decoration Business Systems & Operations Consultant: Decoded Ops',
       description: 'Artwork that doesn\'t get approved by email, production scheduling that accounts for embroidery, screen print, DTF, and DTG, and systems that match how you actually decorate.',
-      isPartOf: { '@id': 'https://decodedops.co.uk/#organization' },
+      isPartOf: { '@id': 'https://decodedops.co.uk/#organisation' },
     },
     {
       '@type': 'FAQPage',

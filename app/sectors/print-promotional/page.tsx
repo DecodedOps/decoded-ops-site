@@ -34,7 +34,7 @@ const sectorSchema = {
       url: 'https://decodedops.co.uk/sectors/print-promotional',
       name: 'Print Shop Operations Management & Systems Consultant: Decoded Ops',
       description: 'Production scheduling that accounts for method and substrate, artwork approval that doesn\'t live in email, and order management that connects to your shop.',
-      isPartOf: { '@id': 'https://decodedops.co.uk/#organization' },
+      isPartOf: { '@id': 'https://decodedops.co.uk/#organisation' },
     },
     {
       '@type': 'FAQPage',

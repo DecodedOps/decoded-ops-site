@@ -36,7 +36,7 @@ const sectorSchema = {
       url: 'https://decodedops.co.uk/sectors/operations-consultant-print-embroidery',
       name: 'Operations Consultant for Print & Embroidery Businesses UK: Decoded Ops',
       description: 'Independent operations and technology consultant for UK print and embroidery businesses. ERP, production scheduling, artwork management, and systems that connect how you actually work.',
-      isPartOf: { '@id': 'https://decodedops.co.uk/#organization' },
+      isPartOf: { '@id': 'https://decodedops.co.uk/#organisation' },
     },
     {
       '@type': 'FAQPage',

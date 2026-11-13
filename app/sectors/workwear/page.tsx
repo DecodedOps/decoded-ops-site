@@ -29,7 +29,7 @@ const sectorSchema = {
       url: 'https://decodedops.co.uk/sectors/workwear',
       name: 'Workwear: Decoded Ops',
       description: "Supplier feed chaos solved, decoration and stock in the same picture, and replenishment that doesn't wait on you.",
-      isPartOf: { '@id': 'https://decodedops.co.uk/#organization' },
+      isPartOf: { '@id': 'https://decodedops.co.uk/#organisation' },
     },
     {
       '@type': 'FAQPage',

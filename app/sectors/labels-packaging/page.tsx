@@ -29,7 +29,7 @@ const sectorSchema = {
       url: 'https://decodedops.co.uk/sectors/labels-packaging',
       name: 'Software & Systems for Label & Packaging Printers: Decoded Ops',
       description: 'The right label version on press every time, variable data without workarounds, and the EDI your bigger customers keep asking for.',
-      isPartOf: { '@id': 'https://decodedops.co.uk/#organization' },
+      isPartOf: { '@id': 'https://decodedops.co.uk/#organisation' },
     },
     {
       '@type': 'FAQPage',

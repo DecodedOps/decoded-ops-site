@@ -42,7 +42,7 @@ const toolsSchema = {
   url: 'https://decodedops.co.uk/tools',
   name: 'Free Tools: Decoded Ops',
   description: 'Calculate the real cost of downtime, poor recovery times, and manual processes. Free tools for operations leaders in UK decorated goods, print, and workwear.',
-  isPartOf: { '@id': 'https://decodedops.co.uk/#organization' },
+  isPartOf: { '@id': 'https://decodedops.co.uk/#organisation' },
 };
 
 const tools = [

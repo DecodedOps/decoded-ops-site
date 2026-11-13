@@ -29,7 +29,7 @@ const sectorSchema = {
       url: 'https://decodedops.co.uk/sectors/schoolwear',
       name: 'Schoolwear: Decoded Ops',
       description: 'Keeping supplier feeds current before the back-to-school peak, badge data that scales with growing pupils, and production scheduling that hits September every time.',
-      isPartOf: { '@id': 'https://decodedops.co.uk/#organization' },
+      isPartOf: { '@id': 'https://decodedops.co.uk/#organisation' },
     },
     {
       '@type': 'FAQPage',

@@ -29,7 +29,7 @@ const sectorSchema = {
       url: 'https://decodedops.co.uk/sectors/signs-graphics',
       name: 'Software & Systems for Sign Makers: Decoded Ops',
       description: 'Job tracking from site survey to installation, quoting complex jobs without the margin leak, and software that fits how a sign shop actually runs.',
-      isPartOf: { '@id': 'https://decodedops.co.uk/#organization' },
+      isPartOf: { '@id': 'https://decodedops.co.uk/#organisation' },
     },
     {
       '@type': 'FAQPage',
