@@ -64,14 +64,11 @@ const commerceSchema = {
     },
     {
       '@type': 'SoftwareApplication',
+      '@id': '/apps/commerce#software',
       name: 'Decoded Commerce',
       applicationCategory: 'BusinessApplication',
       operatingSystem: 'Web',
-      provider: {
-        '@type': 'Organization',
-        name: 'Decoded Ops',
-        url: 'https://decodedops.co.uk',
-      },
+      provider: { '@id': 'https://decodedops.co.uk/#organisation' },
       url: 'https://decodedops.co.uk/apps/commerce',
     },
     {

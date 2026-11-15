@@ -39,7 +39,7 @@ const cantScaleSchema = {
    url: 'https://decodedops.co.uk/problems/cant-scale-operations',
    name: "Your Business Is Growing. Your Operations Aren't Keeping Up.: Decoded Ops",
    description: "Growth shouldn't feel harder than it did at half the size. I help print, embroidery, and decoration businesses build the operational foundations to scale properly. UK-wide.",
-   isPartOf: { '@id': 'https://decodedops.co.uk/#organization' },
+   isPartOf: { '@id': 'https://decodedops.co.uk/#organisation' },
   },
   {
    '@type': 'FAQPage',

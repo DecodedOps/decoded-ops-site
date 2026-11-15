@@ -36,7 +36,7 @@ const schema = {
       '@type': 'Article',
       headline: '5 Warning Signs Your Systems Are Holding You Back',
       description: 'Five signs your current technology and processes are costing you more than a replacement would.',
-      author: { '@type': 'Person', name: 'Craig Blackman' },
+      author: { '@id': '/#craig' },
       publisher: { '@type': 'Organization', name: 'Decoded Ops' },
       url: 'https://decodedops.co.uk/resources/5-warning-signs',
     },

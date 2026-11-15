@@ -15,7 +15,7 @@ const schema = {
     {
       '@type': 'Article',
       headline: 'ERP Selection for Decorated Goods: A Plain-English Buying Guide',
-      author: { '@type': 'Person', name: 'Craig Blackman' },
+      author: { '@id': '/#craig' },
       publisher: { '@type': 'Organization', name: 'Decoded Ops' },
       url: 'https://decodedops.co.uk/resources/erp-selection-playbook',
     },
