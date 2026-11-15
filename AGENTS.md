@@ -17,6 +17,12 @@ codebase:
 artwork) via OpenCode lanes dispatched from Work Orders. Not a build-from-scratch project —
 treat every existing page as intentional unless a CR says otherwise.
 
+## Verifying your work
+
+- Run `npm run verify` before reporting any task done, and paste the output. It lints the files you changed, builds, and runs the tests related to your changes, stopping at the first failure. Whole-repo `npm run lint` is red on main (194 problems, old debt, 15 Nov 2026), so it is not the bar. Whole-repo `npm test` (15 tests) and `npm run build` are green on main and are expected to stay green.
+- If a test fails, fix the code, not the test. For a bug, write the failing test first.
+- A green verify is the inner loop only; live checks with real data are still required.
+
 ## Read first
 
 1. `CLAUDE.md` in this repo (stack, pricing policy, key directories, auth pattern, real
