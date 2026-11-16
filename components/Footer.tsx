@@ -1,3 +1,4 @@
+import { RELEASE, GIT_SHA } from '@/lib/release';
 import Link from 'next/link';
 import { ChevronDown } from 'lucide-react';
 import { CookieSettingsButton } from '@/components/CookieSettingsButton';
@@ -160,7 +161,7 @@ export function Footer() {
         </details>
 
         <div className="f-base">
-          <span>&copy; {new Date().getFullYear()} Decoded Ops &middot; Worthing, West Sussex &middot; working across the UK</span>
+          <span>&copy; {new Date().getFullYear()} Decoded Ops &middot; Worthing, West Sussex &middot; working across the UK &middot; <span title={`commit ${GIT_SHA}`}>Release {RELEASE}</span></span>
           <nav aria-label="Legal and account">
             <Link href="/clients/login">Client login</Link>
             <Link href="/privacy">Privacy</Link>
