@@ -8,7 +8,7 @@ name: image
 on:
   push:
     branches: [main, staging]
-    tags: ["shop-*"]
+    tags: ["web-*"]
   workflow_dispatch:
 
 permissions:
@@ -63,7 +63,7 @@ jobs:
         # WO-INF-129: release number build args. A shop-YY.MM.N tag push rebuilds the commit with the release baked in.
         run: |
           rel=""
-          case "$GITHUB_REF" in refs/tags/shop-*) rel="${GITHUB_REF#refs/tags/shop-}";; esac
+          case "$GITHUB_REF" in refs/tags/web-*) rel="${GITHUB_REF#refs/tags/web-}";; esac
           {
             echo "release=$rel"
             echo "args<<EOF_ARGS"
