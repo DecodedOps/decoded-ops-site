@@ -83,6 +83,14 @@ node .context/price-audit.mjs --check   # run before any push that touches copy 
 
 Pre-push: `npx tsc --noEmit` is necessary but not sufficient. Run `npm run build` too.
 
+## Releases (DO-SOP-022, Craig 16-17 Nov 2026)
+
+Every app ships the same way. Read DO-SOP-022 "Releases" (hub `documents`, project `ops`; working copy `C:\Users\CraigBlackman\OneDrive - Decoded Ops\decoded-ops-ai\decoded-ops\Business\SOPs\DO-SOP-022-deliver-2026-10-19.md`) before moving any pin.
+
+1. Never hand-move a live pin or edit a `pin/*` branch.
+2. Live pins move only through `D:\apps\infrastructure\scripts\release-pin.ps1`.
+3. Run `D:\apps\infrastructure\scripts\release-status.ps1` first. One release train at a time; hotfixes go to main and ride the next release.
+
 ## Project-specific rules / gotchas
 
 - **Deployment is Coolify (Docker), not Vercel.** Production = branch `main`. Staging =
