@@ -25,7 +25,6 @@ export const tacklebagProposal = {
         title: 'No pick path — one order at a time',
         description: 'Pickers walk the entire floor for every single order. At 30–50 orders a day in peak, that\'s hundreds of unnecessary cross-floor trips daily. One mis-pick means a re-print or re-embroider — at the worst possible time.',
         stat: 'Batch picking on priority lines — 3–4 orders per run instead of one',
-        icon: '📦',
         iconName: 'Package',
         borderColor: 'border-[#FB8500]',
         bgColor: 'bg-[rgba(251,133,0,0.1)]',
@@ -34,7 +33,6 @@ export const tacklebagProposal = {
         title: 'No bin system — stock lives in memory',
         description: 'Key team members know where things are. If they\'re off, everyone slows down or gets it wrong. Priority school lines are not labelled — every pick depends on who is on the floor that day.',
         stat: 'Priority lines labelled and binned — any team member picks accurately',
-        icon: '🏷️',
         iconName: 'Tag',
         borderColor: 'border-[#C62828]',
         bgColor: 'bg-[rgba(198,40,40,0.1)]',
@@ -43,7 +41,6 @@ export const tacklebagProposal = {
         title: 'No demand forecast — wrong stock ordered',
         description: 'Without a week-by-week forecast built from Symphony data, peak orders are reactive. Stockouts on the accounts that matter, cash tied up in slow movers, emergency purchasing at premium prices.',
         stat: 'Week-by-week Jul–Oct forecast — right stock, right time',
-        icon: '📊',
         iconName: 'BarChart3',
         borderColor: 'border-[#219EBC]',
         bgColor: 'bg-[rgba(33,158,188,0.1)]',
@@ -52,7 +49,6 @@ export const tacklebagProposal = {
         title: 'ERP starting from scratch in November',
         description: 'Khaos Control is planned for November. Without warehouse specs, clean SKU data, and a requirements brief ready, the first 4–6 weeks of that engagement is just gathering what I will already have by the end of July.',
         stat: 'ERP starts in Week 1, not Week 6 — saving £2,500–£5,000',
-        icon: '🔄',
         iconName: 'RefreshCw',
         borderColor: 'border-[#FFB703]',
         bgColor: 'bg-[rgba(255,183,3,0.1)]',
@@ -170,7 +166,7 @@ export const tacklebagProposal = {
   portalMockup: null,
   why: {
     tag: 'Why Decoded Ops',
-    title: 'Sector specialist.\nNo vendor agenda.\nCraig does the work.',
+    title: 'Sector specialist.\nPlain advice.\nCraig does the work.',
     subtitle: 'I work exclusively in garment decoration and sportswear. That means no time wasted explaining what a demand peak in August feels like or why Symphony\'s reporting module has limitations. By the time your ERP phase starts in November, I will have been embedded through peak and know your operation inside out.',
     comparison: [
       {
@@ -391,7 +387,7 @@ export const tacklebagProposal = {
     },
     options: [
       { id: 'C', name: 'Tier 1 — Essential', desc: 'Warehouse ops + Demand forecast + SKU standard · 2 on-site visits', price: '£4,500 fixed' },
-      { id: 'B', name: 'Tier 2 — Recommended ⭐', desc: 'Essential + ERP brief + Supplier lead times · 3 on-site visits', price: '£7,000 fixed' },
+      { id: 'B', name: 'Tier 2 — Recommended', desc: 'Essential + ERP brief + Supplier lead times · 3 on-site visits', price: '£7,000 fixed' },
       { id: 'A', name: 'Tier 3 — Embedded', desc: 'Full scope + July on-site ops + IT network brief · 4 on-site visits', price: '£10,000 fixed' },
     ],
   },

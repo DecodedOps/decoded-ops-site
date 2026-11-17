@@ -35,7 +35,7 @@ const homepageSchema = {
       url: 'https://decodedops.co.uk',
       name: 'Decoded Ops | operations and technology consultancy for decorated goods',
       description: 'Independent operations and technology consultancy for UK print shops, embroiderers, workwear and promo merch suppliers. A Clarity Audit gets you a full day on site and a written plan.',
-      isPartOf: { '@id': 'https://decodedops.co.uk/#organization' },
+      isPartOf: { '@id': 'https://decodedops.co.uk/#organisation' },
     },
     {
       '@type': 'ItemList',

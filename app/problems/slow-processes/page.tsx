@@ -39,7 +39,7 @@ const slowProcessesSchema = {
    url: 'https://decodedops.co.uk/problems/slow-processes',
    name: 'Slow Processes Costing You Time and Money: Decoded Ops',
    description: "Your processes are slowing production, not your software. I come in, observe how work actually moves through your business, and find exactly what to fix. UK-wide.",
-   isPartOf: { '@id': 'https://decodedops.co.uk/#organization' },
+   isPartOf: { '@id': 'https://decodedops.co.uk/#organisation' },
   },
   {
    '@type': 'FAQPage',

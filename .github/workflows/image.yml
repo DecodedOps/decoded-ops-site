@@ -8,6 +8,7 @@ name: image
 on:
   push:
     branches: [main, staging]
+    tags: ["web-*"]
   workflow_dispatch:
 
 permissions:
@@ -56,6 +57,23 @@ jobs:
           printf '%s\n' "${BUILD_ENV}" > "${ENV_FILE}"
           echo "wrote $(grep -c = "${ENV_FILE}") public vars to ${ENV_FILE}"
 
+      - id: rel
+        env:
+          BUILD_ENV: ${{ matrix.buildEnvVar != '' && vars[matrix.buildEnvVar] || '' }}
+        # WO-INF-129: release number build args. A shop-YY.MM.N tag push rebuilds the commit with the release baked in.
+        run: |
+          rel=""
+          case "$GITHUB_REF" in refs/tags/web-*) rel="${GITHUB_REF#refs/tags/web-}";; esac
+          {
+            echo "release=$rel"
+            echo "args<<EOF_ARGS"
+            printf '%s\n' "$BUILD_ENV"
+            echo "APP_RELEASE=$rel"
+            echo "GIT_SHA=$GITHUB_SHA"
+            echo "BUILT_AT=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            echo "EOF_ARGS"
+          } >> "$GITHUB_OUTPUT"
+
       - uses: docker/setup-buildx-action@v3
 
       - uses: docker/login-action@v3
@@ -71,6 +89,7 @@ jobs:
           tags: |
             type=sha,format=long,prefix=
             type=ref,event=branch
+            type=raw,value=release-${{ steps.rel.outputs.release }},enable=${{ steps.rel.outputs.release != '' }}
 
       - id: build
         uses: docker/build-push-action@v6
@@ -80,7 +99,7 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          build-args: ${{ matrix.buildEnvVar != '' && vars[matrix.buildEnvVar] || '' }}
+          build-args: ${{ steps.rel.outputs.args }}
           cache-from: type=gha,scope=${{ matrix.image }}
           cache-to: type=gha,mode=max,scope=${{ matrix.image }}
           provenance: false
@@ -92,13 +111,17 @@ jobs:
     needs: image
     if: github.event_name == 'push'
     runs-on: ubuntu-latest
+    # BUG-HAN-362 / WO-OPS-234: one pin bump at a time per branch. The workflow-level group is per sha, so two
+    # pushes whose image builds finish out of order used to move the pin backwards.
+    concurrency:
+      group: bump-pins-${{ github.ref }}
+      cancel-in-progress: false
     permissions:
       contents: write
     steps:
       - uses: actions/checkout@v4
         with:
-          sparse-checkout: .github/image-apps.json
-          sparse-checkout-cone-mode: false
+          fetch-depth: 0
       - name: Point this branch's pins at the new images
         env:
           SHA: ${{ github.sha }}
@@ -114,6 +137,17 @@ jobs:
             dir="$RUNNER_TEMP/$app"
             if ! git clone -q --depth 1 --branch "pin/$app" "https://x-access-token:${TOKEN}@github.com/${REPO}.git" "$dir"; then
               echo "::warning::no pin/$app branch yet, skipped"; continue
+            fi
+            # WO-OPS-234: never move a pin backwards. Skip if the sha it runs now is a descendant of this
+            # build (a newer push finished first), or is a known commit that this build does not contain.
+            cur="$(sed -n 's/^FROM .*://p' "$dir/Dockerfile" | head -1 | tr -d '[:space:]')"
+            if [ -n "$cur" ] && [ "$cur" != "$SHA" ] && git cat-file -e "${cur}^{commit}" 2>/dev/null; then
+              if git merge-base --is-ancestor "$SHA" "$cur"; then
+                echo "::warning::pin/$app already at newer ${cur:0:8}; not moving back to ${SHA:0:8}"; continue
+              fi
+              if ! git merge-base --is-ancestor "$cur" "$SHA"; then
+                echo "::warning::pin/$app runs ${cur:0:8}, which is not an ancestor of ${SHA:0:8}; left alone (manual release?)"; continue
+              fi
             fi
             printf 'FROM ghcr.io/decodedops/%s:%s\n' "$image" "$SHA" > "$dir/Dockerfile"
             if git -C "$dir" diff --quiet; then echo "pin/$app already at $SHA"; continue; fi

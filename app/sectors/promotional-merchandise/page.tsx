@@ -29,7 +29,7 @@ const sectorSchema = {
       url: 'https://decodedops.co.uk/sectors/promotional-merchandise',
       name: 'Promotional merchandise: Decoded Ops',
       description: 'Every supplier in one clean catalogue, artwork that doesn\'t live in email, and margin protected at the order level.',
-      isPartOf: { '@id': 'https://decodedops.co.uk/#organization' },
+      isPartOf: { '@id': 'https://decodedops.co.uk/#organisation' },
     },
     {
       '@type': 'FAQPage',

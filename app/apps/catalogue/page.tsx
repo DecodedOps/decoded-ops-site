@@ -68,16 +68,13 @@ const faqSchema = {
 const softwareSchema = {
   '@context': 'https://schema.org',
   '@type': 'SoftwareApplication',
+  '@id': '/apps/catalogue#software',
   name: 'Decoded Catalogue',
   applicationCategory: 'BusinessApplication',
   operatingSystem: 'Web',
   description: DESCRIPTION,
   url: PAGE_URL,
-  provider: {
-    '@type': 'Organization',
-    name: 'Decoded Ops',
-    url: 'https://decodedops.co.uk',
-  },
+  provider: { '@id': 'https://decodedops.co.uk/#organisation' },
 };
 
 const SUPPLIER_DOTS = 89;

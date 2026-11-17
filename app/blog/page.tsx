@@ -43,7 +43,7 @@ const blogSchema = {
   url: 'https://decodedops.co.uk/blog',
   name: 'Insights: Decoded Ops',
   description: 'Plain-English insights on operations, technology, and systems integration for print, embroidery, and decoration businesses.',
-  isPartOf: { '@id': 'https://decodedops.co.uk/#organization' },
+  isPartOf: { '@id': 'https://decodedops.co.uk/#organisation' },
 };
 
 async function fetchBlogIndex() {

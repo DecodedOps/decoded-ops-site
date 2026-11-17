@@ -25,7 +25,6 @@ export const cwearProposal = {
         title: 'Visualsoft — reaching its ceiling',
         description: 'Visualsoft has served you well, but can it support the next stage of growth? Artwork management and embellishment shop-floor control are where most legacy ERPs in this sector fall short. An independent audit is the only way to know for sure.',
         stat: 'ERP migration without a requirements brief is the most expensive risk at this scale',
-        icon: '🖧',
         iconName: 'Network',
         borderColor: 'border-[#FB8500]',
         bgColor: 'bg-[rgba(251,133,0,0.1)]',
@@ -34,7 +33,6 @@ export const cwearProposal = {
         title: 'BlueCherry is on the table — is it the right fit?',
         description: 'BlueCherry is a capable platform, but it\'s built for a specific operational model. Whether it handles your mix of embroidery, print, promotional merchandise, and managed accounts needs verifying against your actual workflows — not a demo.',
         stat: 'BlueCherry needs evaluating against your actual product mix, not a vendor demo',
-        icon: '🔍',
         iconName: 'Search',
         borderColor: 'border-[#219EBC]',
         bgColor: 'bg-[rgba(33,158,188,0.1)]',
@@ -43,7 +41,6 @@ export const cwearProposal = {
         title: 'Artwork & embellishment — the critical gap',
         description: 'In garment decoration, the artwork-to-production workflow is where systems either save you time or cost you money. Artwork approval, job sheet generation, embellishment routing — if your ERP doesn\'t handle this, production slows down regardless of the front-end and back-office systems.',
         stat: 'Artwork management is the make-or-break requirement for any ERP in this sector',
-        icon: '🎨',
         iconName: 'Palette',
         borderColor: 'border-[#C62828]',
         bgColor: 'bg-[rgba(198,40,40,0.1)]',
@@ -52,7 +49,6 @@ export const cwearProposal = {
         title: 'On-prem ERP — the infrastructure is an unknown',
         description: 'Visualsoft running on-prem means the server, OS version, network topology, and data format are unknown quantities until someone looks. ERP migrations regularly stall because the infrastructure wasn\'t assessed before the new platform was selected. That\'s an avoidable problem.',
         stat: 'Infrastructure assessed before migration planning begins — not during it',
-        icon: '🖥️',
         iconName: 'Monitor',
         borderColor: 'border-[#FFB703]',
         bgColor: 'bg-[rgba(255,183,3,0.1)]',
@@ -164,7 +160,7 @@ export const cwearProposal = {
   portalMockup: null,
   why: {
     tag: 'Why Decoded Ops',
-    title: 'Sector specialist.\nNo vendor agenda.\nCraig does the work.',
+    title: 'Sector specialist.\nPlain advice.\nCraig does the work.',
     subtitle: 'I work exclusively in garment decoration, workwear, and promotional merchandise. I know what an ERP needs to do for embroidery, print, and managed accounts — because I have implemented them and lived with the consequences.',
     comparison: [
       {
@@ -315,7 +311,7 @@ export const cwearProposal = {
       terms: 'This engagement is subject to Decoded Ops Standard Terms & Conditions. By proceeding you confirm you have read and accept this proposal and the associated terms.',
     },
     options: [
-      { id: 'C', name: 'Tier 1 — Discovery Day ⭐', desc: 'Structured on-site audit + ERP requirements (Recommended)', price: '£1,500 fixed' },
+      { id: 'C', name: 'Tier 1 — Discovery Day', desc: 'Structured on-site audit + ERP requirements (Recommended)', price: '£1,500 fixed' },
       { id: 'B', name: 'Tier 2 — Deliver Consultancy', desc: 'ERP evaluation, vendor selection, integration architecture', price: '£1,800/month' },
       { id: 'A', name: 'Tier 3 — Transform Programme', desc: 'Full programme — migration oversight through to go-live', price: '£2,500/month' },
     ],

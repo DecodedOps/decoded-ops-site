@@ -21,7 +21,7 @@ const schema = {
       '@type': 'Article',
       headline: 'Operational Audit Checklist',
       description: 'A practical technology audit checklist covering the six areas of an operations review for print, embroidery and decoration businesses. Free to download today.',
-      author: { '@type': 'Person', name: 'Craig Blackman' },
+      author: { '@id': '/#craig' },
       publisher: { '@type': 'Organization', name: 'Decoded Ops' },
       url: 'https://decodedops.co.uk/resources/audit-checklist',
     },

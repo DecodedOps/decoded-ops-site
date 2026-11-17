@@ -25,7 +25,6 @@ export const scotshirtsProposal = {
         title: 'Orders on paper — no overview',
         description: 'Every order is written by hand in an order book. Nobody can see what\'s live, what\'s in production, or what\'s ready to go out unless they physically walk to the book. When you\'re not in the building, the business is invisible.',
         stat: 'One order book means one point of failure — and no view from outside the building',
-        icon: '📋',
         iconName: 'ClipboardList',
         borderColor: 'border-[#FB8500]',
         bgColor: 'bg-[rgba(251,133,0,0.1)]',
@@ -34,7 +33,6 @@ export const scotshirtsProposal = {
         title: 'Production schedule is in Vicky\'s head',
         description: 'Vicky knows what\'s being produced and when. That knowledge isn\'t written down anywhere. The current system is an A3 sheet on the office wall — updated by hand. If Vicky is off, the team is guessing.',
         stat: 'One person\'s absence shouldn\'t stop production planning — but right now it would',
-        icon: '🗓️',
         iconName: 'CalendarDays',
         borderColor: 'border-[#C62828]',
         bgColor: 'bg-[rgba(198,40,40,0.1)]',
@@ -43,7 +41,6 @@ export const scotshirtsProposal = {
         title: 'Supplier orders entered manually — every line, every time',
         description: 'AWD orders come in as Excel sheets or CSV files. Vicky sits at the PC and types each SKU, colour, and size into the AWD website one at a time. AWD has 100–200 colour options per product. This is hours of admin that should take minutes.',
         stat: 'Manual CSV entry is one of the most fixable time-wasters in any decoration business',
-        icon: '⌨️',
         iconName: 'Keyboard',
         borderColor: 'border-[#219EBC]',
         bgColor: 'bg-[rgba(33,158,188,0.1)]',
@@ -52,7 +49,6 @@ export const scotshirtsProposal = {
         title: 'Enquiries come in and don\'t get followed up',
         description: 'An enquiry arrives via the website. Someone replies. Then nothing. There is no system to track it, chase it, or know whether it turned into an order. If you turn on advertising — Facebook, Google, Meta — the enquiries multiply and the problem gets worse fast.',
         stat: 'A missed follow-up is a missed order — and there is no way to know how many are being missed right now',
-        icon: '📨',
         iconName: 'Mail',
         borderColor: 'border-[#FFB703]',
         bgColor: 'bg-[rgba(255,183,3,0.1)]',
@@ -142,7 +138,7 @@ export const scotshirtsProposal = {
   portalMockup: null,
   why: {
     tag: 'Why Decoded Ops',
-    title: 'Sector specialist.\nNo vendor agenda.\nI do the work.',
+    title: 'Sector specialist.\nPlain advice.\nI do the work.',
     subtitle: 'I have worked in garment decoration businesses at every level — not as a consultant observing from the outside. As the person running operations, implementing systems, and fixing what went wrong. I know what a system needs to do for the person using it on the shop floor.',
     comparison: [
       {
@@ -296,7 +292,7 @@ export const scotshirtsProposal = {
       terms: 'This engagement is subject to Decoded Ops Standard Terms & Conditions. By proceeding you confirm you have read and accept this proposal and the associated terms.',
     },
     options: [
-      { id: 'C', name: 'Tier 1 — Discovery Day ⭐', desc: 'One day on-site · Written assessment · Roadmap (Recommended)', price: '£1,500 fixed' },
+      { id: 'C', name: 'Tier 1 — Discovery Day', desc: 'One day on-site · Written assessment · Roadmap (Recommended)', price: '£1,500 fixed' },
       { id: 'B', name: 'Tier 2 — Deliver Consultancy', desc: '12-month programme — enquiry management, production scheduling, supplier automation, team training', price: '£1,500/month' },
       { id: 'A', name: 'Tier 3 — Transform Programme', desc: 'Full programme including custom app build — quoted after Discovery Day', price: '£1,800/month + build' },
     ],

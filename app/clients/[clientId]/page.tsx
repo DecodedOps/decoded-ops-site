@@ -114,7 +114,7 @@ export default function ProposalPage() {
         <div className="text-center">
           <h1 className="text-3xl font-black text-white mb-2">Proposal not found</h1>
           <p className="text-sm text-[rgba(255,255,255,0.5)]">
-            No proposal exists for "{clientId}".
+            No proposal exists for &quot;{clientId}&quot;.
           </p>
         </div>
       </main>

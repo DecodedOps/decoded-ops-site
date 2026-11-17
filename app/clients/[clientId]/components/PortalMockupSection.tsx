@@ -28,7 +28,7 @@ interface PortalMockupData {
   creditTotal: string;
   creditPercent: number;
   navItems: Array<{ label: string; active?: boolean; iconName?: string }>;
-  products: Array<{ icon: string; name: string; sku: string; price: string; iconName?: string }>;
+  products: Array<{ name: string; sku: string; price: string; iconName?: string }>;
   disclaimer: string;
 }
 

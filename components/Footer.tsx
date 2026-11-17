@@ -1,3 +1,4 @@
+import { RELEASE, GIT_SHA } from '@/lib/release';
 import Link from 'next/link';
 import { ChevronDown } from 'lucide-react';
 import { CookieSettingsButton } from '@/components/CookieSettingsButton';
@@ -22,6 +23,7 @@ const workWithMeLinks: FooterLink[] = [
   { label: 'Retained', href: '/retained' },
   { label: 'Small business suite', href: '/small-business' },
   { label: 'How I build software', href: '/how-i-build' },
+  { label: 'Fractional COO', href: '/fractional-coo' },
 ];
 
 const appsLinks: FooterLink[] = [
@@ -49,11 +51,13 @@ const sectorChips: FooterLink[] = [
   { label: 'Signage', href: '/sectors/signs-graphics' },
   { label: 'Awards', href: '/sectors/awards-engraving' },
   { label: 'Labels & packaging', href: '/sectors/labels-packaging' },
+  { label: 'Operations consultant', href: '/sectors/operations-consultant-print-embroidery' },
 ];
 
-// A curated 7 of 18 (the mockup's own set, all verified real routes) plus
-// the index. Deliberately not exhaustive; that's the whole point of the
-// drawer over the old flat 18-chip row.
+// A curated 8 of 19 (the mockup's own set plus the once-orphaned quoting
+// page, all verified real routes) plus the index. Deliberately not
+// exhaustive; that's the whole point of the drawer over the old flat
+// 18-chip row.
 const problemChips: FooterLink[] = [
   { label: 'ERP failure', href: '/problems/erp-implementation-failure' },
   { label: "Systems don't talk", href: '/problems/systems-dont-talk' },
@@ -62,6 +66,7 @@ const problemChips: FooterLink[] = [
   { label: 'Buy vs build', href: '/problems/buy-vs-build' },
   { label: 'No ops owner', href: '/problems/no-ops-owner' },
   { label: 'AI paralysis', href: '/problems/ai-paralysis' },
+  { label: 'Quoting too slow', href: '/problems/quoting-takes-too-long' },
 ];
 
 const guideChips: FooterLink[] = [
@@ -70,6 +75,8 @@ const guideChips: FooterLink[] = [
   { label: '5 warning signs', href: '/resources/5-warning-signs' },
   { label: 'Six Sigma explained', href: '/resources/six-sigma' },
   { label: 'Free calculators', href: '/tools' },
+  { label: 'Capacity planner', href: '/resources/capacity-planner' },
+  { label: 'Seasonal capacity', href: '/resources/seasonal-capacity' },
 ];
 
 const locationChips: FooterLink[] = [
@@ -154,7 +161,7 @@ export function Footer() {
         </details>
 
         <div className="f-base">
-          <span>&copy; {new Date().getFullYear()} Decoded Ops &middot; Worthing, West Sussex &middot; working across the UK</span>
+          <span>&copy; {new Date().getFullYear()} Decoded Ops &middot; Worthing, West Sussex &middot; working across the UK &middot; <span title={`commit ${GIT_SHA}`}>Release {RELEASE}</span></span>
           <nav aria-label="Legal and account">
             <Link href="/clients/login">Client login</Link>
             <Link href="/privacy">Privacy</Link>

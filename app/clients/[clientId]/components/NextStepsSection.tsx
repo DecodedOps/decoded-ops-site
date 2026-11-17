@@ -1,4 +1,5 @@
 'use client';
+import { Clock } from 'lucide-react';
 
 interface NextStepsData {
   tag: string;
@@ -37,7 +38,7 @@ export default function NextStepsSection({ data }: { data: NextStepsData }) {
 
         {/* Validity bar */}
         <div className="flex items-center gap-3 px-7 py-5 bg-[rgba(251,133,0,0.1)] border border-[rgba(251,133,0,0.2)] rounded-xl mb-12 text-sm">
-          <span className="text-xl flex-shrink-0">⏰</span>
+          <Clock size={22} className="flex-shrink-0 text-[#FFB703]" aria-hidden="true" />
           <div className="text-[rgba(255,255,255,0.8)]">
             This proposal is valid until{' '}
             <strong className="text-[#FFB703]">{data.deadline}</strong>. A decision by{' '}
