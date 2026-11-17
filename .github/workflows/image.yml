@@ -111,13 +111,17 @@ jobs:
     needs: image
     if: github.event_name == 'push'
     runs-on: ubuntu-latest
+    # BUG-HAN-362 / WO-OPS-234: one pin bump at a time per branch. The workflow-level group is per sha, so two
+    # pushes whose image builds finish out of order used to move the pin backwards.
+    concurrency:
+      group: bump-pins-${{ github.ref }}
+      cancel-in-progress: false
     permissions:
       contents: write
     steps:
       - uses: actions/checkout@v4
         with:
-          sparse-checkout: .github/image-apps.json
-          sparse-checkout-cone-mode: false
+          fetch-depth: 0
       - name: Point this branch's pins at the new images
         env:
           SHA: ${{ github.sha }}
@@ -133,6 +137,17 @@ jobs:
             dir="$RUNNER_TEMP/$app"
             if ! git clone -q --depth 1 --branch "pin/$app" "https://x-access-token:${TOKEN}@github.com/${REPO}.git" "$dir"; then
               echo "::warning::no pin/$app branch yet, skipped"; continue
+            fi
+            # WO-OPS-234: never move a pin backwards. Skip if the sha it runs now is a descendant of this
+            # build (a newer push finished first), or is a known commit that this build does not contain.
+            cur="$(sed -n 's/^FROM .*://p' "$dir/Dockerfile" | head -1 | tr -d '[:space:]')"
+            if [ -n "$cur" ] && [ "$cur" != "$SHA" ] && git cat-file -e "${cur}^{commit}" 2>/dev/null; then
+              if git merge-base --is-ancestor "$SHA" "$cur"; then
+                echo "::warning::pin/$app already at newer ${cur:0:8}; not moving back to ${SHA:0:8}"; continue
+              fi
+              if ! git merge-base --is-ancestor "$cur" "$SHA"; then
+                echo "::warning::pin/$app runs ${cur:0:8}, which is not an ancestor of ${SHA:0:8}; left alone (manual release?)"; continue
+              fi
             fi
             printf 'FROM ghcr.io/decodedops/%s:%s\n' "$image" "$SHA" > "$dir/Dockerfile"
             if git -C "$dir" diff --quiet; then echo "pin/$app already at $SHA"; continue; fi
