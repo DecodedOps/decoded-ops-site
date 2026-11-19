@@ -41,7 +41,9 @@ jobs:
 
   image:
     needs: plan
-    runs-on: ubuntu-latest
+    # WO-INF-088 u381: repo variable IMAGE_RUNNER=do-build sends image builds to the self-hosted runners;
+    # delete the variable to fall back to GitHub-hosted runners (which use the plan's paid minutes).
+    runs-on: ${{ vars.IMAGE_RUNNER || 'ubuntu-latest' }}
     strategy:
       fail-fast: false
       matrix:
