@@ -29,9 +29,10 @@ treat every existing page as intentional unless a CR says otherwise.
    gotchas — the fuller version of this file's facts).
 2. `.context/loop-status.md` — the running log of what the dispatcher/lanes have done most
    recently. Start here to see what's in flight.
-3. `.context/change-requests.md` — **frozen read view**, historical only. Current CRs live
-   in the hub DB (`change_requests`, project `decoded-ops-website`, prefix `WEB`); raise new
-   ones with `wo cr new decoded-ops-website --title "..."`, never by editing this file.
+3. `.context/change-requests.md` — **frozen read view**, historical only. Work for this site is a
+   card on the GitHub board (https://github.com/orgs/DecodedOps/projects/1), made with
+   `node D:\apps\infrastructure\scripts\card.mjs new` (the `wo` CLI and work orders are retired). Never file it in this public
+   repo (use the `delivery` repo, `--repo delivery`) and never edit this file.
 4. Global operating rules: `~/.claude/CLAUDE.md` and the SOPs under
    `D:\apps\infrastructure\` (Work Orders, gates, model routing, worktree isolation). This
    file does not restate them.
@@ -123,9 +124,9 @@ Every app ships the same way. Read DO-SOP-022 "Releases" (hub `documents`, proje
 
 ## Where records live
 
-- **Change requests:** hub DB `change_requests` (project `decoded-ops-website`, prefix
-  `WEB`) via `wo cr new`. `.context/change-requests.md` is a frozen historical read view —
-  never add rows there.
+- **Open work:** cards on the GitHub board, made with `node D:\apps\infrastructure\scripts\card.mjs new` (`--repo delivery`; never
+  in this public repo). `.context/change-requests.md` is a frozen historical read view — never add
+  rows there, and do not keep Next steps or backlog lists in `.context/`.
 - **Features/functions catalogue:** re-derive from code at review time; don't hand-maintain
   a snapshot doc (the last one, `DO-FF-009`, drifted from the code within weeks).
 - **Work Orders / lane briefs / lane reports:** `.context/lane-briefs/`,
